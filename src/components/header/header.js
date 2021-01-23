@@ -1,9 +1,17 @@
-import Head from 'next/head'
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx } from "theme-ui";
 
 export default function Header() {
   return (
-    <div className={styles.container}>
-     
+    <div
+      sx={{
+        height: "50px",
+        backgroundColor: "blue",
+        width: "100%",
+      }}
+    >
+      header
     </div>
-  )
+  );
 }
