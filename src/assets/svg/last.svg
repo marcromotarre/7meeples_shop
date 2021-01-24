@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+  <g id="Grupo_1462" data-name="Grupo 1462" transform="translate(-3054 -1647)">
+    <rect id="Rectángulo_134" data-name="Rectángulo 134" width="26" height="26" transform="translate(3054 1647)" fill="none"/>
+    <g id="Grupo_1461" data-name="Grupo 1461" transform="translate(-1.334 107)">
+      <g id="Grupo_1451" data-name="Grupo 1451" transform="translate(2154.57 -1627.188) rotate(46)">
+        <rect id="Rectángulo_127" data-name="Rectángulo 127" width="18" height="2" transform="translate(2913.077 1551)"/>
+        <circle id="Elipse_59" data-name="Elipse 59" cx="1" cy="1" r="1" transform="translate(2912.077 1551)"/>
+        <circle id="Elipse_60" data-name="Elipse 60" cx="1" cy="1" r="1" transform="translate(2930.077 1551)"/>
+      </g>
+      <g id="Grupo_1457" data-name="Grupo 1457" transform="matrix(0.695, -0.719, 0.719, 0.695, 3060.334, 1559.386)">
+        <rect id="Rectángulo_127-2" data-name="Rectángulo 127" width="18" height="2" transform="translate(1 0)"/>
+        <ellipse id="Elipse_59-2" data-name="Elipse 59" cx="1" cy="1" rx="1" ry="1" transform="translate(0 0)"/>
+        <ellipse id="Elipse_60-2" data-name="Elipse 60" cx="1" cy="1" rx="1" ry="1" transform="translate(18 0)"/>
+      </g>
+    </g>
+  </g>
+</svg>

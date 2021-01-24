@@ -1,9 +1,22 @@
+@font-face {
+  font-family: "Quicksand";
+  font-style: regular;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Quicksand"),
+    url(/fonts/Quicksand/static/Quicksand-Regular.ttf) format("ttf");
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Quicksand, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  background-color: red;
 }
 
 a {
@@ -13,4 +26,77 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.menu-close-start {
+  background-position-x: 0px;
+}
+.menu-close-end {
+  background-position-x: -420px;
+}
+.menu-close-start-animation {
+  animation: animation_menu_close 0.5s steps(14) normal;
+}
+
+.menu-close-end-animation {
+  animation: animation_menu_close 0.5s steps(14) reverse;
+}
+
+@keyframes animation_menu_close {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -420px;
+  }
+}
+
+.header-expand-start {
+  height: 0px;
+}
+
+.header-expand-end {
+  height: 50px;
+}
+.header-expand-start-animation {
+  animation: animation_header_expand 0.5s normal;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.header-expand-end-animation {
+  animation: animation_header_expand 0.5s reverse;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+@keyframes animation_header_expand {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 50px;
+  }
+}
+
+.search-start {
+  opacity: 0;
+}
+
+.search-end {
+  opacity: 1;
+}
+.search-start-animation {
+  animation: animation_search 0.5s normal;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.search-end-animation {
+  animation: animation_search 0.5s reverse;
+  animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+@keyframes animation_search {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
