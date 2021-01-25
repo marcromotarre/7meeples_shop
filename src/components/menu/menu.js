@@ -4,39 +4,104 @@ import { jsx } from "theme-ui";
 import MenuItem from "./menu-item";
 import React, { useState } from "react";
 import { openMenu, closeMenu } from "./../../actions";
+import { useSelector, useDispatch } from "react-redux";
+
 export default function Menu() {
   const [menuState, setMenuOpenState] = useState("menu-closed");
 
-  const animationMenuEnd = () => {
-    if (menuState === "menu-open-animation") {
-      setSearchAnimationState("open");
+  const [menuItemState, setMenuItemState] = useState([
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+    "menu-item-hidden",
+  ]);
+
+  const opened = useSelector((state) => state.open);
+  if (opened && menuState === "menu-closed") {
+    setMenuOpenState("menu-opened");
+    const array = [...menuItemState];
+    array[0] = "menu-item-show-animation";
+    setMenuItemState(array);
+  }
+  if (!opened && menuState === "menu-opened") {
+    setMenuOpenState("menu-closed");
+    const array = [...menuItemState];
+    array[menuItemState.length - 1] = "menu-item-hide-animation";
+    setMenuItemState(array);
+  }
+
+  const animationMenuItemEnd = (itemNumber) => {
+    const array = [...menuItemState];
+    if (menuState === "menu-opened") {
+      array[itemNumber] = "menu-item-showed";
+      if (itemNumber < array.length - 1)
+        array[itemNumber + 1] = "menu-item-show-animation";
+    } else {
+      console.log(itemNumber + " hidden");
+      array[itemNumber] = "menu-item-hidden";
+      if (itemNumber > 0) array[itemNumber - 1] = "menu-item-hide-animation";
     }
-    if (menuState === "menu-close-animation") {
-      setSearchAnimationState("menu-close");
-    }
+    setMenuItemState(array);
   };
+
   return (
     <div
-      className
+      className={menuState}
       sx={{
-        height: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
         position: "absolute",
         width: "100%",
-        backgroundColor: "white",
       }}
     >
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
+      <>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(0)}
+          className={menuItemState[0]}
+          index={0}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(1)}
+          className={menuItemState[1]}
+          index={1}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(2)}
+          className={menuItemState[2]}
+          index={2}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(3)}
+          className={menuItemState[3]}
+          index={3}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(4)}
+          className={menuItemState[4]}
+          index={4}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(5)}
+          className={menuItemState[5]}
+          index={5}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(6)}
+          className={menuItemState[6]}
+          index={6}
+        ></MenuItem>
+        <MenuItem
+          onAnimationEnd={() => animationMenuItemEnd(7)}
+          className={menuItemState[7]}
+          index={7}
+        ></MenuItem>
+      </>
     </div>
   );
 }
