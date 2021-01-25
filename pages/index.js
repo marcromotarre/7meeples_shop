@@ -14,6 +14,12 @@ export default function Home() {
         <Head>
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
+          <link
+            rel="preload"
+            href="/fonts/Quicksand/static/Quicksand-Regular.ttf"
+            as="font"
+            crossOrigin=""
+          />
         </Head>
         <Header></Header>
         <Menu></Menu>
