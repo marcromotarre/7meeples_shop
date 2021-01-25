@@ -3,7 +3,7 @@
   font-style: regular;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/Quicksand/static/Quicksand-Regular.ttf) format("ttf");
+  src: url("/fonts/Quicksand/static/Quicksand-Regular.ttf") format("ttf");
 }
 
 html,
