@@ -2,14 +2,14 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import MenuItem from "./menu-item";
+import MenuFiller from "./menu-filler";
 import React, { useState } from "react";
-import { openMenu, closeMenu } from "./../../actions";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Menu() {
   const [menuState, setMenuOpenState] = useState("menu-closed");
-
   const [menuItemState, setMenuItemState] = useState([
+    "menu-item-hidden",
     "menu-item-hidden",
     "menu-item-hidden",
     "menu-item-hidden",
@@ -60,6 +60,13 @@ export default function Menu() {
         width: "100%",
       }}
     >
+      <style jsx global>
+        {`
+          body {
+            overflow: ${opened ? "hidden" : "auto"};
+          }
+        `}
+      </style>
       <>
         <MenuItem
           onAnimationEnd={() => animationMenuItemEnd(0)}
@@ -101,6 +108,11 @@ export default function Menu() {
           className={menuItemState[7]}
           index={7}
         ></MenuItem>
+        <MenuFiller
+          onAnimationEnd={() => animationMenuItemEnd(8)}
+          className={menuItemState[8]}
+          index={8}
+        ></MenuFiller>
       </>
     </div>
   );

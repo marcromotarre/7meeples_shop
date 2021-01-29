@@ -42,6 +42,7 @@ export default function Header() {
       setSearchAnimationState("search-start-animation");
     }
     if (searchAnimationState === "search-end") {
+      dispatch(closeMenu());
       setSearchAnimationState("search-end-animation");
     }
   };
@@ -53,7 +54,6 @@ export default function Header() {
     }
     if (animationState === "menu-close-end-animation") {
       setAnimationState("menu-close-start");
-      dispatch(closeMenu());
     }
   };
 

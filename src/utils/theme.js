@@ -11,9 +11,14 @@ export default {
     accent: "#3f3f3f",
   },
   fonts: {
-    body: "Comic Sans MS",
+    body: "Quicksand",
   },
   containers: {
     page: {},
+  },
+  styles: {
+    root: {
+      // uses the theme values provided above
+    },
   },
 };
