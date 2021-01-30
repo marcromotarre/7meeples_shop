@@ -30,11 +30,11 @@
 }
 .header-expand-start-animation {
   animation: animation_header_expand 0.5s normal;
-  animation-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+  animation-timing-function: linear;
 }
 .header-expand-end-animation {
   animation: animation_header_expand 0.5s reverse;
-  animation-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+  animation-timing-function: linear;
 }
 
 @keyframes animation_header_expand {
@@ -42,7 +42,7 @@
     height: 50px;
   }
   20% {
-    height: 100px;
+    height: 50px;
   }
   100% {
     height: 100%;
