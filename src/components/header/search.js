@@ -34,7 +34,7 @@ export default function Search({ className }) {
             backgroundColor: "#F7F7F7",
             paddingLeft: "30px",
             fontFamily: "Quicksand",
-            fontSize: "12px",
+            fontSize: "15px",
           }}
           type="text"
           id="lname"
