@@ -60,13 +60,6 @@ export default function Menu() {
         width: "100%",
       }}
     >
-      <style jsx global>
-        {`
-          body {
-            overflow: ${opened ? "hidden" : "auto"};
-          }
-        `}
-      </style>
       <>
         <MenuItem
           onAnimationEnd={() => animationMenuItemEnd(0)}

@@ -2,7 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { useState } from "react";
-export default function MenuItem({ className, onAnimationEnd, index }) {
+export default function MenuItem({ className, onAnimationEnd, text }) {
   return (
     <div
       className={className}
@@ -14,6 +14,7 @@ export default function MenuItem({ className, onAnimationEnd, index }) {
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
+        height: "50px",
       }}
     >
       <div
@@ -26,7 +27,7 @@ export default function MenuItem({ className, onAnimationEnd, index }) {
           justifyContent: "flex-start",
         }}
       >
-        <span sx={{ fontFamily: "Quicksand" }}>Menu Item {index}</span>
+        <span sx={{ fontFamily: "Quicksand" }}>{text}</span>
       </div>
     </div>
   );

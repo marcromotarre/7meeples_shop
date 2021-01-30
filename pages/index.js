@@ -5,10 +5,11 @@ import styles from "../styles/Home.module.css";
 import Header from "../src/components/header/header";
 import Menu from "../src/components/menu/menu";
 export default function Home() {
+  //  <Menu></Menu>;
+
   return (
     <div className={styles.container}>
       <Header></Header>
-      <Menu></Menu>
       <div
         sx={{ height: "300px", width: "100%", backgroundColor: "yellow" }}
       ></div>
