@@ -169,7 +169,7 @@ export default function Header() {
         sx={{
           zIndex: "100",
           pointerEvents: "none",
-          position: "absolute",
+          position: "fixed",
           width: "100%",
           borderBottom: "1px solid #C7C7C7",
         }}
