@@ -20,10 +20,8 @@ a {
 
 @font-face {
   font-family: "Quicksand";
-  font-style: normal;
-  font-stretch: normal;
-  font-weight: 400;
-  font-display: fallback;
-  src: local("SourceSansPro Regular"), local("SourceSansPro-Regular"),
-    url(/fonts/Quicksand/static/Quicksand-Regular.ttf) format("ttf");
+  src: url("/fonts/Quicksand/static/Quicksand-Regular.ttf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
 }
