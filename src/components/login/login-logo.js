@@ -14,10 +14,10 @@ export default function LoginEmail({ logo }) {
       }}
     >
       <img src={logo.svg} sx={{ width: "100px" }}></img>
-      <div sx={{ display: "flex" }}>
+      {/*<div sx={{ display: "flex" }}>
         <span sx={{ fontSize: "22px", color: logo.color.gray }}>7</span>
         <span sx={{ fontSize: "22px", color: logo.color.base }}>meeples</span>
-      </div>
+      </div>*/}
     </div>
   );
 }

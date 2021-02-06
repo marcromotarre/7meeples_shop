@@ -6,10 +6,13 @@ import Button from "../common/buttons/button";
 import { useState } from "react";
 import { email_exist } from "../../backend/credentials";
 import React from "react";
+import check_checked from "../../assets/svg/check-checked.svg";
+import check_unchecked from "../../assets/svg/check-unchecked.svg";
 
 import loader from "./../../assets/gif/loader.gif";
 
 export default function LoginEmail({ onClickNext = () => {} }) {
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const clickButton = async () => {
@@ -36,6 +39,10 @@ export default function LoginEmail({ onClickNext = () => {} }) {
     setEmail(email);
   };
 
+  const handleShowPasswordCheckbox = () => {
+    setShowPassword(!showPassword);
+  };
+
   const onAnimationEnd = () => {
     setClassName("");
   };
@@ -53,24 +60,33 @@ export default function LoginEmail({ onClickNext = () => {} }) {
         }}
       >
         <div
-          sx={{ gridArea: "title", justifySelf: "center", alignSelf: "end" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gridArea: "title",
+            justifySelf: "center",
+            alignSelf: "end",
+          }}
         >
+          <span sx={{ fontSize: "16px", textAlign: "center" }}>Hola</span>
           <span sx={{ fontSize: "16px", textAlign: "center" }}>
-            Inicia sesión o crea una cuenta nueva
+            marcromotarre@gmail.com
           </span>
         </div>
 
         <div
           sx={{
+            height: "100%",
             gridArea: "form",
             justifySelf: "center",
             alignSelf: "center",
             width: "100%",
             display: "grid",
-            gridTemplateRows: "25% 75%",
+            gridTemplateRows: "15% 65% 20%",
             gridTemplateColumns: "100%",
-            gridTemplateAreas: `"error-message" "email-input"`,
-            height: "100%",
+            gridTemplateAreas: `"error-message" "email-input" "checkbox"`,
           }}
         >
           <>
@@ -83,7 +99,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
                   textAlign: "center",
                 }}
               >
-                No has introducido un correo electrónico
+                La contraseña que has introducido es incorrecta
               </span>
             )}
             <Input
@@ -92,11 +108,36 @@ export default function LoginEmail({ onClickNext = () => {} }) {
               error={error}
               defaultValue={email}
               width={"75%"}
-              text={"Escribe tu correo electrónico"}
+              text={"Escribe tu contraseña"}
               onChange={onChange}
               justifySelf={"center"}
               alignSelf={"center"}
+              type={showPassword ? "text" : "password"}
             ></Input>
+
+            <div
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                position: "relative",
+                left: "12.5%",
+                gridArea: "checkbox",
+              }}
+              onClick={handleShowPasswordCheckbox}
+            >
+              <img src={showPassword ? check_checked : check_unchecked} />
+              <span
+                sx={{
+                  paddingLeft: "5px",
+                  fontSize: "12px",
+                  color: "#33BAFB",
+                  textAlign: "center",
+                }}
+              >
+                Mostrar contraseña
+              </span>
+            </div>
           </>
         </div>
         <div

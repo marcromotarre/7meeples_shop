@@ -132,3 +132,50 @@
     padding-top: 50px;
   }
 }
+
+.error-animation {
+  animation: animation-error 0.5s normal;
+  animation-timing-function: ease;
+}
+
+@keyframes animation-error {
+  10% {
+    left: 5px;
+  }
+
+  20% {
+    left: 0px;
+  }
+
+  30% {
+    left: -5px;
+  }
+
+  40% {
+    left: 0px;
+  }
+
+  50% {
+    left: 5px;
+  }
+
+  60% {
+    left: 0px;
+  }
+
+  70% {
+    left: -5px;
+  }
+
+  80% {
+    left: 0px;
+  }
+
+  90% {
+    left: 5px;
+  }
+
+  100% {
+    left: 0px;
+  }
+}

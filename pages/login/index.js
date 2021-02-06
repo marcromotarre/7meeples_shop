@@ -3,35 +3,203 @@
 import { jsx } from "theme-ui";
 import LoginLogo from "../../src/components/login/login-logo";
 import LoginEmail from "../../src/components/login/login-email";
+import SignInPassword from "../../src/components/login/signin-password";
+import SignUpPassword from "../../src/components/login/signup-password";
 import { getLogo } from "../../src/data/logo";
-import Input from "../../src/components/inputs/basic-input";
+import React, { useState, useEffect } from "react";
+const email_step = ({
+  className,
+  step,
+  goToNextStep,
+  onAnimationEnd = () => {},
+}) => (
+  <div
+    onAnimationEnd={onAnimationEnd}
+    className={className}
+    sx={{ position: "relative", gridArea: step, height: "100%" }}
+  >
+    <LoginEmail onClickNext={goToNextStep}></LoginEmail>
+  </div>
+);
+
+const password_signin_step = ({
+  email,
+  className,
+  step,
+  goToNextStep,
+  onAnimationEnd = () => {},
+}) => (
+  <div
+    onAnimationEnd={onAnimationEnd}
+    className={className}
+    sx={{ position: "relative", gridArea: step, height: "100%" }}
+  >
+    <SignInPassword email={email} onClickNext={goToNextStep}></SignInPassword>
+  </div>
+);
+
+const password_signup_step = ({
+  email,
+  className,
+  step,
+  goToNextStep,
+  onAnimationEnd = () => {},
+}) => (
+  <div
+    onAnimationEnd={onAnimationEnd}
+    className={className}
+    sx={{ position: "relative", gridArea: step, height: "100%" }}
+  >
+    <SignUpPassword email={email} onClickNext={goToNextStep}></SignUpPassword>
+  </div>
+);
+
+const steps = {
+  LOGINEMAIL: "LOGINEMAIL",
+  LOGINEMAIL_SIGNINPASSWORD: "LOGINEMAIL_SIGNINPASSWORD",
+  LOGINEMAIL_SIGNUPPASSWORD: "LOGINEMAIL_SIGNUPPASSWORD",
+  SIGNINPASSWORD: "SIGNINPASSWORD",
+  SIGNUPPASSWORD: "SIGNUPPASSWORD",
+};
+
 export default function Login() {
-  const logo = getLogo();
-  console.log(logo);
+  useEffect(() => {
+    setLogo(getLogo());
+  }, []);
+
+  const [email, setEmail] = useState("");
+  const [logo, setLogo] = useState(false);
+  const [stepLeftClassName, setStepLeftClassName] = useState("step-left-start");
+  const [stepRightClassName, setStepRightClassName] = useState(
+    "step-right-start"
+  );
+
+  const [step, setStep] = useState(steps.SIGNINPASSWORD);
+
+  const email_verification = ({ userExist, email }) => {
+    setEmail(email);
+    userExist
+      ? setStep(steps.LOGINEMAIL_SIGNINPASSWORD)
+      : setStep(steps.LOGINEMAIL_SIGNUPPASSWORD);
+    setStepLeftClassName("step-left-next-animation");
+    setStepRightClassName("step-right-next-animation");
+  };
+
+  const onAnimationEnd = () => {
+    console.log("onAnimationEnd");
+    if (step === steps.LOGINEMAIL_SIGNINPASSWORD) {
+      setStep(steps.SIGNINPASSWORD);
+    }
+    setStepLeftClassName("step-left-start");
+    setStepRightClassName("step-right-start");
+  };
+
   return (
-    <div
-      sx={{
-        display: "grid",
-        gridTemplateRows: "33% 33% 33%",
-        gridTemplateColumns: "100%",
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <LoginLogo sx={{}} logo={logo}></LoginLogo>
+    <>
+      <style jsx global>
+        {`
+          .step-left-start,
+          .step-right-start {
+            left: 0%;
+          }
+          .setp-left-end,
+          .step-right-end {
+            left: -100%;
+          }
+
+          .step-left-next-animation,
+          .step-right-next-animation {
+            animation: animation-next-step 0.4s normal;
+            animation-timing-function: ease;
+          }
+
+          @keyframes animation-next-step {
+            0% {
+              left: 0%;
+            }
+
+            100% {
+              left: -100%;
+            }
+          }
+
+          @keyframes animation-previous-step {
+            0% {
+              left: -100%;
+            }
+
+            100% {
+              left: 0%;
+            }
+          }
+        `}
+      </style>
       <div
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          overflow: "hidden",
+          display: "grid",
+          gridTemplateRows: "33% 33% 33%",
+          gridTemplateColumns: "100% 100%",
+          gridTemplateAreas: `"logo ." "step-left step-right" ". ."`,
+          height: "100vh",
+          width: "100%",
         }}
       >
-        <span sx={{ fontSize: "12px", textAlign: "center" }}>
-          Inicia sesión o crea una cuenta nueva
-        </span>
-        <Input width={"75%"} text="Escribe tu correo electrónico"></Input>
+        {logo && <LoginLogo sx={{ gridArea: "logo" }} logo={logo}></LoginLogo>}
+        {step === steps.LOGINEMAIL && (
+          <>
+            {email_step({
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+          </>
+        )}
+        {step === steps.SIGNINPASSWORD && (
+          <>
+            {password_signin_step({
+              email: email,
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+          </>
+        )}
+        {step === steps.LOGINEMAIL_SIGNINPASSWORD && (
+          <>
+            {email_step({
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+            {password_signin_step({
+              email: email,
+              className: stepRightClassName,
+              step: "step-right",
+              goToNextStep: email_verification,
+            })}
+          </>
+        )}
+        {step === steps.LOGINEMAIL_SIGNUPPASSWORD && (
+          <>
+            {email_step({
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+            {password_signup_step({
+              email: email,
+              className: stepRightClassName,
+              step: "step-right",
+              goToNextStep: email_verification,
+            })}
+          </>
+        )}
       </div>
-    </div>
+    </>
   );
 }

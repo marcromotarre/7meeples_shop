@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <g id="check-checked" transform="translate(-55 -442)">
+    <g id="Rectángulo_107" data-name="Rectángulo 107" transform="translate(55 442)" fill="#fff" stroke="#33bafb" stroke-width="1">
+      <rect width="14" height="14" rx="3" stroke="none"/>
+      <rect x="0.5" y="0.5" width="13" height="13" rx="2.5" fill="none"/>
+    </g>
+    <path id="iconfinder_checkmark-24_103184" d="M7.986,3.071a.275.275,0,0,0-.391,0l-4.124,4.1a.275.275,0,0,1-.392,0L1.272,5.336a.275.275,0,0,0-.392,0l-.8.718A.277.277,0,0,0,0,6.248a.29.29,0,0,0,.082.2L1.9,8.36l.392.395.783.79a.277.277,0,0,0,.392,0l5.3-5.289a.281.281,0,0,0,0-.4Z" transform="translate(58 443.01)" fill="#33bafb" fill-rule="evenodd"/>
+  </g>
+</svg>

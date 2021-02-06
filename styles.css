@@ -23,8 +23,7 @@ a {
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/Quicksand/static/Quicksand-Regular.ttf");
+  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
   font-style: medium;
-  font-weight: 500;
   font-display: swap;
 }

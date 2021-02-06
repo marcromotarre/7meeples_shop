@@ -1,10 +1,33 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
+import { useState } from "react";
 
-export default function Input({ width = "100%", text, color = "#33BAFB" }) {
+export default function Input({
+  justifySelf = "",
+  alignSelf = "",
+  className = "",
+  error = false,
+  defaultValue = "",
+  width = "100%",
+  text,
+  color = "#33BAFB",
+  errorColor = "#FD2C25",
+  gridArea = "",
+  type = "text",
+  onChange = () => {},
+}) {
+  const [value, setValue] = useState(defaultValue);
+  const handleChange = (event) => {
+    onChange(event.target.value);
+    setValue(event.target.value);
+  };
+
   return (
-    <div sx={{ width }}>
+    <div
+      className={className}
+      sx={{ gridArea, justifySelf, alignSelf, position: "relative", width }}
+    >
       <div
         sx={{
           width: "calc(100% - 20px)",
@@ -23,7 +46,7 @@ export default function Input({ width = "100%", text, color = "#33BAFB" }) {
           <span
             sx={{
               fontSize: "10px",
-              color: color,
+              color: error ? errorColor : color,
             }}
           >
             {text}
@@ -34,7 +57,7 @@ export default function Input({ width = "100%", text, color = "#33BAFB" }) {
       <input
         sx={{
           width: "100%",
-          border: `1px solid ${color}`,
+          border: `1px solid ${error ? errorColor : color}`,
           borderRadius: "3px",
           height: "43px",
           paddingLeft: "15px",
@@ -43,6 +66,9 @@ export default function Input({ width = "100%", text, color = "#33BAFB" }) {
             outline: "none",
           },
         }}
+        type={type}
+        value={value}
+        onChange={handleChange}
       ></input>
     </div>
   );
