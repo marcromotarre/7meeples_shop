@@ -3,13 +3,18 @@
 import { jsx } from "theme-ui";
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { email_exist } from "../../backend/credentials";
 import React from "react";
 
 import loader from "./../../assets/gif/loader.gif";
 
 export default function LoginEmail({ onClickNext = () => {} }) {
+  const emailInputRef = useRef();
+  useEffect(() => {
+    emailInputRef.current.focus();
+    console.log(emailInputRef);
+  }, []);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const clickButton = async () => {
@@ -55,13 +60,17 @@ export default function LoginEmail({ onClickNext = () => {} }) {
             display: "grid",
             gridTemplateRows: "25% 50% 25%",
             gridTemplateColumns: "100%",
-            gridTemplateAreas: `"form" "button" "title"`,
+            gridTemplateAreas: `"title" "form" "button"`,
             height: "100%",
           }}
         >
           <div
             sx={{ gridArea: "title", justifySelf: "center", alignSelf: "end" }}
-          ></div>
+          >
+            <span sx={{ fontSize: "16px", textAlign: "center" }}>
+              Inicia sesión o crea una cuenta nueva
+            </span>
+          </div>
 
           <div
             sx={{
@@ -90,6 +99,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
                 </span>
               )}
               <Input
+                reference={emailInputRef}
                 gridArea={"email-input"}
                 className={className}
                 error={error}
