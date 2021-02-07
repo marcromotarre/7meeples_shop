@@ -21,8 +21,6 @@ export default function LoginEmail({ onClickNext = () => {} }) {
       const { error } = await email_exist({
         email,
       });
-      //marcromotarre@gmail.com
-      console.log(error);
       setLoading(false);
       onClickNext({ userExist: error ? false : true, email });
     } else {
@@ -57,17 +55,13 @@ export default function LoginEmail({ onClickNext = () => {} }) {
             display: "grid",
             gridTemplateRows: "25% 50% 25%",
             gridTemplateColumns: "100%",
-            gridTemplateAreas: `"title" "form" "button"`,
+            gridTemplateAreas: `"form" "button" "title"`,
             height: "100%",
           }}
         >
           <div
             sx={{ gridArea: "title", justifySelf: "center", alignSelf: "end" }}
-          >
-            <span sx={{ fontSize: "16px", textAlign: "center" }}>
-              Inicia sesión o crea una cuenta nueva
-            </span>
-          </div>
+          ></div>
 
           <div
             sx={{
