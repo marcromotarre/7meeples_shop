@@ -173,6 +173,7 @@ export default function Login() {
       </style>
       <div
         sx={{
+          position: "fixed",
           overflow: "hidden",
           display: "grid",
           gridTemplateRows: "33% 66%",

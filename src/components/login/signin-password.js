@@ -16,10 +16,14 @@ export default function SignInPassword({ email, onClickNext = () => {} }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const clickButton = async () => {
-    //check if password is correct
+    setLoading(true);
     const { error } = await get_user({ email, password });
     console.log(error);
+    setLoading(false);
     if (error) {
+      setError(true);
+      setClassName("error-animation");
+    } else {
     }
   };
 
