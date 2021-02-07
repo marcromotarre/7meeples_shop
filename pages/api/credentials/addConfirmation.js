@@ -1,11 +1,11 @@
 const { query } = require("../../../utils/hasura");
 
 export default async (req, res) => {
-  const { email, password, code } = req.body;
+  const { email, code } = req.body;
   const user_confirmation = await query({
     query: `
     mutation  {
-        insert_credentials_confirmation_one(object: {code: "${code}", email: "${email}", password: "${password}"}) {
+        insert_credentials_confirmation_one(object: {code: "${code}", email: "${email}"}) {
           email
         }
       }
@@ -13,7 +13,6 @@ export default async (req, res) => {
     `,
   });
   res.statusCode = 200;
-  console.log(user_confirmation);
   if (!user_confirmation) {
     res.json({
       created: false,

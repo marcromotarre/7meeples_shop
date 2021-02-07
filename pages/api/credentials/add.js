@@ -2,16 +2,25 @@ const { query } = require("../../../utils/hasura");
 
 export default async (req, res) => {
   const { email, password } = req.body;
-  const user = await query({
+  const user_created = await query({
     query: `
-        mutation {
-            insert_users(objects: {email: "${email}", password: "${password}"}) {
-                id
-                email
-            }
+    mutation  {
+        insert_credentials_one(object: {email: "${email}", password: "${password}"}) {
+          email
         }
+      }
+      
     `,
   });
   res.statusCode = 200;
-  res.json(user);
+  if (!user_created) {
+    res.json({
+      created: false,
+      email: email,
+    });
+  }
+  res.json({
+    email: email,
+    created: true,
+  });
 };

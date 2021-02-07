@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
 import { useState } from "react";
-import { add_user_confirmation } from "../../backend/credentials";
+import { add_user, add_user_confirmation } from "../../backend/credentials";
 import React from "react";
 import check_checked from "../../assets/svg/check-checked.svg";
 import check_unchecked from "../../assets/svg/check-unchecked.svg";
@@ -12,45 +12,65 @@ var passwordHash = require("password-hash");
 import * as emailjs from "emailjs-com";
 import loader from "./../../assets/gif/loader.gif";
 
-export default function SignUpPassword({ onClickNext = () => {} }) {
+export default function SignUpPassword({ email, onClickNext = () => {} }) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [email, setEmail] = useState("marcromotarre@gmail.com");
   const [password, setPassword] = useState("");
-
   const clickButton = async () => {
     setLoading(true);
     var hashedPassword = passwordHash.generate(password);
     const code =
       Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
 
-    const { email, created } = await add_user_confirmation({
+    const addUserConfirmation = await add_user_confirmation({
+      email,
+      code,
+    });
+
+    if (!addUserConfirmation.created) {
+      onClickNext({ created: false });
+      return;
+    }
+
+    const addUser = await add_user({
       email,
       password: hashedPassword,
       code,
     });
 
+    if (!addUser.created) {
+      //delete user confirmation
+      onClickNext({ created: false });
+      return;
+    }
+
     //send email
     emailjs.init("user_sPHGcdHgcVXLs7LWlTX7I");
-    emailjs.send(
+    const a = emailjs.send(
       "service_s2swtsk",
       "template_0qyubac",
       {
-        email: "marcromo",
-        code: "dccdcdcddccddccd",
+        email,
+        code,
       },
       "user_sPHGcdHgcVXLs7LWlTX7I"
     );
-    onClickNext({ email, created });
+    onClickNext({ created: !addUserConfirmation.created });
 
     setLoading(true);
   };
 
   const [className, setClassName] = useState("");
 
-  const onChange = (email) => {
+  const onChange = (password) => {
     setPassword(password);
   };
 
@@ -58,9 +78,6 @@ export default function SignUpPassword({ onClickNext = () => {} }) {
     setShowPassword(!showPassword);
   };
 
-  const onAnimationEnd = () => {
-    setClassName("");
-  };
   return (
     <div
       sx={{
@@ -72,7 +89,6 @@ export default function SignUpPassword({ onClickNext = () => {} }) {
     >
       <>
         <div
-          onAnimationEnd={onAnimationEnd}
           sx={{
             position: "relative",
             display: "grid",
@@ -117,7 +133,7 @@ export default function SignUpPassword({ onClickNext = () => {} }) {
               display: "grid",
               gridTemplateRows: "30% 50% 20%",
               gridTemplateColumns: "100%",
-              gridTemplateAreas: `"error-message" "email-input" "checkbox"`,
+              gridTemplateAreas: `"error-message" "password-input" "checkbox"`,
             }}
           >
             <>
@@ -132,7 +148,7 @@ export default function SignUpPassword({ onClickNext = () => {} }) {
                 Estás a un paso de crear tu cuenta.
               </span>
               <Input
-                gridArea={"email-input"}
+                gridArea={"password-input"}
                 className={className}
                 error={error}
                 defaultValue={password}

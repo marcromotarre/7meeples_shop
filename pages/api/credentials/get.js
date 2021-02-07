@@ -3,8 +3,6 @@ var passwordHash = require("password-hash");
 
 export default async (req, res) => {
   const { email, password } = req.body;
-  console.log("email", email);
-  console.log("password", password);
   const user = await query({
     query: `
       query {
@@ -18,12 +16,6 @@ export default async (req, res) => {
   });
   if (user.credentials.length > 0) {
     const credentials = user.credentials[0];
-    console.log(
-      "credentials",
-      passwordHash.verify(password, credentials.password),
-      user.credentials[0].password,
-      password
-    );
     if (passwordHash.verify(password, credentials.password)) {
       res.json({ id: credentials.id, email: credentials.email });
     } else {

@@ -2,8 +2,16 @@ const { query } = require("../../../utils/hasura");
 
 export default async (req, res) => {
   const { email } = req.body;
-  console.log(email);
-  const user = await query({
+  const { credentials_confirmation } = await query({
+    query: `
+      query {
+        credentials_confirmation(where: {email: {_eq: "${email}"}}) {
+          email
+        }
+      }
+    `,
+  });
+  const { credentials } = await query({
     query: `
       query {
         credentials(where: {email: {_eq: "${email}"}}) {
@@ -13,8 +21,23 @@ export default async (req, res) => {
     `,
   });
   res.statusCode = 200;
-  res.json({
-    userExist: user.credentials[0] ? true : false,
-    email: user.credentials[0] ? user.credentials[0] : "",
-  });
+  console.log(credentials_confirmation);
+  console.log(credentials);
+  if (credentials_confirmation.length === 0 && credentials.length === 0) {
+    res.json({
+      error: "user does not exist",
+    });
+  }
+  if (credentials_confirmation.length > 0 && credentials.length > 0) {
+    res.json({
+      userVerified: false,
+      email: credentials_confirmation[0].email,
+    });
+  }
+  if (credentials.length > 0) {
+    res.json({
+      userVerified: true,
+      email: credentials[0].email,
+    });
+  }
 };

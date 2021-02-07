@@ -109,8 +109,7 @@ export default function Login() {
     setStepRightClassName("step-right-next-animation");
   };
 
-  const signup_verification = ({ created, email }) => {
-    setEmail(email);
+  const signup_verification = ({ created }) => {
     created
       ? setStep(steps.SIGNUPPASSWORD_EMAILCONFIRMATION)
       : setStep(steps.SIGNUPPASSWORD_EMAILCONFIRMATION);
@@ -119,7 +118,6 @@ export default function Login() {
   };
 
   const onAnimationEnd = () => {
-    console.log("onAnimationEnd");
     if (step === steps.LOGINEMAIL_SIGNINPASSWORD) {
       setStep(steps.SIGNINPASSWORD);
     }

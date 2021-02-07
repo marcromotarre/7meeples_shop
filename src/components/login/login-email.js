@@ -18,12 +18,11 @@ export default function LoginEmail({ onClickNext = () => {} }) {
     ).test(email);
     if (valid_email) {
       setLoading(true);
-      const { userExist } = await email_exist({
+      const { error } = await email_exist({
         email,
       });
       setLoading(false);
-      console.log(onClickNext);
-      onClickNext({ userExist, email });
+      onClickNext({ userExist: error ? false : true, email });
     } else {
       setError(true);
       setClassName("error-animation");
@@ -31,7 +30,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
   };
 
   const [className, setClassName] = useState("");
-  const [email, setEmail] = useState("marcromotarre@gmail.com");
+  const [email, setEmail] = useState("");
   const onChange = (email) => {
     setEmail(email);
   };

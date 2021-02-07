@@ -41,7 +41,6 @@ export default function Menu() {
       if (itemNumber < array.length - 1)
         array[itemNumber + 1] = "menu-item-show-animation";
     } else {
-      console.log(itemNumber + " hidden");
       array[itemNumber] = "menu-item-hidden";
       if (itemNumber > 0) array[itemNumber - 1] = "menu-item-hide-animation";
     }

@@ -1,12 +1,12 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import logo_red from "../../assets/svg/7meeples-logo-red.svg";
 
-export default function LoginEmail({ logo }) {
+export default function LoginEmail({ logo, gridArea = "" }) {
   return (
     <div
       sx={{
+        gridArea,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
