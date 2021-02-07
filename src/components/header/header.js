@@ -9,8 +9,11 @@ import { openMenu, closeMenu } from "src/actions";
 import { useSelector, useDispatch } from "react-redux";
 import MenuItem from "../menu/menu-item";
 import Search from "../header/search";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
+
   const opened = useSelector((state) => state.open);
   const [animationState, setAnimationState] = useState("menu-close-start");
   const [menuState, setMenuState] = useState("menu-start");
@@ -91,6 +94,11 @@ export default function Header() {
     }
   };
 */
+
+  const clickOnLoginRegister = () => {
+    router.push("login");
+  };
+
   return (
     <>
       <div
@@ -154,7 +162,11 @@ export default function Header() {
         </div>
         <div sx={{ width: "100%", height: "calc(100% - 50px)" }}>
           <Search className={menuState}></Search>
-          <MenuItem className={menuState} text={"Login / Register"}></MenuItem>
+          <MenuItem
+            className={menuState}
+            text={"Login / Register"}
+            onClick={clickOnLoginRegister}
+          ></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>

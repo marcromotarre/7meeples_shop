@@ -11,7 +11,7 @@ import check_unchecked from "../../assets/svg/check-unchecked.svg";
 
 import loader from "./../../assets/gif/loader.gif";
 
-export default function LoginEmail({ onClickNext = () => {} }) {
+export default function SignInPassword({ onClickNext = () => {} }) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -34,9 +34,10 @@ export default function LoginEmail({ onClickNext = () => {} }) {
   };
 
   const [className, setClassName] = useState("");
-  const [email, setEmail] = useState("marcromotarre@gmail.");
+  const [email, setEmail] = useState("marcromotarre@gmail.com");
+  const [password, setPassword] = useState("");
   const onChange = (email) => {
-    setEmail(email);
+    setPassword(password);
   };
 
   const handleShowPasswordCheckbox = () => {
@@ -71,9 +72,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
           }}
         >
           <span sx={{ fontSize: "16px", textAlign: "center" }}>Hola</span>
-          <span sx={{ fontSize: "16px", textAlign: "center" }}>
-            marcromotarre@gmail.com
-          </span>
+          <span sx={{ fontSize: "16px", textAlign: "center" }}>{email}</span>
         </div>
 
         <div
@@ -106,7 +105,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
               gridArea={"email-input"}
               className={className}
               error={error}
-              defaultValue={email}
+              defaultValue={password}
               width={"75%"}
               text={"Escribe tu contraseña"}
               onChange={onChange}

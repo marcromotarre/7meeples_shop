@@ -5,6 +5,7 @@ import LoginLogo from "../../src/components/login/login-logo";
 import LoginEmail from "../../src/components/login/login-email";
 import SignInPassword from "../../src/components/login/signin-password";
 import SignUpPassword from "../../src/components/login/signup-password";
+import EmailConfirmation from "../../src/components/login/email-confirmation";
 import { getLogo } from "../../src/data/logo";
 import React, { useState, useEffect } from "react";
 const email_step = ({
@@ -54,12 +55,35 @@ const password_signup_step = ({
   </div>
 );
 
+const email_confirmation = ({
+  email,
+  className,
+  step,
+  goToNextStep,
+  onAnimationEnd = () => {},
+}) => (
+  <div
+    onAnimationEnd={onAnimationEnd}
+    className={className}
+    sx={{ position: "relative", gridArea: step, height: "100%" }}
+  >
+    <EmailConfirmation
+      email={email}
+      onClickNext={goToNextStep}
+    ></EmailConfirmation>
+  </div>
+);
+
 const steps = {
   LOGINEMAIL: "LOGINEMAIL",
   LOGINEMAIL_SIGNINPASSWORD: "LOGINEMAIL_SIGNINPASSWORD",
   LOGINEMAIL_SIGNUPPASSWORD: "LOGINEMAIL_SIGNUPPASSWORD",
+  SIGNUPPASSWORD_EMAILCONFIRMATION: "SIGNUPPASSWORD_EMAILCONFIRMATION",
+  SIGNUPPASSWORD_ERROR: "SIGNUPPASSWORD_ERROR",
   SIGNINPASSWORD: "SIGNINPASSWORD",
   SIGNUPPASSWORD: "SIGNUPPASSWORD",
+  EMAILCONFIRMATION: "EMAILCONFIRMATION",
+  ERROR: "ERROR",
 };
 
 export default function Login() {
@@ -74,7 +98,7 @@ export default function Login() {
     "step-right-start"
   );
 
-  const [step, setStep] = useState(steps.SIGNINPASSWORD);
+  const [step, setStep] = useState(steps.LOGINEMAIL);
 
   const email_verification = ({ userExist, email }) => {
     setEmail(email);
@@ -85,10 +109,25 @@ export default function Login() {
     setStepRightClassName("step-right-next-animation");
   };
 
+  const signup_verification = ({ created, email }) => {
+    setEmail(email);
+    created
+      ? setStep(steps.SIGNUPPASSWORD_EMAILCONFIRMATION)
+      : setStep(steps.SIGNUPPASSWORD_EMAILCONFIRMATION);
+    setStepLeftClassName("step-left-next-animation");
+    setStepRightClassName("step-right-next-animation");
+  };
+
   const onAnimationEnd = () => {
     console.log("onAnimationEnd");
     if (step === steps.LOGINEMAIL_SIGNINPASSWORD) {
       setStep(steps.SIGNINPASSWORD);
+    }
+    if (step === steps.LOGINEMAIL_SIGNUPPASSWORD) {
+      setStep(steps.SIGNUPPASSWORD);
+    }
+    if (step === steps.SIGNUPPASSWORD_EMAILCONFIRMATION) {
+      setStep(steps.EMAILCONFIRMATION);
     }
     setStepLeftClassName("step-left-start");
     setStepRightClassName("step-right-start");
@@ -138,9 +177,9 @@ export default function Login() {
         sx={{
           overflow: "hidden",
           display: "grid",
-          gridTemplateRows: "33% 33% 33%",
+          gridTemplateRows: "33% 66%",
           gridTemplateColumns: "100% 100%",
-          gridTemplateAreas: `"logo ." "step-left step-right" ". ."`,
+          gridTemplateAreas: `"logo ." "step-left step-right"`,
           height: "100vh",
           width: "100%",
         }}
@@ -159,6 +198,28 @@ export default function Login() {
         {step === steps.SIGNINPASSWORD && (
           <>
             {password_signin_step({
+              email: email,
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+          </>
+        )}
+        {step === steps.SIGNUPPASSWORD && (
+          <>
+            {password_signup_step({
+              email: email,
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: signup_verification,
+              onAnimationEnd,
+            })}
+          </>
+        )}
+        {step === steps.EMAILCONFIRMATION && (
+          <>
+            {email_confirmation({
               email: email,
               className: stepLeftClassName,
               step: "step-left",
@@ -195,7 +256,21 @@ export default function Login() {
               email: email,
               className: stepRightClassName,
               step: "step-right",
+            })}
+          </>
+        )}
+        {step === steps.SIGNUPPASSWORD_EMAILCONFIRMATION && (
+          <>
+            {password_signup_step({
+              className: stepLeftClassName,
+              step: "step-left",
               goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+            {email_confirmation({
+              email: email,
+              className: stepRightClassName,
+              step: "step-right",
             })}
           </>
         )}

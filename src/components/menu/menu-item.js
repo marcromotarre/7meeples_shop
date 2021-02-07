@@ -2,9 +2,15 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { useState } from "react";
-export default function MenuItem({ className, onAnimationEnd, text }) {
+export default function MenuItem({
+  className,
+  onAnimationEnd,
+  text,
+  onClick = () => {},
+}) {
   return (
     <div
+      onClick={onClick}
       className={className}
       onAnimationEnd={onAnimationEnd}
       sx={{

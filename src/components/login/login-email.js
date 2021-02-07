@@ -31,7 +31,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
   };
 
   const [className, setClassName] = useState("");
-  const [email, setEmail] = useState("marcromotarre@gmail.");
+  const [email, setEmail] = useState("marcromotarre@gmail.com");
   const onChange = (email) => {
     setEmail(email);
   };
@@ -40,88 +40,97 @@ export default function LoginEmail({ onClickNext = () => {} }) {
     setClassName("");
   };
   return (
-    <>
-      <div
-        onAnimationEnd={onAnimationEnd}
-        sx={{
-          position: "relative",
-          display: "grid",
-          gridTemplateRows: "25% 50% 25%",
-          gridTemplateColumns: "100%",
-          gridTemplateAreas: `"title" "form" "button"`,
-          height: "100%",
-        }}
-      >
+    <div
+      sx={{
+        display: "grid",
+        gridTemplateRows: "50% 50%",
+        gridTemplateColumns: "100%",
+        height: "100%",
+      }}
+    >
+      <>
         <div
-          sx={{ gridArea: "title", justifySelf: "center", alignSelf: "end" }}
-        >
-          <span sx={{ fontSize: "16px", textAlign: "center" }}>
-            Inicia sesión o crea una cuenta nueva
-          </span>
-        </div>
-
-        <div
+          onAnimationEnd={onAnimationEnd}
           sx={{
-            gridArea: "form",
-            justifySelf: "center",
-            alignSelf: "center",
-            width: "100%",
+            position: "relative",
             display: "grid",
-            gridTemplateRows: "25% 75%",
+            gridTemplateRows: "25% 50% 25%",
             gridTemplateColumns: "100%",
-            gridTemplateAreas: `"error-message" "email-input"`,
+            gridTemplateAreas: `"title" "form" "button"`,
             height: "100%",
           }}
         >
-          <>
-            {error && (
-              <span
-                sx={{
-                  gridArea: "error-message",
-                  fontSize: "12px",
-                  color: "#FD2C25",
-                  textAlign: "center",
-                }}
-              >
-                No has introducido un correo electrónico
-              </span>
+          <div
+            sx={{ gridArea: "title", justifySelf: "center", alignSelf: "end" }}
+          >
+            <span sx={{ fontSize: "16px", textAlign: "center" }}>
+              Inicia sesión o crea una cuenta nueva
+            </span>
+          </div>
+
+          <div
+            sx={{
+              gridArea: "form",
+              justifySelf: "center",
+              alignSelf: "center",
+              width: "100%",
+              display: "grid",
+              gridTemplateRows: "25% 75%",
+              gridTemplateColumns: "100%",
+              gridTemplateAreas: `"error-message" "email-input"`,
+              height: "100%",
+            }}
+          >
+            <>
+              {error && (
+                <span
+                  sx={{
+                    gridArea: "error-message",
+                    fontSize: "12px",
+                    color: "#FD2C25",
+                    textAlign: "center",
+                  }}
+                >
+                  No has introducido un correo electrónico
+                </span>
+              )}
+              <Input
+                gridArea={"email-input"}
+                className={className}
+                error={error}
+                defaultValue={email}
+                width={"75%"}
+                text={"Escribe tu correo electrónico"}
+                onChange={onChange}
+                justifySelf={"center"}
+                alignSelf={"center"}
+              ></Input>
+            </>
+          </div>
+          <div
+            sx={{
+              gridArea: "button",
+              justifySelf: "center",
+              alignSelf: "center",
+            }}
+          >
+            {!loading && (
+              <Button
+                gridArea={"button"}
+                onClick={clickButton}
+                text={"SIGUIENTE"}
+              ></Button>
             )}
-            <Input
-              gridArea={"email-input"}
-              className={className}
-              error={error}
-              defaultValue={email}
-              width={"75%"}
-              text={"Escribe tu correo electrónico"}
-              onChange={onChange}
-              justifySelf={"center"}
-              alignSelf={"center"}
-            ></Input>
-          </>
+            {loading && (
+              <img
+                src={loader}
+                sx={{ height: "50px", gridArea: "button" }}
+                alt="loading..."
+              />
+            )}
+          </div>
         </div>
-        <div
-          sx={{
-            gridArea: "button",
-            justifySelf: "center",
-            alignSelf: "center",
-          }}
-        >
-          {!loading && (
-            <Button
-              gridArea={"button"}
-              onClick={clickButton}
-              text={"SIGUIENTE"}
-            ></Button>
-          )}
-          {loading && (
-            <img
-              src={loader}
-              sx={{ height: "50px", gridArea: "button" }}
-              alt="loading..."
-            />
-          )}
-        </div>
-      </div>
-    </>
+      </>
+    </div>
   );
 }
