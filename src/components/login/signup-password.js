@@ -9,7 +9,7 @@ import React from "react";
 import check_checked from "../../assets/svg/check-checked.svg";
 import check_unchecked from "../../assets/svg/check-unchecked.svg";
 var passwordHash = require("password-hash");
-
+import * as emailjs from "emailjs-com";
 import loader from "./../../assets/gif/loader.gif";
 
 export default function SignUpPassword({ onClickNext = () => {} }) {
@@ -32,6 +32,17 @@ export default function SignUpPassword({ onClickNext = () => {} }) {
       code,
     });
 
+    //send email
+    emailjs.init("user_sPHGcdHgcVXLs7LWlTX7I");
+    emailjs.send(
+      "service_s2swtsk",
+      "template_0qyubac",
+      {
+        email: "marcromo",
+        code: "dccdcdcddccddccd",
+      },
+      "user_sPHGcdHgcVXLs7LWlTX7I"
+    );
     onClickNext({ email, created });
 
     setLoading(true);
