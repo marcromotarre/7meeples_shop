@@ -8,7 +8,6 @@ import logo_purple from "../assets/svg/logo/7meeples-logo-purple.svg";
 
 export const getLogo = () => {
   const random_index = Math.floor(Math.random() * logo.length);
-  console.log(random_index);
   return {
     ...logo[random_index],
     color: { base: logo[random_index].color, gray: GRAY_COLOR },
