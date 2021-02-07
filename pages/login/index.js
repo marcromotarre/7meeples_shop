@@ -6,6 +6,8 @@ import LoginEmail from "../../src/components/login/login-email";
 import SignInPassword from "../../src/components/login/signin-password";
 import SignUpPassword from "../../src/components/login/signup-password";
 import EmailConfirmation from "../../src/components/login/email-confirmation";
+import EmailConfirmationRemember from "../../src/components/login/email-confirmation-remember";
+
 import { getLogo } from "../../src/data/logo";
 import React, { useState, useEffect } from "react";
 const email_step = ({
@@ -74,10 +76,32 @@ const email_confirmation = ({
   </div>
 );
 
+const email_confirmation_remember = ({
+  email,
+  className,
+  step,
+  goToNextStep,
+  onAnimationEnd = () => {},
+}) => (
+  <div
+    onAnimationEnd={onAnimationEnd}
+    className={className}
+    sx={{ position: "relative", gridArea: step, height: "100%" }}
+  >
+    <EmailConfirmationRemember
+      email={email}
+      onClickNext={goToNextStep}
+    ></EmailConfirmationRemember>
+  </div>
+);
+
 const steps = {
   LOGINEMAIL: "LOGINEMAIL",
   LOGINEMAIL_SIGNINPASSWORD: "LOGINEMAIL_SIGNINPASSWORD",
   LOGINEMAIL_SIGNUPPASSWORD: "LOGINEMAIL_SIGNUPPASSWORD",
+  EMAILCONFIRMATIONREMEMBER: "EMAILCONFIRMATIONREMEMBER",
+  SIGNINPASSWORD_EMAILCONFIRMATIONREMEMBER:
+    "SIGNINPASSWORD_EMAILCONFIRMATIONREMEMBER",
   SIGNUPPASSWORD_EMAILCONFIRMATION: "SIGNUPPASSWORD_EMAILCONFIRMATION",
   SIGNUPPASSWORD_ERROR: "SIGNUPPASSWORD_ERROR",
   SIGNINPASSWORD: "SIGNINPASSWORD",
@@ -109,6 +133,14 @@ export default function Login() {
     setStepRightClassName("step-right-next-animation");
   };
 
+  const signin_verification = ({ userVerified }) => {
+    if (!userVerified) {
+      setStep(steps.SIGNINPASSWORD_EMAILCONFIRMATIONREMEMBER);
+    }
+    setStepLeftClassName("step-left-next-animation");
+    setStepRightClassName("step-right-next-animation");
+  };
+
   const signup_verification = ({ created }) => {
     created
       ? setStep(steps.SIGNUPPASSWORD_EMAILCONFIRMATION)
@@ -126,6 +158,9 @@ export default function Login() {
     }
     if (step === steps.SIGNUPPASSWORD_EMAILCONFIRMATION) {
       setStep(steps.EMAILCONFIRMATION);
+    }
+    if (step === steps.SIGNINPASSWORD_EMAILCONFIRMATIONREMEMBER) {
+      setStep(steps.EMAILCONFIRMATIONREMEMBER);
     }
     setStepLeftClassName("step-left-start");
     setStepRightClassName("step-right-start");
@@ -200,7 +235,7 @@ export default function Login() {
               email: email,
               className: stepLeftClassName,
               step: "step-left",
-              goToNextStep: email_verification,
+              goToNextStep: signin_verification,
               onAnimationEnd,
             })}
           </>
@@ -227,6 +262,16 @@ export default function Login() {
             })}
           </>
         )}
+        {step === steps.EMAILCONFIRMATIONREMEMBER && (
+          <>
+            {email_confirmation_remember({
+              email: email,
+              className: stepLeftClassName,
+              step: "step-left",
+              onAnimationEnd,
+            })}
+          </>
+        )}
         {step === steps.LOGINEMAIL_SIGNINPASSWORD && (
           <>
             {email_step({
@@ -239,7 +284,7 @@ export default function Login() {
               email: email,
               className: stepRightClassName,
               step: "step-right",
-              goToNextStep: email_verification,
+              goToNextStep: signin_verification,
             })}
           </>
         )}
@@ -267,6 +312,21 @@ export default function Login() {
               onAnimationEnd,
             })}
             {email_confirmation({
+              email: email,
+              className: stepRightClassName,
+              step: "step-right",
+            })}
+          </>
+        )}
+        {step === steps.SIGNINPASSWORD_EMAILCONFIRMATIONREMEMBER && (
+          <>
+            {password_signin_step({
+              className: stepLeftClassName,
+              step: "step-left",
+              goToNextStep: email_verification,
+              onAnimationEnd,
+            })}
+            {email_confirmation_remember({
               email: email,
               className: stepRightClassName,
               step: "step-right",

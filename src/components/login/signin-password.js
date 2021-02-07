@@ -4,12 +4,13 @@ import { jsx } from "theme-ui";
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
 import { useState } from "react";
-import { get_user } from "../../backend/credentials";
+import { get_user, email_exist } from "../../backend/credentials";
 import React from "react";
 import check_checked from "../../assets/svg/check-checked.svg";
 import check_unchecked from "../../assets/svg/check-unchecked.svg";
 
 import loader from "./../../assets/gif/loader.gif";
+import { get } from "http";
 
 export default function SignInPassword({ email, onClickNext = () => {} }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,13 +19,23 @@ export default function SignInPassword({ email, onClickNext = () => {} }) {
   const clickButton = async () => {
     setLoading(true);
     const { error } = await get_user({ email, password });
-    console.log(error);
-    setLoading(false);
     if (error) {
       setError(true);
       setClassName("error-animation");
     } else {
+      //check if its validated
+      const { userVerified } = await email_exist({ email });
+      if (userVerified) {
+        //in
+        // go home
+      } else {
+        onClickNext({ userVerified });
+      }
+      //validated log in and go home
+      //no validated
+      //goto remember
     }
+    setLoading(false);
   };
 
   const [className, setClassName] = useState("");
@@ -151,7 +162,7 @@ export default function SignInPassword({ email, onClickNext = () => {} }) {
               <Button
                 gridArea={"button"}
                 onClick={clickButton}
-                text={"SIGUIENTE"}
+                text={"ENTRAR"}
               ></Button>
             )}
             {loading && (

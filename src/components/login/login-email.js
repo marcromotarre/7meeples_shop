@@ -21,6 +21,8 @@ export default function LoginEmail({ onClickNext = () => {} }) {
       const { error } = await email_exist({
         email,
       });
+      //marcromotarre@gmail.com
+      console.log(error);
       setLoading(false);
       onClickNext({ userExist: error ? false : true, email });
     } else {
