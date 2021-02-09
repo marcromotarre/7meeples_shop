@@ -11,7 +11,7 @@ export default function Agura() {
       <style jsx global>
         {`
           body {
-            overflow: "hidden";
+            overflow: hidden;
           }
         `}
       </style>
