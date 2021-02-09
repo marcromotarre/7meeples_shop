@@ -4,7 +4,6 @@ import { jsx } from "theme-ui";
 import { useState } from "react";
 
 export default function Input({
-  reference = {},
   justifySelf = "",
   alignSelf = "",
   className = "",
@@ -56,7 +55,6 @@ export default function Input({
       </div>
 
       <input
-        ref={reference}
         sx={{
           width: "100%",
           border: `1px solid ${error ? errorColor : color}`,

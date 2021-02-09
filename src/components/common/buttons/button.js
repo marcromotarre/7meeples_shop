@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Button({
   gridArea = "",
-  text = "button",
+  children,
   onClick = () => {},
 }) {
   return (
@@ -26,7 +26,7 @@ export default function Button({
         },
       }}
     >
-      {text}
+      {children}
     </button>
   );
 }
