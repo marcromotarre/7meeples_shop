@@ -10,10 +10,12 @@ export const STEPS_IDS = {
 export const steps = [
   {
     id: STEPS_IDS.LOGIN_EMAIL,
-    view: ({ goToStep }) => login_email_view({ goToStep }),
+    view: ({ goToStep, data, setData }) =>
+      login_email_view({ goToStep, data, setData }),
   },
   {
     id: STEPS_IDS.LOGIN_PASSWORD,
-    view: ({ goToStep }) => login_password_view({ goToStep }),
+    view: ({ goToStep, data, setData }) =>
+      login_password_view({ goToStep, data, setData }),
   },
 ];

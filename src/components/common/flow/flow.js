@@ -8,6 +8,8 @@ import { isRegExp } from "util";
 export default function Flow({ steps }) {
   const getStep = (id) => steps.find((step) => step.id === id);
 
+  const [data, setData] = useState({});
+
   const [actualStepClassName, setActualStepClassName] = useState(
     "step-left-start"
   );
@@ -80,7 +82,7 @@ export default function Flow({ steps }) {
             width: "100%",
           }}
         >
-          {actualStep && actualStep.view({ goToStep })}
+          {actualStep && actualStep.view({ goToStep, data, setData })}
         </div>
         <div
           className={nextStepClassName}
@@ -91,7 +93,7 @@ export default function Flow({ steps }) {
             width: "100%",
           }}
         >
-          {objectiveStep && objectiveStep.view({ goToStep })}
+          {objectiveStep && objectiveStep.view({ goToStep, data, setData })}
         </div>
       </div>
     </>
