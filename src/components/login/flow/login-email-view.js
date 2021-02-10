@@ -10,9 +10,8 @@ export default function login_email_view({
   data,
   setData,
 }) {
-  const inputEl = useRef(null);
-
-  const goNext = () => {
+  const goNext = (e) => {
+    e.preventDefault();
     setData({ ...data, email: "hola@email.com" });
     setGoToStep(STEPS_IDS.LOGIN_PASSWORD);
   };
@@ -26,7 +25,7 @@ export default function login_email_view({
         gridTemplateColumns: "100%",
       }}
     >
-      <div
+      <form
         sx={{
           justifySelf: "center",
           alignSelf: "center",
@@ -38,9 +37,11 @@ export default function login_email_view({
           alignItems: "center",
         }}
       >
-        <Input ref={inputEl} text="Introduce tu email"></Input>
-        <Button onClick={goNext}>SIGUIENTE</Button>
-      </div>
+        <Input text="Introduce tu email"></Input>
+        <Button type="submit" onClick={goNext}>
+          SIGUIENTE
+        </Button>
+      </form>
     </div>
   );
 }

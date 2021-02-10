@@ -23,6 +23,7 @@ export default function Input({
     onChange(event.target.value);
     setValue(event.target.value);
   };
+  const inputEl = useRef(null);
 
   return (
     <div
@@ -56,7 +57,6 @@ export default function Input({
       </div>
 
       <input
-        ref={reference}
         sx={{
           width: "100%",
           border: `1px solid ${error ? errorColor : color}`,
@@ -66,6 +66,7 @@ export default function Input({
           fontSize: "15px",
           "&:focus": {
             outline: "none",
+            fontSize: "5.8vh",
           },
         }}
         type={type}
