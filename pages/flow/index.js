@@ -31,6 +31,10 @@ export default function Agura() {
   }, []);
   return (
     <>
+      <meta
+        name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no"
+      />
       <style jsx global>
         {`
           body {
