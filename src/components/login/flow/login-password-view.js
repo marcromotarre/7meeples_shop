@@ -2,6 +2,9 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
+
+export const ID = "LOGIN_PASSWORD";
+
 export default function login_password_view({
   STEPS_IDS,
   setGoToStep,

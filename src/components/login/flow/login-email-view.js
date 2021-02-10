@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input } from "../../common";
 
+export const ID = "LOGIN_EMAIL";
 export default function login_email_view({
   STEPS_IDS,
   setGoToStep,
