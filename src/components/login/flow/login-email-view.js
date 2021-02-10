@@ -34,7 +34,7 @@ export default function login_email_view({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-evenly",
+          justifyContent: "flex-start",
           alignItems: "center",
         }}
       >
