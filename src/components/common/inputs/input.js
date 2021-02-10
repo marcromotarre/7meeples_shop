@@ -66,6 +66,7 @@ export default function Input({
           fontSize: "15px",
           "&:focus": {
             outline: "none",
+            fontSize: "16px";
           },
         }}
         type={type}
