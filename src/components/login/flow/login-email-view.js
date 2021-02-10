@@ -1,17 +1,21 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import { STEPS_IDS } from "./steps";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Button, Input } from "../../common";
 
-export const login_email_view = ({ goToStep, data, setData }) => {
-  const email = "marcromotarra@gmail.com";
+export default function login_email_view({
+  STEPS_IDS,
+  setGoToStep,
+  data,
+  setData,
+}) {
+  const inputEl = useRef(null);
+
   const goNext = () => {
     setData({ ...data, email: "hola@email.com" });
-    goToStep(STEPS_IDS.LOGIN_PASSWORD);
+    setGoToStep(STEPS_IDS.LOGIN_PASSWORD);
   };
-  console.log("login view");
   return (
     <div
       sx={{
@@ -34,9 +38,9 @@ export const login_email_view = ({ goToStep, data, setData }) => {
           alignItems: "center",
         }}
       >
-        <Input text="Introduce tu email"></Input>
+        <Input ref={inputEl} text="Introduce tu email"></Input>
         <Button onClick={goNext}>SIGUIENTE</Button>
       </div>
     </div>
   );
-};
+}

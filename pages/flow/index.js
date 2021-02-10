@@ -4,12 +4,28 @@ import { jsx } from "theme-ui";
 import React, { useState, useEffect } from "react";
 import LoginLogo from "../../src/components/login/login-logo";
 
-import { steps } from "../../src/components/login/flow/steps";
+import LoginEmailView from "../../src/components/login/flow/login-email-view";
+import LoginPasswordView from "../../src/components/login/flow/login-password-view";
+
 import Flow from "../../src/components/common/flow/flow";
 import { getLogo } from "../../src/data/logo";
 
+export const STEPS_IDS = {
+  LOGIN_EMAIL: "login_email",
+  LOGIN_PASSWORD: "login_password",
+  SIGNUP_PASSWORD: "singup_password",
+};
+
+export const ORDER = [
+  STEPS_IDS.LOGIN_EMAIL,
+  STEPS_IDS.LOGIN_PASSWORD,
+  STEPS_IDS.SIGNUP_PASSWORD,
+];
+
 export default function Agura() {
   const [logo, setLogo] = useState(false);
+  const [data, setData] = useState({});
+  const [goToStep, setGoToStep] = useState(ORDER[0]);
   useEffect(() => {
     setLogo(getLogo());
   }, []);
@@ -42,7 +58,20 @@ export default function Agura() {
             <LoginLogo sx={{ gridArea: "logo" }} logo={logo}></LoginLogo>
           )}
         </div>
-        <Flow steps={steps}></Flow>
+        <Flow goToStep={goToStep} steps={ORDER} ids={STEPS_IDS}>
+          <LoginEmailView
+            data={data}
+            setData={setData}
+            STEPS_IDS={STEPS_IDS}
+            setGoToStep={setGoToStep}
+          />
+          <LoginPasswordView
+            data={data}
+            setData={setData}
+            STEPS_IDS={STEPS_IDS}
+            setGoToStep={setGoToStep}
+          />
+        </Flow>
       </div>
     </>
   );

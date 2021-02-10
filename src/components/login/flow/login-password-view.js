@@ -2,15 +2,20 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-
-export const login_password_view = ({ goToStep, data, setData }) => {
-  const { email } = data;
-  const goNext = () => {};
+export default function login_password_view({
+  STEPS_IDS,
+  setGoToStep,
+  data,
+  setData,
+}) {
   console.log("password view");
+  const goBack = () => {
+    setGoToStep(STEPS_IDS.LOGIN_EMAIL);
+  };
   return (
     <>
-      <div>Hi, {email}</div>
-      <button onClick={goNext}>ENTRAR</button>
+      <div>Hi, {data.email}</div>
+      <button onClick={goBack}>ENTRAR</button>
     </>
   );
-};
+}

@@ -5,11 +5,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import { isRegExp } from "util";
 
-export default function Flow({ steps }) {
-  const getStep = (id) => steps.find((step) => step.id === id);
-
-  const [data, setData] = useState({});
-
+export default function Flow({ goToStep, steps, children }) {
   const [actualStepClassName, setActualStepClassName] = useState(
     "step-left-start"
   );
@@ -17,47 +13,43 @@ export default function Flow({ steps }) {
     "step-right-start"
   );
 
+  const [go, setGo] = useState(true);
   const [animation, setAnimation] = useState("");
-  const [actualStepId, setActualStepId] = useState(steps[0].id);
-  const [goToStepId, setGoToStepId] = useState("");
+  const [actualStepIndex, setActualStepIndex] = useState(0);
+  const [goToStepIndex, setGoToStepIndex] = useState(-1);
 
-  const actualStep = getStep(actualStepId);
-  const objectiveStep = getStep(goToStepId);
-
-  const goToStep = (id) => {
-    const actualIndex = steps.findIndex((step) => step.id === actualStepId);
-    const goToStepIndex = steps.findIndex((step) => step.id === id);
-    if (
-      actualIndex === -1 ||
-      goToStepIndex === -1 ||
-      actualIndex === goToStepIndex
-    ) {
+  if (go && goToStep !== steps[actualStepIndex]) {
+    setGo(false);
+    const index = steps.findIndex((step) => step === goToStep);
+    if (actualStepIndex === -1 || index === -1 || actualStepIndex === index) {
       return;
     }
-    if (actualIndex < goToStepIndex) {
-      setGoToStepId(id);
+    if (actualStepIndex < index) {
+      setGoToStepIndex(index);
       setActualStepClassName("left-to-right");
       setNextStepClassName("left-to-right");
       setAnimation("left-to-right");
     }
-    if (actualIndex > goToStepIndex) {
-      setActualStepId(id);
-      setGoToStepId(actualStepId);
+    if (actualStepIndex > index) {
+      setGoToStepIndex(actualStepIndex);
+      setActualStepIndex(index);
       setActualStepClassName("right-to-left");
       setNextStepClassName("right-to-left");
       setAnimation("right-to-left");
     }
-  };
+  }
+
   const flowAnimationEnd = () => {
     if (animation === "left-to-right") {
-      setActualStepId(goToStepId);
+      setActualStepIndex(goToStepIndex);
     }
     if (animation === "right-to-left") {
-      setActualStepId(actualStepId);
+      //setActualStepId(actualStepId);
     }
     setAnimation("");
     setActualStepClassName("step-left-start");
     setNextStepClassName("step-right-start");
+    setGo(true);
   };
   return (
     <>
@@ -82,7 +74,7 @@ export default function Flow({ steps }) {
             width: "100%",
           }}
         >
-          {actualStep && actualStep.view({ goToStep, data, setData })}
+          {children[actualStepIndex]}
         </div>
         <div
           className={nextStepClassName}
@@ -93,7 +85,7 @@ export default function Flow({ steps }) {
             width: "100%",
           }}
         >
-          {objectiveStep && objectiveStep.view({ goToStep, data, setData })}
+          {children[goToStepIndex]}
         </div>
       </div>
     </>
