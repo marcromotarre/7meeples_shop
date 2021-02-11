@@ -4,17 +4,13 @@ import { jsx } from "theme-ui";
 import { useState, useRef } from "react";
 
 export default function Input({
-  reference,
-  justifySelf = "",
-  alignSelf = "",
+  sx,
   className = "",
   error = false,
   defaultValue = "",
-  width = "100%",
   text,
   color = "#33BAFB",
   errorColor = "#FD2C25",
-  gridArea = "",
   type = "text",
   onChange = () => {},
 }) {
@@ -26,10 +22,7 @@ export default function Input({
   const inputEl = useRef(null);
 
   return (
-    <div
-      className={className}
-      sx={{ gridArea, justifySelf, alignSelf, position: "relative", width }}
-    >
+    <div className={className} sx={sx}>
       <div
         sx={{
           width: "calc(100% - 20px)",

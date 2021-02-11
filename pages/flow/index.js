@@ -9,6 +9,7 @@ import LoginPasswordView from "../../src/components/login/flow/login-password-vi
 
 import Flow from "../../src/components/common/flow/flow";
 import { getLogo } from "../../src/data/logo";
+import Scroll from "react-scroll";
 
 export const STEPS_IDS = {
   LOGIN_EMAIL: "login_email",
@@ -23,9 +24,16 @@ export const ORDER = [
 ];
 
 export default function Agura() {
+  var scrollSpy = Scroll.scrollSpy;
+
   const [logo, setLogo] = useState(false);
   const [data, setData] = useState({});
   const [goToStep, setGoToStep] = useState(ORDER[0]);
+
+  const a = (goToStep) => {
+    Scroll.animateScroll.scrollToTop();
+    setGoToStep(goToStep);
+  };
   useEffect(() => {
     setLogo(getLogo());
   }, []);
@@ -67,7 +75,7 @@ export default function Agura() {
             data={data}
             setData={setData}
             STEPS_IDS={STEPS_IDS}
-            setGoToStep={setGoToStep}
+            setGoToStep={a}
           />
           <LoginPasswordView
             data={data}

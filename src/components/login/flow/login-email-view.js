@@ -12,6 +12,9 @@ export default function login_email_view({
   setData,
 }) {
   const myRef = React.createRef();
+  const zoom = (e) => {
+    myRef.current.scrollTo(0, 0);
+  };
   const goNext = (e) => {
     e.preventDefault();
     myRef.current.scrollTo(0, 0);
@@ -29,7 +32,7 @@ export default function login_email_view({
         gridTemplateColumns: "100%",
       }}
     >
-      <form
+      <div
         sx={{
           justifySelf: "center",
           alignSelf: "center",
@@ -42,10 +45,9 @@ export default function login_email_view({
         }}
       >
         <Input text="Introduce tu email"></Input>
-        <Button type="submit" onClick={goNext}>
-          SIGUIENTE
-        </Button>
-      </form>
+        <Button onClick={goNext}>SIGUIENTE</Button>
+        <Button onClick={zoom}>ZOOM</Button>
+      </div>
     </div>
   );
 }
