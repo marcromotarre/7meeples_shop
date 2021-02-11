@@ -42,7 +42,8 @@ export default function login_email_view({
           alignItems: "center",
         }}
       >
-        <Input text="Introduce tu email"></Input>
+        <Input sx={{ width: "100%" }} text="Introduce tu email"></Input>
+        <div sx={{ height: "20px" }}></div>
         <Button onClick={goNext}>SIGUIENTE</Button>
       </div>
     </div>

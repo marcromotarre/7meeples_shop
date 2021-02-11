@@ -3,16 +3,12 @@
 import { jsx } from "theme-ui";
 import { useState } from "react";
 
-export default function Button({
-  gridArea = "",
-  children,
-  onClick = () => {},
-}) {
+export default function Button({ sx, children, onClick = () => {} }) {
   return (
     <button
       onClick={onClick}
       sx={{
-        gridArea,
+        ...sx,
         color: "white",
         backgroundColor: "#33BAFB",
         border: "none",
