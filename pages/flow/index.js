@@ -31,10 +31,14 @@ export default function Agura() {
   const [goToStep, setGoToStep] = useState(ORDER[0]);
 
   const a = (goToStep) => {
-    Scroll.animateScroll.scrollToTop();
-    Scroll.Events.scrollEvent.register("end", function () {
+    if (window.scrollY === 0) {
       setGoToStep(goToStep);
-    });
+    } else {
+      Scroll.animateScroll.scrollToTop();
+      Scroll.Events.scrollEvent.register("end", function () {
+        setGoToStep(goToStep);
+      });
+    }
   };
   useEffect(() => {
     setLogo(getLogo());
