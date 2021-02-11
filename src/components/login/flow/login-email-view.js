@@ -11,18 +11,21 @@ export default function login_email_view({
   data,
   setData,
 }) {
+  const myRef = React.createRef();
   const goNext = (e) => {
     e.preventDefault();
+    myRef.current.scrollTo(0, 0);
     setData({ ...data, email: "hola@email.com" });
     setGoToStep(STEPS_IDS.LOGIN_PASSWORD);
   };
   return (
     <div
+      ref={myRef}
       sx={{
         display: "grid",
         width: "100%",
         height: "100%",
-        gridTemplateRows: "33% 66%",
+        gridTemplateRows: "66% 33%",
         gridTemplateColumns: "100%",
       }}
     >
@@ -34,7 +37,7 @@ export default function login_email_view({
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
