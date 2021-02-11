@@ -9,7 +9,7 @@ import LoginPasswordView from "../../src/components/login/flow/login-password-vi
 
 import Flow from "../../src/components/common/flow/flow";
 import { getLogo } from "../../src/data/logo";
-import Scroll from "react-scroll";
+import Scroll, { scrollSpy } from "react-scroll";
 
 export const STEPS_IDS = {
   LOGIN_EMAIL: "login_email",
@@ -32,7 +32,9 @@ export default function Agura() {
 
   const a = (goToStep) => {
     Scroll.animateScroll.scrollToTop();
-    setGoToStep(goToStep);
+    Scroll.Events.scrollEvent.register("end", function () {
+      setGoToStep(goToStep);
+    });
   };
   useEffect(() => {
     setLogo(getLogo());

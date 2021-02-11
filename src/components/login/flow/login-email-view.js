@@ -12,9 +12,7 @@ export default function login_email_view({
   setData,
 }) {
   const myRef = React.createRef();
-  const zoom = (e) => {
-    myRef.current.scrollTo(0, 0);
-  };
+
   const goNext = (e) => {
     e.preventDefault();
     myRef.current.scrollTo(0, 0);
@@ -46,7 +44,6 @@ export default function login_email_view({
       >
         <Input text="Introduce tu email"></Input>
         <Button onClick={goNext}>SIGUIENTE</Button>
-        <Button onClick={zoom}>ZOOM</Button>
       </div>
     </div>
   );
