@@ -56,7 +56,7 @@ export default function Input({
           borderRadius: "3px",
           height: "43px",
           paddingLeft: "15px",
-          fontSize: "20px",
+          fontSize: "16px",
           "&:focus": {
             outline: "none",
           },
