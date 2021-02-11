@@ -4,6 +4,11 @@ input[type="text"] {
   -moz-appearance: none;
   appearance: none;
 }
+input[type="password"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 @media screen and (device-aspect-ratio: 9/16) {
   select,
   textarea,
