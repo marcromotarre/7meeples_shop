@@ -41,6 +41,18 @@ export const get_user_confirmation_by_email = async ({ email }) => {
     });
 };
 
+export const create_account = async ({ email, code, password }) => {
+  const addUserConfirmation = await add_user_confirmation({
+    email: data.email,
+    code,
+  });
+  const addUser = await add_user({
+    email,
+    password,
+    code,
+  });
+};
+
 export const add_user = async ({ email, password }) => {
   return await axios
     .post("/api/credentials/add", {

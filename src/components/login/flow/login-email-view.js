@@ -78,8 +78,10 @@ export default function login_email_view({ setGoToStep, data, setData }) {
           text="Introduce tu email"
         ></Input>
         <div sx={{ height: "20px" }}></div>
-        {loading && <Loading />}
-        {!loading && <Button onClick={goNext}>{getText(texts.NEXT)}</Button>}
+        <div sx={{ height: "60px" }}>
+          {loading && <Loading />}
+          {!loading && <Button onClick={goNext}>{getText(texts.NEXT)}</Button>}
+        </div>
       </div>
     </div>
   );

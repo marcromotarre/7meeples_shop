@@ -6,15 +6,51 @@ import { Button, InputPassword } from "../../common";
 import texts from "./texts.json";
 import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
+import Loading from "src/components/common/loading/loading";
+import { generateCode } from "../../../utils/code";
+import { emailJS } from "../../../utils/email";
+import { create_account } from "src/backend/credentials";
+var passwordHash = require("password-hash");
 
 export const ID = "SIGN_UP_PASSWORD";
 export default function login_email_view({ setGoToStep, data, setData }) {
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState();
   const handleNotYou = (e) => {
     setData({ ...data, email: "" });
     setGoToStep(LOGIN_EMAIL_ID);
   };
-  const goNext = (e) => {};
+  const createAccount = async () => {
+    setLoading(true);
+    const hashedPassword = passwordHash.generate(password);
+    const code = generateCode();
+
+    const { error } = await email_exist({
+      email,
+    });
+    if (!error) {
+      const data = await create_account({
+        email: data.email,
+        code,
+        password: hashedPassword,
+      });
+      setLoading(false);
+    } else {
+      setGoToStep(SIGNUP_EMAIL_ID);
+      //gotoConfirmaction gotoerror
+      setLoading(false);
+    }
+    if (!addUserConfirmation.created) {
+      console.log("cannot create account");
+      //gotoConfirmaction gotoerror
+      return;
+    }
+
+    //emailJS({email: data.email, code});
+    //gotoConfirmaction email
+    setLoading(false);
+  };
+
   return (
     <div
       sx={{
@@ -99,7 +135,12 @@ export default function login_email_view({ setGoToStep, data, setData }) {
           text="Introduce tu email"
         />
         <div sx={{ height: "20px" }}></div>
-        <Button onClick={goNext}>{getText(texts.ENTER)}</Button>
+        <div sx={{ height: "60px" }}>
+          {loading && <Loading />}
+          {!loading && (
+            <Button onClick={createAccount}>{getText(texts.NEXT)}</Button>
+          )}
+        </div>
       </div>
     </div>
   );
