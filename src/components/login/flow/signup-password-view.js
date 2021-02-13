@@ -5,11 +5,11 @@ import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword } from "../../common";
 import texts from "./texts.json";
 import { getText } from "./../../../utils/texts";
-import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
+import { ID as EMAIL_VERIFICATION_SENT } from "./email-verification-sent-view";
 import Loading from "src/components/common/loading/loading";
 import { generateCode } from "../../../utils/code";
 import { emailJS } from "../../../utils/email";
-import { create_account } from "src/backend/credentials";
+import { email_exist, create_account } from "src/backend/credentials";
 var passwordHash = require("password-hash");
 
 export const ID = "SIGN_UP_PASSWORD";
@@ -26,24 +26,20 @@ export default function login_email_view({ setGoToStep, data, setData }) {
     const code = generateCode();
 
     const { error } = await email_exist({
-      email,
+      email: data.email,
     });
-    if (!error) {
-      const data = await create_account({
+    console.log(error);
+    if (error) {
+      const user = await create_account({
         email: data.email,
         code,
         password: hashedPassword,
       });
       setLoading(false);
+      setGoToStep(EMAIL_VERIFICATION_SENT);
     } else {
-      setGoToStep(SIGNUP_EMAIL_ID);
-      //gotoConfirmaction gotoerror
+      //gotoConfirmaction user already exist
       setLoading(false);
-    }
-    if (!addUserConfirmation.created) {
-      console.log("cannot create account");
-      //gotoConfirmaction gotoerror
-      return;
     }
 
     //emailJS({email: data.email, code});

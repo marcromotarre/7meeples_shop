@@ -43,7 +43,7 @@ export const get_user_confirmation_by_email = async ({ email }) => {
 
 export const create_account = async ({ email, code, password }) => {
   const addUserConfirmation = await add_user_confirmation({
-    email: data.email,
+    email,
     code,
   });
   const addUser = await add_user({
