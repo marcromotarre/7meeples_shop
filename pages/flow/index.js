@@ -10,18 +10,21 @@ import LoginEmailView, {
 import LoginPasswordView, {
   ID as LOGIN_PASSWORD_ID,
 } from "../../src/components/login/flow/login-password-view";
+import SignUpPasswordView, {
+  ID as SIGNUP_PASSWORD_ID,
+} from "../../src/components/login/flow/signup-password-view";
 
 import Flow from "../../src/components/common/flow/flow";
 import { getLogo } from "../../src/data/logo";
 import Scroll, { scrollSpy } from "react-scroll";
 
-export const ORDER = [LOGIN_EMAIL_ID, LOGIN_PASSWORD_ID];
+export const ORDER = [LOGIN_EMAIL_ID, LOGIN_PASSWORD_ID, SIGNUP_PASSWORD_ID];
 
 export default function Agura() {
   var scrollSpy = Scroll.scrollSpy;
 
   const [logo, setLogo] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ email: "h@gmail.com" });
   const [goToStep, setGoToStep] = useState(ORDER[0]);
 
   const go = (stepTogo) => {
@@ -69,6 +72,7 @@ export default function Agura() {
         <Flow goToStep={goToStep} steps={ORDER}>
           <LoginEmailView data={data} setData={setData} setGoToStep={go} />
           <LoginPasswordView data={data} setData={setData} setGoToStep={go} />
+          <SignUpPasswordView data={data} setData={setData} setGoToStep={go} />
         </Flow>
       </div>
     </>

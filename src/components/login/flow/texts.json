@@ -4,5 +4,8 @@
   "hi": "Hola",
   "email": "{{email}}",
   "not_you": "¿No éres tu?",
-  "ENTER": "ENTRAR"
+  "ENTER": "ENTRAR",
+  "NEXT": "SIGUIENTE",
+  "not_account_to_this_email": "no tenemos ninguna cuenta asociada a este email.",
+  "one_step_to_create_account": "Estás a un paso de crear tu cuenta."
 }

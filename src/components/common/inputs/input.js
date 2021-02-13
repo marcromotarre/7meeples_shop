@@ -1,12 +1,12 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Input({
+  endAnimation = () => {},
   sx,
-  className = "",
-  error = false,
+  error = { error: false, newError: false },
   defaultValue = "",
   text,
   color = "#33BAFB",
@@ -14,15 +14,27 @@ export default function Input({
   type = "text",
   onChange = () => {},
 }) {
+  const [className, setClassName] = useState("");
   const [value, setValue] = useState(defaultValue);
   const handleChange = (event) => {
     onChange(event.target.value);
     setValue(event.target.value);
   };
-  const inputEl = useRef(null);
+  useEffect(() => {
+    if (error.newError) setClassName("error-animation");
+  }, [error.newError]);
+
+  const onAnimationEnd = () => {
+    setClassName("");
+    endAnimation();
+  };
 
   return (
-    <div className={className} sx={sx}>
+    <div
+      onAnimationEnd={onAnimationEnd}
+      className={className}
+      sx={{ ...sx, position: "relative", width: "100%" }}
+    >
       <div
         sx={{
           width: "calc(100% - 20px)",
@@ -41,7 +53,7 @@ export default function Input({
           <span
             sx={{
               fontSize: "10px",
-              color: error ? errorColor : color,
+              color: error.error ? errorColor : color,
             }}
           >
             {text}
@@ -52,7 +64,7 @@ export default function Input({
       <input
         sx={{
           width: "100%",
-          border: `1px solid ${error ? errorColor : color}`,
+          border: `1px solid ${error.error ? errorColor : color}`,
           borderRadius: "3px",
           height: "43px",
           paddingLeft: "15px",

@@ -4,22 +4,48 @@ import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input } from "../../common";
 import texts from "./texts.json";
+import { isValidEmail } from "../../../utils/email";
+import { getText } from "./../../../utils/texts";
 
 import { ID as LOGIN_PASSWORD_ID } from "./login-password-view";
+import { ID as SIGNUP_EMAIL_ID } from "./signup-password-view";
+import Loading from "src/components/common/loading/loading";
+import { email_exist } from "src/backend/credentials";
 
 export const ID = "LOGIN_EMAIL";
 export default function login_email_view({ setGoToStep, data, setData }) {
-  const myRef = React.createRef();
+  const [error, setError] = useState(false);
+  const [errorInput, setErrorInput] = useState({
+    error: false,
+    newError: false,
+  });
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState(data.email);
+  const goNext = async () => {
+    if (isValidEmail(email)) {
+      setLoading(true);
+      const { error } = await email_exist({
+        email,
+      });
+      setData({ ...data, email: email });
+      if (error) {
+        setGoToStep(SIGNUP_EMAIL_ID);
+      } else {
+        setGoToStep(LOGIN_PASSWORD_ID);
+      }
 
-  const goNext = (e) => {
-    e.preventDefault();
-    myRef.current.scrollTo(0, 0);
-    setData({ ...data, email: "hola@email.com" });
-    setGoToStep(LOGIN_PASSWORD_ID);
+      setLoading(false);
+    } else {
+      setError(true);
+      setErrorInput({ error: true, newError: true });
+    }
+  };
+
+  const onHandleEmailChange = (email) => {
+    setEmail(email);
   };
   return (
     <div
-      ref={myRef}
       sx={{
         display: "grid",
         width: "100%",
@@ -43,9 +69,17 @@ export default function login_email_view({ setGoToStep, data, setData }) {
           alignItems: "center",
         }}
       >
-        <Input sx={{ width: "100%" }} text="Introduce tu email"></Input>
+        <Input
+          endAnimation={() => setErrorInput({ error: true, newError: false })}
+          error={errorInput}
+          defaultValue={email}
+          onChange={onHandleEmailChange}
+          sx={{ width: "100%" }}
+          text="Introduce tu email"
+        ></Input>
         <div sx={{ height: "20px" }}></div>
-        <Button onClick={goNext}>SIGUIENTE</Button>
+        {loading && <Loading />}
+        {!loading && <Button onClick={goNext}>{getText(texts.NEXT)}</Button>}
       </div>
     </div>
   );
