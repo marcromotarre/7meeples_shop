@@ -107,3 +107,51 @@ export const email_exist = async ({ email }) => {
       console.log(error);
     });
 };
+
+export const has_forgotten_password_code = async ({ email }) => {
+  const { exist } = await axios
+    .post("/api/credentials/hasEmailForgottenPasswordCode", {
+      email,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const update_forgotten_password_code = async ({ email, code }) => {
+  const { exist } = await axios
+    .post("/api/credentials/updateForgotPasswordCode", {
+      email,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const get_forgotten_password_code = async ({ email, code }) => {
+  return await axios
+    .post("/api/credentials/getForgotPasswordCode", {
+      email,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const create_forgot_password_code = async ({ email, code }) => {
+  const { exist } = await has_forgotten_password_code({ email });
+  if (exist) {
+    return await update_forgotten_password_code({ email, code });
+  } else {
+    return await get_forgotten_password_code({ email, code });
+  }
+};
