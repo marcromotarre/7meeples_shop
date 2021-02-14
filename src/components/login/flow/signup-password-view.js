@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword } from "../../common";
-import texts from "./texts.json";
+import texts from "../texts.json";
 import { getText } from "./../../../utils/texts";
 import { ID as EMAIL_VERIFICATION_SENT } from "./email-verification-sent-view";
 import Loading from "src/components/common/loading/loading";

@@ -23,9 +23,32 @@ a {
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
-  font-style: medium;
-  font-display: swap;
+  src: url("/fonts/Quicksand/static/Quicksand-Light.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand/static/Quicksand-Regular.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand/static/Quicksand-Medium.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand/static/Quicksand-SemiBold.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/Quicksand/static/Quicksand-Bold.ttf");
+  font-weight: 500;
 }
 
 /* Fix Input Zoom on iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8, iPhone X, XS, XS Max  */

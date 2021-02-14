@@ -17,6 +17,10 @@ import EmailVerificationSent, {
   ID as EMAIL_VERIFICATION_SENT,
 } from "../../src/components/login/flow/email-verification-sent-view";
 
+import EmailResetPasswordSent, {
+  ID as EMAIL_RESET_PASSWORD_SENT,
+} from "../../src/components/login/flow/email-reset-password-sent-view";
+
 import Flow from "../../src/components/common/flow/flow";
 import { getLogo } from "../../src/data/logo";
 import Scroll, { scrollSpy } from "react-scroll";
@@ -26,13 +30,14 @@ export const ORDER = [
   LOGIN_PASSWORD_ID,
   SIGNUP_PASSWORD_ID,
   EMAIL_VERIFICATION_SENT,
+  EMAIL_RESET_PASSWORD_SENT,
 ];
 
 export default function Agura() {
   var scrollSpy = Scroll.scrollSpy;
 
   const [logo, setLogo] = useState(false);
-  const [data, setData] = useState({ email: "h@gmail.com" });
+  const [data, setData] = useState({ email: "marcromotarre@gmail.com" });
   const [goToStep, setGoToStep] = useState(ORDER[0]);
 
   const go = (stepTogo) => {
@@ -82,6 +87,11 @@ export default function Agura() {
           <LoginPasswordView data={data} setData={setData} setGoToStep={go} />
           <SignUpPasswordView data={data} setData={setData} setGoToStep={go} />
           <EmailVerificationSent
+            data={data}
+            setData={setData}
+            setGoToStep={go}
+          />
+          <EmailResetPasswordSent
             data={data}
             setData={setData}
             setGoToStep={go}

@@ -53,6 +53,8 @@ export default function Input({
           <span
             sx={{
               fontSize: "10px",
+              fontWeight: "200",
+
               color: error.error ? errorColor : color,
             }}
           >
@@ -69,6 +71,7 @@ export default function Input({
           height: "43px",
           paddingLeft: "15px",
           fontSize: "16px",
+          fontWeight: "200",
           "&:focus": {
             outline: "none",
           },

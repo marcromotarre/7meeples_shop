@@ -15,6 +15,7 @@ export default function Button({ sx, children, onClick = () => {} }) {
         borderRadius: "3px",
         padding: "10px",
         fontFamily: "Quicksand",
+        fontWeight: "200",
         fontSize: "16px",
 
         "&:focus": {

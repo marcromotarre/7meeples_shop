@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input } from "../../common";
-import texts from "./texts.json";
+import texts from "../texts.json";
 import { isValidEmail } from "../../../utils/email";
 import { getText } from "./../../../utils/texts";
 
@@ -54,7 +54,14 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         gridTemplateColumns: "100%",
       }}
     >
-      <div sx={{ width: "75%", justifySelf: "center", alignSelf: "center" }}>
+      <div
+        sx={{
+          width: "75%",
+          justifySelf: "center",
+          alignSelf: "center",
+          fontWeight: "100",
+        }}
+      >
         <p sx={{ textAlign: "center" }}>{texts.login_introduce_email}</p>
       </div>
       <div

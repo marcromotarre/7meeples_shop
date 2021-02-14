@@ -3,9 +3,10 @@
 import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword } from "../../common";
-import texts from "./texts.json";
+import texts from "../texts.json";
 import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
+import { ID as EMAIL_RESET_PASSWORD_SENT } from "./email-reset-password-sent-view";
 
 export const ID = "LOGIN_PASSWORD";
 export default function login_email_view({ setGoToStep, data, setData }) {
@@ -13,6 +14,12 @@ export default function login_email_view({ setGoToStep, data, setData }) {
   const handleNotYou = (e) => {
     setData({ ...data, email: "" });
     setGoToStep(LOGIN_EMAIL_ID);
+  };
+
+  const handleForgotYourPassword = () => {
+    //send email
+    setGoToStep(EMAIL_RESET_PASSWORD_SENT);
+    //go to forgot password
   };
   const goNext = (e) => {};
   return (
@@ -36,12 +43,14 @@ export default function login_email_view({ setGoToStep, data, setData }) {
           flexDirection: "column",
         }}
       >
-        <span>{getText(texts.hi)} </span>
-        <span>{getText(texts.email, { email: data.email })}</span>
+        <span sx={{ fontWeight: "100" }}>{getText(texts.hi)} </span>
+        <span sx={{ fontWeight: "200" }}>
+          {getText(texts.email, { email: data.email })}
+        </span>
         <div sx={{ height: "5px" }}></div>
         <span
           onClick={handleNotYou}
-          sx={{ fontSize: "13px", color: "#339BCC" }}
+          sx={{ fontWeight: "500", fontSize: "13px", color: "#339BCC" }}
         >
           {getText(texts.not_you)}
         </span>
@@ -66,6 +75,18 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         <div sx={{ height: "20px" }}></div>
         <Button onClick={goNext}>{getText(texts.ENTER)}</Button>
       </div>
+      <span
+        onClick={handleForgotYourPassword}
+        sx={{
+          justifySelf: "center",
+          alignItems: "center",
+          fontWeight: "500",
+          fontSize: "13px",
+          color: "#339BCC",
+        }}
+      >
+        {getText(texts.forgot_your_password)}
+      </span>
     </div>
   );
 }
