@@ -109,7 +109,7 @@ export const email_exist = async ({ email }) => {
 };
 
 export const has_forgotten_password_code = async ({ email }) => {
-  const { exist } = await axios
+  return await axios
     .post("/api/credentials/hasEmailForgottenPasswordCode", {
       email,
     })
@@ -122,9 +122,10 @@ export const has_forgotten_password_code = async ({ email }) => {
 };
 
 export const update_forgotten_password_code = async ({ email, code }) => {
-  const { exist } = await axios
+  return await axios
     .post("/api/credentials/updateForgotPasswordCode", {
       email,
+      code,
     })
     .then((response) => {
       return response.data;
@@ -134,10 +135,11 @@ export const update_forgotten_password_code = async ({ email, code }) => {
     });
 };
 
-export const get_forgotten_password_code = async ({ email, code }) => {
+export const add_forgotten_password_code = async ({ email, code }) => {
   return await axios
-    .post("/api/credentials/getForgotPasswordCode", {
+    .post("/api/credentials/addForgotPasswordCode", {
       email,
+      code,
     })
     .then((response) => {
       return response.data;
@@ -148,10 +150,12 @@ export const get_forgotten_password_code = async ({ email, code }) => {
 };
 
 export const create_forgot_password_code = async ({ email, code }) => {
+  console.log("code", code);
   const { exist } = await has_forgotten_password_code({ email });
+  console.log(exist);
   if (exist) {
     return await update_forgotten_password_code({ email, code });
   } else {
-    return await get_forgotten_password_code({ email, code });
+    return await add_forgotten_password_code({ email, code });
   }
 };

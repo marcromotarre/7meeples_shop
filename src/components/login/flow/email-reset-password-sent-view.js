@@ -28,15 +28,18 @@ export default function email_reset_password_sent_view({
     //generate code
     //send email
     //
+
     generateCode();
   }, []);
 
   const generateCode = async () => {
     setLoading(true);
+    setCodeGenerated(true);
     /*const generated = await create_forgot_password_code({
       email: data.email,
       code: generateCode(),
     });*/
+    console.log(codeGenerated);
     console.log("Boom");
     setLoading(false);
   };

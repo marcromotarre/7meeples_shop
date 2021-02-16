@@ -14,7 +14,7 @@ export default async (req, res) => {
       
     `,
   });
-  if (credentials_confirmation.length > 0) {
+  if (insert_forgot_password_one.length > 0) {
     res.json(insert_forgot_password_one);
     res.statusCode = 200;
   }
