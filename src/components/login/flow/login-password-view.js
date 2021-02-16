@@ -7,7 +7,7 @@ import texts from "../texts.json";
 import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
 import { ID as EMAIL_RESET_PASSWORD_SENT } from "./email-reset-password-sent-view";
-import { create_forgot_password_code } from "src/backend/credentials";
+import { create_forgot_password_code } from "src/backend/forgot-password";
 import { generateCode } from "src/utils/code";
 import { ForgottenPasswordEmail } from "src/utils/email";
 import { getTommorrow, getDateFormated } from "src/utils/date";
@@ -82,7 +82,7 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         }}
       >
         <InputPassword
-          sx={{ width: "100%" }}
+          styles={{ width: "100%" }}
           onHangleInputChange={setPassword}
           text="Introduce tu email"
         />

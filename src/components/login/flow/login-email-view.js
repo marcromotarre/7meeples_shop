@@ -90,7 +90,7 @@ export default function login_email_view({ setGoToStep, data, setData }) {
           error={errorInput}
           defaultValue={email}
           onChange={onHandleEmailChange}
-          sx={{ width: "100%" }}
+          styles={{ width: "100%" }}
           text="Introduce tu email"
         ></Input>
         <div sx={{ height: "20px" }}></div>

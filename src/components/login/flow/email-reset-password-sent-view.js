@@ -15,7 +15,7 @@ import Loading from "src/components/common/loading/loading";
 import {
   email_exist,
   create_forgot_password_code,
-} from "src/backend/credentials";
+} from "src/backend/forgot-password";
 
 export const ID = "EMAIL_RESET_PASSWORD_SENT";
 export default function email_reset_password_sent_view({
