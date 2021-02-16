@@ -12,6 +12,7 @@ import { emailJS } from "../../../utils/email";
 import { add_user as add_user_credentials } from "src/backend/credentials";
 import { add_user as add_user_credentials_confirmation } from "src/backend/credentials-conformation";
 var passwordHash = require("password-hash");
+import { ActivateAccountEmail } from "../../../utils/email";
 
 export const ID = "SIGN_UP_PASSWORD";
 export default function login_email_view({ setGoToStep, data, setData }) {
@@ -27,23 +28,20 @@ export default function login_email_view({ setGoToStep, data, setData }) {
     const code = generateCode();
 
     let error = true;
-
     const user_credentials_confirmation = await add_user_credentials_confirmation(
       {
         email: data.email,
         code,
       }
     );
-    console.log("user_credentials_confirmation", user_credentials_confirmation);
     if (user_credentials_confirmation.created) {
       const user_credentials = await add_user_credentials({
         email: data.email,
         password: hashedPassword,
       });
-      console.log("user_credentials", user_credentials);
       if (user_credentials.created) {
         error = false;
-        //emailJS({email: data.email, code});
+        ActivateAccountEmail({ email: user_credentials.email, code });
         setGoToStep(EMAIL_VERIFICATION_SENT);
       }
     }
@@ -51,7 +49,6 @@ export default function login_email_view({ setGoToStep, data, setData }) {
       console.log("error");
       setLoading(false);
     }
-    //gotoConfirmaction email
   };
 
   return (

@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 
 export default function Input({
   endAnimation = () => {},
-  sx,
+  styles = {},
   error = { error: false, newError: false },
   defaultValue = "",
   text,
@@ -33,7 +33,7 @@ export default function Input({
     <div
       onAnimationEnd={onAnimationEnd}
       className={className}
-      sx={{ ...sx, position: "relative", width: "100%" }}
+      sx={{ ...styles, position: "relative" }}
     >
       <div
         sx={{

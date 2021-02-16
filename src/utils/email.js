@@ -5,28 +5,28 @@ export const isValidEmail = (email = "") => {
 };
 
 export const ActivateAccountEmail = ({ email, code }) => {
-  emailjs.init("user_sPHGcdHgcVXLs7LWlTX7I");
   return emailjs.send(
-    "service_s2swtsk",
+    "service_klj16k6",
     "template_0qyubac",
     {
       email,
       code,
+      reply_to: "no-reply@7meeples.es",
     },
     "user_sPHGcdHgcVXLs7LWlTX7I"
   );
 };
 
 export const ForgottenPasswordEmail = ({ email, code, date }) => {
-  emailjs.init("user_oYj4pDbf2EzuhE6CVOKe5");
   return emailjs.send(
-    "service_btaer5s",
-    "template_2wrgxog",
+    "service_klj16k6",
+    "template_e29ihay",
     {
       email,
       code,
       date,
+      reply_to: "no-reply@7meeples.es",
     },
-    "user_oYj4pDbf2EzuhE6CVOKe5"
+    "user_sPHGcdHgcVXLs7LWlTX7I"
   );
 };

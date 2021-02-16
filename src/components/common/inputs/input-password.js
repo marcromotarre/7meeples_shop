@@ -7,11 +7,11 @@ import check_checked from "../../../assets/svg/check-checked.svg";
 import check_unchecked from "../../../assets/svg/check-unchecked.svg";
 
 export default function InputPassword({
-  sx = {},
+  styles: styles_password = {},
   className = "",
   error = false,
   defaultValue = "",
-  text = "",
+  text = "Escribe tu contraseña",
   onHangleInputChange = () => {},
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,16 +26,16 @@ export default function InputPassword({
   };
 
   return (
-    <div sx={{ ...sx, width: " 100%" }}>
+    <div sx={{ ...styles_password }}>
       <Input
-        sx={{
+        styles={{
           justifySelf: "center",
           alignSelf: "center",
         }}
         className={className}
         error={error}
         defaultValue={defaultValue}
-        text={"Escribe tu contraseña"}
+        text={text}
         onChange={onChange}
         alignSelf={"center"}
         type={showPassword ? "text" : "password"}
