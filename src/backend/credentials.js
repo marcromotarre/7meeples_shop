@@ -60,6 +60,7 @@ export const add_user = async ({ email, password }) => {
       password,
     })
     .then((response) => {
+      console.log("response", response);
       return response.data;
     })
     .catch(function (error) {

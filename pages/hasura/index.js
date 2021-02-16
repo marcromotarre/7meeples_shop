@@ -16,8 +16,8 @@ export default function Welcome() {
   const ddbb = async () => {
     console.log("ddbb");
     const a = await add_user({
-      email: "marc romo",
-      password: "blabla",
+      email: "marc romdfddfdf",
+      password: "blabladfdfdf",
     });
     console.log("a", a);
   };
