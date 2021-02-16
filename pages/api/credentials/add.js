@@ -13,14 +13,8 @@ export default async (req, res) => {
     `,
   });
   res.statusCode = 200;
-  if (!user_created) {
-    res.json({
-      created: false,
-      email: email,
-    });
-  }
   res.json({
+    created: !!user_created,
     email: email,
-    created: true,
   });
 };

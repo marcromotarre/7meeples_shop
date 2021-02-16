@@ -49,7 +49,6 @@ export const create_account = async ({ email, code, password }) => {
   const addUser = await add_user({
     email,
     password,
-    code,
   });
 };
 
@@ -61,20 +60,6 @@ export const add_user = async ({ email, password }) => {
     })
     .then((response) => {
       console.log("response", response);
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-
-export const add_user_confirmation = async ({ email, code }) => {
-  return await axios
-    .post("/api/credentials/addConfirmation", {
-      email,
-      code,
-    })
-    .then((response) => {
       return response.data;
     })
     .catch(function (error) {

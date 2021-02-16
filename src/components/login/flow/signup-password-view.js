@@ -9,7 +9,8 @@ import { ID as EMAIL_VERIFICATION_SENT } from "./email-verification-sent-view";
 import Loading from "src/components/common/loading/loading";
 import { generateCode } from "../../../utils/code";
 import { emailJS } from "../../../utils/email";
-import { email_exist, create_account } from "src/backend/credentials";
+import { add_user as add_user_credentials } from "src/backend/credentials";
+import { add_user as add_user_credentials_confirmation } from "src/backend/credentials-conformation";
 var passwordHash = require("password-hash");
 
 export const ID = "SIGN_UP_PASSWORD";
@@ -25,26 +26,32 @@ export default function login_email_view({ setGoToStep, data, setData }) {
     const hashedPassword = passwordHash.generate(password);
     const code = generateCode();
 
-    const { error } = await email_exist({
-      email: data.email,
-    });
-    console.log(error);
-    if (error) {
-      const user = await create_account({
+    let error = true;
+
+    const user_credentials_confirmation = await add_user_credentials_confirmation(
+      {
         email: data.email,
         code,
+      }
+    );
+    console.log("user_credentials_confirmation", user_credentials_confirmation);
+    if (user_credentials_confirmation.created) {
+      const user_credentials = await add_user_credentials({
+        email: data.email,
         password: hashedPassword,
       });
-      setLoading(false);
-      setGoToStep(EMAIL_VERIFICATION_SENT);
-    } else {
-      //gotoConfirmaction user already exist
+      console.log("user_credentials", user_credentials);
+      if (user_credentials.created) {
+        error = false;
+        //emailJS({email: data.email, code});
+        setGoToStep(EMAIL_VERIFICATION_SENT);
+      }
+    }
+    if (error) {
+      console.log("error");
       setLoading(false);
     }
-
-    //emailJS({email: data.email, code});
     //gotoConfirmaction email
-    setLoading(false);
   };
 
   return (

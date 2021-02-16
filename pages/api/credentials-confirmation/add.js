@@ -13,14 +13,8 @@ export default async (req, res) => {
     `,
   });
   res.statusCode = 200;
-  if (!user_confirmation) {
-    res.json({
-      created: false,
-      email: email,
-    });
-  }
   res.json({
+    created: !!user_confirmation,
     email: email,
-    created: true,
   });
 };

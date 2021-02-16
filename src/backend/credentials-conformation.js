@@ -15,3 +15,17 @@ export const email_exist = async ({ email }) => {
       console.log(error);
     });
 };
+
+export const add_user = async ({ email, code }) => {
+  return await axios
+    .post("/api/credentials-confirmation/add", {
+      email,
+      code,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
