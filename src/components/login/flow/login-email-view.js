@@ -10,7 +10,8 @@ import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_PASSWORD_ID } from "./login-password-view";
 import { ID as SIGNUP_EMAIL_ID } from "./signup-password-view";
 import Loading from "src/components/common/loading/loading";
-import { email_exist } from "src/backend/credentials";
+import { email_exist as email_exist_credentials } from "src/backend/credentials";
+import { email_exist as email_exist_credentials_confirmation } from "src/backend/credentials-conformation";
 
 export const ID = "LOGIN_EMAIL";
 export default function login_email_view({ setGoToStep, data, setData }) {
@@ -24,11 +25,19 @@ export default function login_email_view({ setGoToStep, data, setData }) {
   const goNext = async () => {
     if (isValidEmail(email)) {
       setLoading(true);
-      const { error } = await email_exist({
+      const credentials = await email_exist_credentials({
         email,
       });
-      setData({ ...data, email: email });
-      if (error) {
+      const credentials_confirmation = await email_exist_credentials_confirmation(
+        {
+          email,
+        }
+      );
+
+      console.log(credentials);
+      console.log(credentials_confirmation);
+      setData({ ...data, email: email, credentials, credentials_confirmation });
+      if (!credentials.exist && !credentials_confirmation.exist) {
         setGoToStep(SIGNUP_EMAIL_ID);
       } else {
         setGoToStep(LOGIN_PASSWORD_ID);
