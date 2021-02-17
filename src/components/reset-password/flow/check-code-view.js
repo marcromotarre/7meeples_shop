@@ -5,9 +5,15 @@ import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword, Loading } from "../../common";
 import { useRouter } from "next/router";
 import { get } from "../../../backend/forgot-password";
+import {
+  get_by_email as get_user_by_email,
+  update as update_password,
+} from "../../../backend/credentials";
 import { ID as PASSWORD_UPDATED_VIEW_ID } from "./password-updated-view";
 import Error from "../error";
 import NewPassword from "../new-password";
+import TimeOut from "../../shared/time-out";
+import { lessThan24Hours } from "../../../utils/date";
 
 export const ID = "CHECK_CODE_VIEW";
 
@@ -16,6 +22,7 @@ const states = {
   ERROR: "ERROR",
   LOADING: "LOADING",
   SUCCESS: "SUCCESS",
+  TIME_OUT: "TIME_OUT",
 };
 
 export default function check_code_view({ setGoToStep }) {
@@ -26,6 +33,7 @@ export default function check_code_view({ setGoToStep }) {
 
   const [state, setState] = useState(states.LOADING);
   const goNext = (e) => {};
+  let userId = undefined;
 
   useEffect(() => {
     verify();
@@ -33,24 +41,27 @@ export default function check_code_view({ setGoToStep }) {
 
   const verify = async () => {
     if (email || code) {
+      const user = await get_user_by_email({ email });
+      console.log(user);
+      userId = user.id;
       const forgot_code = await get({
         email,
         code,
       });
-      console.log(forgot_code);
-
       if (forgot_code.error) {
         setState(states.ERROR);
       } else {
-        setState(states.SUCCESS);
+        if (lessThan24Hours(forgot_code.date)) {
+          setState(states.SUCCESS);
+        } else {
+          setState(states.TIME_OUT);
+        }
       }
     }
   };
 
-  const handleUpdatePasswordClick = async () => {
-    console.log("Boom");
-    //set new password
-    //go to step
+  const handleUpdatePasswordClick = async (password) => {
+    const user = await update_password({ id: userId, password });
     setGoToStep(PASSWORD_UPDATED_VIEW_ID);
   };
   return (
@@ -63,6 +74,7 @@ export default function check_code_view({ setGoToStep }) {
         alignItems: "center",
       }}
     >
+      {state === states.TIME_OUT && <TimeOut />}
       {state === states.LOADING && <Loading style={{ height: "100px" }} />}
       {state === states.ERROR && <Error />}
       {state === states.SUCCESS && (

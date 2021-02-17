@@ -67,6 +67,20 @@ export const add_user = async ({ email, password }) => {
     });
 };
 
+export const update = async ({ id, password }) => {
+  return await axios
+    .post("/api/credentials/update", {
+      id,
+      password,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
 export const get_user = async ({ email, password }) => {
   return await axios
     .post("/api/credentials/get", {
@@ -82,6 +96,22 @@ export const get_user = async ({ email, password }) => {
 };
 
 export const email_exist = async ({ email }) => {
+  console.log(email);
+  return await axios
+    .post("/api/credentials/get-by-email", {
+      email,
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log("credentials error", error);
+      console.log(error);
+    });
+};
+
+export const get_by_email = async ({ email }) => {
   console.log(email);
   return await axios
     .post("/api/credentials/get-by-email", {

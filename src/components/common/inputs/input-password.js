@@ -20,7 +20,7 @@ export default function InputPassword({
   const handleShowPasswordCheckbox = () => {
     setShowPassword(!showPassword);
   };
-  const onChange = (event) => {
+  const onChange = (value) => {
     onHangleInputChange(value);
     setValue(value);
   };

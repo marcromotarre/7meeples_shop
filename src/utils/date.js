@@ -27,3 +27,16 @@ export const getDateFormated = (date) => {
     date.getMonth()
   )} del ${date.getFullYear()}`;
 };
+
+export const lessThan24Hours = (date) => {
+  const leftHours = milisecondsToHours(new Date() - new Date(date));
+  return leftHours < 24 ? true : false;
+};
+
+export const milisecondsToHours = (miliseconds) => {
+  return Math.floor(miliseconds / (60000 * 60));
+};
+
+const milisecondsToMinutes = (miliseconds) => {
+  return Math.floor(miliseconds / 60000);
+};
