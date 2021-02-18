@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@stripe/react-stripe-js": "^1.2.2",
     "axios": "^0.21.1",
     "dotenv-load": "^2.0.0",
     "emailjs-com": "^2.6.4",
