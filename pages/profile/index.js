@@ -11,13 +11,14 @@ import { Button } from "src/components/common";
 export default function Profile() {
   const router = useRouter();
   const [session, loading] = useSession();
-  const logOut = () => {
+  const logOut = async () => {
     signOut();
+    router.push("/");
   };
 
   return (
     <>
-      {session && !loading && (
+      {session && router && (
         <>
           <div>{session.user.email}</div>
           <Button onClick={logOut}>
