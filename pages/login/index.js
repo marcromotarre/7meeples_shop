@@ -57,6 +57,7 @@ export default function Login() {
     }
   };
   useEffect(() => {
+    //
     setLogo(getLogo());
   }, []);
   return (
