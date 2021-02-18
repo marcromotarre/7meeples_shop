@@ -188,6 +188,7 @@ export default function Header() {
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>
+          <MenuItem className={menuState} text={"v1.02"}></MenuItem>
         </div>
       </div>
       <div
