@@ -1,22 +1,28 @@
+/** @jsxRuntime classic /
+/* @jsx jsx */
 import { jsx } from "theme-ui";
-import { signOut, useSession } from "next-auth/client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import LoginLogo from "../../src/components/login/login-logo";
+import { useSession, signOut } from "next-auth/client";
+import { useRouter } from "next/router";
+import { getLogo } from "src/data/logo";
+import { Button } from "src/components/common";
 
 export default function Profile() {
+  const router = useRouter();
   const [session, loading] = useSession();
-  console.log(session);
+  const logOut = () => {
+    signOut();
+  };
+
   return (
     <>
-      <div>loading: {loading}</div>
-      {!session && (
+      {session && !loading && (
         <>
-          Not signed in <br />
-        </>
-      )}
-      {session && (
-        <>
-          Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          <div>{session.user.email}</div>
+          <Button onClick={logOut}>
+            <span>Cerrar sesión</span>
+          </Button>
         </>
       )}
     </>

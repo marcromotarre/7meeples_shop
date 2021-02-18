@@ -15,7 +15,6 @@ import { useSession } from "next-auth/client";
 export default function Header() {
   const router = useRouter();
   const [session, loading] = useSession();
-  console.log(session);
 
   const opened = useSelector((state) => state.open);
   const [animationState, setAnimationState] = useState("menu-close-start");

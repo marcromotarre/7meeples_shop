@@ -10,6 +10,7 @@ import { ID as EMAIL_RESET_PASSWORD_SENT } from "./email-reset-password-sent-vie
 import { forgot_password_code_and_email } from "../../../utils/password";
 import { signIn } from "next-auth/client";
 import { get_user } from "src/backend/credentials";
+import { useRouter } from "next/router";
 
 export const ID = "LOGIN_PASSWORD";
 export default function login_email_view({ setGoToStep, data, setData }) {

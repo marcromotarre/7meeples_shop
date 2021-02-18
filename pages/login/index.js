@@ -3,6 +3,8 @@
 import { jsx } from "theme-ui";
 import React, { useState, useEffect } from "react";
 import LoginLogo from "../../src/components/login/login-logo";
+import { useSession } from "next-auth/client";
+import { useRouter } from "next/router";
 
 import LoginEmailView, {
   ID as LOGIN_EMAIL_ID,
@@ -33,9 +35,13 @@ export const ORDER = [
   EMAIL_RESET_PASSWORD_SENT,
 ];
 
-export default function Agura() {
+export default function Login() {
   var scrollSpy = Scroll.scrollSpy;
-
+  const router = useRouter();
+  const [session, loading] = useSession();
+  if (session && router) {
+    router.push("profile");
+  }
   const [logo, setLogo] = useState(false);
   const [data, setData] = useState({ email: "marcromotarre@gmail.com" });
   const [goToStep, setGoToStep] = useState(ORDER[0]);
