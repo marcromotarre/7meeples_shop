@@ -7,6 +7,7 @@ import check_checked from "../../../assets/svg/check-checked.svg";
 import check_unchecked from "../../../assets/svg/check-unchecked.svg";
 
 export default function InputPassword({
+  endAnimation = () => {},
   styles: styles_password = {},
   className = "",
   error = { error: false, newError: false },
@@ -28,6 +29,7 @@ export default function InputPassword({
   return (
     <div sx={{ ...styles_password }}>
       <Input
+        endAnimation={endAnimation}
         styles={{
           justifySelf: "center",
           alignSelf: "center",

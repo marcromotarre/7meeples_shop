@@ -10,9 +10,12 @@ import { useSelector, useDispatch } from "react-redux";
 import MenuItem from "../menu/menu-item";
 import Search from "../header/search";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/client";
 
 export default function Header() {
   const router = useRouter();
+  const [session, loading] = useSession();
+  console.log(session);
 
   const opened = useSelector((state) => state.open);
   const [animationState, setAnimationState] = useState("menu-close-start");
@@ -99,6 +102,10 @@ export default function Header() {
     router.push("login");
   };
 
+  const clickOnProfile = () => {
+    router.push("profile");
+  };
+
   return (
     <>
       <div
@@ -162,11 +169,20 @@ export default function Header() {
         </div>
         <div sx={{ width: "100%", height: "calc(100% - 50px)" }}>
           <Search className={menuState}></Search>
-          <MenuItem
-            className={menuState}
-            text={"Login / Register"}
-            onClick={clickOnLoginRegister}
-          ></MenuItem>
+          {!session && (
+            <MenuItem
+              className={menuState}
+              text={"Login / Register"}
+              onClick={clickOnLoginRegister}
+            ></MenuItem>
+          )}
+          {session && (
+            <MenuItem
+              className={menuState}
+              text={"marc romo"}
+              onClick={clickOnProfile}
+            ></MenuItem>
+          )}
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>
           <MenuItem className={menuState} text={"Button"}></MenuItem>

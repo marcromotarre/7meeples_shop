@@ -8,7 +8,7 @@ import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
 import { ID as EMAIL_RESET_PASSWORD_SENT } from "./email-reset-password-sent-view";
 import { forgot_password_code_and_email } from "../../../utils/password";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn } from "next-auth/client";
 import { get_user } from "src/backend/credentials";
 
 export const ID = "LOGIN_PASSWORD";
@@ -36,6 +36,7 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         setLoading(false);
       }
     } else {
+      signIn("credentials", { email: "marcromotarre@gmail.com" });
     }
   };
 
