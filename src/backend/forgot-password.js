@@ -14,6 +14,19 @@ export const get = async ({ email, code }) => {
     });
 };
 
+export const remove = async ({ email }) => {
+  return await axios
+    .post("/api/forgot-password/delete", {
+      email,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
 export const has_forgotten_password_code = async ({ email }) => {
   return await axios
     .post("/api/forgot-password/exist", {

@@ -67,10 +67,10 @@ export const add_user = async ({ email, password }) => {
     });
 };
 
-export const update = async ({ id, password }) => {
+export const set_password = async ({ email, password }) => {
   return await axios
     .post("/api/credentials/update", {
-      id,
+      email,
       password,
     })
     .then((response) => {

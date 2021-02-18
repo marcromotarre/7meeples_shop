@@ -7,7 +7,6 @@ export default async (req, res) => {
     query: `
       query {
           credentials(where: {email: {_eq: "${email}"}}) {
-            id
             email
             password
           }

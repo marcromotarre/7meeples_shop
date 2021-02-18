@@ -9,7 +9,7 @@ import check_unchecked from "../../../assets/svg/check-unchecked.svg";
 export default function InputPassword({
   styles: styles_password = {},
   className = "",
-  error = false,
+  error = { error: false, newError: false },
   defaultValue = "",
   text = "Escribe tu contraseña",
   onHangleInputChange = () => {},

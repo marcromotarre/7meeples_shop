@@ -2,38 +2,46 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { useRef, useEffect, useState } from "react";
-import { Button, InputPassword } from "../../common";
+import { Button, InputPassword, Loading } from "../../common";
 import texts from "../texts.json";
 import { getText } from "./../../../utils/texts";
 import { ID as LOGIN_EMAIL_ID } from "./login-email-view";
 import { ID as EMAIL_RESET_PASSWORD_SENT } from "./email-reset-password-sent-view";
-import { create_forgot_password_code } from "src/backend/forgot-password";
-import { generateCode } from "src/utils/code";
-import { ForgottenPasswordEmail } from "src/utils/email";
-import { getTommorrow, getDateFormated } from "src/utils/date";
+import { forgot_password_code_and_email } from "../../../utils/password";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { get_user } from "src/backend/credentials";
 
 export const ID = "LOGIN_PASSWORD";
 export default function login_email_view({ setGoToStep, data, setData }) {
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState();
+  const [error, setError] = useState(false);
+  const [errorInput, setErrorInput] = useState({
+    error: false,
+    newError: false,
+  });
   const handleNotYou = (e) => {
     setData({ ...data, email: "" });
     setGoToStep(LOGIN_EMAIL_ID);
   };
 
+  const handleLogIn = async () => {
+    setLoading(true);
+    //check user password
+    const { error, user } = await get_user({ email: data.email, password });
+    if (error) {
+      if (error === "password incorrect") {
+        setError(true);
+        setErrorInput({ error: true, newError: true });
+        setLoading(false);
+      }
+    } else {
+    }
+  };
+
   const handleForgotYourPassword = async () => {
-    const code = generateCode();
-    const generated = await create_forgot_password_code({
-      email: data.email,
-      code,
-    });
-    //send email
-    ForgottenPasswordEmail({
-      email: data.email,
-      code,
-      date: getDateFormated(getTommorrow()),
-    });
+    await forgot_password_code_and_email({ email: data.email });
     setGoToStep(EMAIL_RESET_PASSWORD_SENT);
-    //go to forgot password
   };
   const goNext = (e) => {};
   return (
@@ -82,12 +90,17 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         }}
       >
         <InputPassword
+          endAnimation={() => setErrorInput({ error: true, newError: false })}
+          error={errorInput}
           styles={{ width: "100%" }}
           onHangleInputChange={setPassword}
-          text="Introduce tu email"
+          text="Introduce tu contrseña"
         />
         <div sx={{ height: "20px" }}></div>
-        <Button onClick={goNext}>{getText(texts.ENTER)}</Button>
+        {loading && <Loading />}
+        {!loading && (
+          <Button onClick={handleLogIn}>{getText(texts.ENTER)}</Button>
+        )}
       </div>
       <span
         onClick={handleForgotYourPassword}

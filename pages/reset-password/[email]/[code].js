@@ -12,11 +12,19 @@ import PasswordUpdatedView, {
   ID as PASSWORD_UPDATED_VIEW_ID,
 } from "../../../src/components/reset-password/flow/password-updated-view";
 
+import EmailResetPasswordSentView, {
+  ID as EMAIL_RESET_PASSWORD_SENT_VIEW_ID,
+} from "../../../src/components/login/flow/email-reset-password-sent-view";
+
 import Flow from "../../../src/components/common/flow/flow";
 import { getLogo } from "../../../src/data/logo";
 import Scroll, { scrollSpy } from "react-scroll";
 
-export const ORDER = [CHECK_CODE_VIEW_ID, PASSWORD_UPDATED_VIEW_ID];
+export const ORDER = [
+  CHECK_CODE_VIEW_ID,
+  PASSWORD_UPDATED_VIEW_ID,
+  EMAIL_RESET_PASSWORD_SENT_VIEW_ID,
+];
 
 export default function ResetPassword() {
   var scrollSpy = Scroll.scrollSpy;
@@ -70,6 +78,11 @@ export default function ResetPassword() {
         <Flow goToStep={goToStep} steps={ORDER}>
           <CheckCodeView data={data} setData={setData} setGoToStep={go} />
           <PasswordUpdatedView data={data} setData={setData} setGoToStep={go} />
+          <EmailResetPasswordSentView
+            data={data}
+            setData={setData}
+            setGoToStep={go}
+          />
         </Flow>
       </div>
     </>

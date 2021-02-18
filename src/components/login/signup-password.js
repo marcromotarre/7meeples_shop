@@ -19,7 +19,6 @@ export default function SignUpPassword({ email, onClickNext = () => {} }) {
   const [password, setPassword] = useState("");
   const clickButton = async () => {
     setLoading(true);
-    var hashedPassword = passwordHash.generate(password);
     const code =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15) +
@@ -42,7 +41,7 @@ export default function SignUpPassword({ email, onClickNext = () => {} }) {
 
     const addUser = await add_user({
       email,
-      password: hashedPassword,
+      password: passwordHash.generate(password),
       code,
     });
 
