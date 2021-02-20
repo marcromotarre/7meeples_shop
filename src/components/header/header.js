@@ -36,7 +36,6 @@ export default function Header() {
       setLineState("line-start-animation");
     }
     if (animationState === "menu-close-end") {
-      dispatch(closeMenu());
       setAnimationState("menu-close-end-animation");
       setLineState("line-end-animation");
     }
@@ -64,6 +63,7 @@ export default function Header() {
       setMenuState("menu-end");
     }
     if (animationState === "menu-close-end-animation") {
+      dispatch(closeMenu());
       setAnimationState("menu-close-start");
       setMenuState("menu-start");
     }
@@ -127,7 +127,6 @@ export default function Header() {
             }
           `}
         </style>
-
         <div
           sx={{
             width: "100%",
@@ -166,30 +165,32 @@ export default function Header() {
             alt="shopping bag"
           />
         </div>
-        <div sx={{ width: "100%", height: "calc(100% - 50px)" }}>
-          <Search className={menuState}></Search>
-          {!session && (
-            <MenuItem
-              className={menuState}
-              text={"Login / Register"}
-              onClick={clickOnLoginRegister}
-            ></MenuItem>
-          )}
-          {session && (
-            <MenuItem
-              className={menuState}
-              text={"marc romo"}
-              onClick={clickOnProfile}
-            ></MenuItem>
-          )}
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"Button"}></MenuItem>
-          <MenuItem className={menuState} text={"v1.03"}></MenuItem>
-        </div>
+        {opened && (
+          <div sx={{ zIndex: 0, width: "100%", height: "calc(100% - 50px)" }}>
+            <Search className={menuState}></Search>
+            {!session && (
+              <MenuItem
+                className={menuState}
+                text={"Login / Register"}
+                onClick={clickOnLoginRegister}
+              ></MenuItem>
+            )}
+            {session && (
+              <MenuItem
+                className={menuState}
+                text={"marc romo"}
+                onClick={clickOnProfile}
+              ></MenuItem>
+            )}
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem className={menuState} text={"v1.03"}></MenuItem>
+          </div>
+        )}
       </div>
       <div
         onAnimationEnd={animationLineEnd}
