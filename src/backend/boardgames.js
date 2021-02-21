@@ -23,3 +23,17 @@ export const get_boardgame = async ({ id }) => {
       console.log(error);
     });
 };
+
+export const get_multiple_boardgames = async ({ ids }) => {
+  console.log(ids);
+  return await axios
+    .post("/api/boardgames/get_multiple", {
+      ids,
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

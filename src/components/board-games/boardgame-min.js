@@ -12,7 +12,6 @@ export default function BoardgameMin({ boardgame, onClick }) {
   };
   return (
     <div onClick={onClickBoardgame}>
-      <div>{id}</div>
       <div>{name}</div>
       {image && <img src={image} />}
     </div>

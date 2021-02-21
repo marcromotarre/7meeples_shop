@@ -105,6 +105,10 @@ export default function Header() {
     router.push("profile");
   };
 
+  const clickOnAwards = () => {
+    router.push("awards");
+  };
+
   return (
     <>
       <div
@@ -182,8 +186,12 @@ export default function Header() {
                 onClick={clickOnProfile}
               ></MenuItem>
             )}
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
+            <MenuItem
+              onClick={clickOnAwards}
+              className={menuState}
+              text={"7meeples Awards"}
+            ></MenuItem>
+            <MenuItem className={menuState} text={"meeplestrenos"}></MenuItem>
             <MenuItem className={menuState} text={"Button"}></MenuItem>
             <MenuItem className={menuState} text={"Button"}></MenuItem>
             <MenuItem className={menuState} text={"Button"}></MenuItem>
