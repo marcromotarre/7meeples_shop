@@ -3,7 +3,6 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_awards } from "../../src/backend/awards";
-import BoardgameMin from "../../src/components/board-games/boardgame-min";
 import { useRouter } from "next/router";
 
 export default function Awards() {
