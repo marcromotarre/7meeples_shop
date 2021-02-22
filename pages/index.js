@@ -3,15 +3,25 @@
 import { jsx } from "theme-ui";
 import styles from "../styles/Home.module.css";
 import Header from "../src/components/header/header";
-import Games from "../src/components/board-games/board-games-list";
+import BoardGamesList from "../src/components/board-games/board-games-list";
+import { useState, useEffect } from "react";
+import { get_boardgames } from "src/backend/boardgames";
 export default function Home() {
   //  <Menu></Menu>;
+  const [boardgames, setBoardGames] = useState([]);
+  useEffect(() => {
+    getBoardgames();
+  }, []);
 
+  const getBoardgames = async () => {
+    const boardgames = await get_boardgames();
+    setBoardGames(boardgames);
+  };
   return (
     <div className={styles.container}>
       <Header></Header>
       <div sx={{ height: "50px" }}></div>
-      <Games></Games>
+      <BoardGamesList boardgames={boardgames}></BoardGamesList>
     </div>
   );
 }

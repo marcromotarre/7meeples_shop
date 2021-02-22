@@ -7,6 +7,7 @@ import BoardgameMin from "../../src/components/board-games/boardgame-min";
 import { useRouter } from "next/router";
 import { get_multiple_boardgames } from "src/backend/boardgames";
 import Boardgame from "../../src/components/board-games/boardgame-min";
+import BoardgamesList from "../../src/components/board-games/board-games-list";
 
 export default function Awards() {
   const router = useRouter();
@@ -23,6 +24,7 @@ export default function Awards() {
     const award = await get_award({ id: router.query.id });
     setAward(award);
     const boardgames = await get_multiple_boardgames({ ids: award.boardgames });
+    console.log(boardgames);
     setBoardgames(boardgames);
   };
   const onClickBoardgame = (id) => {
@@ -33,11 +35,7 @@ export default function Awards() {
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
       {boardgames.map((boardgame) => (
-        <Boardgame
-          key={boardgame.id}
-          onClick={onClickBoardgame}
-          boardgame={boardgame}
-        />
+        <BoardgamesList boardgames={boardgames} />
       ))}
     </div>
   );

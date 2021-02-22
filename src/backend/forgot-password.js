@@ -1,15 +1,18 @@
 import axios from "axios";
 
 export const get = async ({ email, code }) => {
+  console.log("get", email, code);
   return await axios
     .post("/api/forgot-password/get", {
       email,
       code,
     })
     .then((response) => {
+      console.log("response", response);
       return response.data;
     })
     .catch(function (error) {
+      console.log("error", error);
       console.log(error);
     });
 };

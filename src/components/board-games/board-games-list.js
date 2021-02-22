@@ -5,18 +5,8 @@ import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Boardgame from "./boardgame-min";
 import { useRouter } from "next/router";
-export default function GamesList() {
+export default function GamesList({ boardgames }) {
   const router = useRouter();
-
-  const [boardgames, setBoardGames] = useState([]);
-  useEffect(() => {
-    getBoardgames();
-  }, []);
-
-  const getBoardgames = async () => {
-    const boardgames = await get_boardgames();
-    setBoardGames(boardgames);
-  };
 
   const onClickBoardgame = (id) => {
     console.log("onClickBoardgame", id);
