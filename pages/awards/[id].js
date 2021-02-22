@@ -27,16 +27,10 @@ export default function Awards() {
     console.log(boardgames);
     setBoardgames(boardgames);
   };
-  const onClickBoardgame = (id) => {
-    console.log("onClickBoardgame", id);
-    router.push(`/juego/${id}`);
-  };
 
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
-      {boardgames.map((boardgame) => (
-        <BoardgamesList boardgames={boardgames} />
-      ))}
+      <BoardgamesList boardgames={boardgames} />
     </div>
   );
 }
