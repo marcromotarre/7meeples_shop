@@ -55,6 +55,7 @@ export default function check_code_view({ setGoToStep }) {
         email,
         code,
       });
+      console.log(forgot_code);
       if (forgot_code.error) {
         setState(states.ERROR);
       } else {
