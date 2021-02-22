@@ -20,7 +20,7 @@ export default function GamesList({ boardgames }) {
         display: "grid",
         alignItems: "center",
         justifyItems: "center",
-        rowGap: "15px",
+        rowGap: "25px",
       }}
     >
       {boardgames.map((boardgame) => (

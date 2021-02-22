@@ -18,9 +18,7 @@ export default function Home() {
     setBoardGames(boardgames);
   };
   return (
-    <div className={styles.container}>
-      <Header></Header>
-      <div sx={{ height: "50px" }}></div>
+    <div sx={{ width: "100%" }} className={styles.container}>
       <BoardGamesList boardgames={boardgames}></BoardGamesList>
     </div>
   );

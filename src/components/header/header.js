@@ -4,6 +4,11 @@ import { jsx } from "theme-ui";
 import shopping_bag from "../../assets/svg/shopping-bag.svg";
 import logo_red from "../../assets/svg/7meeples-logo-red.svg";
 import menu_cross_animation from "../../assets/svg/menu-cross-animation.svg";
+
+import login from "../../assets/svg/menu/login.svg";
+import meeplestrenos from "../../assets/svg/menu/meeplestrenos.svg";
+import seven_meeples_awards from "../../assets/svg/menu/7meeples-awards.svg";
+
 import React, { useState } from "react";
 import { openMenu, closeMenu } from "src/actions";
 import { useSelector, useDispatch } from "react-redux";
@@ -107,6 +112,7 @@ export default function Header() {
 
   const clickOnAwards = () => {
     router.push("awards");
+    clickIcon();
   };
 
   return (
@@ -174,6 +180,7 @@ export default function Header() {
             <Search className={menuState}></Search>
             {!session && (
               <MenuItem
+                icon={login}
                 className={menuState}
                 text={"Login / Register"}
                 onClick={clickOnLoginRegister}
@@ -181,22 +188,23 @@ export default function Header() {
             )}
             {session && (
               <MenuItem
+                icon={login}
                 className={menuState}
                 text={"marc romo"}
                 onClick={clickOnProfile}
               ></MenuItem>
             )}
             <MenuItem
+              icon={seven_meeples_awards}
               onClick={clickOnAwards}
               className={menuState}
               text={"7meeples Awards"}
             ></MenuItem>
-            <MenuItem className={menuState} text={"meeplestrenos"}></MenuItem>
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
-            <MenuItem className={menuState} text={"Button"}></MenuItem>
-            <MenuItem className={menuState} text={"v1.04"}></MenuItem>
+            <MenuItem
+              icon={meeplestrenos}
+              className={menuState}
+              text={"meeplestrenos"}
+            ></MenuItem>
           </div>
         )}
       </div>

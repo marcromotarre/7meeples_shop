@@ -7,6 +7,7 @@ export default async (req, res) => {
         awards {
             id
             name
+            icon
           }
       }
     `,

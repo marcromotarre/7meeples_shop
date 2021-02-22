@@ -47,7 +47,10 @@ export default function BoardgameMin({ boardgame, onClick }) {
           alignItems: "center",
         }}
       >
-        <img sx={{ width: "80%" }} src={image}></img>
+        <img
+          sx={{ padding: "20px 0px", maxHeight: "300px", maxWidth: "80%" }}
+          src={image}
+        ></img>
       </div>
       <div
         sx={{

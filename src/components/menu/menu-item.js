@@ -7,6 +7,9 @@ export default function MenuItem({
   onAnimationEnd,
   text,
   onClick = () => {},
+  width = "80%",
+  icon,
+  margin = "0px",
 }) {
   return (
     <div
@@ -25,15 +28,34 @@ export default function MenuItem({
     >
       <div
         sx={{
-          width: "70%",
+          width: width,
           height: "100%",
           borderBottom: "1px solid #C7C7C7",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
+          display: "grid",
+          gridTemplateColumns: `${margin} auto ${margin}`,
+          gridTemplateAreas: `". item ."`,
         }}
       >
-        <span sx={{ fontFamily: "Quicksand" }}>{text}</span>
+        <div
+          sx={{
+            display: "flex",
+            gridArea: "item",
+            justifyContent: "start",
+            alignItems: "center",
+          }}
+        >
+          {icon && <img sx={{ paddingRight: "10px" }} src={icon}></img>}
+          <span
+            sx={{
+              fontFamily: "Quicksand",
+              fontWeight: "200",
+              fontSize: "15px",
+              verticalAlign: "super",
+            }}
+          >
+            {text}
+          </span>
+        </div>
       </div>
     </div>
   );

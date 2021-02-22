@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_awards } from "../../src/backend/awards";
 import { useRouter } from "next/router";
+import Dashboard from "../../src/components/awards/dashboard";
 
 export default function Awards() {
   const router = useRouter();
@@ -25,11 +26,7 @@ export default function Awards() {
 
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
-      {awards.map((award) => (
-        <span key={awards.id} onClick={() => clickOnAward(award.id)}>
-          {award.name}
-        </span>
-      ))}
+      <Dashboard></Dashboard>
     </div>
   );
 }
