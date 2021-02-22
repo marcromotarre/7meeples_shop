@@ -21,6 +21,13 @@ export default function BoardgameMin({ boardgame, onClick }) {
     height: "0.05em",
     backgroundColor: "rgba(181, 181, 181, 0.5)",
   };
+
+  const play_time_string = (play_time_min, play_time_max) =>
+    play_time_min === play_time_max
+      ? `${play_time_min} min`
+      : `${play_time_min} - ${play_time_max} min`;
+  const weight_string = (weight) => `${weight} / 5`;
+  const age_string = (age) => `${age} años`;
   return (
     <div
       sx={{
@@ -61,32 +68,16 @@ export default function BoardgameMin({ boardgame, onClick }) {
         </span>
       </div>
       <div sx={separator}></div>
-      <Section name={"60 - 120 min"} icon={play_time}></Section>
+      <Section
+        name={play_time_string(boardgame.playTimeMin, boardgame.playTimeMax)}
+        icon={play_time}
+      ></Section>
       <div sx={separator}></div>
-      <Section name={"10+ años"} icon={age}></Section>
+      <Section name={age_string(boardgame.age)} icon={age}></Section>
       <div sx={separator}></div>
       <Section name={"3 a 4 jugadores"} icon={number_of_players}></Section>
       <div sx={separator}></div>
-      <Section name={"2.35 / 5"} icon={weight}></Section>
+      <Section name={weight_string(boardgame.weight)} icon={weight}></Section>
     </div>
   );
 }
-
-/*
-<CardPrice price={29} pvp={32} />
-    <CardMainAction />
-    <Separator />
-    <CardSection name={"60 - 120 min"} icon={playTime}></CardSection>
-    <Separator />
-    <CardSection name={"10+ años"} icon={recommendedAge}></CardSection>
-    <Separator />
-    <CardSection
-      name={"3 a 4 jugadores"}
-      icon={numberOfPlayers}
-    ></CardSection>
-    <Separator />
-    <CardSection name={"2.35 / 5"} icon={weight}></CardSection>
-    <Separator />
-    <CardSectionMore />
-  </CardContainer>
-*/

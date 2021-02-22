@@ -130,7 +130,7 @@ export default function login_email_view({ setGoToStep, data, setData }) {
         }}
       >
         <InputPassword
-          sx={{ width: "100%" }}
+          styles={{ width: "100%" }}
           onHangleInputChange={setPassword}
           text="Introduce tu email"
         />
