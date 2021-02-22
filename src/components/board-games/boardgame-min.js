@@ -31,6 +31,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
   return (
     <div
       sx={{
+        width: "100%",
         borderRadius: "10px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         transition: "0.3s",

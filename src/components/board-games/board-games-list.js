@@ -14,7 +14,15 @@ export default function GamesList({ boardgames }) {
   };
 
   return (
-    <>
+    <div
+      sx={{
+        width: "100%",
+        display: "grid",
+        alignItems: "center",
+        justifyItems: "center",
+        rowGap: "15px",
+      }}
+    >
       {boardgames.map((boardgame) => (
         <Boardgame
           key={boardgame.id}
@@ -22,6 +30,6 @@ export default function GamesList({ boardgames }) {
           boardgame={boardgame}
         />
       ))}
-    </>
+    </div>
   );
 }
