@@ -6,6 +6,7 @@ import { get_award, get_awards } from "../../src/backend/awards";
 import BoardgameMin from "../../src/components/board-games/boardgame-min";
 import { useRouter } from "next/router";
 import { get_multiple_boardgames } from "src/backend/boardgames";
+import Award from "../../src/components/awards/award-view";
 import Boardgame from "../../src/components/board-games/boardgame-min";
 import BoardgamesList from "../../src/components/board-games/board-games-list";
 
@@ -24,13 +25,12 @@ export default function Awards() {
     const award = await get_award({ id: router.query.id });
     setAward(award);
     const boardgames = await get_multiple_boardgames({ ids: award.boardgames });
-    console.log(boardgames);
     setBoardgames(boardgames);
   };
 
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
-      <BoardgamesList boardgames={boardgames} />
+      <Award awards={award} boardgames={boardgames} />
     </div>
   );
 }

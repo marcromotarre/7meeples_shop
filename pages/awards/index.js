@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_awards } from "../../src/backend/awards";
 import { useRouter } from "next/router";
-import AwardsFlow from "../../src/components/awards/flow/awards-flow";
+import awards_list_view from "../../src/components/awards/flow/awards-list-view";
 import title from "../../src/assets/svg/awards/title.svg";
 import icon from "../../src/assets/svg/awards/icon.svg";
 
@@ -36,7 +36,7 @@ export default function Awards() {
       >
         <img sx={{ width: "50%" }} src={title}></img>
         <img src={icon}></img>
-        <AwardsFlow></AwardsFlow>
+        <awards_list_view></awards_list_view>
       </div>
     </div>
   );

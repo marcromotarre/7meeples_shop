@@ -15,6 +15,7 @@ export default async (req, res) => {
             average
             numVotes
             PVP
+            weight
             price
             stock
             active

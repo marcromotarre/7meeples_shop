@@ -17,6 +17,7 @@ export default function Home() {
     const boardgames = await get_boardgames();
     setBoardGames(boardgames);
   };
+  console.log(boardgames);
   return (
     <div sx={{ width: "100%" }} className={styles.container}>
       <BoardGamesList boardgames={boardgames}></BoardGamesList>
