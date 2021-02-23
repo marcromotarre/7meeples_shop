@@ -16,16 +16,18 @@ export default function awards_list({ awards }) {
     router.push(`awards/${id}`);
   };
   return (
-    <>
+    <div sx={{ width: "100%" }}>
       {awards.map((category) => (
         <MenuItem
           key={category.id}
           onClick={() => clickOnAward(category.id)}
-          width={"90%"}
+          width={"80%"}
+          margin={"10%"}
+          height={"60px"}
           text={category.name}
           icon={category.icon}
         ></MenuItem>
       ))}
-    </>
+    </div>
   );
 }

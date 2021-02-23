@@ -9,6 +9,7 @@ export default function MenuItem({
   text,
   onClick = () => {},
   width = "80%",
+  height = "50px",
   icon,
   margin = "0px",
 }) {
@@ -25,7 +26,7 @@ export default function MenuItem({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
-        height: "50px",
+        height,
       }}
     >
       <div
