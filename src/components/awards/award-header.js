@@ -3,7 +3,13 @@
 import { jsx } from "theme-ui";
 import title from "../../assets/svg/awards/title.svg";
 import icon from "../../assets/svg/awards/icon.svg";
+import { useRouter } from "next/router";
+
 export default function AwardHeader() {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("/awards");
+  };
   return (
     <div
       sx={{
@@ -15,8 +21,8 @@ export default function AwardHeader() {
         rowGap: "10px",
       }}
     >
-      <img sx={{ width: "50%" }} src={title}></img>
-      <img src={icon}></img>
+      <img onClick={handleClick} sx={{ width: "50%" }} src={title}></img>
+      <img onClick={handleClick} src={icon}></img>
     </div>
   );
 }
