@@ -40,7 +40,6 @@ export default function AwardsFlow() {
       boardgames: [...data.boardgames, ...boardgames],
     });
   };
-  console.log(data);
   const go = (id) => {
     console.log(id);
     setGoToStep(AWARD_VIEW);
@@ -48,7 +47,6 @@ export default function AwardsFlow() {
   };
   return (
     <Flow goToStep={goToStep} steps={ORDER}>
-      <AwardsListView data={data} setData={setData} setGoToStep={go} />
       <AwardView data={data} setData={setData} setGoToStep={go} />
     </Flow>
   );

@@ -8,7 +8,9 @@ export default async (req, res) => {
         awards_by_pk(id: ${id}) {
           id
           name
+          icon
           boardgames
+          description
         }
       }
     `,

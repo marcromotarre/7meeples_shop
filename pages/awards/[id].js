@@ -30,7 +30,7 @@ export default function Awards() {
 
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
-      <Award awards={award} boardgames={boardgames} />
+      <Award award={award} boardgames={boardgames} />
     </div>
   );
 }
