@@ -103,15 +103,15 @@ export default function Header() {
 */
 
   const clickOnLoginRegister = () => {
-    router.push("login");
+    router.push("/login");
   };
 
   const clickOnProfile = () => {
-    router.push("profile");
+    router.push("/profile");
   };
 
   const clickOnAwards = () => {
-    router.push("awards");
+    router.push("/awards");
     clickIcon();
   };
 
