@@ -2,8 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
-import title from "../../assets/svg/awards/title.svg";
-import icon from "../../assets/svg/awards/icon.svg";
+
 import MenuItem from "../menu/menu-item";
 import { get_awards } from "src/backend/awards";
 export default function Dashboard() {
@@ -45,18 +44,6 @@ export default function Dashboard() {
       >
         Estas son nuestras recomendaciones por cada categoria
       </span>
-      <div sx={{ width: "100%" }}>
-        {awards.map((award) => (
-          <>
-            <MenuItem
-              onClick={() => clickOnAward(award.id)}
-              width={"80%"}
-              text={award.name}
-              icon={award.icon}
-            ></MenuItem>
-          </>
-        ))}
-      </div>
     </div>
   );
 }

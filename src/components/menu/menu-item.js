@@ -3,6 +3,7 @@
 import { jsx } from "theme-ui";
 import React, { useState } from "react";
 export default function MenuItem({
+  key = "",
   className,
   onAnimationEnd,
   text,
@@ -13,6 +14,7 @@ export default function MenuItem({
 }) {
   return (
     <div
+      key={key}
       onClick={onClick}
       className={className}
       onAnimationEnd={onAnimationEnd}

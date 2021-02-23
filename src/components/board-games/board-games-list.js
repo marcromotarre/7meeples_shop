@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Boardgame from "./boardgame-min";
 import { useRouter } from "next/router";
-export default function GamesList({ boardgames }) {
+export default function GamesList({ boardgames, styles = {} }) {
   const router = useRouter();
 
   const onClickBoardgame = (id) => {
@@ -21,6 +21,7 @@ export default function GamesList({ boardgames }) {
         alignItems: "center",
         justifyItems: "center",
         rowGap: "25px",
+        ...styles,
       }}
     >
       {boardgames.map((boardgame) => (

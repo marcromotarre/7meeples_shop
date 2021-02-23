@@ -4,7 +4,9 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_awards } from "../../src/backend/awards";
 import { useRouter } from "next/router";
-import Dashboard from "../../src/components/awards/dashboard";
+import AwardsFlow from "../../src/components/awards/flow/awards-flow";
+import title from "../../src/assets/svg/awards/title.svg";
+import icon from "../../src/assets/svg/awards/icon.svg";
 
 export default function Awards() {
   const router = useRouter();
@@ -20,13 +22,22 @@ export default function Awards() {
     setAwards(awards);
   };
 
-  const clickOnAward = (id) => {
-    router.push(`awards/${id}`);
-  };
-
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
-      <Dashboard></Dashboard>
+      <div
+        sx={{
+          width: "100%",
+          display: "grid",
+          justifyItems: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          rowGap: "25px",
+        }}
+      >
+        <img sx={{ width: "50%" }} src={title}></img>
+        <img src={icon}></img>
+        <AwardsFlow></AwardsFlow>
+      </div>
     </div>
   );
 }

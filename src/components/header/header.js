@@ -128,6 +128,7 @@ export default function Header() {
           justifyContent: "center",
           backgroundColor: "white",
           flexWrap: "wrap",
+          zIndex: "100",
         }}
       >
         <style jsx global>
