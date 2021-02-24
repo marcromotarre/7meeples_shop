@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
-import Section from "./boardgame-section";
+import Section from "./section/boardgame-section";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
 
@@ -14,6 +14,13 @@ import weight from "../../assets/svg/sections/weight.svg";
 
 import number_of_players_best_icon from "../../assets/svg/best.svg";
 import number_of_players_not_recommended_icon from "../../assets/svg/not-recommended.svg";
+
+import {
+  play_time_string,
+  weight_string,
+  age_string,
+  round_weight,
+} from "./utils";
 
 export default function BoardgameMin({ boardgame, onClick }) {
   const { id, webname: name, image, average, numVotes, year } = boardgame;
@@ -27,16 +34,6 @@ export default function BoardgameMin({ boardgame, onClick }) {
     height: "0.05em",
     backgroundColor: "rgba(181, 181, 181, 0.5)",
   };
-
-  const play_time_string = (play_time_min, play_time_max) =>
-    play_time_min === play_time_max
-      ? `${play_time_min} min`
-      : `${play_time_min} - ${play_time_max} min`;
-  const weight_string = (weight) => `${weight} / 5`;
-  const age_string = (age) => `${age} años`;
-
-  const round_weight = (weight) =>
-    Math.round((weight + Number.EPSILON) * 100) / 100;
 
   const section_fontSize = "17px";
 

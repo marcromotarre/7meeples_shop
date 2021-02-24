@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Grupo_1557" data-name="Grupo 1557" transform="translate(-227 -403)">
+    <g id="iconfinder_information_faq_help_info_about_3994375" transform="translate(209 406)">
+      <path id="Trazado_390" data-name="Trazado 390" d="M28.249,40.856H27.035V36.607A.607.607,0,0,0,26.428,36H25.214a.607.607,0,0,0,0,1.214h.607v3.642H24.607a.607.607,0,0,0,0,1.214h3.642a.607.607,0,1,0,0-1.214Z" transform="translate(0 -32.358)"/>
+      <path id="Trazado_391" data-name="Trazado 391" d="M37.214,2.428A1.214,1.214,0,1,0,36,1.214,1.214,1.214,0,0,0,37.214,2.428Z" transform="translate(-10.786 0)"/>
+    </g>
+    <g id="Elipse_107" data-name="Elipse 107" transform="translate(227 403)" fill="none" stroke="#000" stroke-width="1">
+      <circle cx="8" cy="8" r="8" stroke="none"/>
+      <circle cx="8" cy="8" r="7.5" fill="none"/>
+    </g>
+  </g>
+</svg>
