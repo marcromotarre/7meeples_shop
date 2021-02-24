@@ -4,7 +4,8 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Section from "./boardgame-section";
-import BoardgameScore from "./boardgame-score";
+import BoardgameScore from "./boardgame-average";
+import BoardgameName from "./boardgame-name";
 
 import age from "../../assets/svg/sections/age.svg";
 import play_time from "../../assets/svg/sections/play-time.svg";
@@ -15,7 +16,8 @@ import number_of_players_best_icon from "../../assets/svg/best.svg";
 import number_of_players_not_recommended_icon from "../../assets/svg/not-recommended.svg";
 
 export default function BoardgameMin({ boardgame, onClick }) {
-  const { id, webname: name, image } = boardgame;
+  const { id, webname: name, image, average, numVotes, year } = boardgame;
+  console.log(boardgame);
   const onClickBoardgame = () => {
     console.log("id", id);
     onClick(id);
@@ -45,6 +47,11 @@ export default function BoardgameMin({ boardgame, onClick }) {
         borderRadius: "10px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         transition: "0.3s",
+        display: "grid",
+
+        justifyItems: "center",
+        alignItems: "center",
+        rowGap: "10px",
       }}
       onClick={onClickBoardgame}
     >
@@ -58,103 +65,93 @@ export default function BoardgameMin({ boardgame, onClick }) {
         }}
       >
         <img
-          sx={{ padding: "20px 0px", maxHeight: "300px", maxWidth: "80%" }}
+          sx={{
+            padding: "20px 0px 0px 0px",
+            maxHeight: "300px",
+            maxWidth: "80%",
+          }}
           src={image}
         ></img>
       </div>
-      <BoardgameScore score={9.9} numVotes={18900}></BoardgameScore>
-      <div
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-          marginLeft: "30px",
-        }}
-      >
-        <span
-          sx={{
-            fontSize: "24px",
-            padding: "0",
-            margin: "0",
-          }}
-        >
-          {name}
-        </span>
-      </div>
+      <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
+      <BoardgameName name={name} year={year} />
       <div sx={separator}></div>
-      <Section icon={play_time}>
-        <span sx={{ fontSize: section_fontSize }}>
-          {play_time_string(boardgame.playTimeMin, boardgame.playTimeMax)}
-        </span>
-      </Section>
-      <div sx={separator}></div>
-      <Section icon={age}>
-        <span sx={{ fontSize: section_fontSize }}>
-          {age_string(boardgame.age)}
-        </span>
-      </Section>
-      <div sx={separator}></div>
-      <Section icon={number_of_players}>
-        <div
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6,30px)",
-            columnGap: "4px",
-            gridAutoFlow: "column",
-            marginLeft:
-              boardgame.numberOfPlayersNotRecommended.includes(
-                boardgame.numberOfPlayers[0]
-              ) ||
-              boardgame.numberOfPlayersBest.includes(
-                boardgame.numberOfPlayers[0]
-              )
-                ? "0"
-                : "-10px",
-          }}
-        >
-          {boardgame.numberOfPlayers.slice(0, 8).map((numPlayers) => (
-            <div
-              key={numPlayers}
-              sx={{
-                display: "flex",
-                width: "30px",
-                height: "30px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <span
+      <div sx={{ width: "100%" }}>
+        <Section icon={play_time}>
+          <span sx={{ fontSize: section_fontSize }}>
+            {play_time_string(boardgame.playTimeMin, boardgame.playTimeMax)}
+          </span>
+        </Section>
+        <div sx={separator}></div>
+        <Section icon={age}>
+          <span sx={{ fontSize: section_fontSize }}>
+            {age_string(boardgame.age)}
+          </span>
+        </Section>
+        <div sx={separator}></div>
+        <Section icon={number_of_players}>
+          <div
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(6,30px)",
+              columnGap: "4px",
+              gridAutoFlow: "column",
+              marginLeft:
+                boardgame.numberOfPlayersNotRecommended.includes(
+                  boardgame.numberOfPlayers[0]
+                ) ||
+                boardgame.numberOfPlayersBest.includes(
+                  boardgame.numberOfPlayers[0]
+                )
+                  ? "0"
+                  : "-10px",
+            }}
+          >
+            {boardgame.numberOfPlayers.slice(0, 8).map((numPlayers) => (
+              <div
+                key={numPlayers}
                 sx={{
-                  justifySelf: "center",
-                  alignSelf: "center",
-                  fontSize: section_fontSize,
+                  display: "flex",
+                  width: "30px",
+                  height: "30px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                {numPlayers}
-              </span>
-              {boardgame.numberOfPlayersBest.includes(numPlayers) && (
-                <img
-                  sx={{ position: "absolute", width: "30px", height: "30px" }}
-                  src={number_of_players_best_icon}
-                ></img>
-              )}
-              {boardgame.numberOfPlayersNotRecommended.includes(numPlayers) && (
-                <img
-                  sx={{ position: "absolute", width: "30px", height: "30px" }}
-                  src={number_of_players_not_recommended_icon}
-                ></img>
-              )}
-            </div>
-          ))}
-        </div>
-      </Section>
-      <div sx={separator}></div>
-      <Section icon={weight}>
-        <span sx={{ fontSize: section_fontSize }}>
-          {weight_string(round_weight(boardgame.weight))}
-        </span>
-      </Section>
+                <span
+                  sx={{
+                    justifySelf: "center",
+                    alignSelf: "center",
+                    fontSize: section_fontSize,
+                  }}
+                >
+                  {numPlayers}
+                </span>
+                {boardgame.numberOfPlayersBest.includes(numPlayers) && (
+                  <img
+                    sx={{ position: "absolute", width: "30px", height: "30px" }}
+                    src={number_of_players_best_icon}
+                  ></img>
+                )}
+                {boardgame.numberOfPlayersNotRecommended.includes(
+                  numPlayers
+                ) && (
+                  <img
+                    sx={{ position: "absolute", width: "30px", height: "30px" }}
+                    src={number_of_players_not_recommended_icon}
+                  ></img>
+                )}
+              </div>
+            ))}
+          </div>
+        </Section>
+        <div sx={separator}></div>
+        <Section icon={weight}>
+          <span sx={{ fontSize: section_fontSize }}>
+            {weight_string(round_weight(boardgame.weight))}
+          </span>
+        </Section>
+      </div>
     </div>
   );
 }

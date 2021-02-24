@@ -5,7 +5,18 @@ import React, { useEffect, useState } from "react";
 import { get_boardgames } from "../../backend/boardgames";
 import hexa_black from "../../assets/svg/hexa-black.svg";
 
-export default function BoardgameScore({ score, numVotes }) {
+export default function BoardgameAverage({ average, numVotes }) {
+  let num_votes_string = `${numVotes} votos`;
+  if (numVotes >= 1000 && numVotes <= 10000) {
+    num_votes_string = `${Math.round((numVotes / 1000) * 100) / 100}k votos`;
+  } else if (numVotes >= 10000) {
+    num_votes_string = `${Math.round(numVotes / 1000)}k votos`;
+  }
+
+  average = Math.round(average * 10) / 10;
+  let average_string =
+    average === 10 ? "10" : average % 1 === 0 ? `${average}.0` : average;
+
   return (
     <div
       sx={{
@@ -33,7 +44,7 @@ export default function BoardgameScore({ score, numVotes }) {
             position: "absolute",
           }}
         >
-          {score}
+          {average_string}
         </span>
       </div>
       <span
@@ -43,7 +54,7 @@ export default function BoardgameScore({ score, numVotes }) {
           fontStyle: "italic",
         }}
       >
-        {numVotes} votos
+        {num_votes_string}
       </span>
     </div>
   );

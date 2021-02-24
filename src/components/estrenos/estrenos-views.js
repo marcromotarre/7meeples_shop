@@ -37,7 +37,7 @@ export default function award_view({ estrenos }) {
         Podeis moveros de un año a otro con las flechas y seleccionar un mes
         para ver sus estrenos
       </span>
-      <Calendar year={2021} styles={{ width: "60%" }}></Calendar>
+      <Calendar year={2021} styles={{ width: "70%" }}></Calendar>
     </div>
   );
 }
