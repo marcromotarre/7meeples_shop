@@ -17,7 +17,7 @@ export default function Section({ icon, name, children, information, styles }) {
       <div
         sx={{
           display: "grid",
-          gridAutoColumns: "min-content",
+          gridAutoColumns: "max-content",
           gridAutoFlow: "column",
           justifyItems: "start",
           alignItems: "center",

@@ -6,6 +6,8 @@ import { get_boardgames } from "../../backend/boardgames";
 import BoardgameAverage from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
 import BoardgameSection from "./section/boardgame-section-max";
+import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
+
 import BoardgameSectionText from "./section/boardgame-section-text";
 import age_icon from "../../assets/svg/sections/age.svg";
 import play_time_icon from "../../assets/svg/sections/play-time.svg";
@@ -82,6 +84,17 @@ export default function BoardgameMax({ boardgame }) {
           icon={age_icon}
         >
           <BoardgameSectionText>{age_string(age)}</BoardgameSectionText>
+        </BoardgameSection>
+        <BoardgameSection
+          styles={{ width: "80%" }}
+          name={"Número de jugadorxs"}
+          icon={number_of_players_icon}
+        >
+          <BoardgameSectionNumberOfPlayers
+            numberOfPlayersBest={numberOfPlayersBest}
+            numberOfPlayersNotRecommended={numberOfPlayersNotRecommended}
+            numberOfPlayers={numberOfPlayers}
+          />
         </BoardgameSection>
         <BoardgameSection
           styles={{ width: "80%" }}
