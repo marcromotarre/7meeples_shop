@@ -115,6 +115,11 @@ export default function Header() {
     clickIcon();
   };
 
+  const clickOnMeeplestrenos = () => {
+    router.push("/meeplestrenos");
+    clickIcon();
+  };
+
   return (
     <>
       <div
@@ -202,6 +207,7 @@ export default function Header() {
               text={"7meeples Awards"}
             ></MenuItem>
             <MenuItem
+              onClick={clickOnMeeplestrenos}
               icon={meeplestrenos}
               className={menuState}
               text={"meeplestrenos"}

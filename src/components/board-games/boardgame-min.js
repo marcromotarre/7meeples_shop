@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Section from "./boardgame-section";
+import BoardgameScore from "./boardgame-score";
 
 import age from "../../assets/svg/sections/age.svg";
 import play_time from "../../assets/svg/sections/play-time.svg";
@@ -61,6 +62,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
           src={image}
         ></img>
       </div>
+      <BoardgameScore score={9.9} numVotes={18900}></BoardgameScore>
       <div
         sx={{
           display: "flex",
