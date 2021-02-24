@@ -16,27 +16,30 @@ export default function BoardgameAverage({ name, year }) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
-        width: "calc(100% - 70px)",
-        marginLeft: "30px",
+        width: "80%",
       }}
     >
-      <span
+      <p
         sx={{
           fontSize,
-          paddingRight: "10px",
+          margin: 0,
+          padding: 0,
+          verticalAlign: "middle",
         }}
       >
-        {name}
-      </span>
-      <span
-        sx={{
-          fontSize: "15px",
-          fontWeight: "100",
-          fontSTyle: "italic",
-        }}
-      >
-        ({year})
-      </span>
+        {name + "    "}
+        <span
+          sx={{
+            fontSize: "15px",
+            fontWeight: "100",
+            fontStyle: "italic",
+            height: "100%",
+            verticalAlign: "middle",
+          }}
+        >
+          ({year})
+        </span>
+      </p>
     </div>
   );
 }
