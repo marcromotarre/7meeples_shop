@@ -23,15 +23,7 @@ import {
 } from "./utils";
 
 export default function BoardgameMin({ boardgame, onClick }) {
-  const {
-    id,
-    webname: name,
-    image,
-    average,
-    numVotes,
-    year,
-    weight,
-  } = boardgame;
+  const { id, webname: name, image, average, numVotes, year } = boardgame;
   console.log(boardgame);
   const onClickBoardgame = () => {
     console.log("id", id);
@@ -152,7 +144,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
         <div sx={separator}></div>
         <Section icon={weight}>
           <span sx={{ fontSize: section_fontSize }}>
-            {weight_string(round_weight(weight))}
+            {weight_string(round_weight(boardgame.weight))}
           </span>
         </Section>
       </div>

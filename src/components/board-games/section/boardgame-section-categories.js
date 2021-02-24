@@ -13,7 +13,10 @@ export default function Section({ categories = [] }) {
       }}
     >
       {categories.map(({ id, webname, name }) => (
-        <span sx={{ color: "#27AAE0", paddingRight: "10px" }} key={id}>
+        <span
+          sx={{ fontWeight: "100", color: "#27AAE0", paddingRight: "10px" }}
+          key={id}
+        >
           #{webname ? webname : name}
         </span>
       ))}

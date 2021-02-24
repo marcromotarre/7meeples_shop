@@ -4,6 +4,9 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import BoardgameAverage from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
+import BoardgameDescription from "./boardgame-description";
+import BoardgameGalleryImage from "./boardgame-gallery-image";
+
 import BoardgameSection from "./section/boardgame-section-max";
 import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
 
@@ -44,7 +47,7 @@ export default function BoardgameMax({ boardgame }) {
     expansionOf,
     expansions,
     images,
-    mechechanisms,
+    mechechanisms: mechanismsBBDD,
     numVotes,
     numberOfPlayers,
     numberOfPlayersBest,
@@ -56,11 +59,12 @@ export default function BoardgameMax({ boardgame }) {
     year,
     weight,
   } = boardgame;
+  console.log(boardgame);
 
   useEffect(() => {
     loadCategories();
     loadDesigners();
-    setMechanisms();
+    loadMechanisms();
   }, []);
 
   const [categories, setCategories] = useState([]);
@@ -79,6 +83,7 @@ export default function BoardgameMax({ boardgame }) {
   };
 
   const loadMechanisms = async () => {
+    console.log(mechanismsBBDD);
     const mechanisms = await get_multiple_mechanisms({ ids: mechanismsBBDD });
     setMechanisms(mechanisms);
   };
@@ -96,6 +101,7 @@ export default function BoardgameMax({ boardgame }) {
       {image && <img sx={{ width: "80%" }} src={image} />}
       <BoardgameAverage average={average} numVotes={numVotes} />
       <BoardgameName name={name} year={year} />
+      <BoardgameDescription description={description} />
       <div
         sx={{
           width: "100%",
@@ -167,6 +173,7 @@ export default function BoardgameMax({ boardgame }) {
             <BoardgameSectionMechanisms mechanisms={mechanisms} />
           </BoardgameSection>
         )}
+        <BoardgameGalleryImage images={images} />
       </div>
     </div>
   );

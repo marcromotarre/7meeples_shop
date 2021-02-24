@@ -13,7 +13,7 @@ export default function Section({ designers = [] }) {
       }}
     >
       {designers.map(({ id, webname, name }, index) => (
-        <span sx={{ paddingRight: "10px" }} key={id}>
+        <span sx={{ fontWeight: "100", paddingRight: "10px" }} key={id}>
           {webname ? webname : name}
           {index === designers.length - 1 ? "" : ","}
         </span>
