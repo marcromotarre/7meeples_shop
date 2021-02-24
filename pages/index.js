@@ -19,8 +19,14 @@ export default function Home() {
   };
   console.log(boardgames);
   return (
-    <div sx={{ width: "100%" }} className={styles.container}>
-      <BoardGamesList boardgames={boardgames}></BoardGamesList>
+    <div
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      className={styles.container}
+    >
+      <BoardGamesList
+        styles={{ width: "80%" }}
+        boardgames={boardgames}
+      ></BoardGamesList>
     </div>
   );
 }

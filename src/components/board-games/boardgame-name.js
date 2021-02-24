@@ -3,7 +3,6 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "../../backend/boardgames";
-import hexa_black from "../../assets/svg/hexa-black.svg";
 
 export default function BoardgameAverage({ name, year }) {
   let fontSize = "24px;";

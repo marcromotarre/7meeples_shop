@@ -102,6 +102,10 @@ export default function Header() {
   };
 */
 
+  const goHome = () => {
+    router.push("/");
+  };
+
   const clickOnLoginRegister = () => {
     router.push("/login");
   };
@@ -167,6 +171,7 @@ export default function Header() {
             className={animationState}
           ></div>
           <img
+            onClick={goHome}
             sx={{
               height: "60%",
             }}
