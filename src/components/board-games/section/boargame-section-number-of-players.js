@@ -9,7 +9,6 @@ export default function BoardgameSectionNumberOfPlayers({
   numberOfPlayersNotRecommended,
   numberOfPlayers,
 }) {
-  console.log("numberOfPlayersBest", numberOfPlayersBest);
   return (
     <div
       sx={{
