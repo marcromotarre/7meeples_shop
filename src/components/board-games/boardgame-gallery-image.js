@@ -21,10 +21,9 @@ export default function BoardgameGalleryImage({ images }) {
     >
       {images &&
         images.map((image, index) => (
-          <div sx={{ height: "auto", width: "90%" }}>
+          <div key={index} sx={{ height: "auto", width: "90%" }}>
             <img
               sx={{ width: "100%", maxHeight: "auto", minWidth: "0" }}
-              key={index}
               src={image}
             ></img>
           </div>

@@ -6,6 +6,7 @@ import BoardgameAverage from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
 import BoardgameDescription from "./boardgame-description";
 import BoardgameGalleryImage from "./boardgame-gallery-image";
+import BoardgamesList from "./board-games-list";
 
 import BoardgameSection from "./section/boardgame-section-max";
 import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
@@ -32,6 +33,7 @@ import {
   age_string,
   round_weight,
 } from "./utils";
+import { get_multiple_boardgames } from "src/backend/boardgames";
 export default function BoardgameMax({ boardgame }) {
   const {
     id,
@@ -45,7 +47,7 @@ export default function BoardgameMax({ boardgame }) {
     description,
     designers: designersBBDD,
     expansionOf,
-    expansions,
+    expansions: expansionsBBDD,
     images,
     mechechanisms: mechanismsBBDD,
     numVotes,
@@ -59,22 +61,31 @@ export default function BoardgameMax({ boardgame }) {
     year,
     weight,
   } = boardgame;
-  console.log(boardgame);
 
   useEffect(() => {
     loadCategories();
     loadDesigners();
     loadMechanisms();
+    loadExpansions();
   }, []);
 
   const [categories, setCategories] = useState([]);
   const [designers, setDesigners] = useState([]);
   const [mechanisms, setMechanisms] = useState([]);
+  const [expansions, setExpansions] = useState([]);
 
   const loadCategories = async () => {
     const categories = await get_multiple_categories({ ids: categoriesBBDD });
-    console.log(categories);
     setCategories(categories);
+  };
+
+  const loadExpansions = async () => {
+    const expansions = await get_multiple_boardgames({ ids: expansionsBBDD });
+    setExpansions(
+      expansions.map((expansion) => {
+        return { ...expansion, reduced: true };
+      })
+    );
   };
 
   const loadDesigners = async () => {
@@ -83,7 +94,6 @@ export default function BoardgameMax({ boardgame }) {
   };
 
   const loadMechanisms = async () => {
-    console.log(mechanismsBBDD);
     const mechanisms = await get_multiple_mechanisms({ ids: mechanismsBBDD });
     setMechanisms(mechanisms);
   };
@@ -172,6 +182,13 @@ export default function BoardgameMax({ boardgame }) {
           >
             <BoardgameSectionMechanisms mechanisms={mechanisms} />
           </BoardgameSection>
+        )}
+        Tiene expansiones
+        {expansions && (
+          <BoardgamesList
+            styles={{ width: "80%" }}
+            boardgames={expansions}
+          ></BoardgamesList>
         )}
         <BoardgameGalleryImage images={images} />
       </div>

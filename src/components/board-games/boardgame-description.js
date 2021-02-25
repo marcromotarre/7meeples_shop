@@ -3,7 +3,6 @@
 import { jsx } from "theme-ui";
 
 export default function BoardgameDescription({ description }) {
-  console.log("description", description);
   let fontSize = "24px;";
   if (name.length > 18) {
     fontSize = "22px";

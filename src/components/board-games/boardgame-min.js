@@ -7,10 +7,10 @@ import Section from "./section/boardgame-section";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
 
-import age from "../../assets/svg/sections/age.svg";
-import play_time from "../../assets/svg/sections/play-time.svg";
-import number_of_players from "../../assets/svg/sections/number-of-players.svg";
-import weight from "../../assets/svg/sections/weight.svg";
+import age_icon from "../../assets/svg/sections/age.svg";
+import play_time_icon from "../../assets/svg/sections/play-time.svg";
+import number_of_players_icon from "../../assets/svg/sections/number-of-players.svg";
+import weight_icon from "../../assets/svg/sections/weight.svg";
 
 import number_of_players_best_icon from "../../assets/svg/best.svg";
 import number_of_players_not_recommended_icon from "../../assets/svg/not-recommended.svg";
@@ -28,9 +28,16 @@ export default function BoardgameMin({ boardgame, onClick }) {
     webname: name,
     image,
     average,
+    age,
     numVotes,
     year,
     weight,
+    playTimeMin,
+    playTimeMax,
+    numberOfPlayersNotRecommended,
+    numberOfPlayersBest,
+    numberOfPlayers,
+    reduced = false,
   } = boardgame;
   console.log(boardgame);
   const onClickBoardgame = () => {
@@ -79,82 +86,98 @@ export default function BoardgameMin({ boardgame, onClick }) {
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
       <BoardgameName name={name} year={year} />
-      <div sx={separator}></div>
+      {!reduced && <div sx={separator}></div>}
       <div sx={{ width: "100%" }}>
-        <Section icon={play_time}>
-          <span sx={{ fontSize: section_fontSize }}>
-            {play_time_string(boardgame.playTimeMin, boardgame.playTimeMax)}
-          </span>
-        </Section>
-        <div sx={separator}></div>
-        <Section icon={age}>
-          <span sx={{ fontSize: section_fontSize }}>
-            {age_string(boardgame.age)}
-          </span>
-        </Section>
-        <div sx={separator}></div>
-        <Section icon={number_of_players}>
-          <div
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(6,30px)",
-              columnGap: "4px",
-              gridAutoFlow: "column",
-              marginLeft:
-                boardgame.numberOfPlayersNotRecommended.includes(
-                  boardgame.numberOfPlayers[0]
-                ) ||
-                boardgame.numberOfPlayersBest.includes(
-                  boardgame.numberOfPlayers[0]
-                )
-                  ? "0"
-                  : "-10px",
-            }}
-          >
-            {boardgame.numberOfPlayers.slice(0, 8).map((numPlayers) => (
+        {!reduced && (
+          <>
+            <Section icon={play_time_icon}>
+              <span sx={{ fontSize: section_fontSize }}>
+                {play_time_string(playTimeMin, playTimeMax)}
+              </span>
+            </Section>
+            <div sx={separator}></div>{" "}
+          </>
+        )}
+        {!reduced && (
+          <>
+            <Section icon={age_icon}>
+              <span sx={{ fontSize: section_fontSize }}>{age_string(age)}</span>
+            </Section>
+            <div sx={separator}></div>
+          </>
+        )}
+        {!reduced && (
+          <>
+            <Section icon={number_of_players_icon}>
               <div
-                key={numPlayers}
                 sx={{
-                  display: "flex",
-                  width: "30px",
-                  height: "30px",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(6,30px)",
+                  columnGap: "4px",
+                  gridAutoFlow: "column",
+                  marginLeft:
+                    numberOfPlayersNotRecommended.includes(
+                      numberOfPlayers[0]
+                    ) || numberOfPlayersBest.includes(numberOfPlayers[0])
+                      ? "0"
+                      : "-10px",
                 }}
               >
-                <span
-                  sx={{
-                    justifySelf: "center",
-                    alignSelf: "center",
-                    fontSize: section_fontSize,
-                  }}
-                >
-                  {numPlayers}
-                </span>
-                {boardgame.numberOfPlayersBest.includes(numPlayers) && (
-                  <img
-                    sx={{ position: "absolute", width: "30px", height: "30px" }}
-                    src={number_of_players_best_icon}
-                  ></img>
-                )}
-                {boardgame.numberOfPlayersNotRecommended.includes(
-                  numPlayers
-                ) && (
-                  <img
-                    sx={{ position: "absolute", width: "30px", height: "30px" }}
-                    src={number_of_players_not_recommended_icon}
-                  ></img>
-                )}
+                {numberOfPlayers.slice(0, 8).map((numPlayers) => (
+                  <div
+                    key={numPlayers}
+                    sx={{
+                      display: "flex",
+                      width: "30px",
+                      height: "30px",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span
+                      sx={{
+                        justifySelf: "center",
+                        alignSelf: "center",
+                        fontSize: section_fontSize,
+                      }}
+                    >
+                      {numPlayers}
+                    </span>
+                    {numberOfPlayersBest.includes(numPlayers) && (
+                      <img
+                        sx={{
+                          position: "absolute",
+                          width: "30px",
+                          height: "30px",
+                        }}
+                        src={number_of_players_best_icon}
+                      ></img>
+                    )}
+                    {numberOfPlayersNotRecommended.includes(numPlayers) && (
+                      <img
+                        sx={{
+                          position: "absolute",
+                          width: "30px",
+                          height: "30px",
+                        }}
+                        src={number_of_players_not_recommended_icon}
+                      ></img>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </Section>
-        <div sx={separator}></div>
-        <Section icon={weight}>
-          <span sx={{ fontSize: section_fontSize }}>
-            {weight_string(round_weight(weight))}
-          </span>
-        </Section>
+            </Section>
+
+            <div sx={separator}></div>
+          </>
+        )}
+        {!reduced && (
+          <Section icon={weight_icon}>
+            <span sx={{ fontSize: section_fontSize }}>
+              {weight_string(round_weight(weight))}
+            </span>
+          </Section>
+        )}
       </div>
     </div>
   );
