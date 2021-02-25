@@ -11,11 +11,13 @@ import { useRouter } from "next/router";
 import { get_multiple_mechanisms } from "src/backend/mechanisms";
 import { get_multiple_designers } from "src/backend/designers";
 import { get_multiple_categories } from "src/backend/categories";
+import Loading from "src/components/common/loading/loading";
 
 export default function Boardgame() {
   const router = useRouter();
   const [boardgame, setBoardGame] = useState({});
 
+  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [designers, setDesigners] = useState([]);
   const [mechanisms, setMechanisms] = useState([]);
@@ -29,12 +31,15 @@ export default function Boardgame() {
   }, [router.query.id]);
 
   const loadBoardGame = async () => {
+    setLoading(true);
     const boardgame = await get_boardgame({ id: router.query.id });
     setBoardGame(boardgame);
+    setLoading(false);
     loadExpansions({ ids: boardgame.expansions });
     loadCategories({ ids: boardgame.categories });
     loadMechanisms({ ids: boardgame.mechechanisms });
     loadDesigners({ ids: boardgame.designers });
+    loadExpansionOf({ ids: boardgame.expansionOf });
   };
 
   const loadCategories = async ({ ids }) => {
@@ -44,7 +49,6 @@ export default function Boardgame() {
 
   const loadExpansions = async ({ ids }) => {
     const expansions = await get_multiple_boardgames({ ids });
-    console.log(expansions);
 
     setExpansions(
       expansions.map((expansion) => {
@@ -55,7 +59,6 @@ export default function Boardgame() {
 
   const loadExpansionOf = async ({ ids }) => {
     const expansionOf = await get_multiple_boardgames({ ids });
-    console.log(expansions);
 
     setExpansionOf(
       expansionOf.map((expansion) => {
@@ -63,7 +66,6 @@ export default function Boardgame() {
       })
     );
   };
-
   const loadDesigners = async ({ ids }) => {
     const designers = await get_multiple_designers({ ids });
     setDesigners(designers);
@@ -73,11 +75,13 @@ export default function Boardgame() {
     const mechanisms = await get_multiple_mechanisms({ ids });
     setMechanisms(mechanisms);
   };
+  console.log(boardgame);
 
   return (
     <>
-      {boardgame.id && (
+      {!loading && (
         <BoardgameMax
+          setBoardGame={setBoardGame}
           boardgame={{
             ...boardgame,
             designers,
@@ -87,6 +91,18 @@ export default function Boardgame() {
             expansionOf,
           }}
         ></BoardgameMax>
+      )}
+      {loading && (
+        <div
+          sx={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItem: "center",
+          }}
+        >
+          <Loading style={{ height: "100px" }}></Loading>
+        </div>
       )}
     </>
   );

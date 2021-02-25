@@ -34,33 +34,36 @@ import {
   round_weight,
 } from "./utils";
 import { get_multiple_boardgames } from "src/backend/boardgames";
-export default function BoardgameMax({ boardgame }) {
+export default function BoardgameMax({ boardgame, setBoardGame }) {
   const {
-    id,
-    webname,
-    image,
-    PVP,
-    age,
-    average,
-    categories,
-    description,
-    designers,
-    expansionOf,
-    expansions,
-    images,
-    mechanisms,
-    numVotes,
-    numberOfPlayers,
-    numberOfPlayersBest,
-    numberOfPlayersNotRecommended,
-    playTimeMax,
-    playTimeMin,
-    price,
-    stock,
-    year,
-    weight,
+    id = 0,
+    webname = "",
+    image = "",
+    PVP = 0,
+    age = 0,
+    average = 0,
+    categories = [],
+    description = "",
+    designers = [],
+    expansionOf = [],
+    expansions = [],
+    images = [],
+    mechanisms = [],
+    numVotes = 0,
+    numberOfPlayers = [],
+    numberOfPlayersBest = [],
+    numberOfPlayersNotRecommended = [],
+    playTimeMax = 0,
+    playTimeMin = 0,
+    price = 0,
+    stock = 0,
+    year = 0,
+    weight = 0,
+    imageDefault = "",
   } = boardgame;
-  console.log(boardgame);
+
+  const clickOnPlayTimeInfo = () => {};
+
   return (
     <div
       sx={{
@@ -71,7 +74,12 @@ export default function BoardgameMax({ boardgame }) {
         rowGap: "10px",
       }}
     >
-      {image && <img sx={{ width: "80%" }} src={image} />}
+      {image && (
+        <img
+          sx={{ maxHeight: "300px", maxWidth: "80%" }}
+          src={image ? image : imageDefault}
+        />
+      )}
       <BoardgameAverage average={average} numVotes={numVotes} />
       <BoardgameName name={webname} year={year} />
       <BoardgameDescription description={description} />
@@ -151,6 +159,7 @@ export default function BoardgameMax({ boardgame }) {
           <>
             És expansión de
             <BoardgamesList
+              clickOnBoardGame={() => setBoardGame({})}
               styles={{ width: "80%" }}
               boardgames={expansionOf}
             ></BoardgamesList>
@@ -161,12 +170,13 @@ export default function BoardgameMax({ boardgame }) {
           <>
             Tiene expansiones
             <BoardgamesList
+              clickOnBoardGame={() => setBoardGame({})}
               styles={{ width: "80%" }}
               boardgames={expansions}
             ></BoardgamesList>
           </>
         )}
-        <BoardgameGalleryImage images={images} />
+        {/*<BoardgameGalleryImage images={images} />*/}
       </div>
     </div>
   );

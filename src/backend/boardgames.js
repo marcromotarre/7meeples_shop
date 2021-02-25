@@ -25,7 +25,6 @@ export const get_boardgame = async ({ id }) => {
 };
 
 export const get_multiple_boardgames = async ({ ids }) => {
-  console.log(ids);
   return await axios
     .post("/api/boardgames/get_multiple", {
       ids,

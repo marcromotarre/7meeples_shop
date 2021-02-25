@@ -5,10 +5,15 @@ import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Boardgame from "./boardgame-min";
 import { useRouter } from "next/router";
-export default function GamesList({ boardgames, styles = {} }) {
+export default function GamesList({
+  boardgames,
+  styles = {},
+  clickOnBoardGame = () => {},
+}) {
   const router = useRouter();
 
   const onClickBoardgame = (id) => {
+    clickOnBoardGame();
     console.log("onClickBoardgame", id);
     router.push(`/juego/${id}`);
   };
