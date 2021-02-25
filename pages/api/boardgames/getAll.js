@@ -22,6 +22,7 @@ export default async (req, res) => {
             numberOfPlayers
             playTimeMin
             playTimeMax
+            imageDefault
           }
       }
     `,

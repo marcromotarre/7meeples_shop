@@ -31,6 +31,7 @@ export default async (req, res) => {
           stock
           active
           weight
+          imageDefault
         }
       }
     `,

@@ -24,6 +24,7 @@ export default async (req, res) => {
             playTimeMin
             playTimeMax
             weight
+            imageDefault
         }
       }
     `,

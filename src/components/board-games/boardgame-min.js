@@ -38,7 +38,9 @@ export default function BoardgameMin({ boardgame, onClick }) {
     numberOfPlayersBest,
     numberOfPlayers,
     reduced = false,
+    imageDefault,
   } = boardgame;
+
   const onClickBoardgame = () => {
     onClick(id);
   };
@@ -79,7 +81,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
             maxHeight: "300px",
             maxWidth: "80%",
           }}
-          src={image}
+          src={image ? image : imageDefault}
         ></img>
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
