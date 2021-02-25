@@ -4,9 +4,17 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import information_icon from "../../../assets/svg/information.svg";
 
-export default function Section({ icon, name, children, information, styles }) {
+export default function Section({
+  onClick,
+  icon,
+  name,
+  children,
+  information,
+  styles,
+}) {
   return (
     <div
+      onClick={onClick}
       sx={{
         display: "grid",
         gridTemplateColumns: "100%",

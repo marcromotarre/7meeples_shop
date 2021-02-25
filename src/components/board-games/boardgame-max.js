@@ -34,6 +34,7 @@ import {
   round_weight,
 } from "./utils";
 import { get_multiple_boardgames } from "src/backend/boardgames";
+import Modal from "../common/modals/modal";
 export default function BoardgameMax({ boardgame, setBoardGame }) {
   const {
     id = 0,
@@ -62,7 +63,11 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
     imageDefault = "",
   } = boardgame;
 
-  const clickOnPlayTimeInfo = () => {};
+  const [modal, setModal] = useState(false);
+
+  const clickOnPlayTimeInfo = () => {
+    setModal(true);
+  };
 
   return (
     <div
@@ -92,6 +97,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         }}
       >
         <BoardgameSection
+          onClick={clickOnPlayTimeInfo}
           styles={{ width: "80%" }}
           name={"Duración"}
           icon={play_time_icon}
@@ -176,8 +182,8 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
             ></BoardgamesList>
           </>
         )}
-        {/*<BoardgameGalleryImage images={images} />*/}
       </div>
+      {modal && <Modal />}
     </div>
   );
 }
