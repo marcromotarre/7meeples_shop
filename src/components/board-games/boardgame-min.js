@@ -39,9 +39,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
     numberOfPlayers,
     reduced = false,
   } = boardgame;
-  console.log(boardgame);
   const onClickBoardgame = () => {
-    console.log("id", id);
     onClick(id);
   };
   const separator = {

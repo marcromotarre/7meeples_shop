@@ -37,19 +37,18 @@ import { get_multiple_boardgames } from "src/backend/boardgames";
 export default function BoardgameMax({ boardgame }) {
   const {
     id,
-    webname: name,
+    webname,
     image,
     PVP,
-    active,
     age,
     average,
-    categories: categoriesBBDD,
+    categories,
     description,
-    designers: designersBBDD,
+    designers,
     expansionOf,
-    expansions: expansionsBBDD,
+    expansions,
     images,
-    mechechanisms: mechanismsBBDD,
+    mechanisms,
     numVotes,
     numberOfPlayers,
     numberOfPlayersBest,
@@ -61,43 +60,7 @@ export default function BoardgameMax({ boardgame }) {
     year,
     weight,
   } = boardgame;
-
-  useEffect(() => {
-    loadCategories();
-    loadDesigners();
-    loadMechanisms();
-    loadExpansions();
-  }, []);
-
-  const [categories, setCategories] = useState([]);
-  const [designers, setDesigners] = useState([]);
-  const [mechanisms, setMechanisms] = useState([]);
-  const [expansions, setExpansions] = useState([]);
-
-  const loadCategories = async () => {
-    const categories = await get_multiple_categories({ ids: categoriesBBDD });
-    setCategories(categories);
-  };
-
-  const loadExpansions = async () => {
-    const expansions = await get_multiple_boardgames({ ids: expansionsBBDD });
-    setExpansions(
-      expansions.map((expansion) => {
-        return { ...expansion, reduced: true };
-      })
-    );
-  };
-
-  const loadDesigners = async () => {
-    const designers = await get_multiple_designers({ ids: designersBBDD });
-    setDesigners(designers);
-  };
-
-  const loadMechanisms = async () => {
-    const mechanisms = await get_multiple_mechanisms({ ids: mechanismsBBDD });
-    setMechanisms(mechanisms);
-  };
-
+  console.log(boardgame);
   return (
     <div
       sx={{
@@ -110,7 +73,7 @@ export default function BoardgameMax({ boardgame }) {
     >
       {image && <img sx={{ width: "80%" }} src={image} />}
       <BoardgameAverage average={average} numVotes={numVotes} />
-      <BoardgameName name={name} year={year} />
+      <BoardgameName name={webname} year={year} />
       <BoardgameDescription description={description} />
       <div
         sx={{
@@ -183,12 +146,25 @@ export default function BoardgameMax({ boardgame }) {
             <BoardgameSectionMechanisms mechanisms={mechanisms} />
           </BoardgameSection>
         )}
-        Tiene expansiones
-        {expansions && (
-          <BoardgamesList
-            styles={{ width: "80%" }}
-            boardgames={expansions}
-          ></BoardgamesList>
+
+        {expansionOf.length > 0 && (
+          <>
+            És expansión de
+            <BoardgamesList
+              styles={{ width: "80%" }}
+              boardgames={expansionOf}
+            ></BoardgamesList>
+          </>
+        )}
+
+        {expansions.length > 0 && (
+          <>
+            Tiene expansiones
+            <BoardgamesList
+              styles={{ width: "80%" }}
+              boardgames={expansions}
+            ></BoardgamesList>
+          </>
         )}
         <BoardgameGalleryImage images={images} />
       </div>
