@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import { useState } from "react";
 import close_icon from "../../../assets/svg/close-light.svg";
 
-export default function Modal({ style = {}, onClose = () => {} }) {
+export default function Modal({ style = {}, onClose = () => {}, children }) {
   const [className, setClassName] = useState("modal-open");
 
   const handleOnClose = () => {
@@ -77,12 +77,30 @@ export default function Modal({ style = {}, onClose = () => {} }) {
           }
         `}
       </style>
-      <div sx={{ display: "grid", gridTemplateColumns: "40px auto 40px" }}>
+      <div
+        sx={{
+          display: "grid",
+          width: "100%",
+          height: "100%",
+          gridTemplateColumns: "40px auto 40px",
+          gridTemplateRows: "40px auto 40px",
+          gridTemplateAreas: `"close . ." ". inside ." ". . ."`,
+          background: "blue",
+        }}
+      >
         <img
           onClick={handleOnClose}
           src={close_icon}
-          sx={{ width: "20px", justifySelf: "center", alignSelf: "center" }}
+          sx={{
+            gridArea: "close",
+            width: "20px",
+            justifySelf: "center",
+            alignSelf: "center",
+          }}
         />
+        <div sx={{ gridArea: "inside", backgroundColor: "red" }}>
+          {children}
+        </div>
       </div>
     </div>
   );
