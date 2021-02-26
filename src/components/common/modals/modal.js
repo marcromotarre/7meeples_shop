@@ -2,14 +2,25 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import { useState } from "react";
+import close_icon from "../../../assets/svg/close-light.svg";
 
-export default function Modal({ style = {} }) {
+export default function Modal({ style = {}, onClose = () => {} }) {
   const [className, setClassName] = useState("modal-open");
 
-  const onAnimationEnd = () => {
-    console.log("end");
-    setClassName("modal-opened");
+  const handleOnClose = () => {
+    setClassName("modal-close");
   };
+
+  const onAnimationEnd = () => {
+    if (className === "modal-close") {
+      setClassName("modal-closed");
+      onClose();
+    }
+    if (className === "modal-open") {
+      setClassName("modal-opened");
+    }
+  };
+
   return (
     <div
       onAnimationEnd={onAnimationEnd}
@@ -36,8 +47,12 @@ export default function Modal({ style = {} }) {
           }
 
           .modal-open {
-            opacity: 0;
             animation: modal-open-animation 0.8s normal;
+            animation-timing-function: ease;
+          }
+
+          .modal-close {
+            animation: modal-close-animation 0.8s normal;
             animation-timing-function: ease;
           }
 
@@ -50,8 +65,25 @@ export default function Modal({ style = {} }) {
               opacity: 0.95;
             }
           }
+
+          @keyframes modal-close-animation {
+            0% {
+              opacity: 0.95;
+            }
+
+            100% {
+              opacity: 0;
+            }
+          }
         `}
       </style>
+      <div sx={{ display: "grid", gridTemplateColumns: "40px auto 40px" }}>
+        <img
+          onClick={handleOnClose}
+          src={close_icon}
+          sx={{ width: "20px", justifySelf: "center", alignSelf: "center" }}
+        />
+      </div>
     </div>
   );
 }

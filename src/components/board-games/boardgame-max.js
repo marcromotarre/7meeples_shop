@@ -64,7 +64,9 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
   } = boardgame;
 
   const [modal, setModal] = useState(false);
-
+  const onCloseModal = () => {
+    setModal(false);
+  };
   const clickOnPlayTimeInfo = () => {
     setModal(true);
   };
@@ -183,7 +185,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           </>
         )}
       </div>
-      {modal && <Modal />}
+      {modal && <Modal onClose={onCloseModal} />}
     </div>
   );
 }
