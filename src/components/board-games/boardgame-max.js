@@ -34,7 +34,8 @@ import {
   round_weight,
 } from "./utils";
 import { get_multiple_boardgames } from "src/backend/boardgames";
-import Modal from "../common/modals/modal";
+import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
+
 export default function BoardgameMax({ boardgame, setBoardGame }) {
   const {
     id = 0,
@@ -63,12 +64,9 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
     imageDefault = "",
   } = boardgame;
 
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState("");
   const onCloseModal = () => {
-    setModal(false);
-  };
-  const clickOnPlayTimeInfo = () => {
-    setModal(true);
+    setModal("");
   };
 
   return (
@@ -81,6 +79,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         rowGap: "10px",
       }}
     >
+      <div sx={{ height: "20px" }}></div>
       {image && (
         <img
           sx={{ maxHeight: "300px", maxWidth: "80%" }}
@@ -99,7 +98,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         }}
       >
         <BoardgameSection
-          onClick={clickOnPlayTimeInfo}
+          onClick={() => setModal(MODAL_TYPES.PLAY_TIME)}
           styles={{ width: "80%" }}
           name={"Duración"}
           icon={play_time_icon}
@@ -109,6 +108,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           </BoardgameSectionText>
         </BoardgameSection>
         <BoardgameSection
+          onClick={() => setModal(MODAL_TYPES.AGE)}
           styles={{ width: "80%" }}
           name={"Edad"}
           icon={age_icon}
@@ -116,6 +116,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           <BoardgameSectionText>{age_string(age)}</BoardgameSectionText>
         </BoardgameSection>
         <BoardgameSection
+          onClick={() => setModal(MODAL_TYPES.NUM_PLAYERS)}
           styles={{ width: "80%" }}
           name={"Número de jugadorxs"}
           icon={number_of_players_icon}
@@ -127,6 +128,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           />
         </BoardgameSection>
         <BoardgameSection
+          onClick={() => setModal(MODAL_TYPES.WEIGHT)}
           styles={{ width: "80%" }}
           name={"Dificultad"}
           icon={weight_icon}
@@ -137,6 +139,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         </BoardgameSection>
         {designers?.length > 0 && (
           <BoardgameSection
+            onClick={() => setModal(MODAL_TYPES.DESIGNERS)}
             styles={{ width: "80%" }}
             name={designers.length > 1 ? "Diseñadores" : "Diseñador"}
             icon={designers_icon}
@@ -146,6 +149,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         )}
         {categories?.length > 0 && (
           <BoardgameSection
+            onClick={() => setModal(MODAL_TYPES.CATEGORIES)}
             styles={{ width: "80%" }}
             name={categories.length > 1 ? "Categorias" : "Categoria"}
             icon={categories_icon}
@@ -155,6 +159,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
         )}
         {mechanisms?.length > 0 && (
           <BoardgameSection
+            onClick={() => setModal(MODAL_TYPES.WEIGHT)}
             styles={{ width: "80%" }}
             name={mechanisms.length > 1 ? "Mecánicas" : "Mecánica"}
             icon={mechanisms_icon}
@@ -185,7 +190,8 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           </>
         )}
       </div>
-      {modal && <Modal onClose={onCloseModal} />}
+      <Modal boardgame={boardgame} type={modal} onClose={onCloseModal}></Modal>
+      <div sx={{ height: "50px" }}></div>
     </div>
   );
 }

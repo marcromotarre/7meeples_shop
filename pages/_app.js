@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <AuthProvider session={pageProps.session}>
           <Header></Header>
-          <div sx={{ height: "70px" }}></div>
+          <div sx={{ height: "50px" }}></div>
           <Component {...pageProps} />
         </AuthProvider>
       </Provider>

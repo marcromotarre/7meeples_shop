@@ -22,6 +22,8 @@ export default function Awards() {
 
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
+      <div sx={{ height: "20px" }}></div>
+
       <AwardsView awards={awards} />
     </div>
   );
