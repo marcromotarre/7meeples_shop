@@ -130,9 +130,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           name={"Dificultad"}
           icon={weight_icon}
         >
-          <BoardgameSectionText>
-            {weight_string(round_weight(weight))}
-          </BoardgameSectionText>
+          <BoardgameSectionText>{weight_string(weight)}</BoardgameSectionText>
         </BoardgameSection>
         {designers?.length > 0 && (
           <BoardgameSection

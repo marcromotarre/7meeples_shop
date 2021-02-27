@@ -58,14 +58,15 @@ export default function BoardgameModalAge({ boardgame }) {
         </h5>
         <p>{age_string(age)}</p>
       </div>
-      <Link>{"Ver otros juegos de duración similar"}</Link>
+      <Link>{"Ver otros juegos de edad similar"}</Link>
       <div />
       <div>
-        <Question>{"¿Que tipo de juegos hay segun su duración?"}</Question>
+        <Question>{"¿Que tipo de juegos hay segun su rango de edad?"}</Question>
       </div>
-      <Option title={"Cortos"} text={"menos de 30 minutos"} />
-      <Option title={"Medios"} text={"entre 30 y 90 minutos"} />
-      <Option title={"Largos"} text={"más 90 minutos"} />
+      <Option title={"Infantil"} text={"juegos para menores de 8 años"} />
+      <Option title={"Juvenil"} text={"juegos para mayour de 8 años"} />
+      <Option title={"Mayores"} text={"juegos para mayores de 14 años"} />
+      <Option title={"Adultos"} text={"juegos para mayores de 18 años"} />
     </div>
   );
 }
