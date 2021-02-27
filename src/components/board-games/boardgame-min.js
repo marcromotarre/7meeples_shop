@@ -26,7 +26,6 @@ export default function BoardgameMin({ boardgame, onClick }) {
   const {
     id,
     webname: name,
-    image,
     average,
     age,
     numVotes,
@@ -38,6 +37,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
     numberOfPlayersBest,
     numberOfPlayers,
     reduced = false,
+    image,
     imageDefault,
   } = boardgame;
 

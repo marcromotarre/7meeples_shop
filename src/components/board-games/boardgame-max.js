@@ -40,7 +40,6 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
   const {
     id = 0,
     webname = "",
-    image = "",
     PVP = 0,
     age = 0,
     average = 0,
@@ -61,9 +60,9 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
     stock = 0,
     year = 0,
     weight = 0,
-    imageDefault = "",
+    image,
+    imageDefault,
   } = boardgame;
-
   const [modal, setModal] = useState("");
   const onCloseModal = () => {
     setModal("");
@@ -80,12 +79,10 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
       }}
     >
       <div sx={{ height: "20px" }}></div>
-      {image && (
-        <img
-          sx={{ maxHeight: "300px", maxWidth: "80%" }}
-          src={image ? image : imageDefault}
-        />
-      )}
+      <img
+        sx={{ maxHeight: "300px", maxWidth: "80%" }}
+        src={image ? image : imageDefault}
+      />
       <BoardgameAverage average={average} numVotes={numVotes} />
       <BoardgameName name={webname} year={year} />
       <BoardgameDescription description={description} />
