@@ -40,6 +40,13 @@ export default {
         margin: "0",
         width: "fit-content",
       },
+      h5: {
+        fontSize: "13px",
+        fontWeight: "200",
+        padding: "0",
+        margin: "0",
+        width: "fit-content",
+      },
       p: {
         fontSize: "15px",
         fontWeight: "lighter",

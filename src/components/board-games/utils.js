@@ -26,3 +26,17 @@ export const duration_string = (play_time_min, play_time_max) => {
     return "és un juego de duración entre larga";
   }
 };
+
+export const age_group_string = (age) => {
+  if (age < 8) {
+    return "és un juego infantil";
+  } else if (age < 10) {
+    return "és un juego infantil";
+  } else if (age < 12) {
+    return "és un juego juvenil";
+  } else if (age < 12) {
+    return "és un juego para mayores";
+  } else {
+    return "és un juego para adultos";
+  }
+};

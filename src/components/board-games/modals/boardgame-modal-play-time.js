@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import play_time_icon from "../../../assets/svg/sections/play-time.svg";
 import { duration_string, play_time_string } from "../utils";
-import { Question } from "../../common/index";
+import { Question, Option, Link } from "../../common/index";
 
 export default function BoardgameModalPlayTime({ boardgame }) {
   const { webname, playTimeMin, playTimeMax } = boardgame;
@@ -49,9 +49,14 @@ export default function BoardgameModalPlayTime({ boardgame }) {
       >
         <p>{play_time_string(playTimeMin, playTimeMax)}</p>
       </div>
+      <Link>{"Ver otros juegos de duración similar"}</Link>
+      <div />
       <div>
         <Question>{"¿Que tipo de juegos hay segun su duración?"}</Question>
       </div>
+      <Option title={"Cortos"} text={"menos de 30 minutos"} />
+      <Option title={"Medios"} text={"entre 30 y 90 minutos"} />
+      <Option title={"Largos"} text={"más 90 minutos"} />
     </div>
   );
 }
