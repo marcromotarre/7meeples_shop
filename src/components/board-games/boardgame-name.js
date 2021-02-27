@@ -6,9 +6,7 @@ import { get_boardgames } from "../../backend/boardgames";
 
 export default function BoardgameAverage({ name, year }) {
   let fontSize = "24px;";
-  if (name.length > 18) {
-    fontSize = "22px";
-  }
+
   return (
     <div
       sx={{
@@ -18,14 +16,7 @@ export default function BoardgameAverage({ name, year }) {
         width: "80%",
       }}
     >
-      <p
-        sx={{
-          fontSize,
-          margin: 0,
-          padding: 0,
-          verticalAlign: "middle",
-        }}
-      >
+      <h1>
         {name + "    "}
         <span
           sx={{
@@ -38,7 +29,7 @@ export default function BoardgameAverage({ name, year }) {
         >
           ({year})
         </span>
-      </p>
+      </h1>
     </div>
   );
 }

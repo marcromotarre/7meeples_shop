@@ -3,62 +3,42 @@
 import { jsx } from "theme-ui";
 import play_time_icon from "../../../assets/svg/sections/play-time.svg";
 import { duration_string, play_time_string } from "../utils";
+import { Question } from "../../common/index";
 
 export default function BoardgameModalPlayTime({ boardgame }) {
   const { webname, playTimeMin, playTimeMax } = boardgame;
 
+  const gridStyles = {
+    display: "grid",
+    gridTemplateColumns: "100%",
+    justifyItems: "center",
+    alignItems: "center",
+  };
+
   return (
     <div
       sx={{
-        display: "grid",
-        gridTemplateColumns: "100%",
+        ...gridStyles,
         rowGap: "15px",
       }}
     >
       <div
         sx={{
-          display: "grid",
-          gridTemplateColumns: "100%",
-          rowGap: "5px",
+          ...gridStyles,
+          rowGap: "10px",
         }}
       >
-        <span
-          sx={{
-            textAlign: "center",
-            fontSize: "24px",
-            fontWeight: "400",
-          }}
-        >
-          {webname}
-        </span>
-        <span
-          sx={{
-            textAlign: "center",
-            fontSize: "15px",
-            fontWeight: "100",
-          }}
-        >
-          {duration_string(playTimeMin, playTimeMax)}
-        </span>
+        <h1>{webname}</h1>
+        <p>{duration_string(playTimeMin, playTimeMax)}</p>
       </div>
       <div
         sx={{
-          display: "grid",
-          gridTemplateColumns: "100%",
+          ...gridStyles,
           rowGap: "5px",
-          justifyItems: "center",
         }}
       >
         <img sx={{ height: "22px" }} src={play_time_icon} />
-        <span
-          sx={{
-            fontSize: "17px",
-            fontWeight: "300",
-            textAlign: "center",
-          }}
-        >
-          Duración
-        </span>
+        <h3>Duración</h3>
       </div>
       <div
         sx={{
@@ -67,15 +47,10 @@ export default function BoardgameModalPlayTime({ boardgame }) {
           alignItems: "center",
         }}
       >
-        <span
-          sx={{
-            textAlign: "center",
-            fontSize: "15px",
-            fontWeight: "100",
-          }}
-        >
-          {play_time_string(playTimeMin, playTimeMax)}
-        </span>
+        <p>{play_time_string(playTimeMin, playTimeMax)}</p>
+      </div>
+      <div>
+        <Question>{"¿Que tipo de juegos hay segun su duración?"}</Question>
       </div>
     </div>
   );
