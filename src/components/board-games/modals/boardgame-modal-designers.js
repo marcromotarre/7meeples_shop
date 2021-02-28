@@ -53,6 +53,7 @@ export default function BoardgameModalDesigners({ boardgame }) {
           alignItems: "start",
           justifyContent: "space-around",
           flexWrap: "wrap",
+          width: "100%",
         }}
       >
         {designers.map(({ id, name }) => (
