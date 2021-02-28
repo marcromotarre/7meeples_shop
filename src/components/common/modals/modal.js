@@ -6,7 +6,7 @@ import close_icon from "../../../assets/svg/close-light.svg";
 
 const ANIMATION = {
   TIME: 0.8,
-  OPACITY: 0.95,
+  OPACITY: 0.98,
   CHILDREN_MOVEMENT: 10,
 };
 
