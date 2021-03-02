@@ -35,6 +35,8 @@ import {
 } from "./utils";
 import { get_multiple_boardgames } from "src/backend/boardgames";
 import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
+import { IMAGES_REPOSITORY } from "src/constants";
+import { s3_name } from "src/utils/name";
 
 export default function BoardgameMax({ boardgame, setBoardGame }) {
   const {
@@ -67,7 +69,10 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
   const onCloseModal = () => {
     setModal("");
   };
-
+  const [showDefaultImage, setShowDefaultImage] = useState(false);
+  const onImageError = () => {
+    if (!showDefaultImage) setShowDefaultImage(true);
+  };
   return (
     <div
       sx={{
@@ -81,7 +86,11 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
       <div sx={{ height: "20px" }}></div>
       <img
         sx={{ maxHeight: "300px", maxWidth: "80%" }}
-        src={image ? image : imageDefault}
+        src={
+          showDefaultImage
+            ? imageDefault
+            : `${IMAGES_REPOSITORY}boardgames/${s3_name(webname)}.jpg`
+        }
       />
       <BoardgameAverage average={average} numVotes={numVotes} />
       <BoardgameName name={webname} year={year} />

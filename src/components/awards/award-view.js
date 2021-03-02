@@ -7,6 +7,7 @@ import AwardDescription from "./award-description";
 import BoardgamesList from "../board-games/board-games-list";
 
 export default function award_view({ award, boardgames }) {
+  console.log("award", award);
   return (
     <div
       sx={{
@@ -18,7 +19,7 @@ export default function award_view({ award, boardgames }) {
       }}
     >
       <AwardHeader></AwardHeader>
-      <AwardTitle name={award.name} icon={award.icon} />
+      <AwardTitle name={award.name} />
       <AwardDescription description={award.description}></AwardDescription>
       <BoardgamesList
         styles={{ width: "80%" }}

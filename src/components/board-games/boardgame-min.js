@@ -21,6 +21,8 @@ import {
   age_string,
   round_weight,
 } from "./utils";
+import { IMAGES_REPOSITORY } from "src/constants";
+import { s3_name } from "src/utils/name";
 
 export default function BoardgameMin({ boardgame, onClick }) {
   const {
@@ -37,7 +39,6 @@ export default function BoardgameMin({ boardgame, onClick }) {
     numberOfPlayersBest,
     numberOfPlayers,
     reduced = false,
-    image,
     imageDefault,
   } = boardgame;
 
@@ -51,6 +52,11 @@ export default function BoardgameMin({ boardgame, onClick }) {
   };
 
   const section_fontSize = "17px";
+  const [showDefaultImage, setShowDefaultImage] = useState(false);
+
+  const onImageError = () => {
+    if (!showDefaultImage) setShowDefaultImage(true);
+  };
 
   return (
     <div
@@ -76,12 +82,17 @@ export default function BoardgameMin({ boardgame, onClick }) {
         }}
       >
         <img
+          onError={onImageError}
           sx={{
             padding: "20px 0px 0px 0px",
             maxHeight: "300px",
             maxWidth: "80%",
           }}
-          src={image ? image : imageDefault}
+          src={
+            showDefaultImage
+              ? imageDefault
+              : `${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`
+          }
         ></img>
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>

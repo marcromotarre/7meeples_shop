@@ -6,7 +6,7 @@ import close_icon from "../../../assets/svg/close-light.svg";
 
 const ANIMATION = {
   TIME: 0.8,
-  OPACITY: 0.98,
+  OPACITY: 1,
   CHILDREN_MOVEMENT: 10,
 };
 
@@ -97,7 +97,7 @@ export default function Modal({ style = {}, onClose = () => {}, children }) {
           }
 
           .modal-children-close {
-            animation: modal-children-close-animation ${ANIMATION.TIME}s reverse;
+            animation: modal-children-close-animation ${ANIMATION.TIME}s normal;
             animation-timing-function: ease;
           }
 
@@ -117,7 +117,11 @@ export default function Modal({ style = {}, onClose = () => {}, children }) {
               opacity: 1;
             }
 
-            50% {
+            80% {
+              opacity: 0;
+            }
+
+            100% {
               padding-top: ${ANIMATION.CHILDREN_MOVEMENT}px;
               opacity: 0;
             }

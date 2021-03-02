@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 import { IMAGES_REPOSITORY } from "../../constants";
 import user_male_icon from "../../assets/svg/user-male.svg";
 import { useState } from "react";
+import { s3_name } from "../../utils/name";
 
 export default function Designer({ name, onClick }) {
   const [showDefaultImage, setShowDefaultImage] = useState(false);
@@ -30,7 +31,7 @@ export default function Designer({ name, onClick }) {
         src={
           showDefaultImage
             ? user_male_icon
-            : `${IMAGES_REPOSITORY}${name.toLowerCase().replace(" ", "_")}.jpg`
+            : `${IMAGES_REPOSITORY}designers/${s3_name(name)}.jpg`
         }
       />
       <p sx={{ textAlign: "center" }}>{name}</p>

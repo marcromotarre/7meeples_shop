@@ -9,7 +9,7 @@ import Award from "../../src/components/awards/award-view";
 
 export default function Awards() {
   const router = useRouter();
-  const [award, setAward] = useState({});
+  const [award, setAward] = useState();
   const [boardgames, setBoardgames] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Awards() {
   return (
     <div sx={{ display: "flex", flexDirection: "column" }}>
       <div sx={{ height: "20px" }}></div>
-      <Award award={award} boardgames={boardgames} />
+      {award && <Award award={award} boardgames={boardgames} />}
     </div>
   );
 }
