@@ -23,6 +23,10 @@ export default async (req, res) => {
             playTimeMin
             playTimeMax
             imageDefault
+            designers
+            categories
+            expansions
+            expansionOf
           }
       }
     `,

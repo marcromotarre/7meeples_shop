@@ -5,19 +5,12 @@ import styles from "../styles/Home.module.css";
 import Header from "../src/components/header/header";
 import BoardGamesList from "../src/components/board-games/board-games-list";
 import { useState, useEffect } from "react";
-import { get_boardgames } from "src/backend/boardgames";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBoardgamesReq } from "src/redux/actions/boardgames";
 export default function Home() {
-  //  <Menu></Menu>;
-  const [boardgames, setBoardGames] = useState([]);
-  useEffect(() => {
-    getBoardgames();
-  }, []);
+  const dispatch = useDispatch();
+  const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
-  const getBoardgames = async () => {
-    const boardgames = await get_boardgames();
-    setBoardGames(boardgames);
-  };
-  console.log(boardgames);
   return (
     <div
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
@@ -25,7 +18,7 @@ export default function Home() {
     >
       <BoardGamesList
         styles={{ width: "80%" }}
-        boardgames={boardgames}
+        boardgames={boardgames.filter((b, index) => index <= 10)}
       ></BoardGamesList>
     </div>
   );

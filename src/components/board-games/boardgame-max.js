@@ -37,8 +37,9 @@ import { get_multiple_boardgames } from "src/backend/boardgames";
 import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
+import { useRouter } from "next/router";
 
-export default function BoardgameMax({ boardgame, setBoardGame }) {
+export default function BoardgameMax({ boardgame }) {
   const {
     id = 0,
     webname = "",
@@ -65,14 +66,15 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
     image,
     imageDefault,
   } = boardgame;
+  const router = useRouter();
+
   const [modal, setModal] = useState("");
   const onCloseModal = () => {
     setModal("");
   };
+
   const [showDefaultImage, setShowDefaultImage] = useState(false);
-  const onImageError = () => {
-    if (!showDefaultImage) setShowDefaultImage(true);
-  };
+
   return (
     <div
       sx={{
@@ -85,6 +87,7 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
     >
       <div sx={{ height: "20px" }}></div>
       <img
+        onError={() => setShowDefaultImage(true)}
         sx={{ maxHeight: "300px", maxWidth: "80%" }}
         src={
           showDefaultImage
@@ -176,7 +179,6 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           <>
             És expansión de
             <BoardgamesList
-              clickOnBoardGame={() => setBoardGame({})}
               styles={{ width: "80%" }}
               boardgames={expansionOf}
             ></BoardgamesList>
@@ -187,7 +189,6 @@ export default function BoardgameMax({ boardgame, setBoardGame }) {
           <>
             Tiene expansiones
             <BoardgamesList
-              clickOnBoardGame={() => setBoardGame({})}
               styles={{ width: "80%" }}
               boardgames={expansions}
             ></BoardgamesList>

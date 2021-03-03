@@ -8,6 +8,7 @@ export const s3_name = (name) =>
     .replaceAll("ó", "o")
     .replaceAll("ú", "u")
     .replaceAll("ñ", "n")
+    .replaceAll("ç", "c")
     .replaceAll("'", "")
     .replaceAll("?", "")
     .replaceAll(":", "")

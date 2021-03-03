@@ -11,3 +11,14 @@ export const get_multiple_categories = async ({ ids }) => {
       console.log(error);
     });
 };
+
+export const get_categories = async () => {
+  return await axios
+    .get("/api/categories/getAll")
+    .then((response) => {
+      return response.data.categories;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

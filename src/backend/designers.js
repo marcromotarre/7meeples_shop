@@ -11,3 +11,14 @@ export const get_multiple_designers = async ({ ids }) => {
       console.log(error);
     });
 };
+
+export const get_designers = async () => {
+  return await axios
+    .get("/api/designers/getAll")
+    .then((response) => {
+      return response.data.designers;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

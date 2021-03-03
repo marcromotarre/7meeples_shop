@@ -10,7 +10,7 @@ import meeplestrenos from "../../assets/svg/menu/meeplestrenos.svg";
 import seven_meeples_awards from "../../assets/svg/menu/7meeples-awards.svg";
 
 import React, { useState } from "react";
-import { openMenu, closeMenu } from "src/actions";
+import { openMenu, closeMenu } from "src/redux/actions/menu";
 import { useSelector, useDispatch } from "react-redux";
 import MenuItem from "../menu/menu-item";
 import Search from "../header/search";

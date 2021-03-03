@@ -12,19 +12,58 @@ import { get_multiple_mechanisms } from "src/backend/mechanisms";
 import { get_multiple_designers } from "src/backend/designers";
 import { get_multiple_categories } from "src/backend/categories";
 import Loading from "src/components/common/loading/loading";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Boardgame() {
   const router = useRouter();
-  const [boardgame, setBoardGame] = useState({});
+  const [boardgame, setBoardgame] = useState();
+  const [loading, setLoading] = useState(false);
+  const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
+  const all_designers = useSelector(
+    (state) => state.designersReducer.designers
+  );
 
-  const [loading, setLoading] = useState(true);
+  const refreshBoardGameInfo = () => {
+    setBoardgame(undefined);
+  };
+
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      setBoardgame(undefined);
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    setBoardgame(undefined);
+    console.log("router", router);
+    if (router.query.id) {
+      const _boardgame = boardgames?.find(
+        ({ id }) => id === parseInt(router?.query?.id)
+      );
+      if (_boardgame) {
+        setBoardgame(
+          boardgames?.find(({ id }) => id === parseInt(router.query.id))
+        );
+      }
+    }
+  }, [router, boardgames]);
+
+  const all_categories = useSelector(
+    (state) => state.categoriesReducer.categories
+  );
+  /*const [boardgame, setBoardGame] = useState({});
+
   const [categories, setCategories] = useState([]);
   const [designers, setDesigners] = useState([]);
   const [mechanisms, setMechanisms] = useState([]);
   const [expansions, setExpansions] = useState([]);
   const [expansionOf, setExpansionOf] = useState([]);
 
-  useEffect(() => {
+   useEffect(() => {
     if (router.query.id) {
       loadBoardGame();
     }
@@ -76,23 +115,33 @@ export default function Boardgame() {
     setMechanisms(mechanisms);
   };
   console.log(boardgame);
-
+*/
   return (
     <>
-      {!loading && (
+      {boardgame && (
         <BoardgameMax
-          setBoardGame={setBoardGame}
           boardgame={{
             ...boardgame,
-            designers,
-            mechanisms,
-            categories,
-            expansions,
-            expansionOf,
+            designers: all_designers
+              ? all_designers.filter(({ id }) =>
+                  boardgame.designers.includes(id)
+                )
+              : [],
+            categories: all_categories
+              ? all_categories.filter(({ id }) =>
+                  boardgame.categories.includes(id)
+                )
+              : [],
+            expansions: boardgames.filter(({ id }) =>
+              boardgame.expansions.includes(id)
+            ),
+            expansionOf: boardgames.filter(({ id }) =>
+              boardgame.expansionOf.includes(id)
+            ),
           }}
         ></BoardgameMax>
       )}
-      {loading && (
+      {!boardgame && (
         <div
           sx={{
             height: "100%",
