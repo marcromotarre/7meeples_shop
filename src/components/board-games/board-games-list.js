@@ -13,7 +13,6 @@ export default function GamesList({
   const router = useRouter();
 
   const onClickBoardgame = (id) => {
-    console.log("onClickBoardgame", id);
     router.push(`/juego/${id}`);
     clickOnBoardGame();
   };

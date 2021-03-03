@@ -10,7 +10,16 @@ export default function MiaRecommends({ boardgame_id }) {
   const designers = useSelector((state) => state.designersReducer.designers);
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const boardgame = boardgames?.find(({ id }) => id === parseInt(boardgame_id));
-  const mia_recomendations = recomendations({ boardgame, boardgames });
+  const mia_recomendations = recomendations({
+    boardgames: boardgames.filter((_boardgame) => {
+      return (
+        _boardgame.id !== boardgame.id &&
+        !boardgame.expansions.includes(_boardgame.id) &&
+        !boardgame.expansionOf.includes(_boardgame.id)
+      );
+    }),
+    boardgame,
+  });
 
   console.log(mia_recomendations);
   return (
@@ -22,10 +31,19 @@ export default function MiaRecommends({ boardgame_id }) {
       }}
     >
       Mia recommends
-      <BoardGamesList
-        styles={{ width: "80%" }}
-        boardgames={mia_recomendations}
-      ></BoardGamesList>
+      <div
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <BoardGamesList
+          styles={{ width: "80%" }}
+          boardgames={mia_recomendations}
+        ></BoardGamesList>
+      </div>
     </div>
   );
 }
