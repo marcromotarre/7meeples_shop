@@ -27,6 +27,7 @@ export default async (req, res) => {
             categories
             expansions
             expansionOf
+            mechechanisms
           }
       }
     `,

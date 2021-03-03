@@ -7,6 +7,7 @@ import {
   get_multiple_boardgames,
 } from "../../src/backend/boardgames";
 import BoardgameMax from "../../src/components/board-games/boardgame-max";
+import MiaRecommends from "../../src/components/mia/mia-recommends";
 import { useRouter } from "next/router";
 import { get_multiple_mechanisms } from "src/backend/mechanisms";
 import { get_multiple_designers } from "src/backend/designers";
@@ -19,6 +20,7 @@ export default function Boardgame() {
   const [boardgame, setBoardgame] = useState();
   const [loading, setLoading] = useState(false);
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
+  console.log(boardgames);
   const all_designers = useSelector(
     (state) => state.designersReducer.designers
   );
@@ -116,30 +118,34 @@ export default function Boardgame() {
   };
   console.log(boardgame);
 */
+
   return (
     <>
       {boardgame && (
-        <BoardgameMax
-          boardgame={{
-            ...boardgame,
-            designers: all_designers
-              ? all_designers.filter(({ id }) =>
-                  boardgame.designers.includes(id)
-                )
-              : [],
-            categories: all_categories
-              ? all_categories.filter(({ id }) =>
-                  boardgame.categories.includes(id)
-                )
-              : [],
-            expansions: boardgames.filter(({ id }) =>
-              boardgame.expansions.includes(id)
-            ),
-            expansionOf: boardgames.filter(({ id }) =>
-              boardgame.expansionOf.includes(id)
-            ),
-          }}
-        ></BoardgameMax>
+        <>
+          <BoardgameMax
+            boardgame={{
+              ...boardgame,
+              designers: all_designers
+                ? all_designers.filter(({ id }) =>
+                    boardgame.designers.includes(id)
+                  )
+                : [],
+              categories: all_categories
+                ? all_categories.filter(({ id }) =>
+                    boardgame.categories.includes(id)
+                  )
+                : [],
+              expansions: boardgames.filter(({ id }) =>
+                boardgame.expansions.includes(id)
+              ),
+              expansionOf: boardgames.filter(({ id }) =>
+                boardgame.expansionOf.includes(id)
+              ),
+            }}
+          ></BoardgameMax>
+          <MiaRecommends boardgame_id={boardgame.id} />
+        </>
       )}
       {!boardgame && (
         <div
