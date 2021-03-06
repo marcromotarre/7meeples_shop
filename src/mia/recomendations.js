@@ -32,6 +32,12 @@ const get_score = (boardgame1, boardgame2) => {
     { min: boardgame2.playTimeMin, max: boardgame2.playTimeMax }
   );
 
+  console.log(
+    { min: boardgame1.playTimeMin, max: boardgame1.playTimeMax },
+    { min: boardgame2.playTimeMin, max: boardgame2.playTimeMax },
+    play_time_score
+  );
+
   const designers_score = get_designers_score(
     boardgame1.designers,
     boardgame2.designers
