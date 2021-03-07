@@ -5,13 +5,21 @@ export default [
     id: "iniciacion",
     name: "Iniciación",
     icon: fillers_icon,
-    filters: [],
+    filter: (boardgames) => {
+      return boardgames.filter((boardgame) =>
+        [13, 2653, 39856].includes(boardgame.id)
+      );
+    },
   },
   {
     id: "fillers",
     name: "Fillers",
     icon: fillers_icon,
-    filters: [],
+    filter: (boardgames) => {
+      return boardgames.filter(
+        (boardgame) => boardgame.playTimeMax < 30 && boardgame.weight < 2
+      );
+    },
   },
   {
     id: "en_pareja",
@@ -53,18 +61,24 @@ export default [
     id: "party",
     name: "Party",
     icon: dos_jugadores_icon,
-    filters: [],
+    filter: (boardgames) => {
+      return boardgames.filter((boardgame) =>
+        boardgame.categories.includes(1030)
+      );
+    },
   },
   {
     id: "familiares",
     name: "Familiares",
     icon: dos_jugadores_icon,
-    filters: [],
+    filter: () => {},
   },
   {
     id: "niños",
     name: "Niños",
     icon: dos_jugadores_icon,
-    filters: [],
+    filter: (boardgames) => {
+      return boardgames.filter((boardgame) => boardgame.age <= 6);
+    },
   },
 ];

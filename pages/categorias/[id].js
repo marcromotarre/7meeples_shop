@@ -42,6 +42,7 @@ export default function Boardgame() {
           boardgames={category_boardgames}
         ></BoardgameList>
       )}
+      <div sx={{ height: "50px" }}></div>
     </div>
   );
 }
