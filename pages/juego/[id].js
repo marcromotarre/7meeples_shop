@@ -20,7 +20,6 @@ export default function Boardgame() {
   const [boardgame, setBoardgame] = useState();
   const [loading, setLoading] = useState(false);
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
-  console.log(boardgames);
   const all_designers = useSelector(
     (state) => state.designersReducer.designers
   );

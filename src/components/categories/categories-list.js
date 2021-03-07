@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import { s3_name } from "../../utils/name";
 import { IMAGES_REPOSITORY } from "src/constants";
-import CategoryTitle from "./category-title";
+import Category from "./category";
 
 export default function CategoriesList({ categories }) {
   return (
@@ -16,9 +16,9 @@ export default function CategoriesList({ categories }) {
         justifyItems: "center",
       }}
     >
-      {categories.map(({ name, icon }) => (
+      {categories.map(({ id, name, icon }) => (
         <div sx={{ width: "100%" }} key={name}>
-          <CategoryTitle name={name} icon={icon}></CategoryTitle>
+          <Category id={id} name={name} icon={icon}></Category>
         </div>
       ))}
     </div>
