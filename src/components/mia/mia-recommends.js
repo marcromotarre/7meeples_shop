@@ -21,7 +21,7 @@ export default function MiaRecommends({ boardgame_id }) {
     boardgame,
   });
 
-  console.log(mia_recomendations);
+  console.log("mia_recomendations", mia_recomendations);
   return (
     <div
       sx={{

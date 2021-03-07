@@ -3,12 +3,11 @@
 import { jsx } from "theme-ui";
 import { useState } from "react";
 
-export default function Button({ sx, children, onClick = () => {} }) {
+export default function Button({ styles, children, onClick = () => {} }) {
   return (
     <button
       onClick={onClick}
       sx={{
-        ...sx,
         color: "white",
         backgroundColor: "#33BAFB",
         border: "none",
@@ -17,7 +16,7 @@ export default function Button({ sx, children, onClick = () => {} }) {
         fontFamily: "Quicksand",
         fontWeight: "200",
         fontSize: "16px",
-
+        ...styles,
         "&:focus": {
           outline: "0",
         },
