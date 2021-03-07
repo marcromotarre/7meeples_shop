@@ -28,13 +28,15 @@ export default function GamesList({
         ...styles,
       }}
     >
-      {boardgames.map((boardgame) => (
-        <Boardgame
-          key={boardgame.id}
-          onClick={onClickBoardgame}
-          boardgame={boardgame}
-        />
-      ))}
+      {boardgames
+        .filter((boardgame) => boardgame?.id)
+        .map((boardgame) => (
+          <Boardgame
+            key={boardgame.id}
+            onClick={onClickBoardgame}
+            boardgame={boardgame}
+          />
+        ))}
     </div>
   );
 }
