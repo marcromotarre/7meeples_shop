@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import { s3_name } from "../../utils/name";
 import { IMAGES_REPOSITORY } from "src/constants";
-import SectionTitle from "../sections/section-title";
+import CategoryTitle from "./category-title";
 import { useRouter } from "next/router";
 
 export default function Category({ id, name, icon }) {
@@ -26,11 +26,11 @@ export default function Category({ id, name, icon }) {
       }}
     >
       {icon && (
-        <SectionTitle
+        <CategoryTitle
           styles={{ padding: "10px 0px" }}
           title={name}
           icon={icon}
-        ></SectionTitle>
+        ></CategoryTitle>
       )}
     </div>
   );

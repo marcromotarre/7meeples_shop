@@ -10,14 +10,14 @@ export default function SectionTitle({ title, icon, styles }) {
         sx={{
           display: "flex",
           width: "80%",
-          justifyContent: "center",
+          justifyItems: "center",
           alignItems: "center",
           ...styles,
         }}
       >
         <img sx={{ width: "25px" }} src={icon} />
         <div sx={{ width: "10px" }}></div>
-        <h3>{title}</h3>
+        <h3 sx={{ textAlign: "center", width: "100%" }}>{title}</h3>
         <div sx={{ width: "10px" }}></div>
         <img sx={{ width: "25px" }} src={icon} />
       </div>

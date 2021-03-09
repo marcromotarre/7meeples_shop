@@ -1,10 +1,15 @@
-import fillers_icon from "../../assets/svg/categories/fillers.svg";
-import dos_jugadores_icon from "../../assets/svg/categories/2-players.svg";
+import fillers_icon from "../../assets/svg/categories/categoria-fillers.svg";
+import en_pareja_icon from "../../assets/svg/categories/categoria-en-pareja.svg";
+import iniciacion_icon from "../../assets/svg/categories/categoria-iniciacion.svg";
+import colaborativos_icon from "../../assets/svg/categories/categoria-colaborativos.svg";
+import party_icon from "../../assets/svg/categories/categoria-party.svg";
+import infantiles_icon from "../../assets/svg/categories/categoria-infantiles.svg";
+import solitarios_icon from "../../assets/svg/categories/categoria-solitarios.svg";
 export default [
   {
     id: "iniciacion",
     name: "Iniciación",
-    icon: fillers_icon,
+    icon: iniciacion_icon,
     filter: (boardgames) => {
       return boardgames.filter((boardgame) =>
         [13, 2653, 39856].includes(boardgame.id)
@@ -22,13 +27,33 @@ export default [
     },
   },
   {
+    id: "solitarios",
+    name: "Solitarios",
+    icon: solitarios_icon,
+    filter: (boardgames) => {
+      return boardgames
+        .filter((boardgame) => boardgame.numberOfPlayersBest.includes(1))
+        .sort((boardgame1, boardgame2) => {
+          return boardgame1.numVotes / 1000 + boardgame1.average >
+            boardgame2.numVotes / 1000 + boardgame2.average
+            ? -1
+            : 1;
+        });
+    },
+  },
+  {
     id: "en_pareja",
     name: "En pareja",
-    icon: dos_jugadores_icon,
+    icon: en_pareja_icon,
     filter: (boardgames) => {
-      return boardgames.filter((boardgame) =>
-        boardgame.numberOfPlayersBest.includes(2)
-      );
+      return boardgames
+        .filter((boardgame) => boardgame.numberOfPlayersBest.includes(2))
+        .sort((boardgame1, boardgame2) => {
+          return boardgame1.numVotes / 1000 + boardgame1.average >
+            boardgame2.numVotes / 1000 + boardgame2.average
+            ? -1
+            : 1;
+        });
     },
     description: [
       {
@@ -60,7 +85,7 @@ export default [
   {
     id: "party",
     name: "Party",
-    icon: dos_jugadores_icon,
+    icon: party_icon,
     filter: (boardgames) => {
       return boardgames.filter((boardgame) =>
         boardgame.categories.includes(1030)
@@ -70,13 +95,19 @@ export default [
   {
     id: "familiares",
     name: "Familiares",
-    icon: dos_jugadores_icon,
+    icon: party_icon,
     filter: () => {},
   },
   {
-    id: "niños",
-    name: "Niños",
-    icon: dos_jugadores_icon,
+    id: "colaborativos",
+    name: "Familiares",
+    icon: colaborativos_icon,
+    filter: () => {},
+  },
+  {
+    id: "infantiles",
+    name: "Infantiles",
+    icon: infantiles_icon,
     filter: (boardgames) => {
       return boardgames.filter((boardgame) => boardgame.age <= 6);
     },
