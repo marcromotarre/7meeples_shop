@@ -58,7 +58,7 @@ const description = [
 
 const filter_boardgames = (boardgames) => {
   return boardgames.filter((boardgame) =>
-    [13, 2653, 39856].includes(boardgame.id)
+    [13, 822, 68448, 2653, 39856, 9209, 178900, 230802].includes(boardgame.id)
   );
 };
 
