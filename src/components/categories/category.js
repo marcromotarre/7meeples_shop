@@ -1,37 +1,57 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import { s3_name } from "../../utils/name";
-import { IMAGES_REPOSITORY } from "src/constants";
-import CategoryTitle from "./category-title";
-import { useRouter } from "next/router";
 
-export default function Category({ id, name, icon }) {
-  const router = useRouter();
-  const handleClickCategory = () => {
-    router.push(`/categorias/${id}`);
-  };
+import meeples_awards_icon from "../../assets/svg/categories/icon.svg";
+import Description from "./category-description";
+import BoardGamesList from "../board-games/board-games-list";
+export default function Category({ icon, name, description, boardgames = [] }) {
   return (
     <div
-      onClick={handleClickCategory}
       sx={{
-        width: "100%",
-        borderRadius: "10px",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-        transition: "0.3s",
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
-        rowGap: "10px",
+        gridTemplateColumns: "100%",
+        rowGap: "30px",
       }}
     >
-      {icon && (
-        <CategoryTitle
-          styles={{ padding: "10px 0px" }}
-          title={name}
-          icon={icon}
-        ></CategoryTitle>
-      )}
+      <div
+        sx={{
+          display: "grid",
+          justifyItems: "center",
+          alignItems: "center",
+          gridTemplateColumns: "100%",
+          rowGap: "10px",
+        }}
+      >
+        <img sx={{ width: "50px" }} src={icon}></img>
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gridTemplateColumns: "100%",
+          }}
+        >
+          <img
+            sx={{ width: "22px", marginRight: "10px" }}
+            src={meeples_awards_icon}
+          ></img>
+
+          <h3>{name}</h3>
+          <img
+            sx={{ width: "22px", marginLeft: "10px" }}
+            src={meeples_awards_icon}
+          ></img>
+        </div>
+      </div>
+
+      <Description description={description} />
+      <BoardGamesList
+        styles={{ width: "80%" }}
+        boardgames={boardgames}
+      ></BoardGamesList>
     </div>
   );
 }

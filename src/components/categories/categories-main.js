@@ -7,8 +7,8 @@ import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
 import { Button } from "../common/index";
 import SectionTitle from "../sections/section-title";
 import CategoriesList from "./categories-list";
-import awards_icon from "../../assets/svg/awards/icon.svg";
-import categories from "./categories";
+import awards_icon from "../../assets/svg/categories/icon.svg";
+import categories from "./data/categories";
 
 export default function CategoriesMain() {
   return (

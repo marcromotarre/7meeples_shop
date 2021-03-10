@@ -24,7 +24,7 @@ export const PLAY_TIME_TYPES = {
   EXTRA_LONG: {
     value: 4,
     minimum: 120,
-    maximum: 999,
+    maximum: 9999,
   },
 };
 
@@ -54,6 +54,7 @@ const getKeyByValue = (value) => {
 export const getTypesByPlayTimeMinMax = (playTimeMin, playTimeMax) => {
   const playTimeMinType = getTypeByPlayTime(playTimeMin);
   const playTimeMaxType = getTypeByPlayTime(playTimeMax);
+
   const seq = sequential({
     from: playTimeMinType.value,
     to: playTimeMaxType.value,

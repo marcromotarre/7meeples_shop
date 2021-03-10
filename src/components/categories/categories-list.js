@@ -1,9 +1,7 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import { s3_name } from "../../utils/name";
-import { IMAGES_REPOSITORY } from "src/constants";
-import Category from "./category";
+import CategoryItem from "./category-item";
 
 export default function CategoriesList({ categories }) {
   return (
@@ -18,7 +16,7 @@ export default function CategoriesList({ categories }) {
     >
       {categories.map(({ id, name, icon }) => (
         <div sx={{ width: "100%" }} key={name}>
-          <Category id={id} name={name} icon={icon}></Category>
+          <CategoryItem id={id} name={name} icon={icon}></CategoryItem>
         </div>
       ))}
     </div>

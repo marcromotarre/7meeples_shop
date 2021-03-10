@@ -3,26 +3,27 @@
 import { jsx } from "theme-ui";
 import React from "react";
 
-export default function CategoryTitle({ title, icon, styles }) {
+export default function CategoryItemTitle({ title, icon, styles }) {
   return (
     <>
       <div
         sx={{
           display: "grid",
-          gridTemplateColumns: "30px auto 30px",
+          gridTemplateColumns: "50px calc(100% - 100px) 50px",
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
           ...styles,
         }}
       >
-        <img sx={{ width: "25px" }} src={icon} />
+        <img
+          sx={{ width: "30px", alignSelf: "center", justifySelf: "flex-end" }}
+          src={icon}
+        />
         <div
           sx={{
-            width: "100%",
-            displa: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            alignSelf: "center",
+            justifySelf: "center",
           }}
         >
           <h3>{title}</h3>

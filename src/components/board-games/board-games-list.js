@@ -25,6 +25,7 @@ export default function GamesList({
   return (
     <div
       sx={{
+        width: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -32,6 +33,7 @@ export default function GamesList({
       }}
     >
       <InfiniteScroll
+        sx={{ width: "100%" }}
         pageStart={page}
         loadMore={() => setPage(page + 1)}
         hasMore={boardgames.length > (page + 1) * 3}
