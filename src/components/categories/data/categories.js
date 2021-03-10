@@ -1,15 +1,16 @@
-import fillers_icon from "../../../assets/svg/categories/categoria-fillers.svg";
-import colaborativos_icon from "../../../assets/svg/categories/categoria-colaborativos.svg";
-import party_icon from "../../../assets/svg/categories/categoria-party.svg";
-import infantiles_icon from "../../../assets/svg/categories/categoria-infantiles.svg";
-import solitarios_icon from "../../../assets/svg/categories/categoria-solitarios.svg";
-
 import iniciacion from "./iniciacion";
 import en_pareja from "./en_pareja";
+import solitarios from "./solitarios";
+import para_los_peques from "./infantiles";
+import fillers from "./fillers";
 export default [
   en_pareja,
   iniciacion,
-  {
+  solitarios,
+  fillers,
+  para_los_peques,
+  fillers,
+  /*{
     id: "fillers",
     name: "Fillers",
     icon: fillers_icon,
@@ -19,21 +20,7 @@ export default [
       );
     },
   },
-  {
-    id: "solitarios",
-    name: "Solitarios",
-    icon: solitarios_icon,
-    filter: (boardgames) => {
-      return boardgames
-        .filter((boardgame) => boardgame.numberOfPlayersBest.includes(1))
-        .sort((boardgame1, boardgame2) => {
-          return boardgame1.numVotes / 1000 + boardgame1.average >
-            boardgame2.numVotes / 1000 + boardgame2.average
-            ? -1
-            : 1;
-        });
-    },
-  },
+  
 
   {
     id: "party",
@@ -57,12 +44,5 @@ export default [
     icon: colaborativos_icon,
     filter: () => {},
   },
-  {
-    id: "infantiles",
-    name: "Infantiles",
-    icon: infantiles_icon,
-    filter: (boardgames) => {
-      return boardgames.filter((boardgame) => boardgame.age <= 6);
-    },
-  },
+  */
 ];
