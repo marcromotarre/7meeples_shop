@@ -38,7 +38,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
     numberOfPlayersNotRecommended,
     numberOfPlayersBest,
     numberOfPlayers,
-    reduced = false,
+    reduced = true,
     imageDefault,
   } = boardgame;
 
