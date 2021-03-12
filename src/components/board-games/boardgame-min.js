@@ -97,98 +97,100 @@ export default function BoardgameMin({ boardgame, onClick }) {
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
       <BoardgameName name={name} year={year} />
-      {!reduced && <div sx={separator}></div>}
       <div sx={{ width: "100%" }}>
-        {!reduced && (
-          <>
-            <Section icon={play_time_icon}>
-              <span sx={{ fontSize: section_fontSize }}>
-                {play_time_string(playTimeMin, playTimeMax)}
-              </span>
-            </Section>
-            <div sx={separator}></div>{" "}
-          </>
-        )}
-        {!reduced && (
-          <>
-            <Section icon={age_icon}>
-              <span sx={{ fontSize: section_fontSize }}>{age_string(age)}</span>
-            </Section>
-            <div sx={separator}></div>
-          </>
-        )}
-        {!reduced && (
-          <>
-            <Section icon={number_of_players_icon}>
-              <div
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(6,30px)",
-                  columnGap: "4px",
-                  gridAutoFlow: "column",
-                  marginLeft:
-                    numberOfPlayersNotRecommended.includes(
-                      numberOfPlayers[0]
-                    ) || numberOfPlayersBest.includes(numberOfPlayers[0])
-                      ? "0"
-                      : "-10px",
-                }}
-              >
-                {numberOfPlayers.slice(0, 8).map((numPlayers) => (
-                  <div
-                    key={numPlayers}
-                    sx={{
-                      display: "flex",
-                      width: "30px",
-                      height: "30px",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span
+        {!reduced && <div sx={separator}></div>}
+        <div sx={{ width: "100%" }}>
+          {!reduced && (
+            <>
+              <Section icon={play_time_icon}>
+                <span sx={{ fontSize: section_fontSize }}>
+                  {play_time_string(playTimeMin, playTimeMax)}
+                </span>
+              </Section>
+              <div sx={separator}></div>{" "}
+            </>
+          )}
+          {!reduced && (
+            <>
+              <Section icon={age_icon}>
+                <span sx={{ fontSize: section_fontSize }}>
+                  {age_string(age)}
+                </span>
+              </Section>
+              <div sx={separator}></div>
+            </>
+          )}
+          {!reduced && (
+            <>
+              <Section icon={number_of_players_icon}>
+                <div
+                  sx={{
+                    display: "grid",
+                    gridAutoFlow: "column",
+                    marginLeft:
+                      numberOfPlayersNotRecommended.includes(
+                        numberOfPlayers[0]
+                      ) || numberOfPlayersBest.includes(numberOfPlayers[0])
+                        ? "0"
+                        : "-10px",
+                  }}
+                >
+                  {numberOfPlayers.slice(0, 8).map((numPlayers) => (
+                    <div
+                      key={numPlayers}
                       sx={{
-                        justifySelf: "center",
-                        alignSelf: "center",
-                        fontSize: section_fontSize,
+                        display: "flex",
+                        width: "30px",
+                        height: "30px",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {numPlayers}
-                    </span>
-                    {numberOfPlayersBest.includes(numPlayers) && (
-                      <img
+                      <span
                         sx={{
-                          position: "absolute",
-                          width: "30px",
-                          height: "30px",
+                          justifySelf: "center",
+                          alignSelf: "center",
+                          fontSize: section_fontSize,
                         }}
-                        src={number_of_players_best_icon}
-                      ></img>
-                    )}
-                    {numberOfPlayersNotRecommended.includes(numPlayers) && (
-                      <img
-                        sx={{
-                          position: "absolute",
-                          width: "30px",
-                          height: "30px",
-                        }}
-                        src={number_of_players_not_recommended_icon}
-                      ></img>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Section>
+                      >
+                        {numPlayers}
+                      </span>
+                      {numberOfPlayersBest.includes(numPlayers) && (
+                        <img
+                          sx={{
+                            position: "absolute",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          src={number_of_players_best_icon}
+                        ></img>
+                      )}
+                      {numberOfPlayersNotRecommended.includes(numPlayers) && (
+                        <img
+                          sx={{
+                            position: "absolute",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                          src={number_of_players_not_recommended_icon}
+                        ></img>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </Section>
 
-            <div sx={separator}></div>
-          </>
-        )}
-        {!reduced && (
-          <Section icon={weight_icon}>
-            <span sx={{ fontSize: section_fontSize }}>
-              {weight_string(round_weight(weight))}
-            </span>
-          </Section>
-        )}
+              <div sx={separator}></div>
+            </>
+          )}
+          {!reduced && (
+            <Section icon={weight_icon}>
+              <span sx={{ fontSize: section_fontSize }}>
+                {weight_string(round_weight(weight))}
+              </span>
+            </Section>
+          )}
+        </div>
       </div>
     </div>
   );
