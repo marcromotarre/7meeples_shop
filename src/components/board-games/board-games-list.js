@@ -170,12 +170,16 @@ export default function GamesList({
                 }}
               >
                 {boardgames.map((boardgame) => (
-                  <Boardgame
-                    reduced={true}
-                    key={boardgame.id}
-                    onClick={onClickBoardgame}
-                    boardgame={boardgame}
-                  />
+                  <>
+                    {boardgame && (
+                      <Boardgame
+                        reduced={true}
+                        key={boardgame?.id}
+                        onClick={onClickBoardgame}
+                        boardgame={boardgame}
+                      />
+                    )}
+                  </>
                 ))}
               </div>
             </InfiniteScroll>
