@@ -148,6 +148,7 @@ export default function GamesList({
           boardgames.length > 0 &&
           pagedBoardGamesRows.map(({ boardgames, page }, index) => (
             <InfiniteScroll
+              key={index}
               sx={{ width: getWidthByDevice() }}
               pageStart={page}
               loadMore={() => addPageToGamesRow(index)}
@@ -172,12 +173,13 @@ export default function GamesList({
                 {boardgames.map((boardgame) => (
                   <>
                     {boardgame && (
-                      <Boardgame
-                        reduced={true}
-                        key={boardgame?.id}
-                        onClick={onClickBoardgame}
-                        boardgame={boardgame}
-                      />
+                      <div sx={{ width: "100%" }} key={boardgame?.id}>
+                        <Boardgame
+                          key={boardgame?.id}
+                          onClick={onClickBoardgame}
+                          boardgame={boardgame}
+                        />
+                      </div>
                     )}
                   </>
                 ))}
