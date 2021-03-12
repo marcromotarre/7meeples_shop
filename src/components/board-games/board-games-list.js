@@ -18,8 +18,6 @@ export default function GamesList({
   const [boardgamesRows, setBoardgamesRows] = useState();
 
   useEffect(() => {
-    console.log("boardgames", boardgames);
-
     setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
     if (device === DEVICES.MOBILE) {
       setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
@@ -69,9 +67,30 @@ export default function GamesList({
         },
       ]);
     } else if (device === DEVICES.DESKTOP_LARGE) {
+      setBoardgamesRows([
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 5 === 0),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 5 === 1),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 5 === 2),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 5 === 3),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 5 === 4),
+          page: 0,
+        },
+      ]);
     }
   }, [device, boardgames]);
-  console.log("boardgamesRows", boardgamesRows);
   const pagedBoardGamesRows = boardgamesRows?.map(({ boardgames, page }) => {
     return {
       boardgames: boardgames.filter((boardgame, index) => index < page * 3),
@@ -79,7 +98,6 @@ export default function GamesList({
     };
   });
 
-  console.log("pagedBoardGamesRows", pagedBoardGamesRows);
   const router = useRouter();
   const onClickBoardgame = (id) => {
     router.push(`/juego/${id}`);
@@ -89,8 +107,21 @@ export default function GamesList({
   const addPageToGamesRow = (row) => {
     const b = [...boardgamesRows];
     b[row].page = b[row].page + 1;
-    console.log("b", b, row);
     setBoardgamesRows([...b]);
+  };
+
+  const getWidthByDevice = () => {
+    if (device === DEVICES.MOBILE) {
+      return "100%";
+    } else if (device === DEVICES.TABLET) {
+      return "49%";
+    } else if (device === DEVICES.LAPTOP) {
+      return "32%";
+    } else if (device === DEVICES.DESKTOP) {
+      return "25%";
+    } else if (device === DEVICES.DESKTOP_LARGE) {
+      return "19%";
+    }
   };
 
   return (
@@ -117,7 +148,7 @@ export default function GamesList({
           boardgames.length > 0 &&
           pagedBoardGamesRows.map(({ boardgames, page }, index) => (
             <InfiniteScroll
-              sx={{ width: ["80%", "48%", "32%", "24%"] }}
+              sx={{ width: getWidthByDevice() }}
               pageStart={page}
               loadMore={() => addPageToGamesRow(index)}
               hasMore={true}
