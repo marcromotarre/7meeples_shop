@@ -15,29 +15,82 @@ export default function GamesList({
   clickOnBoardGame = () => {},
 }) {
   const device = getDevice();
+  const [boardgamesRows, setBoardgamesRows] = useState();
 
-  let boardgames_by_type = [boardgames];
-  let pagedBoardgames = boardgames.filter(
-    (boardgame, index) => index < (page + 1) * 6
-  );
-  if (device === DEVICES.TABLET) {
-    boardgames_by_type = [
-      boardgames.filter((boardgame, index) => index % 2 === 0),
-      boardgames.filter((boardgame, index) => index % 2 === 1),
-    ];
-    console.log(boardgames_by_type);
-    pagedBoardgames = boardgames_by_type.filter(
-      (boardgame, index) => index < (page + 1) * 6
-    );
-  } else if (device === DEVICES.LAPTOP) {
-  } else if (device === DEVICES.DESKTOP) {
-  } else if (device === DEVICES.DESKTOP_LARGE) {
-  }
+  useEffect(() => {
+    console.log("boardgames", boardgames);
+
+    setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
+    if (device === DEVICES.MOBILE) {
+      setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
+    } else if (device === DEVICES.TABLET) {
+      setBoardgamesRows([
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 2 === 0),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 2 === 1),
+          page: 0,
+        },
+      ]);
+    } else if (device === DEVICES.LAPTOP) {
+      setBoardgamesRows([
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 3 === 0),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 3 === 1),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 3 === 2),
+          page: 0,
+        },
+      ]);
+    } else if (device === DEVICES.DESKTOP) {
+      setBoardgamesRows([
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 4 === 0),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 4 === 1),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 4 === 2),
+          page: 0,
+        },
+        {
+          boardgames: boardgames.filter((boardgame, index) => index % 4 === 3),
+          page: 0,
+        },
+      ]);
+    } else if (device === DEVICES.DESKTOP_LARGE) {
+    }
+  }, [device, boardgames]);
+  console.log("boardgamesRows", boardgamesRows);
+  const pagedBoardGamesRows = boardgamesRows?.map(({ boardgames, page }) => {
+    return {
+      boardgames: boardgames.filter((boardgame, index) => index < page * 3),
+      page,
+    };
+  });
+
+  console.log("pagedBoardGamesRows", pagedBoardGamesRows);
   const router = useRouter();
-  const [page, setPage] = useState(0);
   const onClickBoardgame = (id) => {
     router.push(`/juego/${id}`);
     clickOnBoardGame();
+  };
+
+  const addPageToGamesRow = (row) => {
+    const b = [...boardgamesRows];
+    b[row].page = b[row].page + 1;
+    console.log("b", b, row);
+    setBoardgamesRows([...b]);
   };
 
   return (
@@ -50,50 +103,53 @@ export default function GamesList({
         ...styles,
       }}
     >
-      <InfiniteScroll
-        sx={{ width: "100%" }}
-        pageStart={page}
-        loadMore={() => setPage(page + 1)}
-        hasMore={boardgames.length > (page + 1) * 3}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
-          </div>
-        }
+      <div
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignItems: "flex-start",
+          justifyContent: "space-around",
+        }}
       >
-        <div
-          sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            alignItems: "flex-start",
-            justifyContent: "space-around",
-          }}
-        >
-          {boardgames_by_type.map((boardgame_by_type) => (
-            <div
-              sx={{
-                width: ["80%", "47%"],
-                gridTemplateColumns: "100%",
-                display: "grid",
-                alignItems: "center",
-                justifyItems: "center",
-                rowGap: "25px",
-              }}
+        {pagedBoardGamesRows &&
+          boardgames.length > 0 &&
+          pagedBoardGamesRows.map(({ boardgames, page }, index) => (
+            <InfiniteScroll
+              sx={{ width: ["80%", "48%", "32%", "24%"] }}
+              pageStart={page}
+              loadMore={() => addPageToGamesRow(index)}
+              hasMore={true}
+              loader={
+                <div className="loader" key={0}>
+                  Loading ...
+                </div>
+              }
             >
-              {boardgame_by_type.map((boardgame) => (
-                <Boardgame
-                  reduced={true}
-                  key={boardgame.id}
-                  onClick={onClickBoardgame}
-                  boardgame={boardgame}
-                />
-              ))}
-            </div>
+              <div
+                className="bgg-grid"
+                sx={{
+                  width: "100%",
+                  gridTemplateColumns: "100%",
+                  display: "grid",
+                  alignItems: "center",
+                  justifyItems: "center",
+                  rowGap: "10px",
+                }}
+              >
+                {boardgames.map((boardgame) => (
+                  <Boardgame
+                    reduced={true}
+                    key={boardgame.id}
+                    onClick={onClickBoardgame}
+                    boardgame={boardgame}
+                  />
+                ))}
+              </div>
+            </InfiniteScroll>
           ))}
-        </div>
-      </InfiniteScroll>
+      </div>
     </div>
   );
 }
