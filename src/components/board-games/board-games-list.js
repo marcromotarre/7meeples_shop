@@ -114,13 +114,13 @@ export default function GamesList({
     if (device === DEVICES.MOBILE) {
       return "100%";
     } else if (device === DEVICES.TABLET) {
-      return "49%";
+      return "calc(50% - 12.5px)";
     } else if (device === DEVICES.LAPTOP) {
-      return "32%";
+      return "calc(33% - 16.7px)";
     } else if (device === DEVICES.DESKTOP) {
-      return "25%";
+      return "calc(25% - 18.75px)";
     } else if (device === DEVICES.DESKTOP_LARGE) {
-      return "19%";
+      return "calc(20% - 20px)";
     }
   };
 
@@ -141,7 +141,7 @@ export default function GamesList({
           flexDirection: "row",
           flexWrap: "wrap",
           alignItems: "flex-start",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
         }}
       >
         {pagedBoardGamesRows &&
@@ -151,7 +151,7 @@ export default function GamesList({
               sx={{ width: getWidthByDevice() }}
               pageStart={page}
               loadMore={() => addPageToGamesRow(index)}
-              hasMore={true}
+              hasMore={boardgames.length / 3 >= page}
               loader={
                 <div className="loader" key={0}>
                   Loading ...
@@ -166,7 +166,7 @@ export default function GamesList({
                   display: "grid",
                   alignItems: "center",
                   justifyItems: "center",
-                  rowGap: "10px",
+                  rowGap: "25px",
                 }}
               >
                 {boardgames.map((boardgame) => (
