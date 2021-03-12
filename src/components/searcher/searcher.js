@@ -2,10 +2,19 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
 import search_icon from "../../assets/svg/search.svg";
+import { changeSearchValue } from "src/redux/actions/search";
 
 export default function Searcher() {
+  const dispatch = useDispatch();
+  const value = useSelector((state) => state.searchReducer.searchString);
+  console.log("value", value);
   const router = useRouter();
+  const onChange = (event) => {
+    console.log(event.target.value);
+    dispatch(changeSearchValue(event.target.value));
+  };
 
   return (
     <div
@@ -36,6 +45,8 @@ export default function Searcher() {
             fontSize: "16px",
             backgroundColor: "#ffffff00",
           }}
+          value={value}
+          onChange={onChange}
           type="text"
           id="lname"
           name="lname"
