@@ -26,18 +26,45 @@ export default function Home() {
       <div sx={{ display: "grid", rowGap: "50px" }}>
         <div>
           <Searcher></Searcher>
+
           {searchValue !== "" && (
             <div
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                position: "relative",
               }}
             >
+              <div
+                sx={{
+                  position: "absolute",
+                  zIndex: "50",
+                  width: "100%",
+                }}
+              >
+                <div
+                  sx={{
+                    width: "100%",
+                    height: "10px",
+                    backgroundColor: "white",
+                  }}
+                ></div>
+                <div
+                  sx={{
+                    width: "100%",
+                    height: "15px",
+                    backgroundImage:
+                      "linear-gradient(to bottom, rgba(255,255,255,1),rgba(255,255,255,0))",
+                  }}
+                ></div>
+              </div>
               <SearchList
                 styles={{
+                  paddingTop: "25px",
                   width: "calc(100% - 20px)",
-                  height: "calc(100% - 20px - 50px - 44px)",
-                  overflow: "scroll",
+                  height: "calc(100% - 20px - 50px - 44px - 15px)",
+                  overflowY: "scroll",
+                  position: "fixed",
                 }}
               ></SearchList>
             </div>

@@ -15,7 +15,12 @@ export default function Searcher() {
 
   return (
     <div
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: "100",
+      }}
     >
       <div
         sx={{
