@@ -12,11 +12,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchBoardgamesReq } from "src/redux/actions/boardgames";
 import Searcher from "src/components/searcher/searcher";
 import SearchList from "src/components/searcher/search-list";
+import { changeSearchValue } from "src/redux/actions/search";
 export default function Home() {
   const dispatch = useDispatch();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
   const searchValue = useSelector((state) => state.searchReducer.searchString);
-
+  useEffect(() => {
+    dispatch(changeSearchValue(""));
+  }, []);
   return (
     <>
       <div sx={{ height: "20px" }}></div>
@@ -33,7 +36,7 @@ export default function Home() {
               <SearchList
                 styles={{
                   width: "calc(100% - 20px)",
-                  height: "calc(100vH - 20px - 50px - 44px)",
+                  height: "calc(100% - 20px - 50px - 44px)",
                   overflow: "scroll",
                 }}
               ></SearchList>

@@ -2,12 +2,19 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import BoardgameImage from "../board-games/boardgame-image";
+import { useRouter } from "next/router";
 
 export default function BoardgameListElement({ boardgame, styles }) {
-  const { imageDefault, webname } = boardgame;
+  const { imageDefault, webname, id } = boardgame;
   const height = styles?.height ? styles.height : "100%";
+
+  const router = useRouter();
+  const onClickBoardgame = () => {
+    router.push(`/juego/${id}`);
+  };
   return (
     <div
+      onClick={onClickBoardgame}
       sx={{
         display: "grid",
         width: "100%",
