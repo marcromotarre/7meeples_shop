@@ -11,27 +11,43 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBoardgamesReq } from "src/redux/actions/boardgames";
 import Searcher from "src/components/searcher/searcher";
+import SearchList from "src/components/searcher/search-list";
 export default function Home() {
   const dispatch = useDispatch();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
+  const searchValue = useSelector((state) => state.searchReducer.searchString);
 
   return (
     <>
       <div sx={{ height: "20px" }}></div>
       <div sx={{ display: "grid", rowGap: "50px" }}>
-        <Searcher></Searcher>
-        <MiaMain></MiaMain>
-        <CategoriesMain></CategoriesMain>
-        <NewnessMain></NewnessMain>
-        {/*<div
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-        className={styles.container}
-      >
-        <BoardGamesList
-          styles={{ width: "80%" }}
-          boardgames={boardgames.filter((b, index) => index <= 10)}
-        ></BoardGamesList>
-      </div>*/}
+        <div>
+          <Searcher></Searcher>
+          {searchValue !== "" && (
+            <div
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <SearchList
+                styles={{
+                  width: "calc(100% - 20px)",
+                  height: "calc(100vH - 20px - 50px - 44px)",
+                  overflow: "scroll",
+                }}
+              ></SearchList>
+            </div>
+          )}
+        </div>
+
+        {searchValue === "" && (
+          <>
+            <MiaMain></MiaMain>
+            <CategoriesMain></CategoriesMain>
+            <NewnessMain></NewnessMain>
+          </>
+        )}
       </div>
     </>
   );

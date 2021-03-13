@@ -9,10 +9,7 @@ import { changeSearchValue } from "src/redux/actions/search";
 export default function Searcher() {
   const dispatch = useDispatch();
   const value = useSelector((state) => state.searchReducer.searchString);
-  console.log("value", value);
-  const router = useRouter();
   const onChange = (event) => {
-    console.log(event.target.value);
     dispatch(changeSearchValue(event.target.value));
   };
 

@@ -9,7 +9,7 @@ function searchReducer(state = initialState, { type, payload }) {
     case CHANGE_SEARCH_VALUE:
       return {
         ...state,
-        searchString: payload.value,
+        searchString: payload,
       };
     default:
       return {
