@@ -24,8 +24,10 @@ export default function Home() {
     <>
       <div sx={{ height: "20px" }}></div>
       <div sx={{ display: "grid", rowGap: "50px" }}>
-        <div>
-          <Searcher></Searcher>
+        <div sx={{ whidth: "100%" }}>
+          <div sx={{ backgroundColor: "white", width: "100%" }}>
+            <Searcher></Searcher>
+          </div>
 
           {searchValue !== "" && (
             <div
@@ -38,26 +40,22 @@ export default function Home() {
               <div
                 sx={{
                   position: "absolute",
-                  zIndex: "50",
+                  zIndex: "8",
                   width: "100%",
+                  height: "25px",
+                  background:
+                    "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 100%)",
                 }}
-              >
-                <div
-                  sx={{
-                    width: "100%",
-                    height: "10px",
-                    backgroundColor: "white",
-                  }}
-                ></div>
-                <div
-                  sx={{
-                    width: "100%",
-                    height: "15px",
-                    backgroundImage:
-                      "linear-gradient(to bottom, rgba(255,255,255,1),rgba(255,255,255,0))",
-                  }}
-                ></div>
-              </div>
+              ></div>
+              <div
+                sx={{
+                  position: "absolute",
+                  zIndex: "7",
+                  width: "100%",
+                  height: "3px",
+                  backgroundColor: "white",
+                }}
+              ></div>
               <SearchList
                 styles={{
                   paddingTop: "25px",

@@ -19,11 +19,12 @@ export default function Searcher() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: "100",
+        zIndex: "10",
       }}
     >
       <div
         sx={{
+          zIndex: "10",
           position: "relative",
           width: "90%",
           borderRadius: "87px",
@@ -36,6 +37,7 @@ export default function Searcher() {
       >
         <input
           sx={{
+            zIndex: "11",
             margin: "10px",
             width: "100%",
             height: "24px",
