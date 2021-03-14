@@ -19,8 +19,8 @@ export default function BoardgameListElement({ boardgame, styles }) {
         display: "grid",
         width: "100%",
         height: "100%",
-        gridTemplateColumns: "40px auto 60px",
-        columnGap: "10px",
+        gridTemplateColumns: "40px auto ",
+        columnGap: "20px",
         ...styles,
       }}
     >

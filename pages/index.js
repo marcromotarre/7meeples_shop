@@ -24,7 +24,7 @@ export default function Home() {
     <>
       <div sx={{ height: "20px" }}></div>
       <div sx={{ display: "grid", rowGap: "50px" }}>
-        <div sx={{ whidth: "100%" }}>
+        <div sx={{ width: "100%" }}>
           <div sx={{ backgroundColor: "white", width: "100%" }}>
             <Searcher></Searcher>
           </div>
@@ -34,6 +34,7 @@ export default function Home() {
               sx={{
                 display: "flex",
                 justifyContent: "center",
+                alignItems: "flex-start",
                 position: "relative",
               }}
             >
@@ -47,15 +48,7 @@ export default function Home() {
                     "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 100%)",
                 }}
               ></div>
-              <div
-                sx={{
-                  position: "absolute",
-                  zIndex: "7",
-                  width: "100%",
-                  height: "3px",
-                  backgroundColor: "white",
-                }}
-              ></div>
+
               <SearchList
                 styles={{
                   paddingTop: "25px",

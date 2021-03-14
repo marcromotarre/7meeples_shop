@@ -45,7 +45,7 @@ export default function BoardgameModalDesigners({ boardgame }) {
         }}
       >
         <img sx={{ height: "22px" }} src={designers_icon} />
-        <h3>Diseñadores</h3>
+        <h3>Autores</h3>
       </div>
       <div
         sx={{
