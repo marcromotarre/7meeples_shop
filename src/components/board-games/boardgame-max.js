@@ -38,6 +38,8 @@ import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
 import { useRouter } from "next/router";
+import List from "../common/list/list";
+import DesignerButton from "../designers/designer-button";
 
 export default function BoardgameMax({ boardgame }) {
   const {
@@ -146,12 +148,18 @@ export default function BoardgameMax({ boardgame }) {
         </BoardgameSection>
         {designers?.length > 0 && (
           <BoardgameSection
-            onClick={() => setModal(MODAL_TYPES.DESIGNERS)}
             styles={{ width: "80%" }}
-            name={designers.length > 1 ? "Diseñadores" : "Diseñador"}
+            name={designers.length > 1 ? "Autores" : "Autor"}
             icon={designers_icon}
           >
-            <BoardgameSectionDesigners designers={designers} />
+            <List>
+              {designers.map((designer) => (
+                <DesignerButton
+                  styles={{ width: "300px", maxWidth: "100%" }}
+                  designer={designer}
+                ></DesignerButton>
+              ))}
+            </List>
           </BoardgameSection>
         )}
         {categories?.length > 0 && (

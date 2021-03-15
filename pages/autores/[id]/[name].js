@@ -9,9 +9,12 @@ import Designer from "src/components/designers/designer";
 import BoardgameList from "src/components/board-games/board-games-list";
 import designers_icon from "../../../src/assets/svg/sections/designers.svg";
 import Description from "../../../src/components/common/text/description";
+import List from "../../../src/components/common/list/list";
 import ListItem from "../../../src/components/common/list/list-item";
+import DesignerButton from "../../../src/components/designers/designer-button";
 import DesignerImage from "../../../src/components/common/images/designer-image";
 import { eliminate_duplicates } from "src/utils/array";
+import Button from "src/components/common/buttons/button";
 
 export default function Designers() {
   const [designer, setDesigner] = useState();
@@ -51,7 +54,9 @@ export default function Designers() {
     }
   }, [router, all_designers, all_boardgames]);
 
-  console.log(designers_worked_with);
+  const clickOnDesigner = (id) => {
+    router.push(`/autores/${id}`);
+  };
 
   return (
     <>
@@ -61,7 +66,7 @@ export default function Designers() {
             display: "grid",
             justifyItems: "center",
             alignItems: "flex-start",
-            rowGap: "10px",
+            rowGap: "30px",
           }}
         >
           <div sx={{ height: "10px" }}></div>
@@ -79,42 +84,53 @@ export default function Designers() {
               <h1 sx={{ paddingTop: "5px" }}>Autor</h1>
             </div>
 
-            <Designer styles={{ width: "40%" }} name={designer.name}></Designer>
+            <Designer
+              border={3}
+              styles={{ width: "40%" }}
+              name={designer.name}
+            ></Designer>
             {designer.description && (
               <Description description={designer.description} />
             )}
           </>
-          <h3>{designer.name} ha hecho juegos con</h3>
-          {designers_worked_with.map((designer) => (
-            <ListItem
-              styles={{ padding: "5px 0px", width: "80%" }}
-              key={designer.id}
-            >
-              <div
-                sx={{
-                  display: "grid",
-                  width: "100%",
-                  alignItems: "center",
-                  gridTemplateColumns: "40px calc(100% - 80px) 30px",
-                  columnGap: "10px",
-                }}
-              >
-                <DesignerImage
-                  styles={{ marginLeft: "5px" }}
-                  name={designer.name}
-                ></DesignerImage>
-                <span>{designer.name}</span>
-                <img
-                  sx={{ marginTop: "3px", height: "15px" }}
-                  src={designers_icon}
-                />
-              </div>
-            </ListItem>
-          ))}
-          <BoardgameList
-            styles={{ width: "80%" }}
-            boardgames={boardgames}
-          ></BoardgameList>
+          <div
+            sx={{
+              display: "grid",
+              width: "100%",
+              justifyItems: "center",
+              alignItems: "center",
+              gridTemplateColumns: "100%",
+              rowGap: "10px",
+            }}
+          >
+            <h3 sx={{ width: "80%", textAlign: "center" }}>
+              Ha hecho juegos con:
+            </h3>
+            <List defaultNumberElements={3}>
+              {designers_worked_with.map((designer) => (
+                <DesignerButton
+                  styles={{ width: "300px", maxWidth: "80%" }}
+                  designer={designer}
+                ></DesignerButton>
+              ))}
+            </List>
+          </div>
+          <div
+            sx={{
+              display: "grid",
+              width: "100%",
+              justifyItems: "center",
+              alignItems: "center",
+              gridTemplateColumns: "100%",
+              rowGap: "10px",
+            }}
+          >
+            <h3 sx={{ textAlign: "center", width: "80%" }}>Sus juegos:</h3>
+            <BoardgameList
+              styles={{ width: "80%" }}
+              boardgames={boardgames}
+            ></BoardgameList>
+          </div>
           <div sx={{ height: "50px" }}></div>
         </div>
       )}
