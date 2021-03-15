@@ -3,10 +3,21 @@
 import { jsx } from "theme-ui";
 import designers_icon from "../../assets/svg/sections/designers.svg";
 import DesignerImage from "../common/images/designer-image";
+import { useRouter } from "next/router";
+
 export default function DesignerButton({ designer, onClick, styles }) {
+  const router = useRouter();
+  const clickOnDesigner = () => {
+    if (!onClick) {
+      router.push(`/autores/${designer.id}`);
+    } else {
+      onClick({ ...desginer });
+    }
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={clickOnDesigner}
       sx={{
         width: "100%",
         borderRadius: "1000px",

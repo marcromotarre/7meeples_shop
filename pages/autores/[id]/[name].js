@@ -54,10 +54,6 @@ export default function Designers() {
     }
   }, [router, all_designers, all_boardgames]);
 
-  const clickOnDesigner = (id) => {
-    router.push(`/autores/${id}`);
-  };
-
   return (
     <>
       {designer && (
@@ -109,7 +105,7 @@ export default function Designers() {
             <List defaultNumberElements={3}>
               {designers_worked_with.map((designer) => (
                 <DesignerButton
-                  styles={{ width: "300px", maxWidth: "80%" }}
+                  styles={{ width: "300px" }}
                   designer={designer}
                 ></DesignerButton>
               ))}
