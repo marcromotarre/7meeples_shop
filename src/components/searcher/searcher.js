@@ -6,7 +6,10 @@ import { useSelector, useDispatch } from "react-redux";
 import search_icon from "../../assets/svg/search.svg";
 import { changeSearchValue } from "src/redux/actions/search";
 
-export default function Searcher() {
+export default function Searcher({
+  styles,
+  defaultText = "Buscar en 7meeples.es",
+}) {
   const dispatch = useDispatch();
   const value = useSelector((state) => state.searchReducer.searchString);
   const onChange = (event) => {
@@ -19,12 +22,13 @@ export default function Searcher() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: "10",
+        width: "100%",
+        ...styles,
       }}
     >
       <div
         sx={{
-          zIndex: "10",
+          backgroundColor: "white",
           position: "relative",
           width: "90%",
           borderRadius: "87px",
@@ -54,7 +58,7 @@ export default function Searcher() {
           type="text"
           id="lname"
           name="lname"
-          placeholder="Buscar en 7meeples.es"
+          placeholder={defaultText}
         />
         <img
           sx={{

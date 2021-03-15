@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Section from "./section/boardgame-section";
+import BoardgameSectionWeight from "./section/boardgaame-section-weight";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
 
@@ -185,9 +186,7 @@ export default function BoardgameMin({ boardgame, onClick }) {
           )}
           {!reduced && (
             <Section icon={weight_icon}>
-              <span sx={{ fontSize: section_fontSize }}>
-                {weight_string(round_weight(weight))}
-              </span>
+              <BoardgameSectionWeight weight={weight}></BoardgameSectionWeight>
             </Section>
           )}
         </div>

@@ -11,7 +11,7 @@ import designers_icon from "../../../src/assets/svg/sections/designers.svg";
 import Description from "../../../src/components/common/text/description";
 import List from "../../../src/components/common/list/list";
 import ListItem from "../../../src/components/common/list/list-item";
-import DesignerButton from "../../../src/components/designers/designer-button";
+import DesignerButton from "../../../src/components/designers/designer";
 import DesignerImage from "../../../src/components/common/images/designer-image";
 import { eliminate_duplicates } from "src/utils/array";
 import Button from "src/components/common/buttons/button";
@@ -83,7 +83,7 @@ export default function Designers() {
             <Designer
               border={3}
               styles={{ width: "40%" }}
-              name={designer.name}
+              designer={designer}
             ></Designer>
             {designer.description && (
               <Description description={designer.description} />
@@ -102,14 +102,27 @@ export default function Designers() {
             <h3 sx={{ width: "80%", textAlign: "center" }}>
               Ha hecho juegos con:
             </h3>
-            <List defaultNumberElements={3}>
+            <div
+              sx={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                flexWrap: "wrap",
+                width: "100%",
+              }}
+            >
               {designers_worked_with.map((designer) => (
                 <DesignerButton
-                  styles={{ width: "300px" }}
+                  border={3}
+                  styles={{
+                    width: "26%",
+                    maxWidth: "100%",
+                    marginBottom: "20px",
+                  }}
                   designer={designer}
                 ></DesignerButton>
               ))}
-            </List>
+            </div>
           </div>
           <div
             sx={{

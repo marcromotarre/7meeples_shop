@@ -10,6 +10,7 @@ import BoardgamesList from "./board-games-list";
 
 import BoardgameSection from "./section/boardgame-section-max";
 import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
+import BoardgameSectionWeight from "./section/boardgaame-section-weight";
 
 import BoardgameSectionDesigners from "./section/boardgame-section-designers";
 import BoardgameSectionMechanisms from "./section/boardgame-section-mechanisms";
@@ -39,7 +40,7 @@ import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
 import { useRouter } from "next/router";
 import List from "../common/list/list";
-import DesignerButton from "../designers/designer-button";
+import DesignerButton from "../designers/designer";
 
 export default function BoardgameMax({ boardgame }) {
   const {
@@ -144,7 +145,10 @@ export default function BoardgameMax({ boardgame }) {
           name={"Dificultad"}
           icon={weight_icon}
         >
-          <BoardgameSectionText>{weight_string(weight)}</BoardgameSectionText>
+          <BoardgameSectionWeight
+            styles={{ marginTop: "10px" }}
+            weight={weight}
+          ></BoardgameSectionWeight>
         </BoardgameSection>
         {designers?.length > 0 && (
           <BoardgameSection
@@ -152,14 +156,28 @@ export default function BoardgameMax({ boardgame }) {
             name={designers.length > 1 ? "Autores" : "Autor"}
             icon={designers_icon}
           >
-            <List>
+            <div
+              sx={{
+                marginTop: "10px",
+                display: "grid",
+                gridTemplateColumns:
+                  "calc(33% - 7px) calc(33% - 7px) calc(33% - 7px)",
+                justifyItems: "flex-start",
+                alignItems: "center",
+                columnGap: "20px",
+              }}
+            >
               {designers.map((designer) => (
                 <DesignerButton
-                  styles={{ width: "300px", maxWidth: "100%" }}
+                  styles={{
+                    width: "100%",
+                    maxWidth: "100%",
+                    paddingRight: "10%",
+                  }}
                   designer={designer}
                 ></DesignerButton>
               ))}
-            </List>
+            </div>
           </BoardgameSection>
         )}
         {categories?.length > 0 && (

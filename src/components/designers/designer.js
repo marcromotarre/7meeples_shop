@@ -5,14 +5,26 @@ import { IMAGES_REPOSITORY } from "../../constants";
 import user_male_icon from "../../assets/svg/user-male.svg";
 import { useState } from "react";
 import { s3_name } from "../../utils/name";
+import { useRouter } from "next/router";
 
-export default function Designer({ name, onClick, styles, border = "1" }) {
+export default function Designer({ designer, onClick, styles, border = "1" }) {
+  const router = useRouter();
+  const { name } = designer;
   const [showDefaultImage, setShowDefaultImage] = useState(false);
   const onImageError = () => {
     if (!showDefaultImage) setShowDefaultImage(true);
   };
+
+  const clickOnDesigner = () => {
+    if (!onClick) {
+      router.push(`/autores/${designer.id}/${designer.name}`);
+    } else {
+      onClick({ ...desginer });
+    }
+  };
   return (
     <div
+      onClick={clickOnDesigner}
       sx={{
         display: "grid",
         gridTemplateColumns: "100%",
@@ -27,7 +39,7 @@ export default function Designer({ name, onClick, styles, border = "1" }) {
         sx={{
           border: `${showDefaultImage ? "none" : `${border}px solid black`}`,
           borderRadius: "50%",
-          width: "80%",
+          width: "100%",
         }}
         src={
           showDefaultImage

@@ -3,27 +3,43 @@
 import { jsx } from "theme-ui";
 import React, { useState } from "react";
 import { Button } from "..";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function List({
   styles,
   children,
   defaultNumberElements = children.length,
 }) {
+  const [page, setPage] = useState(0);
+  const addPage = () => {
+    setPage(page + 1);
+  };
+
+  const getNumberOfPages = () => {
+    return children.length / 3;
+  };
   const [showAllListElements, setShowAllListElements] = useState(false);
   const childrenToShow = showAllListElements
     ? children
     : children.filter(({}, index) => index < defaultNumberElements);
+
+  const pagedChildrenToShow = childrenToShow.filter(
+    ({}, index) => index < (page + 1) * 3
+  );
+
   return (
     <>
-      <div
-        sx={{
-          display: "grid",
-          width: "100%",
-          justifyItems: "center",
-          alignItems: "center",
-          rowGap: "20px",
-          ...styles,
-        }}
+      <InfiniteScroll
+        sx={{ height: "100%", width: "100%", ...styles }}
+        key={1}
+        pageStart={page}
+        loadMore={() => addPage()}
+        hasMore={page < getNumberOfPages()}
+        loader={
+          <div className="loader" key={0}>
+            Loading ...
+          </div>
+        }
       >
         <div
           sx={{
@@ -31,30 +47,40 @@ export default function List({
             width: "100%",
             justifyItems: "center",
             alignItems: "center",
-            rowGap: "10px",
-            ...styles,
+            rowGap: "20px",
           }}
         >
-          {childrenToShow.map((element, index) => (
-            <div
-              key={index}
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {element}
-            </div>
-          ))}
-          {!showAllListElements && children.length > defaultNumberElements && (
-            <Button onClick={() => setShowAllListElements(true)}>
-              Ver todos
-            </Button>
-          )}
+          <div
+            sx={{
+              display: "grid",
+              width: "100%",
+              justifyItems: "center",
+              alignItems: "center",
+              rowGap: "10px",
+            }}
+          >
+            {pagedChildrenToShow.map((element, index) => (
+              <div
+                key={index}
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {element}
+              </div>
+            ))}
+            {!showAllListElements &&
+              children.length > defaultNumberElements && (
+                <Button onClick={() => setShowAllListElements(true)}>
+                  Ver todos
+                </Button>
+              )}
+          </div>
         </div>
-      </div>
+      </InfiniteScroll>
     </>
   );
 }

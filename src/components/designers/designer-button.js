@@ -9,7 +9,7 @@ export default function DesignerButton({ designer, onClick, styles }) {
   const router = useRouter();
   const clickOnDesigner = () => {
     if (!onClick) {
-      router.push(`/autores/${designer.id}`);
+      router.push(`/autores/${designer.id}/${designer.name}`);
     } else {
       onClick({ ...desginer });
     }
