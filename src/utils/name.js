@@ -25,6 +25,7 @@ export const simple_string = (string = "") => {
 export const delete_special_characters = (name = "") => {
   return name
     .toLowerCase()
+    .replaceAll("  ", " ")
     .replaceAll("á", "a")
     .replaceAll("é", "e")
     .replaceAll("í", "i")

@@ -16,6 +16,8 @@ import { changeSearchValue } from "src/redux/actions/search";
 import List from "src/components/common/list/list";
 import { delete_special_characters } from "src/utils/name";
 import BoardgameListElement from "src/components/searcher/boardgame-list-element";
+import { levenshtein } from "../src/utils/levenstein";
+
 export default function Home() {
   const dispatch = useDispatch();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
@@ -39,6 +41,7 @@ export default function Home() {
           if (boardgameSplitedName[0].startsWith(searchSplitName[0])) {
             score += 100;
           }
+
           score += boardgameSplitedName
             .map((word) => {
               return searchSplitName
@@ -48,11 +51,35 @@ export default function Home() {
                 .reduce((curr, acc) => curr + acc, 0);
             })
             .reduce((curr, acc) => curr + acc, 0);
+
           score += boardgameSplitedName
             .map((boardgameWord) => {
               return searchSplitName
                 .map((searchWord) => {
                   return boardgameWord.includes(searchWord) ? 5 : 0;
+                })
+                .reduce((curr, acc) => curr + acc, 0);
+            })
+            .reduce((curr, acc) => curr + acc, 0);
+
+          score += boardgameSplitedName
+            .map((boardgameWord) => {
+              return searchSplitName
+                .map((searchWord) => {
+                  const levensteinDistance = levenshtein(
+                    boardgameWord,
+                    searchWord
+                  );
+                  if (levensteinDistance === 0) {
+                    return 15;
+                  } else if (levensteinDistance === 1) {
+                    return 10;
+                  } else if (levensteinDistance === 2) {
+                    return 3;
+                  } else if (levensteinDistance === 3) {
+                    return 1;
+                  }
+                  return 0;
                 })
                 .reduce((curr, acc) => curr + acc, 0);
             })
@@ -68,8 +95,27 @@ export default function Home() {
         .sort((boardgame1, boardgame2) => {
           return boardgame1.score >= boardgame2.score ? -1 : 1;
         });
+      console.log(boardgame_searched_list);
       setSearchedList(boardgame_searched_list);
     }
+
+    /*const boardgame_searched_list = boardgames
+      .map((boardgame) => {
+        return {
+          type: "boardgame",
+          leventeinDistance: levenshtein(
+            delete_special_characters(boardgame.webname),
+            delete_special_characters(searchValue)
+          ),
+          element: boardgame,
+        };
+      })
+      .sort((boardgame1, boardgame2) => {
+        return boardgame1.leventeinDistance >= boardgame2.leventeinDistance
+          ? 1
+          : -1;
+      });
+    setSearchedList(boardgame_searched_list);*/
   };
 
   useEffect(() => {
