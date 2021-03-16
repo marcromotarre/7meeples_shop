@@ -14,20 +14,68 @@ import Searcher from "src/components/searcher/searcher";
 import SearchList from "src/components/searcher/search-list";
 import { changeSearchValue } from "src/redux/actions/search";
 import List from "src/components/common/list/list";
-import { simple_string } from "src/utils/name";
+import { delete_special_characters } from "src/utils/name";
 import BoardgameListElement from "src/components/searcher/boardgame-list-element";
 export default function Home() {
   const dispatch = useDispatch();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
   const searchValue = useSelector((state) => state.searchReducer.searchString);
-
-  const list = boardgames.filter(({ webname }) =>
-    simple_string(webname).includes(simple_string(searchValue))
-  );
+  const [searchedList, setSearchedList] = useState([]);
 
   useEffect(() => {
     dispatch(changeSearchValue(""));
   }, []);
+
+  const getBySearch = async () => {
+    const searchSplitName = delete_special_characters(searchValue).split(" ");
+    if (boardgames) {
+      const boardgame_searched_list = boardgames
+        .map((boardgame) => {
+          let score = 0;
+          const boardgameSplitedName = delete_special_characters(
+            boardgame.webname
+          ).split(" ");
+
+          if (boardgameSplitedName[0].startsWith(searchSplitName[0])) {
+            score += 100;
+          }
+          score += boardgameSplitedName
+            .map((word) => {
+              return searchSplitName
+                .map((searchWord) => {
+                  return word.startsWith(searchWord) ? 15 : 0;
+                })
+                .reduce((curr, acc) => curr + acc, 0);
+            })
+            .reduce((curr, acc) => curr + acc, 0);
+          score += boardgameSplitedName
+            .map((boardgameWord) => {
+              return searchSplitName
+                .map((searchWord) => {
+                  return boardgameWord.includes(searchWord) ? 5 : 0;
+                })
+                .reduce((curr, acc) => curr + acc, 0);
+            })
+            .reduce((curr, acc) => curr + acc, 0);
+
+          return {
+            type: "boardgame",
+            element: boardgame,
+            score,
+          };
+        })
+        .filter(({ score }) => score > 0)
+        .sort((boardgame1, boardgame2) => {
+          return boardgame1.score >= boardgame2.score ? -1 : 1;
+        });
+      setSearchedList(boardgame_searched_list);
+    }
+  };
+
+  useEffect(() => {
+    getBySearch();
+  }, [searchValue]);
+
   return (
     <>
       {searchValue !== "" && (
@@ -66,7 +114,7 @@ export default function Home() {
               }}
             >
               <List styles={{ width: "90%" }}>
-                {list.map((element) => (
+                {searchedList.map(({ element, type }) => (
                   <div
                     sx={{
                       display: "flex",
