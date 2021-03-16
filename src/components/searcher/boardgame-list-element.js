@@ -33,7 +33,8 @@ export default function BoardgameListElement({ boardgame, styles }) {
           objectFit: "contain",
           width: "100%",
           height: `calc(${height} - 15px)`,
-          maxHeight: "100%",
+          maxHeight: styles.maxHeight,
+          maxWidth: styles.maxWidth,
         }}
       ></BoardgameImage>
 

@@ -5,15 +5,18 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import search_icon from "../../assets/svg/search.svg";
 import { changeSearchValue } from "src/redux/actions/search";
+import { useState } from "react";
 
 export default function Searcher({
   styles,
+  defaultValue = "",
   defaultText = "Buscar en 7meeples.es",
+  onChangeValue = () => {},
 }) {
-  const dispatch = useDispatch();
-  const value = useSelector((state) => state.searchReducer.searchString);
+  const [value, SetValue] = useState(defaultValue);
   const onChange = (event) => {
-    dispatch(changeSearchValue(event.target.value));
+    onChangeValue(event.target.value);
+    SetValue(event.target.value);
   };
 
   return (
@@ -23,12 +26,12 @@ export default function Searcher({
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+        backgroundColor: "#ffffff00",
         ...styles,
       }}
     >
       <div
         sx={{
-          backgroundColor: "white",
           position: "relative",
           width: "90%",
           borderRadius: "87px",
@@ -37,17 +40,16 @@ export default function Searcher({
           justifyItems: "center",
           alignItems: "center",
           rowGap: "10px",
+          backgroundColor: "white",
         }}
       >
         <input
           sx={{
-            zIndex: "11",
             margin: "10px",
             width: "100%",
             height: "24px",
             border: "0",
             outline: "none",
-            backgroundColor: "#F7F7F7",
             paddingLeft: "30px",
             fontFamily: "Quicksand",
             fontSize: "16px",

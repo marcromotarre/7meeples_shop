@@ -27,7 +27,6 @@ export default function SearchList({ styles }) {
       </style>
       <div
         sx={{
-          zIndex: "-1",
           display: "grid",
           alignItems: "center",
           justifyItems: "center",
