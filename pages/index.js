@@ -16,11 +16,15 @@ import { changeSearchValue } from "src/redux/actions/search";
 import List from "src/components/common/list/list";
 import { delete_special_characters } from "src/utils/name";
 import BoardgameListElement from "src/components/searcher/boardgame-list-element";
+import DesignerListElement from "src/components/searcher/designer-list-element";
+
 import { levenshtein } from "../src/utils/levenstein";
+import { get_search_points } from "src/utils/texts";
 
 export default function Home() {
   const dispatch = useDispatch();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
+  const designers = useSelector((state) => state.designersReducer.designers);
   const searchValue = useSelector((state) => state.searchReducer.searchString);
   const [searchedList, setSearchedList] = useState([]);
 
@@ -29,93 +33,35 @@ export default function Home() {
   }, []);
 
   const getBySearch = async () => {
-    const searchSplitName = delete_special_characters(searchValue).split(" ");
-    if (boardgames) {
-      const boardgame_searched_list = boardgames
-        .map((boardgame) => {
-          let score = 0;
-          const boardgameSplitedName = delete_special_characters(
-            boardgame.webname
-          ).split(" ");
-
-          if (boardgameSplitedName[0].startsWith(searchSplitName[0])) {
-            score += 100;
-          }
-
-          score += boardgameSplitedName
-            .map((word) => {
-              return searchSplitName
-                .map((searchWord) => {
-                  return word.startsWith(searchWord) ? 15 : 0;
-                })
-                .reduce((curr, acc) => curr + acc, 0);
-            })
-            .reduce((curr, acc) => curr + acc, 0);
-
-          score += boardgameSplitedName
-            .map((boardgameWord) => {
-              return searchSplitName
-                .map((searchWord) => {
-                  return boardgameWord.includes(searchWord) ? 5 : 0;
-                })
-                .reduce((curr, acc) => curr + acc, 0);
-            })
-            .reduce((curr, acc) => curr + acc, 0);
-
-          score += boardgameSplitedName
-            .map((boardgameWord) => {
-              return searchSplitName
-                .map((searchWord) => {
-                  const levensteinDistance = levenshtein(
-                    boardgameWord,
-                    searchWord
-                  );
-                  if (levensteinDistance === 0) {
-                    return 15;
-                  } else if (levensteinDistance === 1) {
-                    return 10;
-                  } else if (levensteinDistance === 2) {
-                    return 3;
-                  } else if (levensteinDistance === 3) {
-                    return 1;
-                  }
-                  return 0;
-                })
-                .reduce((curr, acc) => curr + acc, 0);
-            })
-            .reduce((curr, acc) => curr + acc, 0);
-
-          return {
-            type: "boardgame",
-            element: boardgame,
-            score,
-          };
-        })
-        .filter(({ score }) => score > 0)
-        .sort((boardgame1, boardgame2) => {
-          return boardgame1.score >= boardgame2.score ? -1 : 1;
-        });
-      console.log(boardgame_searched_list);
-      setSearchedList(boardgame_searched_list);
-    }
-
-    /*const boardgame_searched_list = boardgames
+    const boardgame_searched_list = boardgames
       .map((boardgame) => {
         return {
           type: "boardgame",
-          leventeinDistance: levenshtein(
-            delete_special_characters(boardgame.webname),
-            delete_special_characters(searchValue)
-          ),
           element: boardgame,
+          score: get_search_points(boardgame.webname, searchValue),
         };
       })
+      .filter(({ score }) => score > 0);
+
+    const desginers_searched_list = designers
+      .map((designer) => {
+        return {
+          type: "designer",
+          element: designer,
+          score: get_search_points(designer.name, searchValue),
+        };
+      })
+      .filter(({ score }) => score > 0);
+
+    const total_searched_list = [
+      ...boardgame_searched_list,
+      ...desginers_searched_list,
+    ]
       .sort((boardgame1, boardgame2) => {
-        return boardgame1.leventeinDistance >= boardgame2.leventeinDistance
-          ? 1
-          : -1;
-      });
-    setSearchedList(boardgame_searched_list);*/
+        return boardgame1.score >= boardgame2.score ? -1 : 1;
+      })
+      .filter(({}, index) => index < 10);
+    setSearchedList(total_searched_list);
   };
 
   useEffect(() => {
@@ -169,10 +115,19 @@ export default function Home() {
                       width: "100%",
                     }}
                   >
-                    <BoardgameListElement
-                      styles={{ width: "100%", height: "50px" }}
-                      boardgame={element}
-                    ></BoardgameListElement>
+                    {type === "boardgame" && (
+                      <BoardgameListElement
+                        styles={{ width: "100%", height: "50px" }}
+                        element={element}
+                      ></BoardgameListElement>
+                    )}
+                    {type === "designer" && (
+                      <DesignerListElement
+                        styles={{ width: "100%", height: "50px" }}
+                        element={element}
+                      ></DesignerListElement>
+                    )}
+
                     <div
                       sx={{
                         height: "1px",

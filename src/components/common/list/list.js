@@ -9,6 +9,7 @@ export default function List({
   styles,
   children,
   defaultNumberElements = children.length,
+  betweenElementsGap = 0,
 }) {
   const [page, setPage] = useState(0);
   const addPage = () => {
@@ -56,7 +57,7 @@ export default function List({
               width: "100%",
               justifyItems: "center",
               alignItems: "center",
-              rowGap: "10px",
+              rowGap: betweenElementsGap,
             }}
           >
             {pagedChildrenToShow.map((element, index) => (

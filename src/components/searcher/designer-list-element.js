@@ -1,20 +1,20 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import BoardgameImage from "../board-games/boardgame-image";
+import DesignerImage from "../common/images/designer-image";
 import { useRouter } from "next/router";
 
-export default function BoardgameListElement({ element, styles }) {
-  const { imageDefault, webname, id } = element;
+export default function DesignerListElement({ element, styles }) {
+  const { id, name } = element;
   const height = styles?.height ? styles.height : "100%";
 
   const router = useRouter();
-  const onClickBoardgame = () => {
-    router.push(`/juego/${id}`);
+  const onClickDesginer = () => {
+    router.push(`/autores/${id}(${name})`);
   };
   return (
     <div
-      onClick={onClickBoardgame}
+      onClick={onClickDesginer}
       sx={{
         display: "grid",
         width: "100%",
@@ -24,21 +24,18 @@ export default function BoardgameListElement({ element, styles }) {
         ...styles,
       }}
     >
-      <BoardgameImage
-        name={webname}
-        imageDefault={imageDefault}
+      <DesignerImage
+        name={name}
         styles={{
           justifySelf: "center",
           alignSelf: "center",
           objectFit: "contain",
           width: "100%",
-          height: `calc(${height} - 15px)`,
           maxHeight: styles.maxHeight,
           maxWidth: styles.maxWidth,
         }}
-      ></BoardgameImage>
-
-      <div sx={{ justifySelf: "start", alignSelf: "center" }}>{webname}</div>
+      ></DesignerImage>
+      <div sx={{ justifySelf: "start", alignSelf: "center" }}>{name}</div>
     </div>
   );
 }
