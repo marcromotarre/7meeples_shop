@@ -17,7 +17,7 @@ export default function SectionDesigners({ designers = [] }) {
   );
 
   return (
-    <Section icon={icon}>
+    <Section icon={icon} iconStyles={{ marginLeft: "6px" }}>
       <div
         sx={{
           width: "100%",

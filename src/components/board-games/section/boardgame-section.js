@@ -3,7 +3,12 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 
-export default function Section({ icon, children, onClick = () => {} }) {
+export default function Section({
+  icon,
+  children,
+  onClick = () => {},
+  iconStyles = {},
+}) {
   return (
     <div
       onClick={onClick}
@@ -27,6 +32,7 @@ export default function Section({ icon, children, onClick = () => {} }) {
             width: "30px",
             height: "30px",
             alignSelf: "center",
+            ...iconStyles,
           }}
           src={icon}
         />

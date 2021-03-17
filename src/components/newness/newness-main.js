@@ -8,6 +8,7 @@ import { get_newness } from "src/backend/newness";
 import { useSelector } from "react-redux";
 import Loading from "../common/loading/loading";
 import BoardgameList from "../board-games/board-games-list";
+import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 
 export default function NewnessMain() {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
@@ -72,6 +73,13 @@ export default function NewnessMain() {
         <BoardgameList
           styles={{ width: "80%" }}
           boardgames={newnessCompleteInfo}
+          attributes={[BOARDGAME_ATTRIBUTES.MORE]}
+          moreAttributes={[
+            BOARDGAME_ATTRIBUTES.PLAY_TIME,
+            BOARDGAME_ATTRIBUTES.AGE,
+            BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
+            BOARDGAME_ATTRIBUTES.WEIGHT,
+          ]}
         ></BoardgameList>
       )}
       <div sx={{ height: "50px" }}></div>
