@@ -10,7 +10,7 @@ import BoardgamesList from "./board-games-list";
 
 import BoardgameSection from "./section/boardgame-section-max";
 import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
-import BoardgameSectionWeight from "./section/boardgaame-section-weight";
+import BoardgameSectionWeight from "./section/boardgame-section-weight";
 
 import BoardgameSectionDesigners from "./section/boardgame-section-designers";
 import BoardgameSectionMechanisms from "./section/boardgame-section-mechanisms";

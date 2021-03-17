@@ -15,6 +15,7 @@ import DesignerButton from "../../../src/components/designers/designer";
 import DesignerImage from "../../../src/components/common/images/designer-image";
 import { eliminate_duplicates } from "src/utils/array";
 import Button from "src/components/common/buttons/button";
+import { BOARDGAME_ATTRIBUTES } from "./../../../src/components/board-games/utils";
 
 export default function Designers() {
   const [designer, setDesigner] = useState();
@@ -138,6 +139,17 @@ export default function Designers() {
             <BoardgameList
               styles={{ width: "80%" }}
               boardgames={boardgames}
+              attributes={[
+                BOARDGAME_ATTRIBUTES.DESIGNERS,
+                BOARDGAME_ATTRIBUTES.MORE,
+              ]}
+              moreAttributes={[
+                BOARDGAME_ATTRIBUTES.DESIGNERS,
+                BOARDGAME_ATTRIBUTES.PLAY_TIME,
+                BOARDGAME_ATTRIBUTES.AGE,
+                BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
+                BOARDGAME_ATTRIBUTES.WEIGHT,
+              ]}
             ></BoardgameList>
           </div>
           <div sx={{ height: "50px" }}></div>

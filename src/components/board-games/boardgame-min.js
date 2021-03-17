@@ -2,46 +2,31 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
-import { get_boardgames } from "./../../backend/boardgames";
-import Section from "./section/boardgame-section";
-import BoardgameSectionWeight from "./section/boardgaame-section-weight";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
-
-import age_icon from "../../assets/svg/sections/age.svg";
-import play_time_icon from "../../assets/svg/sections/play-time.svg";
-import number_of_players_icon from "../../assets/svg/sections/number-of-players.svg";
-import weight_icon from "../../assets/svg/sections/weight.svg";
-
-import number_of_players_best_icon from "../../assets/svg/best.svg";
-import number_of_players_not_recommended_icon from "../../assets/svg/not-recommended.svg";
-
-import {
-  play_time_string,
-  weight_string,
-  age_string,
-  round_weight,
-} from "./utils";
+import { get_min_section } from "./section/utils";
 import { IMAGES_REPOSITORY } from "src/constants";
+import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
 
-export default function BoardgameMin({ boardgame, onClick }) {
+export default function BoardgameMin({
+  attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
+  moreAttributes = [],
+  boardgame,
+  onClick,
+}) {
   const {
     id,
     webname: name,
     average,
-    age,
     numVotes,
     year,
-    weight,
-    playTimeMin,
-    playTimeMax,
-    numberOfPlayersNotRecommended,
-    numberOfPlayersBest,
-    numberOfPlayers,
-    reduced = false,
     imageDefault,
   } = boardgame;
+
+  const [showMore, setShowMore] = useState(false);
+
+  const clickOnMore = () => {};
 
   const onClickBoardgame = () => {
     onClick(id);
@@ -52,12 +37,13 @@ export default function BoardgameMin({ boardgame, onClick }) {
     backgroundColor: "rgba(181, 181, 181, 0.5)",
   };
 
-  const section_fontSize = "17px";
   const [showDefaultImage, setShowDefaultImage] = useState(false);
 
   const onImageError = () => {
     if (!showDefaultImage) setShowDefaultImage(true);
   };
+
+  const showAttributes = showMore ? moreAttributes : attributes;
 
   return (
     <div
@@ -99,96 +85,16 @@ export default function BoardgameMin({ boardgame, onClick }) {
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
       <BoardgameName name={name} year={year} />
       <div sx={{ width: "100%" }}>
-        {!reduced && <div sx={separator}></div>}
         <div sx={{ width: "100%" }}>
-          {!reduced && (
+          {showAttributes.map((attribute) => (
             <>
-              <Section icon={play_time_icon}>
-                <span sx={{ fontSize: section_fontSize }}>
-                  {play_time_string(playTimeMin, playTimeMax)}
-                </span>
-              </Section>
-              <div sx={separator}></div>{" "}
-            </>
-          )}
-          {!reduced && (
-            <>
-              <Section icon={age_icon}>
-                <span sx={{ fontSize: section_fontSize }}>
-                  {age_string(age)}
-                </span>
-              </Section>
               <div sx={separator}></div>
+              {get_min_section({
+                attribute,
+                values: { ...boardgame, onClickMore: () => setShowMore(true) },
+              })}
             </>
-          )}
-          {!reduced && (
-            <>
-              <Section icon={number_of_players_icon}>
-                <div
-                  sx={{
-                    display: "grid",
-                    gridAutoFlow: "column",
-                    marginLeft:
-                      numberOfPlayersNotRecommended.includes(
-                        numberOfPlayers[0]
-                      ) || numberOfPlayersBest.includes(numberOfPlayers[0])
-                        ? "0"
-                        : "-10px",
-                  }}
-                >
-                  {numberOfPlayers.slice(0, 8).map((numPlayers) => (
-                    <div
-                      key={numPlayers}
-                      sx={{
-                        display: "flex",
-                        width: "30px",
-                        height: "30px",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <span
-                        sx={{
-                          justifySelf: "center",
-                          alignSelf: "center",
-                          fontSize: section_fontSize,
-                        }}
-                      >
-                        {numPlayers}
-                      </span>
-                      {numberOfPlayersBest.includes(numPlayers) && (
-                        <img
-                          sx={{
-                            position: "absolute",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                          src={number_of_players_best_icon}
-                        ></img>
-                      )}
-                      {numberOfPlayersNotRecommended.includes(numPlayers) && (
-                        <img
-                          sx={{
-                            position: "absolute",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                          src={number_of_players_not_recommended_icon}
-                        ></img>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </Section>
-
-              <div sx={separator}></div>
-            </>
-          )}
-          {!reduced && (
-            <Section icon={weight_icon}>
-              <BoardgameSectionWeight weight={weight}></BoardgameSectionWeight>
-            </Section>
-          )}
+          ))}
         </div>
       </div>
     </div>

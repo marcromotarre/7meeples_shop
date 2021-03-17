@@ -1,3 +1,19 @@
+export const BOARDGAME_ATTRIBUTES = {
+  PLAY_TIME: 0,
+  AGE: 1,
+  NUMBER_OF_PLAYERS: 2,
+  WEIGHT: 3,
+  DESIGNERS: 4,
+  MORE: 5,
+};
+
+export const DEFAULT_BOARDGAME_ATTRIBUTES = [
+  BOARDGAME_ATTRIBUTES.PLAY_TIME,
+  BOARDGAME_ATTRIBUTES.AGE,
+  BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
+  BOARDGAME_ATTRIBUTES.WEIGHT,
+];
+
 export const play_time_string = (play_time_min, play_time_max) =>
   play_time_min === play_time_max
     ? `${play_time_min} min`

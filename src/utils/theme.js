@@ -54,6 +54,13 @@ export default {
         margin: "0",
         width: "fit-content",
       },
+      span: {
+        fontSize: "17px",
+        fontWeight: "lighter",
+        padding: "0",
+        margin: "0",
+        width: "fit-content",
+      },
       // uses the theme values provided above
     },
   },

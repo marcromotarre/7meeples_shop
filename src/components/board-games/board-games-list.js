@@ -8,11 +8,14 @@ import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroller";
 
 import { getDevice, DEVICES } from "../../../utils/media-querys";
+import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 
 export default function GamesList({
   boardgames,
   styles = {},
   clickOnBoardGame = () => {},
+  attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
+  moreAttributes = [],
 }) {
   const device = getDevice();
   const [boardgamesRows, setBoardgamesRows] = useState();
@@ -178,6 +181,8 @@ export default function GamesList({
                           key={boardgame?.id}
                           onClick={onClickBoardgame}
                           boardgame={boardgame}
+                          attributes={attributes}
+                          moreAttributes={moreAttributes}
                         />
                       </div>
                     )}
