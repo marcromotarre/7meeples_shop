@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import DesignerImage from "../common/images/designer-image";
 
 export default function Designer({ designer, onClick, styles, border = "1" }) {
+  console.log("styles", styles);
   const router = useRouter();
   const { name } = designer;
 
@@ -33,7 +34,7 @@ export default function Designer({ designer, onClick, styles, border = "1" }) {
     >
       <DesignerImage
         styles={{ marginLeft: "5px" }}
-        border={3}
+        border={border}
         name={designer.name}
       ></DesignerImage>
       <h3 sx={{ textAlign: "center" }}>{name}</h3>

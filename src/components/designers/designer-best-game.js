@@ -9,7 +9,7 @@ import awards_icon from "../../assets/svg/categories/icon.svg";
 import BoardgameMin from "../board-games/boardgame-min";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 
-export default function DesignerBestGame({ designer, boardgame }) {
+export default function DesignerBestGame({ styles, designer, boardgame }) {
   console.log(boardgame);
   return (
     <div
@@ -20,6 +20,7 @@ export default function DesignerBestGame({ designer, boardgame }) {
         alignItems: "center",
         justifyContent: "center",
         rowGap: "10px",
+        ...styles,
       }}
     >
       <div

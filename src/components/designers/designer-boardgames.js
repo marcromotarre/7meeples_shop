@@ -9,7 +9,7 @@ import awards_icon from "../../assets/svg/categories/icon.svg";
 import BoardgameList from "../board-games/board-games-list";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 
-export default function DesignerBoardgames({ designer, boardgames }) {
+export default function DesignerBoardgames({ styles, designer, boardgames }) {
   return (
     <div
       sx={{
@@ -19,6 +19,7 @@ export default function DesignerBoardgames({ designer, boardgames }) {
         alignItems: "center",
         justifyContent: "center",
         rowGap: "10px",
+        ...styles,
       }}
     >
       <div

@@ -3,7 +3,7 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import DesignerWorkedWithList from "./designer-worked-with-list";
-export default function DesignerWorkedWith({ designers = [] }) {
+export default function DesignerWorkedWith({ styles, designers = [] }) {
   const separator = {
     width: "100%",
     height: "0.05em",
@@ -20,6 +20,7 @@ export default function DesignerWorkedWith({ designers = [] }) {
           width: "80%",
           justifyItems: "center",
           alignItems: "center",
+          ...styles,
         }}
       >
         <div sx={separator}></div>

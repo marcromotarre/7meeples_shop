@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import back_button_icon from "../../assets/svg/arrow-back.svg";
 import { useRouter } from "next/router";
 
-export default function DesignerGoBackButton() {
+export default function DesignerGoBackButton({ styles }) {
   const router = useRouter();
   const clickOnGoBackButton = () => {
     router.push("/autores/");
@@ -17,6 +17,7 @@ export default function DesignerGoBackButton() {
         display: "grid",
         gridTemplateColumns: "25px auto",
         columnGap: "10px",
+        ...styles,
       }}
     >
       <img

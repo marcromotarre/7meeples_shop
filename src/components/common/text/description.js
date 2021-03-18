@@ -2,7 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-export default function Description({ description = "" }) {
+export default function Description({ styles, description = "" }) {
   const separator = {
     width: "100%",
     height: "0.05em",
@@ -19,6 +19,7 @@ export default function Description({ description = "" }) {
           width: "80%",
           justifyItems: "center",
           alignItems: "center",
+          ...styles,
         }}
       >
         <div sx={separator}></div>

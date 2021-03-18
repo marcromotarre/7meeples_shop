@@ -30,6 +30,7 @@ export default function Designers() {
   const all_boardgames = useSelector(
     (state) => state.boardgamesReducer.boardgames
   );
+
   useEffect(() => {
     if (router.query.id && all_designers && all_boardgames) {
       const designer = all_designers.find(
@@ -66,42 +67,59 @@ export default function Designers() {
   }, [router, all_designers, all_boardgames]);
 
   return (
-    <div
-      sx={{
-        display: "grid",
-        width: "100%",
-        justifyItems: "center",
-        alignItems: "center",
-        gridTemplateColumns: "100%",
-        rowGap: "20px",
-      }}
-    >
+    <>
       <div sx={{ height: "10px" }}></div>
-      <DesignerGoBackButton></DesignerGoBackButton>
-      {designer && boardgames.length > 0 && (
-        <>
-          <DesignerTitle></DesignerTitle>
-          <Designer
-            border={3}
-            styles={{ width: "40%" }}
-            designer={designer}
-          ></Designer>
-          {designer.description && (
-            <Description description={designer.description} />
-          )}
-          <DesignerBestGame
-            designer={designer}
-            boardgame={boardgames[0]}
-          ></DesignerBestGame>
-          <DesignerWorkedWith
-            designers={designers_worked_with}
-          ></DesignerWorkedWith>
-          <DesignerBoardgames
-            designer={designer}
-            boardgames={boardgames}
-          ></DesignerBoardgames>
-        </>
-      )}
-    </div>
+      <div
+        sx={{
+          display: "grid",
+          width: "100%",
+          justifyItems: "center",
+          alignItems: "center",
+          gridTemplateColumns: ["100%", "50% 50%"],
+          gridTemplateRows: [, "60px 40px 150px auto"],
+          gridTemplateAreas: [
+            `"back-button" "title" "designer" "description" "best-game" "worked-width" "boardgames"`,
+            `"back-button ." "title best-game" "designer best-game" "description best-game" "worked-width worked-width" "boardgames boardgames" `,
+          ],
+          rowGap: "20px",
+        }}
+      >
+        <DesignerGoBackButton
+          styles={{ gridArea: "back-button" }}
+        ></DesignerGoBackButton>
+        {designer && boardgames.length > 0 && (
+          <>
+            <DesignerTitle styles={{ gridArea: "title" }}></DesignerTitle>
+            <Designer
+              border={3}
+              styles={{ gridArea: "designer", width: "40%" }}
+              designer={designer}
+            ></Designer>
+            {designer.description && (
+              <Description
+                styles={{ gridArea: "description", alignSelf: [, "start"] }}
+                description={designer.description}
+              />
+            )}
+            <DesignerBestGame
+              styles={{ gridArea: "best-game" }}
+              designer={designer}
+              boardgame={boardgames[0]}
+            ></DesignerBestGame>
+            <DesignerWorkedWith
+              desginersPerRow={[3, 5]}
+              styles={{ gridArea: "worked-width" }}
+              designers={designers_worked_with}
+            ></DesignerWorkedWith>
+            <DesignerBoardgames
+              styles={{ gridArea: "boardgames" }}
+              designer={designer}
+              boardgames={boardgames}
+            ></DesignerBoardgames>
+          </>
+        )}
+      </div>
+      <div sx={{ height: "10px" }}></div>
+    </>
   );
 }

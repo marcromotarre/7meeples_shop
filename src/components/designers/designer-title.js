@@ -5,7 +5,7 @@ import designers_icon from "../../assets/svg/sections/designers.svg";
 
 import { useRouter } from "next/router";
 
-export default function DesignerTilte() {
+export default function DesignerTilte({ styles }) {
   const router = useRouter();
   const clickOnGoBackButton = () => {
     router.push("/autores/");
@@ -18,6 +18,7 @@ export default function DesignerTilte() {
         alignItems: "center",
         gridTemplateColumns: "auto auto",
         columnGap: "5px",
+        ...styles,
       }}
     >
       <img sx={{ height: "35px" }} src={designers_icon} />
