@@ -6,7 +6,7 @@ import user_male_icon from "../../../assets/svg/user-male.svg";
 import { useState } from "react";
 import { s3_name } from "../../../utils/name";
 
-export default function DesignerImage({ name, styles }) {
+export default function DesignerImage({ name, styles, border }) {
   const [showDefaultImage, setShowDefaultImage] = useState(false);
   const onImageError = () => {
     if (!showDefaultImage) setShowDefaultImage(true);
@@ -15,7 +15,7 @@ export default function DesignerImage({ name, styles }) {
     <img
       onError={onImageError}
       sx={{
-        border: `${showDefaultImage ? "none" : "1px solid black"}`,
+        border: `${showDefaultImage ? "none" : `${border}px solid black`}`,
         borderRadius: "50%",
         width: "80%",
         ...styles,

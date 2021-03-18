@@ -6,8 +6,9 @@ import { get_boardgames } from "./../../backend/boardgames";
 import Boardgame from "./boardgame-min";
 import { useRouter } from "next/router";
 import InfiniteScroll from "react-infinite-scroller";
+import { useSelector } from "react-redux";
 
-import { getDevice, DEVICES } from "../../../utils/media-querys";
+import { DEVICES } from "../../../utils/media-querys";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 
 export default function GamesList({
@@ -17,9 +18,8 @@ export default function GamesList({
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
   moreAttributes = [],
 }) {
-  const device = getDevice();
   const [boardgamesRows, setBoardgamesRows] = useState();
-
+  const device = useSelector((state) => state.deviceReducer.device);
   useEffect(() => {
     setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
     if (device === DEVICES.MOBILE) {

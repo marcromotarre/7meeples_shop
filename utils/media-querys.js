@@ -1,9 +1,9 @@
 import { useCallback, useState, useEffect } from "react";
 
-export const MOBILE_SIZE = 480;
-export const TABLET_SIZE = 768;
+export const MOBILE_SIZE = 640;
+export const TABLET_SIZE = 832;
 export const LAPTOP_SIZE = 1024;
-export const DESKTOP_SIZE = 1200;
+export const DESKTOP_SIZE = 1680;
 export const DESKTOP_LARGE_SIZE = 9999;
 
 export const MOBILE = "MOBILE";

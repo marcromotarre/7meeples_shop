@@ -5,6 +5,7 @@ import designersReducer from "./designers";
 import mechanismsReducer from "./mechanisms";
 import menuReducer from "./menu";
 import searchReducer from "./search";
+import deviceReducer from "./device";
 
 export default combineReducers({
   boardgamesReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   mechanismsReducer,
   menuReducer,
   searchReducer,
+  deviceReducer,
 });

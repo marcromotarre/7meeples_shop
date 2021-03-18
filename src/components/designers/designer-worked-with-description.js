@@ -2,7 +2,8 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-export default function Description({ description = "" }) {
+import DesignerWorkedWithList from "./designer-worked-with-list";
+export default function DesignerWorkedWith({ designers = [] }) {
   const separator = {
     width: "100%",
     height: "0.05em",
@@ -24,8 +25,10 @@ export default function Description({ description = "" }) {
         <div sx={separator}></div>
 
         <span sx={{ fontWeight: "100", textAlign: "center", width: "80%" }}>
-          {description}
+          dj cdhjdc jhd j djd cjdjkcfrkjc cnj jcd dj cdbj cdc cd dbndc dbn
+          dcnbcdd cdbm cdm cdmdc b cdm
         </span>
+        <DesignerWorkedWithList designers={designers}></DesignerWorkedWithList>
         <div sx={separator}></div>
       </div>
     </>
