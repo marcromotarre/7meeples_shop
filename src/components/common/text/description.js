@@ -16,7 +16,7 @@ export default function Description({ styles, description = "" }) {
           display: "grid",
           rowGap: "20px",
           flexDirection: "column",
-          width: "80%",
+          width: "95%",
           justifyItems: "center",
           alignItems: "center",
           ...styles,

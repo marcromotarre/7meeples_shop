@@ -18,7 +18,7 @@ export default function DesignerBoardgames({ styles, designer, boardgames }) {
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "center",
-        rowGap: "10px",
+        rowGap: "30px",
         ...styles,
       }}
     >
@@ -76,7 +76,7 @@ export default function DesignerBoardgames({ styles, designer, boardgames }) {
         }}
       >
         <BoardgameList
-          styles={{ width: "80%" }}
+          styles={{ width: "100%" }}
           boardgames={boardgames}
           attributes={[
             BOARDGAME_ATTRIBUTES.DESIGNERS,

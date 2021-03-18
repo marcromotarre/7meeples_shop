@@ -17,7 +17,9 @@ export default function DesignerImage({ name, styles, border }) {
       sx={{
         border: `${showDefaultImage ? "none" : `${border}px solid black`}`,
         borderRadius: "50%",
-        width: "80%",
+        width: "auto",
+        height: "auto",
+        maxWidth: "100%",
         ...styles,
       }}
       src={

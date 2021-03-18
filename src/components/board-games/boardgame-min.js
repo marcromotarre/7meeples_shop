@@ -14,6 +14,7 @@ export default function BoardgameMin({
   moreAttributes = [],
   boardgame,
   onClick,
+  styles,
 }) {
   const {
     id,
@@ -56,6 +57,8 @@ export default function BoardgameMin({
         justifyItems: "center",
         alignItems: "center",
         rowGap: "10px",
+        maxWidth: "400px",
+        ...styles,
       }}
       onClick={onClickBoardgame}
     >

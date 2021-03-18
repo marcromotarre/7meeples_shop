@@ -24,6 +24,7 @@ export default function Designer({ designer, onClick, styles, border = "1" }) {
     <div
       onClick={clickOnDesigner}
       sx={{
+        width: "100%",
         display: "grid",
         gridTemplateColumns: "100%",
         justifyItems: "center",
@@ -33,7 +34,7 @@ export default function Designer({ designer, onClick, styles, border = "1" }) {
       }}
     >
       <DesignerImage
-        styles={{ marginLeft: "5px" }}
+        styles={{}}
         border={border}
         name={designer.name}
       ></DesignerImage>

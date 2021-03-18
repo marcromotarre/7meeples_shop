@@ -6,20 +6,6 @@ import Designer from "./designer";
 import { useSelector } from "react-redux";
 import { DEVICES } from "@utils/media-querys";
 export default function DesignerWorkedWith({ designers = [], styles }) {
-  const device = useSelector((state) => state.deviceReducer.device);
-
-  let designersPerRow = 3;
-  let desginerWidthPercentatge = 26;
-  if (device === DEVICES.TABLET || device === DEVICES.LAPTOP) {
-    designersPerRow = 5;
-    desginerWidthPercentatge = 15;
-  } else if (device === DEVICES.DESKTOP) {
-    designersPerRow = 5;
-  } else if (device === DEVICES.DESKTOP_LARGE) {
-    designersPerRow = 5;
-  } else if (device === DEVICES.DESKTOP_LARGE) {
-    designersPerRow = 5;
-  }
   return (
     <div
       sx={{
@@ -35,8 +21,8 @@ export default function DesignerWorkedWith({ designers = [], styles }) {
         <Designer
           border={3}
           styles={{
-            width: `${desginerWidthPercentatge}%`,
-            maxWidth: "100%",
+            width: `100%`,
+            maxWidth: "100px",
             marginBottom: "20px",
           }}
           designer={designer}

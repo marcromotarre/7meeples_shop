@@ -17,7 +17,6 @@ export default function DesignerWorkedWith({ styles, designers = [] }) {
           display: "grid",
           rowGap: "20px",
           flexDirection: "column",
-          width: "80%",
           justifyItems: "center",
           alignItems: "center",
           ...styles,
@@ -25,9 +24,9 @@ export default function DesignerWorkedWith({ styles, designers = [] }) {
       >
         <div sx={separator}></div>
 
-        <span sx={{ fontWeight: "100", textAlign: "center", width: "80%" }}>
+        <span sx={{ textAlign: "center" }}>
           dj cdhjdc jhd j djd cjdjkcfrkjc cnj jcd dj cdbj cdc cd dbndc dbn
-          dcnbcdd cdbm cdm cdmdc b cdm
+          dcnbcdd cdbm cdm cdmdc b cdmsnbdx xsb xxs xjs j b sj sxbsx sssbs
         </span>
         <DesignerWorkedWithList designers={designers}></DesignerWorkedWithList>
         <div sx={separator}></div>

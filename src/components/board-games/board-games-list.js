@@ -178,6 +178,7 @@ export default function GamesList({
                     {boardgame && (
                       <div sx={{ width: "100%" }} key={boardgame?.id}>
                         <Boardgame
+                          styles={{ maxWidth: "350px" }}
                           key={boardgame?.id}
                           onClick={onClickBoardgame}
                           boardgame={boardgame}

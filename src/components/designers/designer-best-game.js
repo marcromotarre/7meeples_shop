@@ -1,10 +1,6 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import designers_icon from "../../assets/svg/sections/designers.svg";
-import designers_icon_inverted from "../../assets/svg/sections/designers-inverted.svg";
-import DesignerImage from "../common/images/designer-image";
-import { useRouter } from "next/router";
 import awards_icon from "../../assets/svg/categories/icon.svg";
 import BoardgameMin from "../board-games/boardgame-min";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
@@ -15,10 +11,11 @@ export default function DesignerBestGame({ styles, designer, boardgame }) {
     <div
       sx={{
         display: "grid",
+        width: "100%",
         gridTemplateColumns: "100%",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center",
+        justifyItems: "center",
         rowGap: "10px",
         ...styles,
       }}
@@ -67,6 +64,7 @@ export default function DesignerBestGame({ styles, designer, boardgame }) {
         ></img>
       </div>
       <BoardgameMin
+        styles={{ width: "100%" }}
         boardgame={boardgame}
         attributes={[
           BOARDGAME_ATTRIBUTES.PLAY_TIME,

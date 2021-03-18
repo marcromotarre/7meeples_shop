@@ -36,10 +36,14 @@ export default function Designers() {
       const designer = all_designers.find(
         ({ id }) => id === parseInt(router.query.id)
       );
-      const boardgames = all_boardgames.filter(({ designers }) =>
-        designers.includes(designer.id)
-      );
-      console.log(boardgames);
+      const boardgames = all_boardgames
+        .filter(({ designers }) => designers.includes(designer.id))
+        .sort((boardgame1, boardgame2) => {
+          return boardgame1.numVotes / 1000 + boardgame1.average >
+            boardgame2.numVotes / 1000 + boardgame2.average
+            ? -1
+            : 1;
+        });
 
       const designers_worked_with_ids = eliminate_duplicates(
         boardgames
@@ -68,31 +72,37 @@ export default function Designers() {
 
   return (
     <>
-      <div sx={{ height: "10px" }}></div>
+      <div sx={{ height: ["10px", "20px", "30px"] }}></div>
       <div
         sx={{
           display: "grid",
           width: "100%",
           justifyItems: "center",
           alignItems: "center",
-          gridTemplateColumns: ["100%", "50% 50%"],
-          gridTemplateRows: [, "60px 40px 150px auto"],
-          gridTemplateAreas: [
-            `"back-button" "title" "designer" "description" "best-game" "worked-width" "boardgames"`,
-            `"back-button ." "title best-game" "designer best-game" "description best-game" "worked-width worked-width" "boardgames boardgames" `,
+          gridTemplateColumns: [
+            "10% 80% 10%",
+            "10% auto 350px 10%",
+            "100px auto auto 350px 100px",
           ],
-          rowGap: "20px",
+          gridTemplateRows: [, "60px 40px 200px auto", "60px 60px auto"],
+          gridTemplateAreas: [
+            `"back-button back-button ." ". title ." ". designer ." ". description ." ". best-game ." ". worked-width ." ". boardgames ."`,
+            `" . back-button . ." ". title best-game ." ". designer best-game. " " . description best-game . " " . worked-width worked-width ." ". boardgames boardgames ." `,
+            `" . back-button . best-game ." ". designer title best-game ." ". designer title best-game ." ". designer description best-game ." ". worked-width worked-width best-game ." ". boardgames boardgames boardgames ."`,
+          ],
+          rowGap: ["20px", "30px"],
+          columnGap: [,],
         }}
       >
         <DesignerGoBackButton
-          styles={{ gridArea: "back-button" }}
+          styles={{ marginLeft: "5%", gridArea: "back-button" }}
         ></DesignerGoBackButton>
         {designer && boardgames.length > 0 && (
           <>
             <DesignerTitle styles={{ gridArea: "title" }}></DesignerTitle>
             <Designer
               border={3}
-              styles={{ gridArea: "designer", width: "40%" }}
+              styles={{ height: "200px", gridArea: "designer", width: "40%" }}
               designer={designer}
             ></Designer>
             {designer.description && (
@@ -114,12 +124,12 @@ export default function Designers() {
             <DesignerBoardgames
               styles={{ gridArea: "boardgames" }}
               designer={designer}
-              boardgames={boardgames}
+              boardgames={boardgames.filter(({}, index) => index > 0)}
             ></DesignerBoardgames>
           </>
         )}
       </div>
-      <div sx={{ height: "10px" }}></div>
+      <div sx={{ height: "100px" }}></div>
     </>
   );
 }
