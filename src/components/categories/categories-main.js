@@ -10,7 +10,7 @@ import CategoriesList from "./categories-list";
 import awards_icon from "../../assets/svg/categories/icon.svg";
 import categories from "./data/categories";
 
-export default function CategoriesMain() {
+export default function CategoriesMain({ styles }) {
   return (
     <div
       sx={{
@@ -18,13 +18,12 @@ export default function CategoriesMain() {
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
-        rowGap: "10px",
+        rowGap: "25px",
+        height: "fit-content",
+        ...styles,
       }}
     >
-      <SectionTitle
-        title={"Los mejores por categorias"}
-        icon={awards_icon}
-      ></SectionTitle>
+      <SectionTitle title={"Categorias"} icon={awards_icon}></SectionTitle>
       <CategoriesList categories={categories}></CategoriesList>
     </div>
   );

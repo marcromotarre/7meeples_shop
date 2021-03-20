@@ -10,7 +10,7 @@ import Loading from "../common/loading/loading";
 import BoardgameList from "../board-games/board-games-list";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 
-export default function NewnessMain() {
+export default function NewnessMain({ styles }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
   const [newness, setNewness] = useState([]);
@@ -27,7 +27,6 @@ export default function NewnessMain() {
       }
       return a.year > b.year ? -1 : 1;
     });
-    console.log("orderedNewness", orderedNewness);
     setNewness(orderedNewness);
   };
 
@@ -61,17 +60,16 @@ export default function NewnessMain() {
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
-        rowGap: "10px",
+        rowGap: "25px",
+        height: "fit-content",
+        ...styles,
       }}
     >
-      <SectionTitle
-        title={"Las últimas novedades"}
-        icon={newness_icon}
-      ></SectionTitle>
+      <SectionTitle title={"Novedades"} icon={newness_icon}></SectionTitle>
       {loading && <Loading></Loading>}
       {!loading && (
         <BoardgameList
-          styles={{ width: "80%" }}
+          styles={{ width: "100%" }}
           boardgames={newnessCompleteInfo}
           attributes={[BOARDGAME_ATTRIBUTES.MORE]}
           moreAttributes={[

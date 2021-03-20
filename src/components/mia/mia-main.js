@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
 import { Button } from "../common/index";
 
-export default function MiaMain({ boardgame_id }) {
+export default function MiaMain({ styles, boardgame_id }) {
   return (
     <div
       sx={{
@@ -15,6 +15,8 @@ export default function MiaMain({ boardgame_id }) {
         justifyItems: "center",
         alignItems: "center",
         rowGap: "10px",
+        height: "fit-content",
+        ...styles,
       }}
     >
       <img sx={{ width: "40%" }} src={mia_title_icon}></img>
