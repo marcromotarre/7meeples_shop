@@ -26,6 +26,36 @@ export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." ". . best-categories . ." ". . newness . ."`;
 
+  const setPlatformInfo = () => {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf("safari") != -1) {
+      if (ua.indexOf("chrome") > -1) {
+        document.body.classList.add("chrome");
+      } else {
+        document.body.classList.add("safari");
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("DOMContentLoaded", () => {
+      setPlatformInfo();
+      var inputBox = document.querySelector(".safari #inputBox");
+      if (inputBox) {
+        inputBox.addEventListener("focus", function (e) {
+          document.body.classList.add("keyboard");
+          setTimeout(function () {
+            window.scrollTo(0, 0);
+          }, 200);
+        });
+
+        inputBox.addEventListener("blur", function (e) {
+          document.body.classList.remove("keyboard");
+        });
+      }
+    });
+  });
+
   return (
     <div
       sx={{
