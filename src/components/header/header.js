@@ -130,7 +130,7 @@ export default function Header() {
         className={headerExpandAnimationState}
         onAnimationEnd={animationHeaderExpandEnd}
         sx={{
-          position: "fixed",
+          position: "absolute",
           width: "100%",
           display: "flex",
           alignItems: "start",
@@ -149,6 +149,7 @@ export default function Header() {
         </style>
         <div
           sx={{
+            position: "fixed",
             width: "100%",
             height: "50px",
             display: "flex",
