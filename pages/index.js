@@ -76,13 +76,6 @@ export default function Home() {
         ],
       }}
     >
-      <style jsx global>
-        {`
-          body {
-            overflow: hidden;
-          }
-        `}
-      </style>
       <div
         sx={{
           width: "100%",

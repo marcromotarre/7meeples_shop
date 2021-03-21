@@ -76,6 +76,8 @@ export default function Searcher({
           borderRadius: "87px",
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
           display: "grid",
+          gridTemplateColumns: "30px auto 50px",
+          gridTemplateAreas: `". input icon"`,
           justifyItems: "center",
           alignItems: "center",
           rowGap: "10px",
@@ -84,15 +86,14 @@ export default function Searcher({
       >
         <input
           sx={{
-            margin: "10px",
             width: "100%",
-            height: "24px",
+            height: "44px",
             border: "0",
             outline: "none",
-            paddingLeft: "30px",
             fontFamily: "Quicksand",
             fontSize: "16px",
             backgroundColor: "#ffffff00",
+            gridArea: "input",
           }}
           value={value}
           onFocus={onFocus}
@@ -110,6 +111,7 @@ export default function Searcher({
               right: "calc(14px)",
               top: "calc(50% - 7.5px)",
               height: "15px",
+              gridArea: "icon",
             }}
             src={cancel_icon}
             alt="buscar"
@@ -122,6 +124,7 @@ export default function Searcher({
               right: "calc(10px)",
               top: "calc(50% - 12.5px)",
               height: "25px",
+              gridArea: "icon",
             }}
             src={search_icon}
             alt="buscar"
