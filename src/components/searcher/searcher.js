@@ -37,9 +37,17 @@ export default function Searcher({
   defaultValue = "",
   defaultText = "Buscar en 7meeples.es",
   onChangeValue = () => {},
+  onFocus = () => {},
+  onBlur = () => {},
 }) {
   const [value, SetValue] = useState(defaultValue);
   const onChange = (event) => {
+    if (value === "" && event.target.value !== "") {
+      onFocus();
+    }
+    if (value !== "" && event.target.value === "") {
+      onBlur();
+    }
     onChangeValue(event.target.value);
     SetValue(event.target.value);
   };
@@ -87,6 +95,7 @@ export default function Searcher({
             backgroundColor: "#ffffff00",
           }}
           value={value}
+          onFocus={onFocus}
           onChange={onChange}
           type="text"
           id="lname"

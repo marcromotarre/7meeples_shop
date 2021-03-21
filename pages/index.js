@@ -25,7 +25,12 @@ import { get_search_points } from "src/utils/texts";
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." ". . best-categories . ." ". . newness . ."`;
-
+  const onSearchFocus = () => {
+    console.log("focus");
+  };
+  const onSearchBlur = () => {
+    console.log("blur");
+  };
   const setPlatformInfo = () => {
     var ua = navigator.userAgent.toLowerCase();
     if (ua.indexOf("safari") != -1) {
@@ -71,6 +76,13 @@ export default function Home() {
         ],
       }}
     >
+      <style jsx global>
+        {`
+          body {
+            overflow: hidden;
+          }
+        `}
+      </style>
       <div
         sx={{
           width: "100%",
@@ -87,6 +99,8 @@ export default function Home() {
             position: searchValue === "" ? "relative" : "fixed",
           }}
           onChangeValue={(value) => setSearchValue(value)}
+          onFocus={onSearchFocus}
+          onBlur={onSearchBlur}
         />
         {searchValue && (
           <SearchList
