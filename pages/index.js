@@ -1,26 +1,13 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import styles from "../styles/Home.module.css";
-import Header from "../src/components/header/header";
-import BoardGamesList from "../src/components/board-games/board-games-list";
 import Mia from "../src/components/mia/mia-main";
 import CategoriesMain from "../src/components/categories/categories-main";
 import NewnessMain from "../src/components/newness/newness-main.js";
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchBoardgamesReq } from "src/redux/actions/boardgames";
 import Searcher from "src/components/searcher/searcher";
 import SearchList from "src/components/searcher/search-list";
-import { changeSearchValue } from "src/redux/actions/search";
-import List from "src/components/common/list/list";
-import { delete_special_characters } from "src/utils/name";
-import BoardgameListElement from "src/components/searcher/boardgame-list-element";
-import DesignerListElement from "src/components/searcher/designer-list-element";
 import SaleOfThe from "src/components/main/sale-of-the";
-
-import { levenshtein } from "../src/utils/levenstein";
-import { get_search_points } from "src/utils/texts";
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");

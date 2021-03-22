@@ -3,7 +3,30 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import DesignerWorkedWithList from "./designer-worked-with-list";
-export default function DesignerWorkedWith({ styles, designers = [] }) {
+import { get_common_boardgames } from "./utils";
+export default function DesignerWorkedWith({
+  styles,
+  designers = [],
+  boardgames,
+  ref_designer,
+}) {
+  const designers_boardgames = designers.map((designer) => {
+    return {
+      designer,
+      boardgames: get_common_boardgames({
+        boardgames,
+        designers: [ref_designer, designer],
+      }),
+    };
+  });
+  const text = `${
+    ref_designer.name
+  } ha trabajado con ${designers_boardgames.map(
+    ({ designer, boardgames }) =>
+      ` ${designer.name} (${boardgames.map(({ webname }, index) =>
+        index === 0 ? webname : ` ${webname}`
+      )})`
+  )}`;
   const separator = {
     width: "100%",
     height: "0.05em",
@@ -24,10 +47,7 @@ export default function DesignerWorkedWith({ styles, designers = [] }) {
       >
         <div sx={separator}></div>
 
-        <span sx={{ textAlign: "center" }}>
-          dj cdhjdc jhd j djd cjdjkcfrkjc cnj jcd dj cdbj cdc cd dbndc dbn
-          dcnbcdd cdbm cdm cdmdc b cdmsnbdx xsb xxs xjs j b sj sxbsx sssbs
-        </span>
+        <span sx={{ textAlign: "center" }}>{text}</span>
         <DesignerWorkedWithList designers={designers}></DesignerWorkedWithList>
         <div sx={separator}></div>
       </div>

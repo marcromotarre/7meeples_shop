@@ -15,9 +15,9 @@ export default function DesignerImage({ name, styles, border }) {
     <img
       onError={onImageError}
       sx={{
-        border: `${showDefaultImage ? "none" : `${border}px solid black`}`,
+        border: `${border}px solid black`,
         borderRadius: "50%",
-        width: "auto",
+        width: "100%",
         height: "auto",
         maxWidth: "100%",
         ...styles,

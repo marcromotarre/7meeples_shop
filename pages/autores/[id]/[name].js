@@ -117,9 +117,10 @@ export default function Designers() {
               boardgame={boardgames[0]}
             ></DesignerBestGame>
             <DesignerWorkedWith
-              desginersPerRow={[3, 5]}
+              ref_designer={designer}
               styles={{ gridArea: "worked-width" }}
               designers={designers_worked_with}
+              boardgames={boardgames}
             ></DesignerWorkedWith>
             <DesignerBoardgames
               styles={{ gridArea: "boardgames" }}

@@ -21,7 +21,7 @@ export default function DesignerWorkedWith({ designers = [], styles }) {
         <Designer
           border={3}
           styles={{
-            width: `100%`,
+            width: ["26%"],
             maxWidth: "100px",
             marginBottom: "20px",
           }}
