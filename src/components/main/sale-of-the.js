@@ -48,6 +48,7 @@ export default function SaleOfThe({ styles }) {
             alignItems: "center",
             justifyItems: "center",
             rowGap: "35px",
+            maxWidth: "350px",
           }}
         >
           <BoardgameMin

@@ -69,7 +69,11 @@ export default function Designers() {
       );
     }
   }, [router, all_designers, all_boardgames]);
-
+  console.log(
+    "designers_worked_with.length",
+    designers_worked_with.length,
+    designers_worked_with
+  );
   return (
     <>
       <div sx={{ height: ["10px", "20px", "30px"] }}></div>
@@ -81,17 +85,17 @@ export default function Designers() {
           alignItems: "center",
           gridTemplateColumns: [
             "10% 80% 10%",
-            "10% auto 350px 10%",
-            "100px auto auto 350px 100px",
+            "5% auto 270px 5%",
+            "5% auto 270px 5%",
           ],
-          gridTemplateRows: [, "60px 40px 200px auto", "60px 60px auto"],
+          gridTemplateRows: [, "60px 40px 200px auto", "60px 60px 240px"],
           gridTemplateAreas: [
             `"back-button back-button ." ". title ." ". designer ." ". description ." ". best-game ." ". worked-width ." ". boardgames ."`,
             `" . back-button . ." ". title best-game ." ". designer best-game. " " . description best-game . " " . worked-width worked-width ." ". boardgames boardgames ." `,
-            `" . back-button . best-game ." ". designer title best-game ." ". designer title best-game ." ". designer description best-game ." ". worked-width worked-width best-game ." ". boardgames boardgames boardgames ."`,
+            `" . back-button . ." ". title best-game ." ". designer best-game. " " . description best-game . " " . worked-width worked-width ." ". boardgames boardgames ." `,
           ],
-          rowGap: ["20px", "30px"],
-          columnGap: [,],
+          rowGap: ["20px", "30px", "30px"],
+          columnGap: [, "25px", "25px"],
         }}
       >
         <DesignerGoBackButton
@@ -102,7 +106,11 @@ export default function Designers() {
             <DesignerTitle styles={{ gridArea: "title" }}></DesignerTitle>
             <Designer
               border={3}
-              styles={{ height: "200px", gridArea: "designer", width: "40%" }}
+              styles={{
+                height: ["auto", "auto", "auto"],
+                gridArea: "designer",
+                width: ["40%", "150px", "200px"],
+              }}
               designer={designer}
             ></Designer>
             {designer.description && (
@@ -116,12 +124,14 @@ export default function Designers() {
               designer={designer}
               boardgame={boardgames[0]}
             ></DesignerBestGame>
-            <DesignerWorkedWith
-              ref_designer={designer}
-              styles={{ gridArea: "worked-width" }}
-              designers={designers_worked_with}
-              boardgames={boardgames}
-            ></DesignerWorkedWith>
+            {designers_worked_with.length > 0 && (
+              <DesignerWorkedWith
+                ref_designer={designer}
+                styles={{ gridArea: "worked-width" }}
+                designers={designers_worked_with}
+                boardgames={boardgames}
+              ></DesignerWorkedWith>
+            )}
             <DesignerBoardgames
               styles={{ gridArea: "boardgames" }}
               designer={designer}

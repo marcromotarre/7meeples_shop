@@ -11,7 +11,7 @@ export default function DesignerWorkedWith({ designers = [], styles }) {
       sx={{
         display: "flex",
         justifyContent: "space-evenly",
-        alignItems: "center",
+        alignItems: "start",
         flexWrap: "wrap",
         width: "100%",
         ...styles,

@@ -24,7 +24,7 @@ export default function GamesList({
     setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
     if (device === DEVICES.MOBILE) {
       setBoardgamesRows([{ boardgames: boardgames, page: 0 }]);
-    } else if (device === DEVICES.TABLET || device === DEVICES.LAPTOP) {
+    } else if (device === DEVICES.TABLET) {
       setBoardgamesRows([
         {
           boardgames: boardgames.filter((boardgame, index) => index % 2 === 0),
@@ -35,7 +35,7 @@ export default function GamesList({
           page: 0,
         },
       ]);
-    } else if (device === DEVICES.DESKTOP) {
+    } else if (device === DEVICES.LAPTOP) {
       setBoardgamesRows([
         {
           boardgames: boardgames.filter((boardgame, index) => index % 3 === 0),
@@ -50,7 +50,7 @@ export default function GamesList({
           page: 0,
         },
       ]);
-    } else if (device === DEVICES.DESKTOP_LARGE) {
+    } else if (device === DEVICES.DESKTOP) {
       setBoardgamesRows([
         {
           boardgames: boardgames.filter((boardgame, index) => index % 4 === 0),
@@ -116,11 +116,11 @@ export default function GamesList({
   const getWidthByDevice = () => {
     if (device === DEVICES.MOBILE) {
       return "100%";
-    } else if (device === DEVICES.TABLET || device === DEVICES.LAPTOP) {
+    } else if (device === DEVICES.TABLET) {
       return "calc(50% - 12.5px)";
-    } else if (device === DEVICES.DESKTOP) {
+    } else if (device === DEVICES.LAPTOP) {
       return "calc(33% - 16.7px)";
-    } else if (device === DEVICES.DESKTOP_LARGE) {
+    } else if (device === DEVICES.DESKTOP) {
       return "calc(25% - 18.75px)";
     } else if (device === DEVICES.DESKTOP_LARGE) {
       return "calc(20% - 20px)";
@@ -176,9 +176,16 @@ export default function GamesList({
                 {boardgames.map((boardgame) => (
                   <>
                     {boardgame && (
-                      <div sx={{ width: "100%" }} key={boardgame?.id}>
+                      <div
+                        sx={{
+                          width: "100%",
+                          maxWidth: "350px",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                        key={boardgame?.id}
+                      >
                         <Boardgame
-                          styles={{ maxWidth: "350px" }}
                           key={boardgame?.id}
                           onClick={onClickBoardgame}
                           boardgame={boardgame}

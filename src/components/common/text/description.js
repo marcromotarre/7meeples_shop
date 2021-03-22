@@ -7,6 +7,7 @@ export default function Description({ styles, description = "" }) {
     width: "100%",
     height: "0.05em",
     backgroundColor: "rgba(181, 181, 181, 0.5)",
+    opacity: ["1", "0", "0", "0"],
   };
 
   return (
