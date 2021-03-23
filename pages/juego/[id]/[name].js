@@ -140,7 +140,7 @@ export default function Boardgame() {
               ),
             }}
           ></BoardgameMax>
-          <MiaRecommends boardgame_id={boardgame.id} />
+          {/*<MiaRecommends boardgame_id={boardgame.id} />*/}
         </>
       )}
       {!boardgame && (

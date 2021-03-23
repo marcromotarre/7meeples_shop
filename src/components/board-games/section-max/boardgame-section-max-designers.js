@@ -11,7 +11,7 @@ export default function SectionMaxDesigners({ styles, designers = [] }) {
   return (
     <Section
       styles={{ ...styles }}
-      name={"Autores"}
+      name={designers.length > 1 ? "Autores" : "Autor"}
       icon={icon}
       iconStyles={{ marginLeft: "6px" }}
     >
@@ -22,7 +22,6 @@ export default function SectionMaxDesigners({ styles, designers = [] }) {
           alignItems: "start",
           flexWrap: "wrap",
           width: "100%",
-          ...styles,
         }}
       >
         {designers.map((designer) => (

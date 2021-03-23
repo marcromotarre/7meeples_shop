@@ -7,7 +7,7 @@ import BoardgameName from "./boardgame-name";
 import BoardgameDescription from "./boardgame-description";
 import BoardgameGalleryImage from "./boardgame-gallery-image";
 import BoardgamesList from "./board-games-list";
-
+import BoardgameImage from "src/components/board-games/boardgame-image";
 import BoardgameSection from "./section-max/boardgame-section-max";
 import BoardgameSectionMaxNumberOfPlayers from "./section-max/boargame-section-max-number-of-players";
 import BoardgameSectionMaxWeight from "./section-max/boardgame-section-max-weight";
@@ -81,58 +81,70 @@ export default function BoardgameMax({ boardgame }) {
   const [showDefaultImage, setShowDefaultImage] = useState(false);
 
   return (
-    <div
-      sx={{
-        width: "100%",
-        display: "grid",
-        justifyItems: "center",
-        alignItems: "center",
-        rowGap: "10px",
-      }}
-    >
+    <>
       <div sx={{ height: "20px" }}></div>
-      <img
-        onError={() => setShowDefaultImage(true)}
-        sx={{ maxHeight: "300px", maxWidth: "80%" }}
-        src={
-          showDefaultImage
-            ? imageDefault
-            : `${IMAGES_REPOSITORY}boardgames/${s3_name(webname)}.jpg`
-        }
-      />
-      <BoardgameAverage average={average} numVotes={numVotes} />
-      <BoardgameName name={webname} year={year} />
-      <BoardgameDescription description={description} />
       <div
         sx={{
           width: "100%",
           display: "grid",
+          gridTemplateColumns: ["100%", "400px auto"],
+          gridTemplateAreas: [
+            `"image" "average" "name" "description" "play-time" "age" "number-players" "weight" "designers"`,
+            `"name average" "image play-time" "image age" "image number-players" "image weight" "image designers"`,
+          ],
           justifyItems: "center",
-          rowGap: "13px",
+          alignItems: "center",
+          rowGap: "10px",
         }}
       >
+        <BoardgameImage
+          styles={{ gridArea: "image", maxHeight: "300px", maxWidth: "80%" }}
+          imageDefault={imageDefault}
+          name={webname}
+        />
+        <BoardgameAverage
+          styles={{ gridArea: "average" }}
+          average={average}
+          numVotes={numVotes}
+        />
+        <BoardgameName
+          styles={{ gridArea: "name" }}
+          name={webname}
+          year={year}
+        />
+        <BoardgameDescription
+          styles={{ gridArea: "description" }}
+          description={description}
+        />
+
         <BoardgameSectionMaxPlayTime
-          styles={{ width: "80%" }}
+          styles={{ gridArea: "play-time", width: "80%" }}
           playTimeMin={playTimeMin}
           playTimeMax={playTimeMax}
         />
-        <BoardgameSectionMaxAge age={age} styles={{ width: "80%" }} />
+        <BoardgameSectionMaxAge
+          age={age}
+          styles={{ gridArea: "age", width: "80%" }}
+        />
 
         <BoardgameSectionMaxNumberOfPlayers
-          styles={{ width: "80%" }}
+          styles={{ gridArea: "number-players", width: "80%" }}
           numberOfPlayersBest={numberOfPlayersBest}
           numberOfPlayersNotRecommended={numberOfPlayersNotRecommended}
           numberOfPlayers={numberOfPlayers}
         />
 
-        <BoardgameSectionMaxWeight styles={{ width: "80%" }} weight={weight} />
+        <BoardgameSectionMaxWeight
+          styles={{ gridArea: "weight", width: "80%" }}
+          weight={weight}
+        />
 
         <BoardgameSectionMaxDesigners
-          styles={{ width: "80%" }}
+          styles={{ gridArea: "designers", width: "80%" }}
           designers={designers}
         />
 
-        {categories?.length > 0 && (
+        {/*categories?.length > 0 && (
           <BoardgameSection
             onClick={() => setModal(MODAL_TYPES.CATEGORIES)}
             styles={{ width: "80%" }}
@@ -141,8 +153,8 @@ export default function BoardgameMax({ boardgame }) {
           >
             <BoardgameSectionCategories categories={categories} />
           </BoardgameSection>
-        )}
-        {mechanisms?.length > 0 && (
+        )*/}
+        {/*mechanisms?.length > 0 && (
           <BoardgameSection
             onClick={() => setModal(MODAL_TYPES.WEIGHT)}
             styles={{ width: "80%" }}
@@ -151,9 +163,9 @@ export default function BoardgameMax({ boardgame }) {
           >
             <BoardgameSectionMechanisms mechanisms={mechanisms} />
           </BoardgameSection>
-        )}
+        )*/}
 
-        {expansionOf.length > 0 && (
+        {/*expansionOf.length > 0 && (
           <>
             És expansión de
             <BoardgamesList
@@ -161,9 +173,9 @@ export default function BoardgameMax({ boardgame }) {
               boardgames={expansionOf}
             ></BoardgamesList>
           </>
-        )}
+        )*/}
 
-        {expansions.length > 0 && (
+        {/*expansions.length > 0 && (
           <>
             Tiene expansiones
             <BoardgamesList
@@ -171,10 +183,10 @@ export default function BoardgameMax({ boardgame }) {
               boardgames={expansions}
             ></BoardgamesList>
           </>
-        )}
+        )*/}
+
+        <div sx={{ height: "50px" }}></div>
       </div>
-      <Modal boardgame={boardgame} type={modal} onClose={onCloseModal}></Modal>
-      <div sx={{ height: "50px" }}></div>
-    </div>
+    </>
   );
 }
