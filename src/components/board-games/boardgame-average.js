@@ -20,10 +20,12 @@ export default function BoardgameAverage({ styles, average, numVotes }) {
   return (
     <div
       sx={{
-        display: "flex",
-        flexDirection: "column",
+        display: "grid",
+        gridTemplateColumns: ["auto", "auto auto"],
         justifyContent: "center",
         alignItems: "center",
+        rowGap: ["10px", "0px"],
+        columnGap: ["0px", "10px"],
         ...styles,
       }}
     >
@@ -37,7 +39,7 @@ export default function BoardgameAverage({ styles, average, numVotes }) {
           sx={{
             textAlign: "center",
             width: "100%",
-            left: "0",
+            left: ["-19%", "0"],
             fontSize: "18px",
             top: "19%",
             color: "white",
