@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import information_icon from "../../../assets/svg/information.svg";
 
-export default function Section({
+export default function SectionMax({
   onClick,
   icon,
   name,
@@ -39,15 +39,7 @@ export default function Section({
           }}
           src={icon}
         />
-        <span sx={{ fontSize: "19px" }}>{name}</span>
-        <img
-          sx={{
-            width: "15px",
-            height: "15px",
-            alignSelf: "center",
-          }}
-          src={information_icon}
-        />
+        <h3 sx={{ fontSize: "19px" }}>{name}</h3>
       </div>
 
       {children}

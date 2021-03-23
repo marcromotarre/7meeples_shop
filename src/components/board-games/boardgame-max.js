@@ -8,11 +8,13 @@ import BoardgameDescription from "./boardgame-description";
 import BoardgameGalleryImage from "./boardgame-gallery-image";
 import BoardgamesList from "./board-games-list";
 
-import BoardgameSection from "./section/boardgame-section-max";
-import BoardgameSectionNumberOfPlayers from "./section/boargame-section-number-of-players";
-import BoardgameSectionWeight from "./section/boardgame-section-weight";
+import BoardgameSection from "./section-max/boardgame-section-max";
+import BoardgameSectionMaxNumberOfPlayers from "./section-max/boargame-section-max-number-of-players";
+import BoardgameSectionMaxWeight from "./section-max/boardgame-section-max-weight";
+import BoardgameSectionMaxAge from "./section-max/boardgame-section-max-age";
+import BoardgameSectionMaxPlayTime from "./section-max/boardgame-section-max-playtime";
+import BoardgameSectionMaxDesigners from "./section-max/boardgame-section-max-designers";
 
-import BoardgameSectionDesigners from "./section/boardgame-section-designers";
 import BoardgameSectionMechanisms from "./section/boardgame-section-mechanisms";
 import BoardgameSectionCategories from "./section/boardgame-section-categories";
 import BoardgameSectionText from "./section/boardgame-section-text";
@@ -109,77 +111,27 @@ export default function BoardgameMax({ boardgame }) {
           rowGap: "13px",
         }}
       >
-        <BoardgameSection
-          onClick={() => setModal(MODAL_TYPES.PLAY_TIME)}
+        <BoardgameSectionMaxPlayTime
           styles={{ width: "80%" }}
-          name={"Duración"}
-          icon={play_time_icon}
-        >
-          <BoardgameSectionText>
-            {play_time_string(playTimeMin, playTimeMax)}
-          </BoardgameSectionText>
-        </BoardgameSection>
-        <BoardgameSection
-          onClick={() => setModal(MODAL_TYPES.AGE)}
+          playTimeMin={playTimeMin}
+          playTimeMax={playTimeMax}
+        />
+        <BoardgameSectionMaxAge age={age} styles={{ width: "80%" }} />
+
+        <BoardgameSectionMaxNumberOfPlayers
           styles={{ width: "80%" }}
-          name={"Edad"}
-          icon={age_icon}
-        >
-          <BoardgameSectionText>{age_string(age)}</BoardgameSectionText>
-        </BoardgameSection>
-        <BoardgameSection
-          onClick={() => setModal(MODAL_TYPES.NUM_PLAYERS)}
+          numberOfPlayersBest={numberOfPlayersBest}
+          numberOfPlayersNotRecommended={numberOfPlayersNotRecommended}
+          numberOfPlayers={numberOfPlayers}
+        />
+
+        <BoardgameSectionMaxWeight styles={{ width: "80%" }} weight={weight} />
+
+        <BoardgameSectionMaxDesigners
           styles={{ width: "80%" }}
-          name={"Número de jugadorxs"}
-          icon={number_of_players_icon}
-        >
-          <BoardgameSectionNumberOfPlayers
-            numberOfPlayersBest={numberOfPlayersBest}
-            numberOfPlayersNotRecommended={numberOfPlayersNotRecommended}
-            numberOfPlayers={numberOfPlayers}
-          />
-        </BoardgameSection>
-        <BoardgameSection
-          onClick={() => setModal(MODAL_TYPES.WEIGHT)}
-          styles={{ width: "80%" }}
-          name={"Dificultad"}
-          icon={weight_icon}
-        >
-          <BoardgameSectionWeight
-            styles={{ marginTop: "10px" }}
-            weight={weight}
-          ></BoardgameSectionWeight>
-        </BoardgameSection>
-        {designers?.length > 0 && (
-          <BoardgameSection
-            styles={{ width: "80%" }}
-            name={designers.length > 1 ? "Autores" : "Autor"}
-            icon={designers_icon}
-          >
-            <div
-              sx={{
-                marginTop: "10px",
-                display: "grid",
-                gridTemplateColumns:
-                  "calc(33% - 7px) calc(33% - 7px) calc(33% - 7px)",
-                justifyItems: "flex-start",
-                alignItems: "center",
-                columnGap: "20px",
-              }}
-            >
-              {designers.map((designer) => (
-                <DesignerButton
-                  styles={{
-                    width: "100%",
-                    maxWidth: "100%",
-                    paddingRight: "10%",
-                  }}
-                  designer={designer}
-                ></DesignerButton>
-              ))}
-            </div>
-          </BoardgameSection>
-        )}
+          designers={designers}
+        />
+
         {categories?.length > 0 && (
           <BoardgameSection
             onClick={() => setModal(MODAL_TYPES.CATEGORIES)}

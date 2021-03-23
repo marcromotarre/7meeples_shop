@@ -2,7 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 
-export default function BoardgameDescription({ description }) {
+export default function BoardgameDescription({ styles, description }) {
   return (
     <div
       sx={{
@@ -10,6 +10,7 @@ export default function BoardgameDescription({ description }) {
         justifyContent: "flex-start",
         alignItems: "center",
         width: "80%",
+        ...styles,
       }}
     >
       <span sx={{ fontWeight: "100", fontStyle: "italic", fontSize: "14px" }}>

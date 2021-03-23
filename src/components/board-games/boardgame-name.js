@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "../../backend/boardgames";
 
-export default function BoardgameAverage({ name, year }) {
+export default function BoardgameName({ styles, name, year }) {
   let fontSize = "24px;";
 
   return (
@@ -14,6 +14,7 @@ export default function BoardgameAverage({ name, year }) {
         justifyContent: "flex-start",
         alignItems: "center",
         width: "80%",
+        ...styles,
       }}
     >
       <h1>
