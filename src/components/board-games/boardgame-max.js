@@ -8,34 +8,16 @@ import BoardgameDescription from "./boardgame-description";
 import BoardgameGalleryImage from "./boardgame-gallery-image";
 import BoardgamesList from "./board-games-list";
 import BoardgameImage from "src/components/board-games/boardgame-image";
-import BoardgameSection from "./section-max/boardgame-section-max";
 import BoardgameSectionMaxNumberOfPlayers from "./section-max/boargame-section-max-number-of-players";
 import BoardgameSectionMaxWeight from "./section-max/boardgame-section-max-weight";
 import BoardgameSectionMaxAge from "./section-max/boardgame-section-max-age";
 import BoardgameSectionMaxPlayTime from "./section-max/boardgame-section-max-playtime";
 import BoardgameSectionMaxDesigners from "./section-max/boardgame-section-max-designers";
+import BoardgameSectionMaxCategories from "./section-max/boardgame-section-max-categories";
+import BoardgameSectionMaxMechanisms from "./section-max/boardgame-section-max-mechanisms";
+import BoardgameSectionMaxExpansionOf from "./section-max/boardgame-section-max-expansion-of";
+import BoardgameSectionMaxExpansions from "./section-max/boardgame-section-max-expansions";
 
-import BoardgameSectionMechanisms from "./section/boardgame-section-mechanisms";
-import BoardgameSectionCategories from "./section/boardgame-section-categories";
-import BoardgameSectionText from "./section/boardgame-section-text";
-import age_icon from "../../assets/svg/sections/age.svg";
-import play_time_icon from "../../assets/svg/sections/play-time.svg";
-import number_of_players_icon from "../../assets/svg/sections/number-of-players.svg";
-import weight_icon from "../../assets/svg/sections/weight.svg";
-import mechanisms_icon from "../../assets/svg/sections/mechanisms.svg";
-import categories_icon from "../../assets/svg/sections/categories.svg";
-import designers_icon from "../../assets/svg/sections/designers.svg";
-
-import { get_multiple_categories } from "../../backend/categories";
-import { get_multiple_designers } from "../../backend/designers";
-import { get_multiple_mechanisms } from "../../backend/mechanisms";
-
-import {
-  play_time_string,
-  weight_string,
-  age_string,
-  round_weight,
-} from "./utils";
 import { get_multiple_boardgames } from "src/backend/boardgames";
 import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
 import { IMAGES_REPOSITORY } from "src/constants";
@@ -71,13 +53,13 @@ export default function BoardgameMax({ boardgame }) {
     image,
     imageDefault,
   } = boardgame;
+  console.log(boardgame);
   const router = useRouter();
 
   const [modal, setModal] = useState("");
   const onCloseModal = () => {
     setModal("");
   };
-
   const [showDefaultImage, setShowDefaultImage] = useState(false);
 
   return (
@@ -89,7 +71,7 @@ export default function BoardgameMax({ boardgame }) {
           display: "grid",
           gridTemplateColumns: ["100%", "400px auto"],
           gridTemplateAreas: [
-            `"image" "average" "name" "description" "play-time" "age" "number-players" "weight" "designers"`,
+            `"image" "average" "name" "description" "play-time" "age" "number-players" "weight" "designers" "categories" "mechanisms" "expansion-of" "expansions"`,
             `"name average" "image play-time" "image age" "image number-players" "image weight" "image designers"`,
           ],
           justifyItems: "center",
@@ -144,46 +126,28 @@ export default function BoardgameMax({ boardgame }) {
           designers={designers}
         />
 
-        {/*categories?.length > 0 && (
-          <BoardgameSection
-            onClick={() => setModal(MODAL_TYPES.CATEGORIES)}
-            styles={{ width: "80%" }}
-            name={categories.length > 1 ? "Categorias" : "Categoria"}
-            icon={categories_icon}
-          >
-            <BoardgameSectionCategories categories={categories} />
-          </BoardgameSection>
-        )*/}
-        {/*mechanisms?.length > 0 && (
-          <BoardgameSection
-            onClick={() => setModal(MODAL_TYPES.WEIGHT)}
-            styles={{ width: "80%" }}
-            name={mechanisms.length > 1 ? "Mecánicas" : "Mecánica"}
-            icon={mechanisms_icon}
-          >
-            <BoardgameSectionMechanisms mechanisms={mechanisms} />
-          </BoardgameSection>
-        )*/}
+        <BoardgameSectionMaxCategories
+          styles={{ gridArea: "categories", width: "80%" }}
+          categories={categories}
+        />
 
-        {/*expansionOf.length > 0 && (
-          <>
-            És expansión de
-            <BoardgamesList
-              styles={{ width: "80%" }}
-              boardgames={expansionOf}
-            ></BoardgamesList>
-          </>
-        )*/}
+        <BoardgameSectionMaxMechanisms
+          styles={{ gridArea: "mechanisms", width: "80%" }}
+          mechanisms={mechanisms}
+        />
+        {expansionOf.length > 0 && (
+          <BoardgameSectionMaxExpansionOf
+            styles={{ gridArea: "expansion-of", width: "80%" }}
+            expansionOf={expansionOf}
+          />
+        )}
 
-        {/*expansions.length > 0 && (
-          <>
-            Tiene expansiones
-            <BoardgamesList
-              styles={{ width: "80%" }}
-              boardgames={expansions}
-            ></BoardgamesList>
-          </>
-        )*/}
+        {expansions.length > 0 && (
+          <BoardgameSectionMaxExpansions
+            styles={{ gridArea: "expansions", width: "80%" }}
+            expansions={expansions}
+          />
+        )}
 
         <div sx={{ height: "50px" }}></div>
       </div>

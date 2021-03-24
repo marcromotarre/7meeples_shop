@@ -18,7 +18,7 @@ export default function Data() {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const designers = useSelector((state) => state.designersReducer.categories);
-  const mechanisms = useSelector((state) => state.mechanismsReducer.categories);
+  const mechanisms = useSelector((state) => state.mechanismsReducer.mechanisms);
 
   const device = getDevice();
   dispatch(setDevice(device));

@@ -19,7 +19,6 @@ export default function Home() {
     console.log("blur");
   };
   const setPlatformInfo = () => {
-    debugger;
     var ua = navigator.userAgent.toLowerCase();
     if (ua.indexOf("safari") != -1) {
       if (ua.indexOf("chrome") > -1) {

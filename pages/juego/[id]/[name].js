@@ -21,6 +21,14 @@ export default function Boardgame() {
     (state) => state.designersReducer.designers
   );
 
+  const all_categories = useSelector(
+    (state) => state.categoriesReducer.categories
+  );
+
+  const all_mechanisms = useSelector(
+    (state) => state.mechanismsReducer.mechanisms
+  );
+
   const refreshBoardGameInfo = () => {
     setBoardgame(undefined);
   };
@@ -37,7 +45,6 @@ export default function Boardgame() {
 
   useEffect(() => {
     setBoardgame(undefined);
-    console.log("router", router);
     if (router.query.id) {
       const _boardgame = boardgames?.find(
         ({ id }) => id === parseInt(router?.query?.id)
@@ -50,9 +57,7 @@ export default function Boardgame() {
     }
   }, [router, boardgames]);
 
-  const all_categories = useSelector(
-    (state) => state.categoriesReducer.categories
-  );
+  console.log(boardgame, all_mechanisms);
   /*const [boardgame, setBoardGame] = useState({});
 
   const [categories, setCategories] = useState([]);
@@ -130,6 +135,11 @@ export default function Boardgame() {
               categories: all_categories
                 ? all_categories.filter(({ id }) =>
                     boardgame.categories.includes(id)
+                  )
+                : [],
+              mechanisms: all_mechanisms
+                ? all_mechanisms.filter(({ id }) =>
+                    boardgame.mechechanisms.includes(id)
                   )
                 : [],
               expansions: boardgames.filter(({ id }) =>

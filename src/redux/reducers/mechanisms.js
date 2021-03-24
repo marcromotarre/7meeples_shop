@@ -10,7 +10,6 @@ export const initialState = {
 export default function mechanismsReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_MECHANISMS:
-      console.log(action.payload);
       return { ...state, ...action.payload };
     default:
       return {

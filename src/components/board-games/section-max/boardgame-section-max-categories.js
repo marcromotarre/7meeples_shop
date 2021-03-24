@@ -3,21 +3,19 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import Section from "./boardgame-section-max";
-import icon from "../../../assets/svg/sections/designers.svg";
-import { useSelector } from "react-redux";
-import Designer from "src/components/designers/designer";
+import icon from "../../../assets/svg/sections/categories.svg";
 import { useRouter } from "next/router";
 
-export default function SectionMaxDesigners({ styles, designers = [] }) {
+export default function SectionMaxCategories({ styles, categories = [] }) {
   const router = useRouter();
 
-  const gotToDesginer = (designer) => {
-    router.push(`/autores/${designer.id}/${designer.name}`);
+  const gotToCategory = (category) => {
+    router.push(`/categorias/${category.id}/${category.name}`);
   };
   return (
     <Section
       styles={{ ...styles }}
-      name={designers.length > 1 ? "Autores" : "Autor"}
+      name={"Categorias"}
       icon={icon}
       iconStyles={{ marginLeft: "6px" }}
     >
@@ -30,10 +28,10 @@ export default function SectionMaxDesigners({ styles, designers = [] }) {
           width: "100%",
         }}
       >
-        {designers.map((designer, index) => (
-          <p onClick={() => gotToDesginer(designer)}>
-            {designer.name}
-            {index < designers.length - 1 ? ",\xa0" : ""}
+        {categories.map((category, index) => (
+          <p onClick={() => gotToCategory(category)}>
+            {category.name}
+            {index < categories.length - 1 ? ",\xa0" : ""}
           </p>
         ))}
       </div>

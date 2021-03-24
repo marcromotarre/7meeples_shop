@@ -3,21 +3,21 @@
 import { jsx } from "theme-ui";
 import React, { useEffect, useState } from "react";
 import Section from "./boardgame-section-max";
-import icon from "../../../assets/svg/sections/designers.svg";
+import icon from "../../../assets/svg/sections/mechanisms.svg";
 import { useSelector } from "react-redux";
 import Designer from "src/components/designers/designer";
 import { useRouter } from "next/router";
 
-export default function SectionMaxDesigners({ styles, designers = [] }) {
+export default function SectionMaxMechanisms({ styles, mechanisms = [] }) {
   const router = useRouter();
 
-  const gotToDesginer = (designer) => {
-    router.push(`/autores/${designer.id}/${designer.name}`);
+  const gotToMechanism = (mechanism) => {
+    router.push(`/mechanisms/${mechanism.id}/${mechanism.name}`);
   };
   return (
     <Section
       styles={{ ...styles }}
-      name={designers.length > 1 ? "Autores" : "Autor"}
+      name={"Mecánicas"}
       icon={icon}
       iconStyles={{ marginLeft: "6px" }}
     >
@@ -30,10 +30,10 @@ export default function SectionMaxDesigners({ styles, designers = [] }) {
           width: "100%",
         }}
       >
-        {designers.map((designer, index) => (
-          <p onClick={() => gotToDesginer(designer)}>
-            {designer.name}
-            {index < designers.length - 1 ? ",\xa0" : ""}
+        {mechanisms.map((mechanism, index) => (
+          <p onClick={() => gotToMechanism(mechanism)}>
+            {mechanism.name}
+            {index < mechanisms.length - 1 ? ",\xa0" : ""}
           </p>
         ))}
       </div>

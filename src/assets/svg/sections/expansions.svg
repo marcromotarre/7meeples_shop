@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="30" viewBox="0 0 22 30">
+  <g id="_24-link" data-name="24-link" transform="translate(-5 -1)">
+    <circle id="Elipse_105" data-name="Elipse 105" cx="7" cy="7" r="7" transform="translate(5 9)" fill="rgba(0,0,0,0.99)"/>
+    <circle id="Elipse_106" data-name="Elipse 106" cx="4" cy="4" r="4" transform="translate(19 1)"/>
+    <line id="Línea_96" data-name="Línea 96" y1="3" x2="3" transform="translate(17 8)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <circle id="Elipse_107" data-name="Elipse 107" cx="4" cy="4" r="4" transform="translate(19 23)"/>
+    <line id="Línea_97" data-name="Línea 97" x2="3" y2="3" transform="translate(17 21)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

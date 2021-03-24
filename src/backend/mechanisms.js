@@ -11,3 +11,14 @@ export const get_multiple_mechanisms = async ({ ids }) => {
       console.log(error);
     });
 };
+
+export const get_mechanisms = async () => {
+  return await axios
+    .get("/api/mechanisms/getAll")
+    .then((response) => {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

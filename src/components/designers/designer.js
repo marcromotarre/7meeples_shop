@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import DesignerImage from "../common/images/designer-image";
 
 export default function Designer({ designer, onClick, styles, border = "1" }) {
-  console.log("styles", styles);
   const router = useRouter();
   const { name } = designer;
 
