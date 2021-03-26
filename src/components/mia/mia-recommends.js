@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import BoardGamesList from "../board-games/board-games-list";
 import MiaRecomendation from "./mia-recomendation";
 import { useState, useEffect } from "react";
+import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 
 export default function MiaRecommends({ boardgame_id }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
@@ -28,7 +29,7 @@ export default function MiaRecommends({ boardgame_id }) {
         );
       }),
       boardgame,
-    }).filter((b, index) => index < 5);
+    }).filter((b, index) => index < 1);
     set_mia_recomendations(recomendation);
   };
 
@@ -36,14 +37,27 @@ export default function MiaRecommends({ boardgame_id }) {
     <div
       sx={{
         width: "100%",
-        display: "flex",
-        flexWrap: "wrap",
+        display: "grid",
+        rowGap: "20px",
+        justifyItems: "center",
+        jalignItems: "center",
       }}
     >
-      <MiaRecomendation
-        title={`Si te gusta ${boardgame.webname}`}
-        subtitle={`te recomienda`}
-      ></MiaRecomendation>
+      <div
+        sx={{
+          width: "100%",
+          display: "grid",
+          rowGap: "10px",
+          justifyItems: "center",
+          jalignItems: "center",
+        }}
+      >
+        <MiaRecomendation></MiaRecomendation>
+        <p sx={{ textAlign: "center" }}>
+          Si te gusta {boardgame.webname} te va a gustar
+        </p>
+      </div>
+
       <div
         sx={{
           width: "100%",
@@ -55,6 +69,13 @@ export default function MiaRecommends({ boardgame_id }) {
         <BoardGamesList
           styles={{ width: "80%" }}
           boardgames={mia_recomendations}
+          attributes={[BOARDGAME_ATTRIBUTES.MORE]}
+          moreAttributes={[
+            BOARDGAME_ATTRIBUTES.PLAY_TIME,
+            BOARDGAME_ATTRIBUTES.AGE,
+            BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
+            BOARDGAME_ATTRIBUTES.WEIGHT,
+          ]}
         ></BoardGamesList>
       </div>
     </div>

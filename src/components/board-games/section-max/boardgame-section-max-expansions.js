@@ -31,6 +31,12 @@ export default function SectionMaxExpansions({ styles, expansions = [] }) {
           styles={{ width: "100%" }}
           boardgames={expansions}
           attributes={[BOARDGAME_ATTRIBUTES.MORE]}
+          moreAttributes={[
+            BOARDGAME_ATTRIBUTES.PLAY_TIME,
+            BOARDGAME_ATTRIBUTES.AGE,
+            BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
+            BOARDGAME_ATTRIBUTES.WEIGHT,
+          ]}
         ></BoardgamesList>
       </div>
     </Section>

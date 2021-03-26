@@ -123,7 +123,15 @@ export default function Boardgame() {
   return (
     <>
       {boardgame && (
-        <>
+        <div
+          sx={{
+            width: "100%",
+            display: "grid",
+            justifyItems: "center",
+            alignItems: "center",
+            rowGap: "30px",
+          }}
+        >
           <BoardgameMax
             boardgame={{
               ...boardgame,
@@ -150,8 +158,8 @@ export default function Boardgame() {
               ),
             }}
           ></BoardgameMax>
-          {/*<MiaRecommends boardgame_id={boardgame.id} />*/}
-        </>
+          <MiaRecommends boardgame_id={boardgame.id} />
+        </div>
       )}
       {!boardgame && (
         <div

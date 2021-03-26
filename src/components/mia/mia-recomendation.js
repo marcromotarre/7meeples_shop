@@ -3,9 +3,9 @@
 import { jsx } from "theme-ui";
 import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
-import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
+import mia_title_icon from "../../assets/svg/mia/mia-virtual-assistant.svg";
 
-export default function MiaRecomendation({ title, subtitle }) {
+export default function MiaRecomendation({ ...styles }) {
   return (
     <div
       sx={{
@@ -13,11 +13,10 @@ export default function MiaRecomendation({ title, subtitle }) {
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
+        ...styles,
       }}
     >
-      <h3>{title}</h3>
-      <img sx={{ width: "110px" }} src={mia_title_icon}></img>
-      <h3>{subtitle}</h3>
+      <img sx={{ width: "80%" }} src={mia_title_icon}></img>
     </div>
   );
 }

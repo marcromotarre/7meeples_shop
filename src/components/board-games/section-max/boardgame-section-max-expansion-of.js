@@ -27,7 +27,7 @@ export default function SectionMaxExpansionOf({ styles, expansionOf = [] }) {
         }}
       >
         <BoardgamesList
-          styles={{ gridArea: "expansion-of", width: "80%" }}
+          styles={{ width: "100%" }}
           boardgames={expansionOf}
         ></BoardgamesList>
       </div>
