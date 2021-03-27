@@ -7,7 +7,10 @@ import BoardGamesList from "../board-games/board-games-list";
 import MiaRecomendation from "./mia-recomendation";
 import { useState, useEffect } from "react";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
-
+import { get_common_boardgames } from "../designers/utils";
+import { remove } from "./utils";
+import MiaSection from "./mia-section";
+import DesignerImage from "../common/images/designer-image";
 export default function MiaRecommends({ boardgame_id }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
   const designers = useSelector((state) => state.designersReducer.designers);
@@ -20,7 +23,7 @@ export default function MiaRecommends({ boardgame_id }) {
   }, []);
 
   const getRecomendations = async () => {
-    const recomendation = recomendations({
+    let recomendation = recomendations({
       boardgames: boardgames.filter((_boardgame) => {
         return (
           _boardgame.id !== boardgame.id &&
@@ -29,8 +32,58 @@ export default function MiaRecommends({ boardgame_id }) {
         );
       }),
       boardgame,
-    }).filter((b, index) => index < 1);
-    set_mia_recomendations(recomendation);
+    });
+
+    //get bests
+
+    //get by author
+    //const authorRecomendations
+
+    const most_related = recomendation.filter(({}, index) => index < 4);
+    recomendation = remove({
+      original: recomendation,
+      to_delete: most_related,
+    });
+    const designers_recommendation = get_common_boardgames({
+      boardgames: recomendation,
+      designers: boardgame.designers.map((id) =>
+        designers.find((designer) => designer.id === id)
+      ),
+    });
+    recomendation = remove({
+      original: recomendation,
+      to_delete: designers_recommendation.boardgames,
+    });
+    const designer_recommendation = boardgame.designers.map((designerId) => {
+      const designer_boardgames = {
+        type: "designer",
+        designer: designers.find(({ id }) => id === designerId),
+        boardgames: recomendation
+          .filter(({ designers }) => designers.includes(designerId))
+          .filter(({}, index) => index < 4),
+      };
+      recomendation = remove({
+        original: recomendation,
+        to_delete: designer_boardgames.boardgames,
+      });
+      return designer_boardgames;
+    });
+    const result = [
+      { type: "most_related", boardgames: most_related },
+      {
+        type: "designers",
+        boardgames: designers_recommendation.boardgames,
+        designers: designers_recommendation.designers,
+      },
+      ...designer_recommendation,
+    ];
+
+    //get by number of players
+    //get by similar play time
+    //get by category x
+    //get by mechanic x
+    console.log(result);
+    set_mia_recomendations(result);
   };
 
   return (
@@ -38,46 +91,44 @@ export default function MiaRecommends({ boardgame_id }) {
       sx={{
         width: "100%",
         display: "grid",
-        rowGap: "20px",
+        rowGap: "40px",
         justifyItems: "center",
-        jalignItems: "center",
+        alignItems: "center",
       }}
     >
-      <div
-        sx={{
-          width: "100%",
-          display: "grid",
-          rowGap: "10px",
-          justifyItems: "center",
-          jalignItems: "center",
-        }}
-      >
-        <MiaRecomendation></MiaRecomendation>
-        <p sx={{ textAlign: "center" }}>
-          Si te gusta {boardgame.webname} te va a gustar
-        </p>
-      </div>
-
-      <div
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <BoardGamesList
-          styles={{ width: "80%" }}
-          boardgames={mia_recomendations}
-          attributes={[BOARDGAME_ATTRIBUTES.MORE]}
-          moreAttributes={[
-            BOARDGAME_ATTRIBUTES.PLAY_TIME,
-            BOARDGAME_ATTRIBUTES.AGE,
-            BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
-            BOARDGAME_ATTRIBUTES.WEIGHT,
-          ]}
-        ></BoardGamesList>
-      </div>
+      {mia_recomendations.map((recomendation) => {
+        if (recomendation.type === "most_related") {
+          return (
+            <MiaSection boardgames={recomendation.boardgames}>
+              <MiaRecomendation></MiaRecomendation>
+              <p sx={{ textAlign: "center" }}>
+                Si te gusta {boardgame.webname} te va a gustar
+              </p>
+            </MiaSection>
+          );
+        } else if (recomendation.type === "designer") {
+          return (
+            <MiaSection boardgames={recomendation.boardgames}>
+              <div
+                sx={{
+                  display: "grid",
+                  rowGap: "5px",
+                  justifyItems: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h3>Más juegos de</h3>
+                <DesignerImage
+                  styles={{ width: "100px" }}
+                  name={recomendation.designer.name}
+                  border={3}
+                ></DesignerImage>
+                <p>{recomendation.designer.name}</p>
+              </div>
+            </MiaSection>
+          );
+        }
+      })}
     </div>
   );
 }
