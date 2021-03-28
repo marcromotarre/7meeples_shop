@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export default function CategoryItem({ id, name, icon }) {
   const router = useRouter();
   const handleClickCategory = () => {
-    router.push(`/categorias/${id}`);
+    router.push(`/categorias_principales/${id}`);
   };
   return (
     <div
