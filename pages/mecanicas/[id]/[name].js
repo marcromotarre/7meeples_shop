@@ -42,5 +42,5 @@ export default function Mechanisms() {
 
   boardgames;
 
-  return <MechanismView mechanism={mechanism} boardgames={} />;
+  return <MechanismView mechanism={mechanism} />;
 }
