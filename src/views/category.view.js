@@ -16,7 +16,7 @@ import MainView from "./main.view";
 
 export default function CategoryView({ category = {}, styles }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
-  const { id, name, webname, description } = category;
+  const { id, name, webname, description, image } = category;
   const filteredBoardgames = boardgames
     ? boardgames
         .filter(({ categories }) => categories.includes(id))
@@ -24,10 +24,8 @@ export default function CategoryView({ category = {}, styles }) {
           sort_importance(boardgame1, boardgame2)
         )
     : [];
-  const [showImage, setShowImage] = useState(true);
-  const onImageError = () => {
-    setShowImage(false);
-  };
+
+  console.log("image", `${IMAGES_REPOSITORY}categorias/${image}`);
 
   return (
     <MainView>
@@ -52,14 +50,14 @@ export default function CategoryView({ category = {}, styles }) {
           }}
         >
           <h1 sx={{ textAlign: "center" }}>{webname ? webname : name}</h1>
-          {showImage && (
+          {image && (
             <img
-              onError={onImageError}
-              src={`${IMAGES_REPOSITORY}catgories/${s3_name(name)}.svg`}
+              sx={{ width: "auto", height: "100px" }}
+              src={`${IMAGES_REPOSITORY}categorias/${image}`}
             />
           )}
           {description && <Description description={description} />}
-          {(showImage || description) && (
+          {(image || description) && (
             <h3 sx={{ textAlign: "center" }}>
               Los mejores juegos de {webname ? webname : name}
             </h3>

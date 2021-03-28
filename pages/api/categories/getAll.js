@@ -7,6 +7,9 @@ export default async (req, res) => {
         categories {
             id
             name
+            webname
+            image
+            description
           }
       }
     `,
