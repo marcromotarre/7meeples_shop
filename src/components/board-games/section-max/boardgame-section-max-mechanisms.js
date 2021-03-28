@@ -12,7 +12,7 @@ export default function SectionMaxMechanisms({ styles, mechanisms = [] }) {
   const router = useRouter();
 
   const gotToMechanism = (mechanism) => {
-    router.push(`/mechanisms/${mechanism.id}/${mechanism.name}`);
+    router.push(`/mecanicas/${mechanism.id}/${mechanism.name}`);
   };
   return (
     <Section

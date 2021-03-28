@@ -26,6 +26,13 @@ export default {
         margin: "0",
         width: "fit-content",
       },
+      h2: {
+        fontSize: "20px",
+        fontWeight: "400",
+        padding: "0",
+        margin: "0",
+        width: "fit-content",
+      },
       h3: {
         fontSize: "17px",
         fontWeight: "300",

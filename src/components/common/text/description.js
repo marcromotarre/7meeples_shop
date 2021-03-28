@@ -17,7 +17,7 @@ export default function Description({ styles, description = "" }) {
           display: "grid",
           rowGap: "20px",
           flexDirection: "column",
-          width: "95%",
+          width: "100%",
           justifyItems: "center",
           alignItems: "center",
           ...styles,
@@ -25,7 +25,7 @@ export default function Description({ styles, description = "" }) {
       >
         <div sx={separator}></div>
 
-        <span sx={{ fontWeight: "100", textAlign: "center", width: "80%" }}>
+        <span sx={{ fontWeight: "100", textAlign: "center", width: "100%%" }}>
           {description}
         </span>
         <div sx={separator}></div>

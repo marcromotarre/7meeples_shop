@@ -6,20 +6,21 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { s3_name } from "src/utils/name";
 
-export default function Categorias() {
+export default function Mecanicas() {
   const router = useRouter();
-  const all_categories = useSelector(
-    (state) => state.categoriesReducer.categories
+  const all_mechanisms = useSelector(
+    (state) => state.mechanismsReducer.mechanisms
   );
   useEffect(() => {
-    if (router.query.id && all_categories.length > 0) {
-      const category = all_categories.find(
+    if (router.query.id && all_mechanisms.length > 0) {
+      const mechanism = all_mechanisms.find(
         ({ id }) => id === parseInt(router.query.id)
       );
+      debugger;
       router.push(
-        `/categorias/${router.query.id}/${s3_name(category.webname)}`
+        `/mecanicas/${router.query.id}/${s3_name(mechanism.webname)}`
       );
     }
-  }, [router, all_categories]);
+  }, [router, all_mechanisms]);
   return <></>;
 }

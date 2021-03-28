@@ -14,6 +14,13 @@ export const DEFAULT_BOARDGAME_ATTRIBUTES = [
   BOARDGAME_ATTRIBUTES.WEIGHT,
 ];
 
+export const sort_importance = (boardgame1, boardgame2) => {
+  return boardgame1.numVotes / 1000 + boardgame1.average >
+    boardgame2.numVotes / 1000 + boardgame2.average
+    ? -1
+    : 1;
+};
+
 export const play_time_string = (play_time_min, play_time_max) =>
   play_time_min === play_time_max
     ? `${play_time_min} min`

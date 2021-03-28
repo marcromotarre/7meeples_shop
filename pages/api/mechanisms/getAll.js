@@ -7,6 +7,8 @@ export default async (req, res) => {
         mechanisms {
             id
             name
+            webname
+            description
           }
       }
     `,

@@ -30,7 +30,7 @@ export default function BoardgameMin({
   const clickOnMore = () => {};
 
   const onClickBoardgame = () => {
-    onClick(id);
+    onClick(id, s3_name(name));
   };
   const separator = {
     width: "100%",
