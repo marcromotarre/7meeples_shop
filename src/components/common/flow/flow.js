@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import style from "./style";
 import { isRegExp } from "util";
 
-export default function Flow({ goToStep, steps, children }) {
+export default function Flow({ styles, goToStep, steps, children }) {
   const [actualStepClassName, setActualStepClassName] = useState(
     "step-left-start"
   );
@@ -62,6 +62,7 @@ export default function Flow({ goToStep, steps, children }) {
           gridTemplateAreas: `"step-first step-end"`,
           height: "100%",
           width: "100%",
+          ...styles,
         }}
       >
         <div

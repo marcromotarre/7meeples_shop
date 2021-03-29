@@ -21,6 +21,7 @@
     "react-infinite-scroller": "^1.2.4",
     "react-redux": "^7.2.2",
     "react-scroll": "^1.8.1",
+    "react-swipeable": "^6.1.0",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
     "stripe": "^8.137.0",

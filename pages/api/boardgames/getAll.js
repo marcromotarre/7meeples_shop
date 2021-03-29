@@ -6,7 +6,9 @@ export default async (req, res) => {
       query {
         boardgames {
             id
+            description
             image
+            images
             webname
             numberOfPlayersNotRecommended
             numberOfPlayersBest

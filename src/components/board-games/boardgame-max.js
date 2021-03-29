@@ -7,7 +7,7 @@ import BoardgameName from "./boardgame-name";
 import BoardgameDescription from "./boardgame-description";
 import BoardgameGalleryImage from "./boardgame-gallery-image";
 import BoardgamesList from "./board-games-list";
-import BoardgameImage from "src/components/board-games/boardgame-image";
+import BoardgameImageCarousel from "src/components/board-games/boardgame-image-carousel";
 import BoardgameSectionMaxNumberOfPlayers from "./section-max/boargame-section-max-number-of-players";
 import BoardgameSectionMaxWeight from "./section-max/boardgame-section-max-weight";
 import BoardgameSectionMaxAge from "./section-max/boardgame-section-max-age";
@@ -79,10 +79,13 @@ export default function BoardgameMax({ boardgame }) {
           rowGap: "10px",
         }}
       >
-        <BoardgameImage
-          styles={{ gridArea: "image", maxHeight: "300px", maxWidth: "80%" }}
+        <BoardgameImageCarousel
+          images={images}
+          image={image}
+          styles={{ gridArea: "image" }}
+          height={"300px"}
+          width={"80%"}
           imageDefault={imageDefault}
-          name={webname}
         />
         <BoardgameAverage
           styles={{ gridArea: "average" }}

@@ -10,21 +10,12 @@ import { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 
 export default function BoardgameImage({ name, imageDefault, styles }) {
-  const [showDefaultImage, setShowDefaultImage] = useState(false);
-  const onImageError = () => {
-    if (!showDefaultImage) setShowDefaultImage(true);
-  };
   return (
     <img
-      onError={onImageError}
       sx={{
         ...styles,
       }}
-      src={
-        showDefaultImage
-          ? imageDefault
-          : `${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`
-      }
+      src={`${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`}
     ></img>
   );
 }
