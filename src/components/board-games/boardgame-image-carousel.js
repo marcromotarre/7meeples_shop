@@ -49,10 +49,10 @@ export default function BoardgameImageCarousel({
   return (
     <div
       sx={{
+        position: "relative",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width,
         height,
         ...styles,
       }}
@@ -80,6 +80,26 @@ export default function BoardgameImageCarousel({
           </div>
         ))}
       </Flow>
+      <div
+        sx={{
+          position: "absolute",
+          width: "20%",
+          height: "100%",
+          left: 0,
+          background:
+            "linear-gradient(to left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)",
+        }}
+      ></div>
+      <div
+        sx={{
+          position: "absolute",
+          width: "20%",
+          height: "100%",
+          background:
+            "linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%)",
+          right: 0,
+        }}
+      ></div>
     </div>
   );
 }

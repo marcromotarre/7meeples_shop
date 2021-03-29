@@ -82,7 +82,7 @@ export default function BoardgameMax({ boardgame }) {
         <BoardgameImageCarousel
           images={images}
           image={image}
-          styles={{ gridArea: "image" }}
+          styles={{ width: "100%", gridArea: "image" }}
           height={"300px"}
           width={"80%"}
           imageDefault={imageDefault}
