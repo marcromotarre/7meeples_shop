@@ -5,12 +5,13 @@ import React, { useEffect, useState } from "react";
 import Section from "./boardgame-section-max";
 import icon from "../../../assets/svg/sections/categories.svg";
 import { useRouter } from "next/router";
+import { s3_name } from "src/utils/name";
 
 export default function SectionMaxCategories({ styles, categories = [] }) {
   const router = useRouter();
 
   const gotToCategory = (category) => {
-    router.push(`/categorias/${category.id}/${category.name}`);
+    router.push(`/categorias/${category.id}/${s3_name(category.webname)}`);
   };
   return (
     <Section
@@ -30,7 +31,7 @@ export default function SectionMaxCategories({ styles, categories = [] }) {
       >
         {categories.map((category, index) => (
           <p onClick={() => gotToCategory(category)}>
-            {category.name}
+            {category.webname}
             {index < categories.length - 1 ? ",\xa0" : ""}
           </p>
         ))}

@@ -66,4 +66,5 @@ export const s3_name = (name = "") => {
     .replaceAll(")", "")
     .replaceAll("¡", "")
     .replaceAll("!", "");
+    .replaceAll("/", "_");
 };
