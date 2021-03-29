@@ -19,7 +19,7 @@ export default function BoardgameImageCarousel({
   styles,
   width,
   height,
-  images,
+  images = [],
 }) {
   const slide = (dir) => {
     if (dir === "NEXT" && actualStep < carouselImages.length - 1) {
@@ -38,9 +38,10 @@ export default function BoardgameImageCarousel({
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
   });
+  const otherImages = images ? images : [];
   const carouselImages = [
     image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault,
-    ...images.map((image) => `${IMAGES_REPOSITORY}boardgames/${image}`),
+    ...otherImages.map((image) => `${IMAGES_REPOSITORY}boardgames/${image}`),
   ];
   console.log("carouselImages", carouselImages);
   const [goToStep, setGoToStep] = useState(carouselImages[0]);
@@ -70,6 +71,7 @@ export default function BoardgameImageCarousel({
             }}
           >
             <img
+              loading="lazy"
               sx={{
                 gridArea: "image",
                 maxHeight: "300px",
