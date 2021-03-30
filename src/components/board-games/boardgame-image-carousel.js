@@ -71,7 +71,6 @@ export default function BoardgameImageCarousel({
             }}
           >
             <img
-              loading="lazy"
               sx={{
                 gridArea: "image",
                 maxHeight: "300px",

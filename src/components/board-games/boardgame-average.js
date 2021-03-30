@@ -24,7 +24,7 @@ export default function BoardgameAverage({ styles, average, numVotes }) {
         gridTemplateColumns: ["auto", "auto auto"],
         justifyItems: "center",
         alignItems: "center",
-        rowGap: ["10px", "0px"],
+        rowGap: ["0px", "0px"],
         columnGap: ["0px", "10px"],
         ...styles,
       }}

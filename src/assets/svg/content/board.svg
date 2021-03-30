@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <g id="board" transform="translate(-463 -4232)">
+    <g id="Rectángulo_281" data-name="Rectángulo 281" transform="translate(463 4232)" fill="none" stroke="#000" stroke-width="1">
+      <rect width="35" height="35" rx="2" stroke="none"/>
+      <rect x="0.5" y="0.5" width="34" height="34" rx="1.5" fill="none"/>
+    </g>
+    <line id="Línea_115" data-name="Línea 115" x2="35" transform="translate(463 4237.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_116" data-name="Línea 116" x2="34" transform="translate(463.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_117" data-name="Línea 117" y1="34" transform="translate(468.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_119" data-name="Línea 119" x2="5" transform="translate(463.5 4245.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_120" data-name="Línea 120" x2="5" transform="translate(463.5 4241.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_121" data-name="Línea 121" x2="5" transform="translate(463.5 4249.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_122" data-name="Línea 122" x2="5" transform="translate(463.5 4253.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_123" data-name="Línea 123" x2="5" transform="translate(463.5 4257.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_124" data-name="Línea 124" y1="34" transform="translate(492.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_125" data-name="Línea 125" y1="5" transform="translate(472.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_126" data-name="Línea 126" y1="5" transform="translate(476.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_127" data-name="Línea 127" y1="5" transform="translate(480.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_128" data-name="Línea 128" y1="5" transform="translate(484.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_129" data-name="Línea 129" y1="5" transform="translate(488.5 4232.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_130" data-name="Línea 130" x2="5" transform="translate(492.5 4245.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_131" data-name="Línea 131" x2="5" transform="translate(492.5 4241.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_132" data-name="Línea 132" x2="5" transform="translate(492.5 4249.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_133" data-name="Línea 133" x2="5" transform="translate(492.5 4253.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_134" data-name="Línea 134" x2="5" transform="translate(492.5 4257.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_139" data-name="Línea 139" y1="5" transform="translate(484.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_140" data-name="Línea 140" y1="5" transform="translate(472.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_141" data-name="Línea 141" y1="5" transform="translate(476.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_142" data-name="Línea 142" y1="5" transform="translate(480.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Línea_143" data-name="Línea 143" y1="5" transform="translate(488.5 4261.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <path id="Rectángulo_282" data-name="Rectángulo 282" d="M0,0H5A0,0,0,0,1,5,0V5A0,0,0,0,1,5,5H1A1,1,0,0,1,0,4V0A0,0,0,0,1,0,0Z" transform="translate(469 4233) rotate(90)"/>
+    <path id="Rectángulo_283" data-name="Rectángulo 283" d="M0,0H5A0,0,0,0,1,5,0V5A0,0,0,0,1,5,5H1A1,1,0,0,1,0,4V0A0,0,0,0,1,0,0Z" transform="translate(464 4262)"/>
+    <path id="Rectángulo_284" data-name="Rectángulo 284" d="M0,0H5A0,0,0,0,1,5,0V5A0,0,0,0,1,5,5H1A1,1,0,0,1,0,4V0A0,0,0,0,1,0,0Z" transform="translate(497 4238) rotate(180)"/>
+    <path id="Rectángulo_285" data-name="Rectángulo 285" d="M0,0H5A0,0,0,0,1,5,0V5A0,0,0,0,1,5,5H1A1,1,0,0,1,0,4V0A0,0,0,0,1,0,0Z" transform="translate(492 4267) rotate(-90)"/>
+  </g>
+</svg>

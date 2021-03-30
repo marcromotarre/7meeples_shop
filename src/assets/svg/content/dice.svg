@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+  <g id="dice" transform="translate(-143.375 -143.5)">
+    <rect id="Rectángulo_293" data-name="Rectángulo 293" width="11" height="11" rx="1" transform="translate(143.875 144)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Trazado_660" data-name="Trazado 660" d="M278.773,182.5a1.233,1.233,0,1,0,1.233,1.233A1.233,1.233,0,0,0,278.773,182.5Z" transform="translate(-126.954 -36.675)"/>
+    <circle id="Elipse_166" data-name="Elipse 166" cx="1.231" cy="1.231" r="1.231" transform="translate(148.335 148.079)"/>
+    <path id="Trazado_661" data-name="Trazado 661" d="M183.693,277.58a1.233,1.233,0,1,0,1.233,1.233A1.233,1.233,0,0,0,183.693,277.58Z" transform="translate(-36.381 -127.247)"/>
+  </g>
+</svg>

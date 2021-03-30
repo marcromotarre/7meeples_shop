@@ -30,6 +30,7 @@ export default async (req, res) => {
             expansions
             expansionOf
             mechechanisms
+            content
           }
       }
     `,
