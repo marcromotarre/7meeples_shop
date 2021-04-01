@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { useSwipeable } from "react-swipeable";
 import Flow from "src/components/common/flow/flow";
+import Image from "src/components/common/images/image";
 import BoardgameImage from "./boardgame-image";
 
 export default function BoardgameImageCarousel({
@@ -43,10 +44,8 @@ export default function BoardgameImageCarousel({
     image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault,
     ...otherImages.map((image) => `${IMAGES_REPOSITORY}boardgames/${image}`),
   ];
-  console.log("carouselImages", carouselImages);
   const [goToStep, setGoToStep] = useState(carouselImages[0]);
   const [actualStep, setActualStep] = useState(0);
-
   return (
     <div
       sx={{
@@ -70,14 +69,14 @@ export default function BoardgameImageCarousel({
               height: "100%",
             }}
           >
-            <img
-              sx={{
+            <Image
+              styles={{
                 gridArea: "image",
                 maxHeight: "300px",
                 maxWidth: "80%",
               }}
               src={carouselImage}
-            ></img>
+            />
           </div>
         ))}
       </Flow>
