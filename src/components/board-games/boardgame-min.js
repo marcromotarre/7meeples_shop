@@ -8,6 +8,7 @@ import { get_min_section } from "./section/utils";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
+import Image from "../common/images/image";
 
 export default function BoardgameMin({
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
@@ -23,6 +24,7 @@ export default function BoardgameMin({
     numVotes,
     year,
     imageDefault,
+    image,
   } = boardgame;
 
   const [showMore, setShowMore] = useState(false);
@@ -36,12 +38,6 @@ export default function BoardgameMin({
     width: "100%",
     height: "0.05em",
     backgroundColor: "rgba(181, 181, 181, 0.5)",
-  };
-
-  const [showDefaultImage, setShowDefaultImage] = useState(false);
-
-  const onImageError = () => {
-    if (!showDefaultImage) setShowDefaultImage(true);
   };
 
   const showAttributes = showMore ? moreAttributes : attributes;
@@ -71,19 +67,14 @@ export default function BoardgameMin({
           alignItems: "center",
         }}
       >
-        <img
-          onError={onImageError}
-          sx={{
+        <Image
+          styles={{
             padding: "20px 0px 0px 0px",
             maxHeight: "300px",
             maxWidth: "80%",
           }}
-          src={
-            showDefaultImage
-              ? imageDefault
-              : `${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`
-          }
-        ></img>
+          src={image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault}
+        />
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
       <BoardgameName name={name} year={year} />
