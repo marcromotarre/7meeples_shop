@@ -9,6 +9,7 @@ import { fetchBoardgamesRequest } from "src/redux/actions/boardgames";
 import { fetchCategoriesRequest } from "src/redux/actions/categories";
 import { fetchDesignersRequest } from "src/redux/actions/designers";
 import { fetchMechanismsRequest } from "src/redux/actions/mechanisms";
+import { fetchFamiliesRequest } from "src/redux/actions/families";
 import { setDevice } from "src/redux/actions/device";
 import { getDevice } from "../../utils/media-querys";
 
@@ -19,6 +20,7 @@ export default function Data() {
   const categories = useSelector((state) => state.categoriesReducer.categories);
   const designers = useSelector((state) => state.designersReducer.categories);
   const mechanisms = useSelector((state) => state.mechanismsReducer.mechanisms);
+  const families = useSelector((state) => state.familiesReducer.families);
 
   const device = getDevice();
   dispatch(setDevice(device));
@@ -28,6 +30,7 @@ export default function Data() {
     if (categories?.length === 0) dispatch(fetchCategoriesRequest());
     if (designers?.length === 0) dispatch(fetchDesignersRequest());
     if (mechanisms?.length === 0) dispatch(fetchMechanismsRequest());
+    if (families?.length === 0) dispatch(fetchFamiliesRequest());
   }, []);
 
   return <></>;

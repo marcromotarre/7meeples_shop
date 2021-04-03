@@ -4,6 +4,7 @@ import { fetchBoardgamesSaga } from "./boardgames";
 import { fetchDesignersSaga } from "./designers";
 import { fetchCategoriesSaga } from "./categories";
 import { fetchMechanismsSaga } from "./mechanisms";
+import { fetchFamiliesSaga } from "./families";
 import { FETCH_DESIGNERS_REQUEST } from "../actions/designers";
 
 export default function* boardgamesSaga() {
@@ -12,5 +13,6 @@ export default function* boardgamesSaga() {
     fetchDesignersSaga(),
     fetchCategoriesSaga(),
     fetchMechanismsSaga(),
+    fetchFamiliesSaga(),
   ]);
 }

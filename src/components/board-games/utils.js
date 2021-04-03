@@ -21,6 +21,10 @@ export const sort_importance = (boardgame1, boardgame2) => {
     : 1;
 };
 
+export const sort_year = (boardgame1, boardgame2) => {
+  return boardgame1.year > boardgame2.year ? 1 : -1;
+};
+
 export const play_time_string = (play_time_min, play_time_max) =>
   play_time_min === play_time_max
     ? `${play_time_min} min`
