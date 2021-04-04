@@ -1,11 +1,10 @@
 import { all } from "redux-saga/effects";
-import { FETCH_BOARDGAMES_REQUEST } from "../actions/boardgames";
 import { fetchBoardgamesSaga } from "./boardgames";
 import { fetchDesignersSaga } from "./designers";
 import { fetchCategoriesSaga } from "./categories";
 import { fetchMechanismsSaga } from "./mechanisms";
 import { fetchFamiliesSaga } from "./families";
-import { FETCH_DESIGNERS_REQUEST } from "../actions/designers";
+import { fetchPublishersSaga } from "./publishers";
 
 export default function* boardgamesSaga() {
   yield all([
@@ -14,5 +13,6 @@ export default function* boardgamesSaga() {
     fetchCategoriesSaga(),
     fetchMechanismsSaga(),
     fetchFamiliesSaga(),
+    fetchPublishersSaga(),
   ]);
 }

@@ -32,6 +32,7 @@ export default async (req, res) => {
             mechechanisms
             families
             content
+            publishers
           }
       }
     `,

@@ -1,10 +1,10 @@
 const { query } = require("../../../utils/hasura");
 
 export default async (req, res) => {
-  const designers = await query({
+  const publishers = await query({
     query: `
       query {
-        designers {
+        publishers {
             id
             name
             description
@@ -14,5 +14,5 @@ export default async (req, res) => {
     `,
   });
   res.statusCode = 200;
-  res.json(designers);
+  res.json(publishers);
 };
