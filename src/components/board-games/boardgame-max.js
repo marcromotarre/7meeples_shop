@@ -18,6 +18,7 @@ import BoardgameSectionMaxMechanisms from "./section-max/boardgame-section-max-m
 import BoardgameSectionMaxExpansionOf from "./section-max/boardgame-section-max-expansion-of";
 import BoardgameSectionMaxExpansions from "./section-max/boardgame-section-max-expansions";
 import BoardgameSectionMaxContent from "./section-max/boardgame-section-max-content";
+import BoardgameSectionMaxFamilies from "./section-max/boardgame-section-max-families";
 
 import { get_multiple_boardgames } from "src/backend/boardgames";
 import Modal, { TYPES as MODAL_TYPES } from "./modals/boardgame-modal";
@@ -54,10 +55,11 @@ export default function BoardgameMax({ boardgame }) {
     image,
     imageDefault,
     content = [],
+    families,
   } = boardgame;
   console.log(boardgame);
   const router = useRouter();
-
+  console.log("families", families);
   const [modal, setModal] = useState("");
   const onCloseModal = () => {
     setModal("");
@@ -131,6 +133,13 @@ export default function BoardgameMax({ boardgame }) {
           designers={designers}
         />
 
+        {families.length > 0 && (
+          <BoardgameSectionMaxFamilies
+            styles={{ gridArea: [, "families"], width: "80%" }}
+            families={families}
+          />
+        )}
+
         <BoardgameSectionMaxCategories
           styles={{ gridArea: [, "categories"], width: "80%" }}
           categories={categories}
@@ -140,6 +149,7 @@ export default function BoardgameMax({ boardgame }) {
           styles={{ gridArea: [, "mechanisms"], width: "80%" }}
           mechanisms={mechanisms}
         />
+
         {content && (
           <BoardgameSectionMaxContent
             styles={{ gridArea: [, "content"], width: "80%" }}

@@ -112,7 +112,7 @@ export default function BoardgameDescription({ styles, description }) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        width: "80%",
+        width: "100%",
         ...styles,
       }}
     >

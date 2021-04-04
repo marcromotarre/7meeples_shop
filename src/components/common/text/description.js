@@ -2,6 +2,7 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
+import BoardgameDescription from "src/components/board-games/boardgame-description";
 export default function Description({ styles, description = "" }) {
   const separator = {
     width: "100%",
@@ -24,10 +25,7 @@ export default function Description({ styles, description = "" }) {
         }}
       >
         <div sx={separator}></div>
-
-        <span sx={{ fontWeight: "100", textAlign: "center", width: "100%%" }}>
-          {description}
-        </span>
+        <BoardgameDescription description={description}></BoardgameDescription>
         <div sx={separator}></div>
       </div>
     </>

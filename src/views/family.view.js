@@ -23,7 +23,6 @@ export default function CategoryView({ family = {}, styles }) {
         .filter(({ families }) => families?.includes(id))
         .sort((boardgame1, boardgame2) => sort_year(boardgame1, boardgame2))
     : [];
-  console.log("filteredBoardgames", filteredBoardgames);
 
   return (
     <MainView>
@@ -47,7 +46,6 @@ export default function CategoryView({ family = {}, styles }) {
             rowGap: "15px",
           }}
         >
-          <h1 sx={{ textAlign: "center" }}>{webname ? webname : name}</h1>
           {image && (
             <img
               sx={{ width: "80%", height: "auto" }}

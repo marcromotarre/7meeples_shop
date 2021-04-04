@@ -29,6 +29,8 @@ export default function Boardgame() {
     (state) => state.mechanismsReducer.mechanisms
   );
 
+  const all_families = useSelector((state) => state.familiesReducer.families);
+
   const refreshBoardGameInfo = () => {
     setBoardgame(undefined);
   };
@@ -135,6 +137,11 @@ export default function Boardgame() {
           <BoardgameMax
             boardgame={{
               ...boardgame,
+              families: all_families
+                ? all_families.filter(({ id }) =>
+                    boardgame.families?.includes(id)
+                  )
+                : [],
               designers: all_designers
                 ? all_designers.filter(({ id }) =>
                     boardgame.designers.includes(id)
