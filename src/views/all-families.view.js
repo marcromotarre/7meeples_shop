@@ -20,7 +20,7 @@ import { useRouter } from "next/router";
 export default function AllFamiliesView({ families = [], styles }) {
   const router = useRouter();
   const clickOnPublisher = (id, name) => {
-    router.push(`/editoriales/${id}/${name}`);
+    router.push(`/familias/${id}/${name}`);
   };
 
   return (
@@ -74,7 +74,8 @@ export default function AllFamiliesView({ families = [], styles }) {
                   borderRadius: "10px",
                   boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
                   width: "100%",
-                  aspectRatio: "1 / 1",
+                  position: "relative",
+                  paddingTop: "100%",
                   display: "flex",
                   background: color,
                   alignItems: "center",
@@ -82,16 +83,29 @@ export default function AllFamiliesView({ families = [], styles }) {
                 }}
                 onClick={() => clickOnPublisher(id, name)}
               >
-                <img
+                <div
                   sx={{
-                    borderRadius: full ? "10px" : "0px",
-                    display: "block",
-                    width: full ? "100%" : "90%",
-                    height: "auto",
-                    maxHeight: full ? "100%" : "90%",
+                    position: "absolute",
+                    top: "0",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
-                  src={`${IMAGES_REPOSITORY}families/${image}`}
-                ></img>
+                >
+                  <img
+                    sx={{
+                      borderRadius: full ? "10px" : "0px",
+                      display: "block",
+                      width: full ? "100%" : "90%",
+                      height: "auto",
+                      maxHeight: full ? "100%" : "90%",
+                      objectFit: "contain",
+                    }}
+                    src={`${IMAGES_REPOSITORY}families/${image}`}
+                  ></img>
+                </div>
               </div>
             ))}
         </div>

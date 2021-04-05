@@ -68,28 +68,42 @@ export default function CategoryView({ publishers = [], styles }) {
             <div
               key={id}
               sx={{
+                position: "relative",
+                paddingTop: "100%",
                 borderRadius: "10px",
                 boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
                 background: color,
                 width: "100%",
                 height: "auto",
-                aspectRatio: "1 / 1",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
               onClick={() => clickOnPublisher(id, name)}
             >
-              <img
+              <div
                 sx={{
-                  borderRadius: "10px",
-                  display: "block",
-                  width: full ? "100%" : "90%",
-                  height: "auto",
-                  maxHeight: full ? "100%" : "90%",
+                  position: "absolute",
+                  top: "0",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
-                src={`${IMAGES_REPOSITORY}publishers/${image}`}
-              ></img>
+              >
+                <img
+                  sx={{
+                    borderRadius: "10px",
+                    display: "block",
+                    width: full ? "100%" : "90%",
+                    height: "auto",
+                    maxHeight: full ? "100%" : "90%",
+                  }}
+                  src={`${IMAGES_REPOSITORY}publishers/${image}`}
+                ></img>
+              </div>
             </div>
           ))}
         </div>
