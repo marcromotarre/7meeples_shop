@@ -51,12 +51,17 @@ export default function CategoryView({ publishers = [], styles }) {
           sx={{
             display: "grid",
             width: "90%",
-            gridTemplateColumns: "calc(50% - 8px) calc(50% - 8px)",
+            gridTemplateColumns: [
+              "calc(50% - 8px) calc(50% - 8px)",
+              "calc(33% - 10px) calc(33% - 10px) calc(33% - 10px)",
+              "calc(25% - 12px) calc(25% - 12px) calc(25% - 12px) calc(25% - 12px)",
+              "calc(20% - 13px) calc(20% - 13px) calc(20% - 13px) calc(20% - 13px) calc(20% - 13px)",
+            ],
             flexWrap: "wrap",
             alignItems: "center",
             justifyItems: "center",
-            columnGap: "16px",
-            rowGap: "16px",
+            columnGap: ["16px", "15px", "15px", "15px"],
+            rowGap: ["16px", "15px", "15px", "15px"],
           }}
         >
           {publishers.map(({ name, id, image, color }) => (
