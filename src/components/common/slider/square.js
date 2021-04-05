@@ -65,7 +65,12 @@ export default function Square({
           ></img>
         </div>
       </div>
-      {showName && <p>{name ? name : " . "}</p>}
+
+      {showName && (
+        <div sx={{ height: "38px" }}>
+          <p>{name ? name : " . "}</p>
+        </div>
+      )}
     </div>
   );
 }

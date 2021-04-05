@@ -64,7 +64,7 @@ export default function CategoryView({ publishers = [], styles }) {
             rowGap: ["16px", "15px", "15px", "15px"],
           }}
         >
-          {publishers.map(({ name, id, image, color, full = true }) => (
+          {publishers.map(({ name, id, image, color, full = false }) => (
             <div
               key={id}
               sx={{
