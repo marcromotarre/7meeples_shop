@@ -3,6 +3,7 @@
 import { jsx } from "theme-ui";
 import Mia from "../src/components/mia/mia-main";
 import CategoriesMain from "../src/components/categories/categories-main";
+import CategoriesSlider from "../src/components/categories/categories-slider";
 import NewnessMain from "../src/components/newness/newness-main.js";
 import React, { useState, useEffect } from "react";
 import Searcher from "src/components/searcher/searcher";
@@ -11,7 +12,7 @@ import SaleOfThe from "src/components/main/sale-of-the";
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
-  const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." ". . best-categories . ." ". . newness . ."`;
+  const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." "best-categories best-categories best-categories best-categories best-categories" ". . newness . ."`;
   const onSearchFocus = () => {
     console.log("focus");
   };
@@ -106,12 +107,18 @@ export default function Home() {
               gridArea: "sale-of-the",
             }}
           ></SaleOfThe>
-          <CategoriesMain
+          <CategoriesSlider
             styles={{
               height: ["100%"],
               gridArea: "best-categories",
             }}
-          ></CategoriesMain>
+          ></CategoriesSlider>
+          {/*<CategoriesMain
+            styles={{
+              height: ["100%"],
+              gridArea: "best-categories",
+            }}
+          ></CategoriesMain>*/}
           <NewnessMain
             styles={{
               gridArea: "newness",
@@ -119,10 +126,6 @@ export default function Home() {
           ></NewnessMain>
         </>
       )}
-      {/*
-      
-     
-      */}
     </div>
   );
 }
