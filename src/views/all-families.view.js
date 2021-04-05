@@ -13,15 +13,16 @@ import {
   sort_year,
 } from "src/components/board-games/utils";
 import Description from "src/components/common/text/description";
-import publisher_icon from "src/assets/svg/publisher.svg";
+import family_icon from "src/assets/svg/sections/families.svg";
 import MainView from "./main.view";
 import { useRouter } from "next/router";
 
-export default function CategoryView({ publishers = [], styles }) {
+export default function AllFamiliesView({ families = [], styles }) {
   const router = useRouter();
   const clickOnPublisher = (id, name) => {
     router.push(`/editoriales/${id}/${name}`);
   };
+
   return (
     <MainView>
       <div
@@ -44,8 +45,8 @@ export default function CategoryView({ publishers = [], styles }) {
             rowGap: "10px",
           }}
         >
-          <img src={publisher_icon}></img>
-          <h1>Editoriales</h1>
+          <img src={family_icon}></img>
+          <h1>Familias</h1>
         </div>
         <div
           sx={{
@@ -64,38 +65,38 @@ export default function CategoryView({ publishers = [], styles }) {
             rowGap: ["16px", "15px", "15px", "15px"],
           }}
         >
-          {publishers.map(({ name, id, image, color, full = true }) => (
-            <div
-              key={id}
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
-                background: color,
-                width: "100%",
-                height: "auto",
-                aspectRatio: "1 / 1",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onClick={() => clickOnPublisher(id, name)}
-            >
-              <img
+          {families
+            .filter(({ type }) => type === "Game")
+            .map(({ name, id, image, color, full }) => (
+              <div
+                key={id}
                 sx={{
                   borderRadius: "10px",
-                  display: "block",
-                  width: full ? "100%" : "90%",
+                  boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
+                  width: "100%",
                   height: "auto",
-                  maxHeight: full ? "100%" : "90%",
+                  aspectRatio: "1 / 1",
+                  display: "flex",
+                  background: color,
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
-                src={`${IMAGES_REPOSITORY}publishers/${image}`}
-              ></img>
-            </div>
-          ))}
+                onClick={() => clickOnPublisher(id, name)}
+              >
+                <img
+                  sx={{
+                    borderRadius: full ? "10px" : "0px",
+                    display: "block",
+                    width: full ? "100%" : "90%",
+                    height: "auto",
+                    maxHeight: full ? "100%" : "90%",
+                  }}
+                  src={`${IMAGES_REPOSITORY}families/${image}`}
+                ></img>
+              </div>
+            ))}
         </div>
       </div>
     </MainView>
   );
 }
-
-//<h1 onClick={() => clickOnPublisher(id, name)}>{name}</h1>

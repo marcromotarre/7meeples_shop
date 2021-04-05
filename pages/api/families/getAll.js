@@ -10,6 +10,9 @@ export default async (req, res) => {
             webname
             description
             image
+            type
+            color
+            full
           }
       }
     `,
