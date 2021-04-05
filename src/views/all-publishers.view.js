@@ -72,7 +72,7 @@ export default function CategoryView({ publishers = [], styles }) {
                 background: color,
                 width: "100%",
                 height: "auto",
-                aspectRatio: "1",
+                aspectRatio: "1 / 1",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
