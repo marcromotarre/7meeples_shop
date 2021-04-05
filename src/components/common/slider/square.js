@@ -21,7 +21,7 @@ export default function Square({
         width: "100%",
         display: "grid",
         gridTemplateColumns: "100%",
-        gridTemplateRows: "auto auto",
+        gridTemplateRows: showName ? "auto auto" : "auto",
         alignItems: "center",
         rowGap: "10px",
         justifyItems: "center",

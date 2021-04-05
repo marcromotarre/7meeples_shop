@@ -7,6 +7,7 @@ import { s3_name } from "src/utils/name";
 import { useSelector, useDispatch } from "react-redux";
 import BoardgameImportant from "../components/board-games/boardgame-important";
 import BoardgamesList from "../components/board-games/board-games-list";
+import Square from "src/components/common/slider/square";
 import {
   sort_importance,
   BOARDGAME_ATTRIBUTES,
@@ -65,46 +66,14 @@ export default function CategoryView({ publishers = [], styles }) {
           }}
         >
           {publishers.map(({ name, id, image, color, full = false }) => (
-            <div
-              key={id}
-              sx={{
-                position: "relative",
-                paddingTop: "100%",
-                borderRadius: "10px",
-                boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
-                background: color,
-                width: "100%",
-                height: "auto",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onClick={() => clickOnPublisher(id, name)}
-            >
-              <div
-                sx={{
-                  position: "absolute",
-                  top: "0",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  sx={{
-                    borderRadius: "10px",
-                    display: "block",
-                    width: full ? "100%" : "90%",
-                    height: "auto",
-                    maxHeight: full ? "100%" : "90%",
-                  }}
-                  src={`${IMAGES_REPOSITORY}publishers/${image}`}
-                ></img>
-              </div>
-            </div>
+            <Square
+              name={name}
+              id={id}
+              image={`${IMAGES_REPOSITORY}publishers/${image}`}
+              color={color}
+              full={full}
+              onClick={(id, name) => clickOnPublisher(id, name)}
+            />
           ))}
         </div>
       </div>
