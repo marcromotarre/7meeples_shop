@@ -9,6 +9,7 @@ export default async (req, res) => {
             name
             description
             image
+            color
           }
       }
     `,
