@@ -71,7 +71,7 @@ export default function CategoryView({ publishers = [], styles }) {
                 boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
                 background: color,
                 width: "100%",
-                height: "100%",
+                height: "auto",
                 aspectRatio: "1",
                 display: "flex",
                 alignItems: "center",
