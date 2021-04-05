@@ -5,13 +5,19 @@ import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
 import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
 import { Button } from "../common/index";
+import Square from "src/components/common/slider/square";
 import SectionTitle from "../sections/section-title";
 import CategoriesList from "./categories-list";
 import awards_icon from "../../assets/svg/categories/icon.svg";
 import { IMAGES_REPOSITORY } from "src/constants";
+import { useRouter } from "next/router";
 
 export default function Slider({ styles }) {
+  const router = useRouter();
   const all_families = useSelector((state) => state.familiesReducer.families);
+  const clickOnFamily = (id, name) => {
+    router.push(`/familias/${id}/${name}`);
+  };
   const onlyImportantFamilies = all_families.filter(
     ({ type }) => type === "Game"
   );
@@ -47,7 +53,10 @@ export default function Slider({ styles }) {
             paddingBottom: "20px",
             display: "grid",
             width: "100%",
-            gridTemplateColumns: `repeat(${onlyImportantFamilies.length}, 40%) 15px`,
+            gridTemplateColumns: [
+              `repeat(${onlyImportantFamilies.length}, 40%) 15px`,
+              `repeat(${onlyImportantFamilies.length}, 20%) 15px`,
+            ],
             alignItems: "center",
             justifyItems: "center",
             columnGap: "15px",
@@ -58,45 +67,16 @@ export default function Slider({ styles }) {
             },
           }}
         >
-          {onlyImportantFamilies.map(({ image, color, name, id, full }) => (
-            <div
-              key={id}
-              sx={{
-                borderRadius: "10px",
-                boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
-                width: "100%",
-                position: "relative",
-                paddingTop: "100%",
-                display: "flex",
-                background: color,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                sx={{
-                  position: "absolute",
-                  top: "0",
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  sx={{
-                    borderRadius: full ? "10px" : "0px",
-                    display: "block",
-                    width: full ? "100%" : "90%",
-                    height: "auto",
-                    maxHeight: full ? "100%" : "90%",
-                    objectFit: "contain",
-                  }}
-                  src={`${IMAGES_REPOSITORY}families/${image}`}
-                ></img>
-              </div>
-            </div>
+          {onlyImportantFamilies.map(({ image, color, webname, id, full }) => (
+            <Square
+              image={`${IMAGES_REPOSITORY}families/${image}`}
+              color={color}
+              name={webname}
+              id={id}
+              full={full}
+              showName={true}
+              onClick={clickOnFamily}
+            />
           ))}
           <div sx={{ height: "100%", width: "10px" }}></div>
         </div>

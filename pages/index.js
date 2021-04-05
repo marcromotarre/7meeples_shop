@@ -1,16 +1,20 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
+import { useSelector } from "react-redux";
 import Mia from "../src/components/mia/mia-main";
 import CategoriesMain from "../src/components/categories/categories-main";
-import CategoriesSlider from "../src/components/categories/categories-slider";
+import Slider from "src/components/common/slider/slider";
 import NewnessMain from "../src/components/newness/newness-main.js";
 import React, { useState, useEffect } from "react";
 import Searcher from "src/components/searcher/searcher";
 import SearchList from "src/components/searcher/search-list";
 import SaleOfThe from "src/components/main/sale-of-the";
+import { useRouter } from "next/router";
+import { IMAGES_REPOSITORY } from "src/constants";
 
 export default function Home() {
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." "best-categories best-categories best-categories best-categories best-categories" ". . newness . ."`;
   const onSearchFocus = () => {
@@ -49,6 +53,22 @@ export default function Home() {
     });
   });
 
+  const all_families = useSelector((state) => state.familiesReducer.families);
+  const families = all_families
+    ? all_families
+        .filter(({ type }) => type === "Game")
+        .map((element) => {
+          return {
+            ...element,
+            image: `${IMAGES_REPOSITORY}families/${element.image}`,
+            click: (id, name) => {
+              router.push(`/familias/${id}/${name}`);
+            },
+          };
+        })
+    : [];
+  console.log("families", families);
+
   return (
     <div
       sx={{
@@ -60,7 +80,7 @@ export default function Home() {
         alignSelf: "center",
         gridTemplateAreas: [
           MOBILE_AREAS,
-          `". searcher searcher ." ". mia sale-of-the ." ". best-categories sale-of-the ." ". newness newness ."`,
+          `". searcher searcher ." ". mia sale-of-the ." "best-categories best-categories best-categories best-categories" ". newness newness ."`,
         ],
       }}
     >
@@ -107,12 +127,13 @@ export default function Home() {
               gridArea: "sale-of-the",
             }}
           ></SaleOfThe>
-          <CategoriesSlider
+          <Slider
+            elements={families}
             styles={{
               height: ["100%"],
               gridArea: "best-categories",
             }}
-          ></CategoriesSlider>
+          ></Slider>
           {/*<CategoriesMain
             styles={{
               height: ["100%"],
