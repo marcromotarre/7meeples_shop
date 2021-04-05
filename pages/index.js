@@ -12,11 +12,18 @@ import SearchList from "src/components/searcher/search-list";
 import SaleOfThe from "src/components/main/sale-of-the";
 import { useRouter } from "next/router";
 import { IMAGES_REPOSITORY } from "src/constants";
+import categories from "src/components/categories/data/categories";
 
 export default function Home() {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
-  const MOBILE_AREAS = `". searcher searcher searcher ." ". . mia . ." ". . sale-of-the . ." "best-categories best-categories best-categories best-categories best-categories" ". . newness . ."`;
+  const MOBILE_AREAS = `
+    ". searcher searcher searcher ." 
+    ". . mia . ." ". . sale-of-the . ."
+    "best-categories best-categories best-categories best-categories best-categories"
+    "publishers publishers publishers publishers publishers"
+    "colections colections colections colections colections"
+    ". . newness . ."`;
   const onSearchFocus = () => {
     console.log("focus");
   };
@@ -67,8 +74,22 @@ export default function Home() {
           };
         })
     : [];
-  console.log("families", families);
 
+  const all_publishers = useSelector(
+    (state) => state.publishersReducer.publishers
+  );
+  const publishers = all_publishers
+    ? all_publishers.map((element) => {
+        return {
+          ...element,
+          image: `${IMAGES_REPOSITORY}publishers/${element.image}`,
+          webname: element.name,
+          click: (id, name) => {
+            router.push(`/editoriales/${id}/${name}`);
+          },
+        };
+      })
+    : [];
   return (
     <div
       sx={{
@@ -80,7 +101,7 @@ export default function Home() {
         alignSelf: "center",
         gridTemplateAreas: [
           MOBILE_AREAS,
-          `". searcher searcher ." ". mia sale-of-the ." "best-categories best-categories best-categories best-categories" ". newness newness ."`,
+          `". searcher searcher ." ". mia sale-of-the ." "best-categories best-categories best-categories best-categories"  "publishers publishers publishers publishers" ". newness newness ."`,
         ],
       }}
     >
@@ -128,7 +149,30 @@ export default function Home() {
             }}
           ></SaleOfThe>
           <Slider
+            title={"Colecciones"}
             elements={families}
+            styles={{
+              height: ["100%"],
+              gridArea: "colections",
+            }}
+          ></Slider>
+          <Slider
+            title={"Editoriales"}
+            elements={publishers}
+            styles={{
+              height: ["100%"],
+              gridArea: "publishers",
+            }}
+          ></Slider>
+          <Slider
+            title={"Categorias"}
+            elements={categories.map((category) => {
+              return {
+                ...category,
+                image: category.icon,
+                webname: category.name,
+              };
+            })}
             styles={{
               height: ["100%"],
               gridArea: "best-categories",

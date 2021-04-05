@@ -13,7 +13,6 @@ export default function Square({
   onClick = () => {},
   showName = false,
 }) {
-  console.log("name", name);
   return (
     <div
       key={id}

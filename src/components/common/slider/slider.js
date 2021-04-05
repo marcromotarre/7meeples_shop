@@ -4,7 +4,7 @@ import { jsx } from "theme-ui";
 import Square from "src/components/common/slider/square";
 import { useRouter } from "next/router";
 
-export default function Slider({ elements = [], styles }) {
+export default function Slider({ title = "", elements = [], styles }) {
   return (
     <div
       sx={{
@@ -22,7 +22,7 @@ export default function Slider({ elements = [], styles }) {
           paddingLeft: "30px",
         }}
       >
-        Colecciones
+        {title}
       </h3>
       <div
         sx={{
