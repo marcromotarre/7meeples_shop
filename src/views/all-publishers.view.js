@@ -80,7 +80,12 @@ export default function CategoryView({ publishers = [], styles }) {
               onClick={() => clickOnPublisher(id, name)}
             >
               <img
-                sx={{ width: "90%", height: "auto", maxHeight: "90%" }}
+                sx={{
+                  display: "block",
+                  width: "90%",
+                  height: "auto",
+                  maxHeight: "90%",
+                }}
                 src={`${IMAGES_REPOSITORY}publishers/${image}`}
               ></img>
             </div>
