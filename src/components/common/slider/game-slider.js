@@ -11,7 +11,12 @@ import designers_icon from "src/assets/svg/sections/designers.svg";
 import number_of_players_icon from "src/assets/svg/sections/number-of-players.svg";
 import weight_icon from "src/assets/svg/sections/weight.svg";
 import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
-export default function Slider({ title = "", elements = [], styles }) {
+export default function Slider({
+  filters = false,
+  title = "",
+  elements = [],
+  styles,
+}) {
   const [showPlayTime, setShowPlayTime] = useState(false);
   const [showAge, setShowAge] = useState(false);
   const [showNumberPlayers, setShowNumberPlayers] = useState(false);
@@ -44,52 +49,54 @@ export default function Slider({ title = "", elements = [], styles }) {
       >
         {title}
       </h3>
-      <div
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          height: "15px",
-        }}
-      >
-        <img
-          onClick={() => setShowPlayTime(!showPlayTime)}
+      {filters && (
+        <div
           sx={{
-            opacity: showPlayTime ? "1" : "0.3",
-            width: "auto",
-            height: "100%",
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: "15px",
           }}
-          src={play_time_icon}
-        />
-        <img
-          onClick={() => setShowAge(!showAge)}
-          sx={{
-            opacity: showAge ? "1" : "0.3",
-            width: "auto",
-            height: "100%",
-          }}
-          src={age_icon}
-        />
-        <img
-          onClick={() => setShowNumberPlayers(!showNumberPlayers)}
-          sx={{
-            opacity: showNumberPlayers ? "1" : "0.3",
-            width: "auto",
-            height: "100%",
-          }}
-          src={number_of_players_icon}
-        />
-        <img
-          onClick={() => setShowWeight(!showWeight)}
-          sx={{
-            opacity: showWeight ? "1" : "0.3",
-            width: "auto",
-            height: "60%",
-          }}
-          src={weight_icon}
-        />
-      </div>
+        >
+          <img
+            onClick={() => setShowPlayTime(!showPlayTime)}
+            sx={{
+              opacity: showPlayTime ? "1" : "0.3",
+              width: "auto",
+              height: "100%",
+            }}
+            src={play_time_icon}
+          />
+          <img
+            onClick={() => setShowAge(!showAge)}
+            sx={{
+              opacity: showAge ? "1" : "0.3",
+              width: "auto",
+              height: "100%",
+            }}
+            src={age_icon}
+          />
+          <img
+            onClick={() => setShowNumberPlayers(!showNumberPlayers)}
+            sx={{
+              opacity: showNumberPlayers ? "1" : "0.3",
+              width: "auto",
+              height: "100%",
+            }}
+            src={number_of_players_icon}
+          />
+          <img
+            onClick={() => setShowWeight(!showWeight)}
+            sx={{
+              opacity: showWeight ? "1" : "0.3",
+              width: "auto",
+              height: "60%",
+            }}
+            src={weight_icon}
+          />
+        </div>
+      )}
       <div
         sx={{
           width: "100%",
@@ -104,8 +111,8 @@ export default function Slider({ title = "", elements = [], styles }) {
             display: "grid",
             width: "100%",
             gridTemplateColumns: [
-              `repeat(${elements.length}, 250px) 15px`,
-              `repeat(${elements.length}, 20%) 15px`,
+              `repeat(${elements.length}, 75%) 15px`,
+              `repeat(${elements.length}, 30%) 15px`,
             ],
             alignItems: "center",
             justifyItems: "center",

@@ -9,18 +9,20 @@ import Loading from "../common/loading/loading";
 import { useSelector } from "react-redux";
 import SectionTitle from "../sections/section-title";
 import { Button } from "../common";
+import SliderBoardgames from "src/components/common/slider/game-slider";
 
-const SALE_ID = 173346;
-const SALE_TYPE = "Oferta del día";
+const SALES_IDS = [173346, 214396, 172, 192291, 266192];
 
 export default function SaleOfThe({ styles }) {
-  const [saleBoardgame, setSaleBoardgame] = useState();
+  const [saleBoardgames, setSaleBoardgames] = useState();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
   useEffect(() => {
     if (boardgames) {
-      const saleBoardgame = boardgames.find(({ id }) => id === SALE_ID);
-      setSaleBoardgame(saleBoardgame);
+      const saleBoardgames = boardgames.filter(({ id }) =>
+        SALES_IDS.includes(id)
+      );
+      setSaleBoardgames(saleBoardgames);
     }
   }, [boardgames]);
 
@@ -37,9 +39,7 @@ export default function SaleOfThe({ styles }) {
         ...styles,
       }}
     >
-      <SectionTitle title={SALE_TYPE}></SectionTitle>
-
-      {saleBoardgame && (
+      {saleBoardgames && (
         <div
           sx={{
             display: "grid",
@@ -48,10 +48,21 @@ export default function SaleOfThe({ styles }) {
             alignItems: "center",
             justifyItems: "center",
             rowGap: "35px",
-            maxWidth: "350px",
           }}
         >
-          <BoardgameMin
+          <SliderBoardgames
+            title={"Ofertas"}
+            elements={saleBoardgames}
+          ></SliderBoardgames>
+        </div>
+      )}
+
+      {!saleBoardgames && <Loading></Loading>}
+    </div>
+  );
+}
+/*
+ <BoardgameMin
             styles={{ width: "100%" }}
             boardgame={saleBoardgame}
             attributes={[
@@ -60,12 +71,4 @@ export default function SaleOfThe({ styles }) {
               BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
               BOARDGAME_ATTRIBUTES.WEIGHT,
             ]}
-          />
-          <Button>Ver más ofertas</Button>
-        </div>
-      )}
-
-      {!saleBoardgame && <Loading></Loading>}
-    </div>
-  );
-}
+          />*/

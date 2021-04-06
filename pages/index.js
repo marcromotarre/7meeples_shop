@@ -17,13 +17,23 @@ import categories from "src/components/categories/data/categories";
 export default function Home() {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
+
   const MOBILE_AREAS = `
-    ". searcher searcher searcher ." 
-    ". . mia . ." ". . sale-of-the . ."
-    "best-categories best-categories best-categories best-categories best-categories"
-    "publishers publishers publishers publishers publishers"
-    "colections colections colections colections colections"
-    "newness newness newness newness newness"`;
+  ". searcher searcher searcher ." 
+  ". . mia . ."
+  "sale-of-the sale-of-the sale-of-the sale-of-the sale-of-the"
+  "best-categories best-categories best-categories best-categories best-categories"
+  "publishers publishers publishers publishers publishers"
+  "colections colections colections colections colections"
+  "newness newness newness newness newness"`;
+  const IPAD_AREAS = `
+  ". searcher searcher ." 
+  ". mia mia ." 
+  "sale-of-the sale-of-the sale-of-the sale-of-the" 
+  "best-categories best-categories best-categories best-categories"  
+  "colections colections colections colections"
+  "publishers publishers publishers publishers" 
+  ". newness newness ."`;
   const onSearchFocus = () => {
     console.log("focus");
   };
@@ -99,10 +109,7 @@ export default function Home() {
         rowGap: "35px",
         justifySelf: "center",
         alignSelf: "center",
-        gridTemplateAreas: [
-          MOBILE_AREAS,
-          `". searcher searcher ." ". mia sale-of-the ." "best-categories best-categories best-categories best-categories"  "publishers publishers publishers publishers" ". newness newness ."`,
-        ],
+        gridTemplateAreas: [MOBILE_AREAS, IPAD_AREAS],
       }}
     >
       <div
