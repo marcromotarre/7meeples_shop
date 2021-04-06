@@ -10,6 +10,7 @@ import Loading from "../common/loading/loading";
 import BoardgameList from "../board-games/board-games-list";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 import SliderBoardgames from "src/components/common/slider/game-slider";
+
 export default function NewnessMain({ styles }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
@@ -60,12 +61,13 @@ export default function NewnessMain({ styles }) {
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
-        rowGap: "25px",
+        rowGap: "15px",
         height: "fit-content",
         ...styles,
       }}
     >
       <SectionTitle title={"Novedades"} icon={newness_icon}></SectionTitle>
+
       {loading && <Loading></Loading>}
       {!loading && (
         <SliderBoardgames

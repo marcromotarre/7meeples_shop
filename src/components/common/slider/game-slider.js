@@ -3,14 +3,28 @@
 import { jsx } from "theme-ui";
 import Boardgame from "src/components/board-games/boardgame-min-fixed-height";
 import { useRouter } from "next/router";
-import React from "react";
-export default function Slider({
-  attributes,
-  title = "",
-  elements = [],
-  styles,
-}) {
-  console.log("elements", elements);
+import React, { useState } from "react";
+
+import play_time_icon from "src/assets/svg/sections/play-time.svg";
+import age_icon from "src/assets/svg/sections/age.svg";
+import designers_icon from "src/assets/svg/sections/designers.svg";
+import number_of_players_icon from "src/assets/svg/sections/number-of-players.svg";
+import weight_icon from "src/assets/svg/sections/weight.svg";
+import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
+export default function Slider({ title = "", elements = [], styles }) {
+  const [showPlayTime, setShowPlayTime] = useState(false);
+  const [showAge, setShowAge] = useState(false);
+  const [showNumberPlayers, setShowNumberPlayers] = useState(false);
+  const [showWeight, setShowWeight] = useState(false);
+
+  let attributes = [];
+
+  if (showPlayTime) attributes.push(BOARDGAME_ATTRIBUTES.PLAY_TIME);
+  if (showAge) attributes.push(BOARDGAME_ATTRIBUTES.AGE);
+  if (showNumberPlayers)
+    attributes.push(BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS);
+  if (showWeight) attributes.push(BOARDGAME_ATTRIBUTES.WEIGHT);
+
   return (
     <div
       sx={{
@@ -33,6 +47,52 @@ export default function Slider({
       <div
         sx={{
           width: "100%",
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          height: "15px",
+        }}
+      >
+        <img
+          onClick={() => setShowPlayTime(!showPlayTime)}
+          sx={{
+            opacity: showPlayTime ? "1" : "0.3",
+            width: "auto",
+            height: "100%",
+          }}
+          src={play_time_icon}
+        />
+        <img
+          onClick={() => setShowAge(!showAge)}
+          sx={{
+            opacity: showAge ? "1" : "0.3",
+            width: "auto",
+            height: "100%",
+          }}
+          src={age_icon}
+        />
+        <img
+          onClick={() => setShowNumberPlayers(!showNumberPlayers)}
+          sx={{
+            opacity: showNumberPlayers ? "1" : "0.3",
+            width: "auto",
+            height: "100%",
+          }}
+          src={number_of_players_icon}
+        />
+        <img
+          onClick={() => setShowWeight(!showWeight)}
+          sx={{
+            opacity: showWeight ? "1" : "0.3",
+            width: "auto",
+            height: "60%",
+          }}
+          src={weight_icon}
+        />
+      </div>
+      <div
+        sx={{
+          width: "100%",
           overflow: "hidden",
         }}
       >
@@ -49,7 +109,7 @@ export default function Slider({
             ],
             alignItems: "center",
             justifyItems: "center",
-            columnGap: "15px",
+            columnGap: "25px",
             overflowX: "auto",
             scrollBehavior: "smooth",
             "&::-webkit-scrollbar": {
