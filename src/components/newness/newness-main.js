@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Loading from "../common/loading/loading";
 import BoardgameList from "../board-games/board-games-list";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
-
+import SliderBoardgames from "src/components/common/slider/game-slider";
 export default function NewnessMain({ styles }) {
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
@@ -68,7 +68,17 @@ export default function NewnessMain({ styles }) {
       <SectionTitle title={"Novedades"} icon={newness_icon}></SectionTitle>
       {loading && <Loading></Loading>}
       {!loading && (
-        <BoardgameList
+        <SliderBoardgames
+          elements={newnessCompleteInfo}
+          attributes={[]}
+        ></SliderBoardgames>
+      )}
+      <div sx={{ height: "50px" }}></div>
+    </div>
+  );
+}
+
+/*   <BoardgameList
           styles={{ width: "100%" }}
           boardgames={newnessCompleteInfo}
           attributes={[BOARDGAME_ATTRIBUTES.MORE]}
@@ -79,8 +89,5 @@ export default function NewnessMain({ styles }) {
             BOARDGAME_ATTRIBUTES.WEIGHT,
           ]}
         ></BoardgameList>
-      )}
-      <div sx={{ height: "50px" }}></div>
-    </div>
-  );
-}
+
+*/

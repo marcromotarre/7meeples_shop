@@ -1,4 +1,4 @@
-import fillers_icon from "../../../assets/svg/categories/fillers/icon.svg";
+import fillers_icon from "../../../assets/svg/categories/fillers-icon.svg";
 
 const description = [
   {
@@ -18,7 +18,7 @@ const filter_boardgames = (boardgames) => {
 
 const category = {
   id: "fillers",
-  name: "fillers",
+  name: "Fillers",
   icon: fillers_icon,
   filter: (boardgames) => filter_boardgames(boardgames),
   description,

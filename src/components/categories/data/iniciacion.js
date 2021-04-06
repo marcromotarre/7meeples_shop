@@ -1,4 +1,4 @@
-import iniciacion_icon from "../../../assets/svg/categories/categoria-iniciacion.svg";
+import iniciacion_icon from "../../../assets/svg/categories/iniciacion-icon.svg";
 import iniciacion_dificultad_icon from "../../../assets/svg/categories/iniciacion/iniciacion-dificultad-icon.svg";
 import iniciacion_duracion_icon from "../../../assets/svg/categories/iniciacion/iniciacion-duracion-icon.svg";
 import iniciacion_jugadores_icon from "../../../assets/svg/categories/iniciacion/iniciacion-jugadores-icon.svg";

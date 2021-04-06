@@ -1,5 +1,5 @@
-import en_pareja_icon from "../../../assets/svg/categories/categoria-en-pareja.svg";
-import en_pareja_description_icon from "../../../assets/svg/categories/en-pareja/2-jugadores-icon.svg";
+import en_pareja_icon from "src/assets/svg/categories/en-pareja-icon.svg";
+import en_pareja_description_icon from "src/assets/svg/categories/en-pareja-icon.svg";
 
 const description = [
   {
@@ -40,7 +40,7 @@ const filter_boardgames = (boardgames) => {
 
 const category = {
   id: "en_pareja",
-  name: "En pareja",
+  name: "En Pareja",
   icon: en_pareja_icon,
   filter: (boardgames) => filter_boardgames(boardgames),
   description: description,

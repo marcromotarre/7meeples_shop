@@ -1,10 +1,16 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import Square from "src/components/common/slider/square";
+import Boardgame from "src/components/board-games/boardgame-min-fixed-height";
 import { useRouter } from "next/router";
-
-export default function Slider({ title = "", elements = [], styles }) {
+import React from "react";
+export default function Slider({
+  attributes,
+  title = "",
+  elements = [],
+  styles,
+}) {
+  console.log("elements", elements);
   return (
     <div
       sx={{
@@ -34,10 +40,11 @@ export default function Slider({ title = "", elements = [], styles }) {
           sx={{
             position: "relative",
             paddingLeft: "30px",
+            paddingBottom: "20px",
             display: "grid",
             width: "100%",
             gridTemplateColumns: [
-              `repeat(${elements.length}, 40%) 15px`,
+              `repeat(${elements.length}, 250px) 15px`,
               `repeat(${elements.length}, 20%) 15px`,
             ],
             alignItems: "center",
@@ -50,19 +57,18 @@ export default function Slider({ title = "", elements = [], styles }) {
             },
           }}
         >
-          {elements.map(
-            ({ image, color, webname, id, full, click = () => {} }) => (
-              <Square
-                image={image}
-                color={color}
-                name={webname}
-                id={id}
-                full={full}
-                showName={true}
-                onClick={click}
-              />
-            )
-          )}
+          {elements.map((boardgame) => (
+            <>
+              {boardgame && (
+                <Boardgame
+                  styles={{ width: "100%" }}
+                  key={boardgame?.id}
+                  boardgame={boardgame}
+                  attributes={attributes}
+                />
+              )}
+            </>
+          ))}
           <div sx={{ height: "100%", width: "10px" }}></div>
         </div>
       </div>

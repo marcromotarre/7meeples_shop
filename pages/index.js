@@ -23,7 +23,7 @@ export default function Home() {
     "best-categories best-categories best-categories best-categories best-categories"
     "publishers publishers publishers publishers publishers"
     "colections colections colections colections colections"
-    ". . newness . ."`;
+    "newness newness newness newness newness"`;
   const onSearchFocus = () => {
     console.log("focus");
   };

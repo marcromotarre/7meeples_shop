@@ -1,5 +1,5 @@
 import un_jugador_icon from "../../../assets/svg/categories/solitarios/1-jugador-icon.svg";
-import solitarios_icon from "../../../assets/svg/categories/solitarios/icon.svg";
+import solitarios_icon from "../../../assets/svg/categories/solitarios-icon.svg";
 
 const description = [
   {
