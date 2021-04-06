@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 
 import { DEVICES } from "../../../utils/media-querys";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
+import { s3_name } from "src/utils/name";
 
 export default function GamesList({
   boardgames,
@@ -103,7 +104,7 @@ export default function GamesList({
 
   const router = useRouter();
   const onClickBoardgame = (id, name) => {
-    router.push(`/juego/${id}/${name}`);
+    router.push(`/juego/${id}/${s3_name(name)}`);
     clickOnBoardGame();
   };
 

@@ -11,12 +11,14 @@ import designers_icon from "src/assets/svg/sections/designers.svg";
 import number_of_players_icon from "src/assets/svg/sections/number-of-players.svg";
 import weight_icon from "src/assets/svg/sections/weight.svg";
 import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
+import { s3_name } from "src/utils/name";
 export default function Slider({
   filters = false,
   title = "",
   elements = [],
   styles,
 }) {
+  const router = useRouter();
   const [showPlayTime, setShowPlayTime] = useState(false);
   const [showAge, setShowAge] = useState(false);
   const [showNumberPlayers, setShowNumberPlayers] = useState(false);
@@ -113,6 +115,8 @@ export default function Slider({
             gridTemplateColumns: [
               `repeat(${elements.length}, 75%) 15px`,
               `repeat(${elements.length}, 30%) 15px`,
+              `repeat(${elements.length}, 25%) 15px`,
+              `repeat(${elements.length}, 20%) 15px`,
             ],
             alignItems: "center",
             justifyItems: "center",
@@ -128,6 +132,9 @@ export default function Slider({
             <>
               {boardgame && (
                 <Boardgame
+                  onClick={(id, name) =>
+                    router.push(`/juego/${id}/${s3_name(name)}`)
+                  }
                   styles={{ width: "100%" }}
                   key={boardgame?.id}
                   boardgame={boardgame}

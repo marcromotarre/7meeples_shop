@@ -14,7 +14,7 @@ export default function BoardgameMinFixedHeight({
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
   moreAttributes = [],
   boardgame,
-  onClick,
+  onClick = () => {},
   styles,
 }) {
   const {

@@ -48,7 +48,6 @@ export default function NewnessMain({ styles }) {
         })
         .reduce((acc, current) => [...acc, ...current.boardgames], []);
       setLoading(false);
-      console.log(completeNewnessData);
       setNewnessCompleteInfo(completeNewnessData);
     }
   };

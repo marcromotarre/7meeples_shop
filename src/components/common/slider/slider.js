@@ -39,6 +39,7 @@ export default function Slider({ title = "", elements = [], styles }) {
             gridTemplateColumns: [
               `repeat(${elements.length}, 40%) 15px`,
               `repeat(${elements.length}, 20%) 15px`,
+              `repeat(${elements.length}, 200px) 15px`,
             ],
             alignItems: "center",
             justifyItems: "center",
