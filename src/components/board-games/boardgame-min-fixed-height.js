@@ -64,7 +64,7 @@ export default function BoardgameMinFixedHeight({
         sx={{
           width: "100%",
           position: "relative",
-          paddingTop: "100%",
+          paddingTop: "80%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -97,7 +97,7 @@ export default function BoardgameMinFixedHeight({
       </div>
 
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
-      <div sx={{ display: "flex", width: "calc(100% - 20px)" }}>
+      <div sx={{ display: "flex", width: "calc(100% - 60px)" }}>
         <BoardgameName name={name} year={year} />
       </div>
 
