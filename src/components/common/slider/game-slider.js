@@ -1,7 +1,7 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "theme-ui";
-import Boardgame from "src/components/board-games/boardgame-min-fixed-height";
+import BoardgameMinFixedHeight from "src/components/board-games/boardgame-min-fixed-height";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -113,7 +113,7 @@ export default function Slider({
             display: "grid",
             width: "100%",
             gridTemplateColumns: [
-              `repeat(${elements.length}, 75%) 15px`,
+              `repeat(${elements.length}, 250px) 15px`,
               `repeat(${elements.length}, 30%) 15px`,
               `repeat(${elements.length}, 25%) 15px`,
               `repeat(${elements.length}, 20%) 15px`,
@@ -131,11 +131,11 @@ export default function Slider({
           {elements.map((boardgame) => (
             <>
               {boardgame && (
-                <Boardgame
+                <BoardgameMinFixedHeight
                   onClick={(id, name) =>
                     router.push(`/juego/${id}/${s3_name(name)}`)
                   }
-                  styles={{ width: "100%" }}
+                  styles={{ width: "100%", height: "350px" }}
                   key={boardgame?.id}
                   boardgame={boardgame}
                   attributes={attributes}

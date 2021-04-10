@@ -46,55 +46,46 @@ export default function BoardgameMinFixedHeight({
     <div
       sx={{
         width: "100%",
+        height: "100%",
         borderRadius: "10px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
         transition: "0.3s",
         display: "grid",
         justifyItems: "center",
         alignItems: "center",
+        gridTemplateRows: "0px calc(100% - 60px - 44px - 40px) 60px 44px 0px",
         rowGap: "10px",
-        maxWidth: "400px",
         ...styles,
       }}
       onClick={onClickBoardgame}
     >
+      <div></div>
       <div
         sx={{
           width: "100%",
           display: "flex",
-
+          height: "100%",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <div
-          sx={{
+        <Image
+          styles={{
             width: "100%",
-            height: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            height: "100%",
+            objectFit: "contain",
+            maxWidth: "calc(100% - 20px)",
           }}
-        >
-          <Image
-            styles={{
-              maxHeight: "80%",
-              maxWidth: "80%",
-            }}
-            src={
-              image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault
-            }
-          />
-        </div>
+          src={image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault}
+        />
       </div>
-      <div
-        sx={{ display: "grid", gridTemplateRows: "auto 50px", width: "90%" }}
-      >
-        <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
+
+      <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
+      <div sx={{ display: "flex", width: "calc(100% - 20px)" }}>
         <BoardgameName name={name} year={year} />
       </div>
 
-      <div sx={{ width: "100%" }}>
+      {/*<div sx={{ width: "100%" }}>
         <div sx={{ width: "100%" }}>
           {showAttributes.map((attribute) => (
             <>
@@ -106,7 +97,8 @@ export default function BoardgameMinFixedHeight({
             </>
           ))}
         </div>
-      </div>
+      </div>*/}
+      <div></div>
     </div>
   );
 }

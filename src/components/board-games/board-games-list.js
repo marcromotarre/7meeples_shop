@@ -106,7 +106,6 @@ export default function GamesList({
   const onClickBoardgame = (id, name) => {
     router.push(`/juego/${id}/${s3_name(name)}`);
     clickOnBoardGame();
-    //g
   };
 
   const addPageToGamesRow = (row) => {

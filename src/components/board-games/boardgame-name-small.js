@@ -17,7 +17,7 @@ export default function BoardgameName({ styles, name, year }) {
       }}
     >
       <h3>
-        {name.length < 40 ? name : name.substring(0, 37) + "..."}{" "}
+        {name.length < 48 ? name : name.substring(0, 45) + "..."}{" "}
         <span
           sx={{
             fontSize: "15px",
