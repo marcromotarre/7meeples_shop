@@ -5,7 +5,12 @@ import React, { useEffect, useState } from "react";
 import { get_boardgames } from "../../backend/boardgames";
 import hexa_black from "../../assets/svg/hexa-black.svg";
 
-export default function BoardgameAverage({ styles, average, numVotes }) {
+export default function BoardgameAverage({
+  template,
+  styles,
+  average,
+  numVotes,
+}) {
   let num_votes_string = `${numVotes} votos`;
   if (numVotes >= 1000 && numVotes <= 10000) {
     num_votes_string = `${Math.round((numVotes / 1000) * 100) / 100}k votos`;
@@ -34,7 +39,10 @@ export default function BoardgameAverage({ styles, average, numVotes }) {
           position: "relative",
         }}
       >
-        <img sx={{ height: "40px" }} src={hexa_black}></img>
+        <img
+          sx={{ height: "40px" }}
+          src={template ? hexa_default : hexa_black}
+        ></img>
         <span
           sx={{
             textAlign: "center",

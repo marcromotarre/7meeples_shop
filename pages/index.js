@@ -17,6 +17,8 @@ import categories from "src/components/categories/data/categories";
 export default function Home() {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [loadingSales, setLoadingSales] = useState(true);
 
   const MOBILE_AREAS = `
   ". searcher searcher searcher ." 

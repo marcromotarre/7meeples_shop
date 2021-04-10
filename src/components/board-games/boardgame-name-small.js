@@ -13,6 +13,7 @@ export default function BoardgameName({ styles, name, year }) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
+        width: "100%",
         ...styles,
       }}
     >
@@ -20,6 +21,7 @@ export default function BoardgameName({ styles, name, year }) {
         {name.length < 31 ? name : name.substring(0, 27) + "..."}{" "}
         <span
           sx={{
+            width: "100%",
             fontSize: "15px",
             fontWeight: "100",
             fontStyle: "italic",

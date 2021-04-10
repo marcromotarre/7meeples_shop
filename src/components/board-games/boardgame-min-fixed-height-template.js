@@ -9,39 +9,9 @@ import { IMAGES_REPOSITORY } from "src/constants";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
 import Image from "../common/images/image";
+import hexa_default from "../../assets/svg/hexa-default.svg";
 
-export default function BoardgameMinFixedHeight({
-  attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
-  moreAttributes = [],
-  boardgame = {},
-  onClick = () => {},
-  styles,
-}) {
-  const {
-    id,
-    webname: name,
-    average,
-    numVotes,
-    year,
-    imageDefault,
-    image,
-  } = boardgame;
-
-  const [showMore, setShowMore] = useState(false);
-
-  const clickOnMore = () => {};
-
-  const onClickBoardgame = () => {
-    onClick(id, s3_name(name));
-  };
-  const separator = {
-    width: "100%",
-    height: "0.05em",
-    backgroundColor: "rgba(181, 181, 181, 0.5)",
-  };
-
-  const showAttributes = showMore ? moreAttributes : attributes;
-
+export default function BoardgameMinFixedHeight({ styles }) {
   return (
     <div
       sx={{
@@ -57,7 +27,6 @@ export default function BoardgameMinFixedHeight({
         rowGap: "10px",
         ...styles,
       }}
-      onClick={onClickBoardgame}
     >
       <div></div>
       <div
@@ -81,39 +50,74 @@ export default function BoardgameMinFixedHeight({
             justifyContent: "center",
           }}
         >
-          <Image
-            styles={{
-              width: "100%",
+          <div
+            sx={{
+              width: "80%",
               height: "100%",
-              objectFit: "contain",
-              maxWidth: "calc(100% - 20px)",
-              display: "block",
+              backgroundColor: "#EFF2F5",
             }}
-            src={
-              image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault
-            }
           />
         </div>
       </div>
 
-      <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
+      <div
+        sx={{
+          display: "grid",
+          gridTemplateColumns: ["auto", "auto auto"],
+          justifyItems: "center",
+          alignItems: "center",
+          rowGap: ["0px", "0px"],
+          columnGap: ["0px", "10px"],
+          ...styles,
+        }}
+      >
+        <div
+          sx={{
+            position: "relative",
+          }}
+        >
+          <img sx={{ height: "40px" }} src={hexa_default}></img>
+        </div>
+        <div
+          sx={{ backgroundColor: "#EFF2F5", height: "10px", width: "100%" }}
+        />
+      </div>
       <div sx={{ display: "flex", width: "calc(100% - 60px)" }}>
-        <BoardgameName name={name ? name : ""} year={year} />
+        <div
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            width: "100%",
+            ...styles,
+          }}
+        >
+          <div
+            sx={{
+              height: "100%",
+              display: "grid",
+              rowGap: "3px",
+              width: "100%",
+            }}
+          >
+            <div
+              sx={{
+                height: "15px",
+                width: "100%",
+                backgroundColor: "#EFF2F5",
+              }}
+            ></div>
+            <div
+              sx={{
+                height: "15px",
+                width: "100%",
+                backgroundColor: "#EFF2F5",
+              }}
+            ></div>
+          </div>
+        </div>
       </div>
 
-      {/*<div sx={{ width: "100%" }}>
-        <div sx={{ width: "100%" }}>
-          {showAttributes.map((attribute) => (
-            <>
-              <div sx={separator}></div>
-              {get_min_section({
-                attribute,
-                values: { ...boardgame, onClickMore: () => setShowMore(true) },
-              })}
-            </>
-          ))}
-        </div>
-      </div>*/}
       <div></div>
     </div>
   );

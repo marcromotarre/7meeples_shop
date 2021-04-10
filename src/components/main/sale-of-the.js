@@ -10,10 +10,12 @@ import { useSelector } from "react-redux";
 import SectionTitle from "../sections/section-title";
 import { Button } from "../common";
 import SliderBoardgames from "src/components/common/slider/game-slider";
+import SliderBoardgamesTemplate from "src/components/common/slider/game-slider-template";
 
 const SALES_IDS = [173346, 214396, 172, 192291, 266192];
 
 export default function SaleOfThe({ styles }) {
+  const [loading, setLoading] = useState(true);
   const [saleBoardgames, setSaleBoardgames] = useState();
   const boardgames = useSelector((state) => state.boardgamesReducer.boardgames);
 
@@ -23,6 +25,7 @@ export default function SaleOfThe({ styles }) {
         SALES_IDS.includes(id)
       );
       setSaleBoardgames(saleBoardgames);
+      setLoading(false);
     }
   }, [boardgames]);
 
@@ -39,25 +42,24 @@ export default function SaleOfThe({ styles }) {
         ...styles,
       }}
     >
-      {saleBoardgames && (
-        <div
-          sx={{
-            display: "grid",
-            width: "100%",
-            gridTemplateColumns: "100%",
-            alignItems: "center",
-            justifyItems: "center",
-            rowGap: "35px",
-          }}
-        >
+      <div
+        sx={{
+          display: "grid",
+          width: "100%",
+          gridTemplateColumns: "100%",
+          alignItems: "center",
+          justifyItems: "center",
+          rowGap: "35px",
+        }}
+      >
+        {!loading && (
           <SliderBoardgames
             title={"Ofertas"}
             elements={saleBoardgames}
           ></SliderBoardgames>
-        </div>
-      )}
-
-      {!saleBoardgames && <Loading></Loading>}
+        )}
+        {loading && <SliderBoardgamesTemplate />}
+      </div>
     </div>
   );
 }
