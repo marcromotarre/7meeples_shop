@@ -34,7 +34,7 @@ export default function Square({
           boxShadow: "rgb(0 0 0 / 10%) 0px 10px 10px",
           width: "100%",
           position: "relative",
-          paddingTop: "100%",
+          paddingTop: "50%",
           display: "flex",
           background: color,
           alignItems: "center",

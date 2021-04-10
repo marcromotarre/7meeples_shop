@@ -63,21 +63,37 @@ export default function BoardgameMinFixedHeight({
       <div
         sx={{
           width: "100%",
+          position: "relative",
+          paddingTop: "100%",
           display: "flex",
-          height: "100%",
-          justifyContent: "center",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Image
-          styles={{
+        <div
+          sx={{
+            position: "absolute",
+            top: "0",
             width: "100%",
             height: "100%",
-            objectFit: "contain",
-            maxWidth: "calc(100% - 20px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-          src={image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault}
-        />
+        >
+          <Image
+            styles={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              maxWidth: "calc(100% - 20px)",
+              display: "block",
+            }}
+            src={
+              image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault
+            }
+          />
+        </div>
       </div>
 
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
