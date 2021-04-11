@@ -178,6 +178,9 @@ export default function Home() {
             elements={categories.map((category) => {
               return {
                 ...category,
+                click: (id) => {
+                  router.push(`/categorias_principales/${id}`);
+                },
                 image: category.icon,
                 webname: category.name,
               };
