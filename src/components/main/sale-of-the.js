@@ -52,25 +52,14 @@ export default function SaleOfThe({ styles }) {
           rowGap: "35px",
         }}
       >
+        {loading && <SliderBoardgamesTemplate />}
         {!loading && (
           <SliderBoardgames
             title={"Ofertas"}
             elements={saleBoardgames}
           ></SliderBoardgames>
         )}
-        {loading && <SliderBoardgamesTemplate />}
       </div>
     </div>
   );
 }
-/*
- <BoardgameMin
-            styles={{ width: "100%" }}
-            boardgame={saleBoardgame}
-            attributes={[
-              BOARDGAME_ATTRIBUTES.PLAY_TIME,
-              BOARDGAME_ATTRIBUTES.AGE,
-              BOARDGAME_ATTRIBUTES.NUMBER_OF_PLAYERS,
-              BOARDGAME_ATTRIBUTES.WEIGHT,
-            ]}
-          />*/

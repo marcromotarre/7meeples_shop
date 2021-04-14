@@ -104,7 +104,7 @@ export const get_playtime_score = (play_time_1, play_time_2) => {
     }
   } else if (play_time_1_TYPES.length === 3 || play_time_2_TYPES.length === 3) {
     if (play_time_1_TYPES.length === 3 && play_time_2_TYPES.length === 3) {
-      return scores.THRE_THREE(play_time_TYPES_equal);
+      return scores.THREE_THREE(play_time_TYPES_equal);
     }
   }
   return 0;

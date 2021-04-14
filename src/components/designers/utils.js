@@ -7,3 +7,13 @@ export const get_common_boardgames = ({ boardgames, designers }) => {
         .filter((val) => val === true).length === designers.length
   );
 };
+
+export const get_boardgames_by_families = ({ boardgames, families }) => {
+  return boardgames.filter((boardgame) => {
+    return (
+      families
+        .map((family) => boardgame.families.includes(family).length > 0)
+        .includes(true).length > 0
+    );
+  });
+};

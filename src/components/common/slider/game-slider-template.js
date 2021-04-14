@@ -2,14 +2,11 @@
 /* @jsx jsx */
 import { jsx } from "theme-ui";
 import BoardgameMinTemplate from "src/components/board-games/boardgame-min-fixed-height-template";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
-import { s3_name } from "src/utils/name";
 
 export default function GameSliderTemplate({ styles }) {
-  const router = useRouter();
   const [showPlayTime, setShowPlayTime] = useState(false);
   const [showAge, setShowAge] = useState(false);
   const [showNumberPlayers, setShowNumberPlayers] = useState(false);
@@ -71,12 +68,10 @@ export default function GameSliderTemplate({ styles }) {
             },
           }}
         >
-          {[1, 2, 3, 4].map((boardgame) => (
-            <BoardgameMinTemplate
-              styles={{ width: "100%", height: "350px" }}
-              key={boardgame?.id}
-            />
-          ))}
+          <BoardgameMinTemplate styles={{ width: "100%", height: "350px" }} />
+          <BoardgameMinTemplate styles={{ width: "100%", height: "350px" }} />
+          <BoardgameMinTemplate styles={{ width: "100%", height: "350px" }} />
+          <BoardgameMinTemplate styles={{ width: "100%", height: "350px" }} />
           <div sx={{ height: "100%", width: "10px" }}></div>
         </div>
       </div>

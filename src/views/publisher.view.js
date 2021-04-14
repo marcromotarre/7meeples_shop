@@ -21,7 +21,9 @@ export default function CategoryView({ publisher = {}, styles }) {
   const filteredBoardgames = boardgames
     ? boardgames
         .filter(({ publishers }) => publishers?.includes(id))
-        .sort((boardgame1, boardgame2) => sort_year(boardgame1, boardgame2))
+        .sort((boardgame1, boardgame2) =>
+          sort_importance(boardgame1, boardgame2)
+        )
     : [];
 
   return (

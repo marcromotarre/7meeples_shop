@@ -156,7 +156,7 @@ export default function BoardgameMax({ boardgame }) {
             content={content}
           />
         )}
-        {expansionOf.length > 0 && (
+        {/*expansionOf.length > 0 && (
           <BoardgameSectionMaxExpansionOf
             styles={{ gridArea: [, "expansion-of"], width: "80%" }}
             expansionOf={expansionOf}
@@ -168,9 +168,7 @@ export default function BoardgameMax({ boardgame }) {
             styles={{ gridArea: [, "expansions"], width: "80%" }}
             expansions={expansions}
           />
-        )}
-
-        <div sx={{ height: "50px" }}></div>
+        )*/}
       </div>
     </>
   );
