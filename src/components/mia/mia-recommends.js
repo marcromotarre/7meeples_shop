@@ -58,15 +58,17 @@ export default function MiaRecommends({ boardgame_id }) {
     var filtered = game_families.filter(function (e) {
       return this.indexOf(e) < 0;
     }, boardgame.families);
-
     const family = get_boardgames_by_families({
       boardgames: recomendation,
-      families: boardgame.families,
+      families: filtered
+        .map(({ id }) => id)
+        .filter((el) => boardgame.families.includes(el)),
     });
     recomendation = remove({
       original: recomendation,
       to_delete: family,
     });
+
     /*
  !boardgame.expansions.includes(_boardgame.id) &&
           !boardgame.expansionOf.includes(_boardgame.id)
@@ -106,12 +108,17 @@ export default function MiaRecommends({ boardgame_id }) {
       return designer_boardgames;
     });
     const result = [
+      {
+        type: "family",
+        boardgames: [...expansions, ...expansionOf, ...family],
+      },
       { type: "most_related", boardgames: most_related },
       {
         type: "designers",
         boardgames: designers_recommendation.boardgames,
         designers: designers_recommendation.designers,
       },
+
       ...designer_recommendation,
     ];
 
@@ -137,7 +144,7 @@ export default function MiaRecommends({ boardgame_id }) {
         if (recomendation.type === "most_related") {
           return (
             <Slider
-              title={"Relacionados"}
+              title={`Si te gusta ${boardgame.webname}`}
               elements={recomendation.boardgames}
               styles={{
                 height: ["100%"],
@@ -148,6 +155,16 @@ export default function MiaRecommends({ boardgame_id }) {
           return (
             <Slider
               title={`Autor ${recomendation.designer.name}`}
+              elements={recomendation.boardgames}
+              styles={{
+                height: ["100%"],
+              }}
+            ></Slider>
+          );
+        } else if (recomendation.type === "family") {
+          return (
+            <Slider
+              title={`Family`}
               elements={recomendation.boardgames}
               styles={{
                 height: ["100%"],

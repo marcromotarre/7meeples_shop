@@ -15,7 +15,8 @@ export const DEFAULT_BOARDGAME_ATTRIBUTES = [
 ];
 
 export const sort_importance = (boardgame1, boardgame2) => {
-  return boardgame1.numVotes / 1000 + boardgame1.average >
+  return boardgame1.numVotes / 1000 +
+    boardgame1.average * (boardgame1.numVotes > 200 ? 1 : 0) >
     boardgame2.numVotes / 1000 + boardgame2.average
     ? -1
     : 1;

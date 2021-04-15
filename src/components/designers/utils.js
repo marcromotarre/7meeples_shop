@@ -10,10 +10,10 @@ export const get_common_boardgames = ({ boardgames, designers }) => {
 
 export const get_boardgames_by_families = ({ boardgames, families }) => {
   return boardgames.filter((boardgame) => {
-    return (
-      families
-        .map((family) => boardgame.families.includes(family).length > 0)
-        .includes(true).length > 0
-    );
+    return families
+      .map((family) => {
+        return boardgame.families.includes(family);
+      })
+      .includes(true);
   });
 };
