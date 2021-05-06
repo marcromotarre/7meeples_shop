@@ -22,11 +22,8 @@ export default function Home() {
   const [loadingSales, setLoadingSales] = useState(true);
 
   useEffect(() => {
-    console.log("React-GA", ReactGA);
-    ReactGA.initialize("G-CECCCPLMWP");
+    ReactGA.initialize("UA-196446154-1");
     ReactGA.pageview("/home");
-    ReactGA.initialize("271579442");
-
     ReactGA.event({
       category: "Usuario",
       action: "Cuenta creada",
