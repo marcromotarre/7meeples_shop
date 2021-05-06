@@ -22,8 +22,15 @@ export default function Home() {
   const [loadingSales, setLoadingSales] = useState(true);
 
   useEffect(() => {
+    console.log("React-GA", ReactGA);
     ReactGA.initialize("G-CECCCPLMWP");
-    ReactGA.pageview("this is the home");
+    ReactGA.pageview("/home");
+    ReactGA.initialize("271579442");
+
+    ReactGA.event({
+      category: "Usuario",
+      action: "Cuenta creada",
+    });
   }, []);
 
   const MOBILE_AREAS = `
