@@ -5,10 +5,14 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import FamilyView from "src/views/family.view";
+import ReactGA from "react-ga";
+import { s3_name } from "src/utils/name";
+
 export default function Categoria() {
   const router = useRouter();
   const families = useSelector((state) => state.familiesReducer.families);
   const [family, setFamily] = useState();
+
   useEffect(() => {
     const handleRouteChange = (url, { shallow }) => {
       setFamily(undefined);
@@ -19,6 +23,8 @@ export default function Categoria() {
     };
   }, []);
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     setFamily(undefined);
     if (router.query.id) {
@@ -28,6 +34,8 @@ export default function Categoria() {
       if (_family) {
         setFamily(_family);
       }
+      ReactGA.initialize("UA-196446154-1");
+      ReactGA.pageview(`/familia/${id}/${s3_name(family.webname)}`);
     }
   }, [router, families]);
 
