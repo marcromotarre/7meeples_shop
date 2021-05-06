@@ -19,6 +19,8 @@ import DesignerBestGame from "../../../src/components/designers/designer-best-ga
 import DesignerWorkedWith from "../../../src/components/designers/designer-worked-with-description";
 import DesignerBoardgames from "../../../src/components/designers/designer-boardgames";
 
+import ReactGA from "react-ga";
+
 export default function Designers() {
   const [designer, setDesigner] = useState();
   const [boardgames, setBoardgames] = useState();
@@ -67,6 +69,8 @@ export default function Designers() {
           designers_worked_with_ids.includes(designer.id)
         )
       );
+      ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+      ReactGA.pageview(router.asPath);
     }
   }, [router, all_designers, all_boardgames]);
   console.log(

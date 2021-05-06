@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import FamilyView from "src/views/family.view";
 import ReactGA from "react-ga";
-import { s3_name } from "src/utils/name";
 
 export default function Categoria() {
   const router = useRouter();
@@ -33,8 +32,8 @@ export default function Categoria() {
       );
       if (_family) {
         setFamily(_family);
-        ReactGA.initialize("UA-196446154-1");
-        ReactGA.pageview(`/familia/${_family.id}/${s3_name(_family.webname)}`);
+        ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+        ReactGA.pageview(router.asPath);
       }
     }
   }, [router, families]);

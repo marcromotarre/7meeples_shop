@@ -11,6 +11,7 @@ import { get_multiple_designers } from "src/backend/designers";
 import { get_multiple_categories } from "src/backend/categories";
 import Loading from "src/components/common/loading/loading";
 import { useSelector, useDispatch } from "react-redux";
+import ReactGA from "react-ga";
 
 export default function Boardgame() {
   const router = useRouter();
@@ -55,6 +56,8 @@ export default function Boardgame() {
         setBoardgame(
           boardgames?.find(({ id }) => id === parseInt(router.query.id))
         );
+        ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+        ReactGA.pageview(router.asPath);
       }
     }
   }, [router, boardgames]);

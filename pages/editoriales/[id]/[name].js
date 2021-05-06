@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import PublisherView from "src/views/publisher.view";
+import ReactGA from "react-ga";
+
 export default function Categoria() {
   const router = useRouter();
   const publishers = useSelector((state) => state.publishersReducer.publishers);
@@ -27,6 +29,8 @@ export default function Categoria() {
       );
       if (_publisher) {
         setPublisher(_publisher);
+        ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
+        ReactGA.pageview(router.asPath);
       }
     }
   }, [router, publishers]);

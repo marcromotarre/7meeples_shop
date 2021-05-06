@@ -22,12 +22,13 @@ export default function Home() {
   const [loadingSales, setLoadingSales] = useState(true);
 
   useEffect(() => {
-    ReactGA.initialize("UA-196446154-1");
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS);
     ReactGA.pageview("/home");
+    /*
     ReactGA.event({
       category: "Usuario",
       action: "Cuenta creada",
-    });
+    });*/
   }, []);
 
   const MOBILE_AREAS = `
