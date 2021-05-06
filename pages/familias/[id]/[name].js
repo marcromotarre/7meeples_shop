@@ -33,9 +33,9 @@ export default function Categoria() {
       );
       if (_family) {
         setFamily(_family);
+        ReactGA.initialize("UA-196446154-1");
+        ReactGA.pageview(`/familia/${_family.id}/${s3_name(_family.webname)}`);
       }
-      ReactGA.initialize("UA-196446154-1");
-      ReactGA.pageview(`/familia/${id}/${s3_name(family.webname)}`);
     }
   }, [router, families]);
 
