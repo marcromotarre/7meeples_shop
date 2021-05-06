@@ -13,12 +13,18 @@ import SaleOfThe from "src/components/main/sale-of-the";
 import { useRouter } from "next/router";
 import { IMAGES_REPOSITORY } from "src/constants";
 import categories from "src/components/categories/data/categories";
+import ReactGA from "react-ga";
 
 export default function Home() {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadingSales, setLoadingSales] = useState(true);
+
+  useEffect(() => {
+    ReactGA.initialize("G-CECCCPLMWP");
+    ReactGA.pageview("this is the home");
+  }, []);
 
   const MOBILE_AREAS = `
   ". searcher searcher searcher ." 
