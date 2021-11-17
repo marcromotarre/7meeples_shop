@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+
 import React, { useEffect, useState } from "react";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
@@ -6,7 +7,7 @@ import { get_min_section } from "./section/utils";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
-import Image from "../common/images/image.js";
+import Image from "next/image";
 
 export default function BoardgameMin({
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
@@ -39,7 +40,6 @@ export default function BoardgameMin({
   };
 
   const showAttributes = showMore ? moreAttributes : attributes;
-
   return (
     <div
       sx={{
@@ -65,14 +65,23 @@ export default function BoardgameMin({
           alignItems: "center",
         }}
       >
-        <Image
-          styles={{
+        <div
+          sx={{
             padding: "20px 0px 0px 0px",
-            maxHeight: "300px",
-            maxWidth: "80%",
+            width: "80%",
+            height: "300px",
+            position: "relative",
           }}
-          src={image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault}
-        />
+        >
+          <Image
+            alt=""
+            objectFit="contain"
+            layout={"fill"}
+            src={
+              image ? `${IMAGES_REPOSITORY}boardgames/${image}` : imageDefault
+            }
+          />
+        </div>
       </div>
       <BoardgameScore average={average} numVotes={numVotes}></BoardgameScore>
       <BoardgameName name={name} year={year} />

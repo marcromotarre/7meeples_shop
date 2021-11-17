@@ -39,11 +39,7 @@ export default function Image({ src, styles = {} }) {
           alt=""
           onLoad={onImageLoad}
           onError={onImageError}
-          sx={{
-            ...styles,
-            opacity: loading ? "0" : "1",
-            position: loading ? "absolute" : "relative",
-          }}
+          layout={"fill"}
           src={src}
         />
       )}
