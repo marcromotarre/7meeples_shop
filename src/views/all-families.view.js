@@ -1,8 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
+import Image from "next/image";
 import { s3_name } from "src/utils/name";
 import { useSelector, useDispatch } from "react-redux";
 import BoardgameImportant from "../components/board-games/boardgame-important";
@@ -45,7 +44,7 @@ export default function AllFamiliesView({ families = [], styles }) {
             rowGap: "10px",
           }}
         >
-          <img src={family_icon}></img>
+          <Image alt="" src={family_icon}></Image>
           <h1>Familias</h1>
         </div>
         <div
@@ -94,7 +93,8 @@ export default function AllFamiliesView({ families = [], styles }) {
                     justifyContent: "center",
                   }}
                 >
-                  <img
+                  <Image
+                    alt=""
                     sx={{
                       borderRadius: full ? "10px" : "0px",
                       display: "block",
@@ -104,7 +104,7 @@ export default function AllFamiliesView({ families = [], styles }) {
                       objectFit: "contain",
                     }}
                     src={`${IMAGES_REPOSITORY}families/${image}`}
-                  ></img>
+                  ></Image>
                 </div>
               </div>
             ))}

@@ -1,8 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import calendar from "../../assets/svg/meeplestrenos/calendar.svg";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Calendar({ year, months, styles = {} }) {
   console.log(styles.width, (100 - styles.width) / 2 + styles.width / 2);
@@ -56,7 +55,7 @@ export default function Calendar({ year, months, styles = {} }) {
         <span sx={monthStyles}>NOV</span>
         <span sx={monthStyles}>DIC</span>
       </div>
-      <img src={calendar} sx={{ width: "100%" }}></img>
+      <Image src={calendar} sx={{ width: "100%" }}></Image>
     </div>
   );
 }

@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { IMAGES_REPOSITORY } from "../../constants";
 import user_male_icon from "../../assets/svg/user-male.svg";
 import { useState } from "react";

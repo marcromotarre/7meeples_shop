@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
+import Image from "next/image";
 
 export default function CategoryItemTitle({ title, icon, styles }) {
   return (
@@ -16,7 +15,7 @@ export default function CategoryItemTitle({ title, icon, styles }) {
           ...styles,
         }}
       >
-        <img
+        <Image
           sx={{ width: "30px", alignSelf: "center", justifySelf: "flex-end" }}
           src={icon}
         />

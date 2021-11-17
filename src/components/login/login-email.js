@@ -1,11 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
 import { useState } from "react";
 import { email_exist } from "../../backend/credentials";
 import React from "react";
+import Image from "next/image";
 
 import loader from "./../../assets/gif/loader.gif";
 
@@ -121,7 +120,7 @@ export default function LoginEmail({ onClickNext = () => {} }) {
               ></Button>
             )}
             {loading && (
-              <img
+              <Image
                 src={loader}
                 sx={{ height: "50px", gridArea: "button" }}
                 alt="loading..."

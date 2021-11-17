@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import EstrenosHeader from "./estrenos-header";
 import Calendar from "./calendar";
 

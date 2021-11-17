@@ -1,7 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { s3_name } from "src/utils/name";
+import React from "react";
+import Image from "next/image";
 
 export default function Square({
   id,
@@ -13,6 +13,7 @@ export default function Square({
   onClick = () => {},
   showName = false,
 }) {
+  console.log(image);
   return (
     <div
       key={id}
@@ -53,6 +54,7 @@ export default function Square({
           }}
         >
           <img
+            alt=""
             sx={{
               borderRadius: full ? "10px" : "0px",
               display: "block",
@@ -61,7 +63,7 @@ export default function Square({
               maxHeight: full ? "100%" : "90%",
               objectFit: "contain",
             }}
-            src={image}
+            src={image.src ? image.src : image}
           ></img>
         </div>
       </div>

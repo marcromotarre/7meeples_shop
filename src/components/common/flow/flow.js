@@ -1,17 +1,13 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState, useEffect } from "react";
 import style from "./style";
 import { isRegExp } from "util";
 
 export default function Flow({ styles, goToStep, steps, children }) {
-  const [actualStepClassName, setActualStepClassName] = useState(
-    "step-left-start"
-  );
-  const [nextStepClassName, setNextStepClassName] = useState(
-    "step-right-start"
-  );
+  const [actualStepClassName, setActualStepClassName] =
+    useState("step-left-start");
+  const [nextStepClassName, setNextStepClassName] =
+    useState("step-right-start");
 
   const [go, setGo] = useState(true);
   const [animation, setAnimation] = useState("");

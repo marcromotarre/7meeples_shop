@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,12 +19,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@assets/*": ["assets/*"],
-      "@config/*": ["config/*"],
-      "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"]
-    }
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
@@ -30,6 +45,9 @@
     "pages/notes/index.jsx",
     "pages/notes/[id].jsx",
     "pages/_app.jsx"
-  ],
-  "exclude": ["node_modules", "src/"]
+, "src/components/common/images/image.ja"  ],
+  "exclude": [
+    "node_modules",
+    "src/"
+  ]
 }

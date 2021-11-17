@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name-small";
@@ -8,8 +6,8 @@ import { get_min_section } from "./section/utils";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
-import Image from "../common/images/image";
 import hexa_default from "../../assets/svg/hexa-default.svg";
+import Image from "next/image";
 
 export default function BoardgameMinFixedHeight({ styles }) {
   return (
@@ -76,7 +74,7 @@ export default function BoardgameMinFixedHeight({ styles }) {
             position: "relative",
           }}
         >
-          <img sx={{ height: "40px" }} src={hexa_default}></img>
+          <Image alt="" sx={{ height: "40px" }} src={hexa_default}></Image>
         </div>
         <div
           sx={{ backgroundColor: "#EFF2F5", height: "10px", width: "100%" }}

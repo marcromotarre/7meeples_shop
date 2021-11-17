@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import search_icon from "../../assets/svg/search.svg";

@@ -1,8 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import back_button_icon from "../../assets/svg/arrow-back.svg";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function DesignerGoBackButton({ styles }) {
   const router = useRouter();
@@ -20,7 +19,7 @@ export default function DesignerGoBackButton({ styles }) {
         ...styles,
       }}
     >
-      <img
+      <Image alt=""
         sx={{
           justifySelf: "center",
           alignSelf: "center",
@@ -28,7 +27,7 @@ export default function DesignerGoBackButton({ styles }) {
           height: "auto",
         }}
         src={back_button_icon}
-      ></img>
+      ></Image alt="">
 
       <h4 sx={{ justifySelf: "start", alignSelf: "center" }}>
         Ver todos los autores

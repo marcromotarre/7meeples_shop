@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
 export default function BoardgameDescription({ styles, description }) {
   const [isShowMore, setIsShowMore] = useState(false);

@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import weight_icon from "../../../assets/svg/sections/weight.svg";
 import {
   duration_string,
@@ -44,7 +43,7 @@ export default function BoardgameModalWeight({ boardgame }) {
         }}
       >
         <p>{weight_group_string(weight)}</p>
-        <img sx={{ height: "22px" }} src={weight_icon} />
+        <Image alt="" sx={{ height: "22px" }} src={weight_icon} />
         <h3>Dureza</h3>
       </div>
 

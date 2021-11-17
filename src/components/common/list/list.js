@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
 import { Button } from "..";
 import InfiniteScroll from "react-infinite-scroller";

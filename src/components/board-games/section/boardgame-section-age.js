@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import Section from "./boardgame-section";
 import { age_string } from "../utils";
 import icon from "../../../assets/svg/sections/age.svg";

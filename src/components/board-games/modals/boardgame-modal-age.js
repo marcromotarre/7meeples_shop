@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import age_icon from "../../../assets/svg/sections/age.svg";
 import {
   duration_string,
@@ -8,6 +7,8 @@ import {
   age_string,
   age_group_string,
 } from "../utils";
+import Image from "next/image";
+
 import { Question, Option, Link } from "../../common/index";
 
 export default function BoardgameModalAge({ boardgame }) {
@@ -42,7 +43,7 @@ export default function BoardgameModalAge({ boardgame }) {
         }}
       >
         <p>{age_group_string(age)}</p>
-        <img sx={{ height: "22px" }} src={age_icon} />
+        <Image alt="" sx={{ height: "22px" }} src={age_icon} />
         <h3>Edad</h3>
       </div>
       <div

@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
+import Image from "next/image";
 export default function MenuItem({
   key = "",
   className,
@@ -47,7 +46,9 @@ export default function MenuItem({
             alignItems: "center",
           }}
         >
-          {icon && <img sx={{ paddingRight: "10px" }} src={icon}></img>}
+          {icon && (
+            <Image alt="" sx={{ paddingRight: "10px" }} src={icon}></Image>
+          )}
           <span
             sx={{
               fontFamily: "Quicksand",

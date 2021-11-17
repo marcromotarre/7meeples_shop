@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import awards_icon from "../../assets/svg/categories/icon.svg";
 import BoardgameMin from "../board-games/boardgame-min";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
+import Image from "next/image";
 
 export default function DesignerBestGame({ styles, designer, boardgame }) {
   console.log(boardgame);
@@ -30,10 +29,10 @@ export default function DesignerBestGame({ styles, designer, boardgame }) {
           columnGap: "15px",
         }}
       >
-        <img
+        <Image
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={awards_icon}
-        ></img>
+        ></Image>
         <div
           sx={{
             width: "fit-content",
@@ -58,10 +57,11 @@ export default function DesignerBestGame({ styles, designer, boardgame }) {
             de {designer?.name}
           </h3>
         </div>
-        <img
+        <Image
+          alt=""
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={awards_icon}
-        ></img>
+        ></Image>
       </div>
       <BoardgameMin
         styles={{ width: "100%" }}

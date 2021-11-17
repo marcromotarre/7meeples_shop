@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import search_icon from "../../assets/svg/search.svg";
+import Image from "next/image";
 
 export default function Search({ className }) {
   return (
@@ -41,7 +40,7 @@ export default function Search({ className }) {
           name="lname"
           placeholder="Buscar en 7meeples.es"
         />
-        <img
+        <Image
           sx={{
             position: "absolute",
             left: "calc(5% + 10px)",

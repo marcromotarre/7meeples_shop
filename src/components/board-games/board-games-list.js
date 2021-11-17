@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState, useCallback } from "react";
+/** @jsxImportSource theme-ui */
+import React, { useEffect, useState } from "react";
 import { get_boardgames } from "./../../backend/boardgames";
 import Boardgame from "./boardgame-min";
 import { useRouter } from "next/router";

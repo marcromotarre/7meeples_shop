@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useRef, useEffect, useState } from "react";
 import { Button, Input } from "../../common";
 import texts from "../texts.json";
@@ -28,11 +26,10 @@ export default function login_email_view({ setGoToStep, data, setData }) {
       const credentials = await email_exist_credentials({
         email,
       });
-      const credentials_confirmation = await email_exist_credentials_confirmation(
-        {
+      const credentials_confirmation =
+        await email_exist_credentials_confirmation({
           email,
-        }
-      );
+        });
 
       console.log(credentials);
       console.log(credentials_confirmation);

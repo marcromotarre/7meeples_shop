@@ -1,9 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import BoardgameMinTemplate from "src/components/board-games/boardgame-min-fixed-height-template";
 import React, { useState } from "react";
-
 import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
 
 export default function GameSliderTemplate({ styles }) {

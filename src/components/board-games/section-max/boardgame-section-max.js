@@ -1,8 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import information_icon from "../../../assets/svg/information.svg";
+import Image from "next/image";
 
 export default function SectionMax({
   onClick,
@@ -32,7 +31,7 @@ export default function SectionMax({
           columnGap: "10px",
         }}
       >
-        <img
+        <Image
           sx={{
             width: "18px",
             alignSelf: "center",

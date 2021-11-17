@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import MenuItem from "./menu-item";
 import MenuFiller from "./menu-filler";
 import React, { useState } from "react";

@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import Section from "./boardgame-section";
 import icon from "../../../assets/svg/sections/designers.svg";
 import DesignerImage from "src/components/common/images/designer-image";

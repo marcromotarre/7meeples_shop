@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import BoardgameAverage from "./boardgame-average";
 import BoardgameName from "./boardgame-name";

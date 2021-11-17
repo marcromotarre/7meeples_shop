@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState, useEffect } from "react";
 import LoginLogo from "../../src/components/login/login-logo";
 import { useSession } from "next-auth/client";

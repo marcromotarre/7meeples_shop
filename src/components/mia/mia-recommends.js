@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
 import BoardGamesList from "../board-games/board-games-list";

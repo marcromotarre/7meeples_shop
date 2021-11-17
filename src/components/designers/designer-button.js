@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import designers_icon from "../../assets/svg/sections/designers.svg";
 import DesignerImage from "../common/images/designer-image";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function DesignerButton({ designer, onClick, styles }) {
   const router = useRouter();
@@ -47,7 +46,11 @@ export default function DesignerButton({ designer, onClick, styles }) {
           name={designer.name}
         ></DesignerImage>
         <span>{designer.name}</span>
-        <img sx={{ marginTop: "0px", height: "20px" }} src={designers_icon} />
+        <Image
+          alt=""
+          sx={{ marginTop: "0px", height: "20px" }}
+          src={designers_icon}
+        />
       </div>
     </div>
   );

@@ -1,11 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
 import { useSelector, useDispatch } from "react-redux";
 import BoardgameImportant from "../components/board-games/boardgame-important";
+import Image from "next/image";
 import BoardgamesList from "../components/board-games/board-games-list";
 import {
   sort_importance,
@@ -54,7 +53,8 @@ export default function MechanismView({ mechanism = {}, styles }) {
         >
           <h1 sx={{ textAlign: "center" }}>{webname ? webname : name}</h1>
           {showImage && (
-            <img
+            <Image
+              alt=""
               onError={onImageError}
               src={`${IMAGES_REPOSITORY}mechanisms/${s3_name(name)}.svg`}
             />

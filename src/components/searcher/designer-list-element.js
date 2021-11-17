@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import DesignerImage from "../common/images/designer-image";
 import { useRouter } from "next/router";
 

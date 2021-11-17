@@ -1,10 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import React from "react";
+import Image from "next/image";
 import loader from "../../../assets/gif/loader.gif";
 
 export default function Loading({ style = {} }) {
   return (
-    <img src={loader} sx={{ height: "50px", ...style }} alt="loading..." />
+    <Image src={loader} sx={{ height: "50px", ...style }} alt="loading..." />
   );
 }

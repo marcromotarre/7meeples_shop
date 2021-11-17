@@ -1,10 +1,9 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { IMAGES_REPOSITORY } from "../../../constants";
 import user_male_icon from "../../../assets/svg/user-male.svg";
 import React, { useState } from "react";
 import Loading from "src/components/common/loading/loading";
+import ImageNext from "next/image";
 
 export default function Image({ src, styles = {} }) {
   const [error, setError] = useState(false);
@@ -36,7 +35,8 @@ export default function Image({ src, styles = {} }) {
         />
       )}
       {!error && (
-        <img
+        <ImageNext
+          alt=""
           onLoad={onImageLoad}
           onError={onImageError}
           sx={{

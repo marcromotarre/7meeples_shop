@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
+import Image from "next/image";
 
 export default function SectionTitle({ title, icon, styles }) {
   return (
@@ -17,17 +16,19 @@ export default function SectionTitle({ title, icon, styles }) {
       }}
     >
       {icon && (
-        <img
+        <Image
+          alt=""
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={icon}
-        ></img>
+        ></Image>
       )}
       <h3 sx={{ textAlign: "center" }}>{title}</h3>
       {icon && (
-        <img
+        <Image
+          alt=""
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={icon}
-        ></img>
+        ></Image>
       )}
     </div>
   );

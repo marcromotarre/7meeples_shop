@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import { useState } from "react";
+/** @jsxImportSource theme-ui */
+import React, { useState } from "react";
 import Input from "./input";
 import check_checked from "../../../assets/svg/check-checked.svg";
 import check_unchecked from "../../../assets/svg/check-unchecked.svg";
@@ -53,7 +51,7 @@ export default function InputPassword({
         }}
         onClick={handleShowPasswordCheckbox}
       >
-        <img src={showPassword ? check_checked : check_unchecked} />
+        <Image alt="" src={showPassword ? check_checked : check_unchecked} />
         <span
           sx={{
             paddingLeft: "5px",

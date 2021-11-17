@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
+import Image from "next/image";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +44,7 @@ export default function CategoryView({ publishers = [], styles }) {
             rowGap: "10px",
           }}
         >
-          <img src={publisher_icon}></img>
+          <Image alt="" src={publisher_icon}></Image>
           <h1>Editoriales</h1>
         </div>
         <div

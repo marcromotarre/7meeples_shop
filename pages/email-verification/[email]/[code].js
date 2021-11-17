@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import LoginLogo from "../../../src/components/login/login-logo";
 import { getLogo } from "../../../src/data/logo";
 import React, { useState, useEffect } from "react";
@@ -10,6 +8,7 @@ import close from "./../../../src/assets/svg/close.svg";
 import ko from "./../../../src/assets/svg/ko.svg";
 import { useRouter } from "next/router";
 import Button from "../../../src/components/common/buttons/button";
+import Image from "next/image";
 import {
   email_exist,
   get_user,
@@ -64,7 +63,11 @@ export default function EmailVerification({ url }) {
     if (email || code) {
       console.log(email, code);
 
-      const { email: emailDDBB, userVerified, error } = await email_exist({
+      const {
+        email: emailDDBB,
+        userVerified,
+        error,
+      } = await email_exist({
         email,
       });
       console.log(emailDDBB, userVerified, error);
@@ -129,7 +132,8 @@ export default function EmailVerification({ url }) {
           {logo && <LoginLogo gridArea={"logo"} logo={logo}></LoginLogo>}
           {(state === states.SUCCESS || state === states.ERROR) && (
             <div sx={{ gridArea: "close", padding: "10px 10px" }}>
-              <img
+              <Image
+                alt=""
                 src={close}
                 sx={{
                   height: "25px",
@@ -185,13 +189,25 @@ export default function EmailVerification({ url }) {
             }}
           >
             {state === states.LOADING && (
-              <img src={loader} sx={{ height: "50px", gridArea: "button" }} />
+              <Image
+                alt=""
+                src={loader}
+                sx={{ height: "50px", gridArea: "button" }}
+              />
             )}
             {state === states.SUCCESS && (
-              <img src={ok} sx={{ height: "50px", gridArea: "button" }} />
+              <Image
+                alt=""
+                src={ok}
+                sx={{ height: "50px", gridArea: "button" }}
+              />
             )}
             {state === states.ERROR && (
-              <img src={ko} sx={{ height: "50px", gridArea: "button" }} />
+              <Image
+                alt=""
+                src={ko}
+                sx={{ height: "50px", gridArea: "button" }}
+              />
             )}
           </div>
         </div>

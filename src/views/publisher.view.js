@@ -1,12 +1,11 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";
 import { useSelector, useDispatch } from "react-redux";
 import BoardgameImportant from "../components/board-games/boardgame-important";
 import BoardgamesList from "../components/board-games/board-games-list";
+import Image from "next/image";
 import {
   sort_importance,
   BOARDGAME_ATTRIBUTES,
@@ -51,7 +50,8 @@ export default function CategoryView({ publisher = {}, styles }) {
           }}
         >
           {image && (
-            <img
+            <Image
+              alt=""
               sx={{ width: "80%", height: "auto" }}
               src={`${IMAGES_REPOSITORY}publishers/${image}`}
             />

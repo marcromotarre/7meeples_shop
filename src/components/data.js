@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";

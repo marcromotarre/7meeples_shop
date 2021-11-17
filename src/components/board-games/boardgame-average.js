@@ -1,10 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import { get_boardgames } from "../../backend/boardgames";
 import hexa_black from "../../assets/svg/hexa-black.svg";
-
+import Image from "next/image";
 export default function BoardgameAverage({
   template,
   styles,
@@ -39,10 +37,11 @@ export default function BoardgameAverage({
           position: "relative",
         }}
       >
-        <img
+        <Image
+          alt=""
           sx={{ height: "40px" }}
           src={template ? hexa_default : hexa_black}
-        ></img>
+        ></Image>
         <span
           sx={{
             textAlign: "center",

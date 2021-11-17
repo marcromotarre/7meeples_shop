@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import SectionTitle from "../sections/section-title";
 import newness_icon from "../../assets/svg/newness/icon.svg";
 import { useEffect, useState } from "react";

@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import BoardgameMinFixedHeight from "src/components/board-games/boardgame-min-fixed-height";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -12,6 +10,8 @@ import number_of_players_icon from "src/assets/svg/sections/number-of-players.sv
 import weight_icon from "src/assets/svg/sections/weight.svg";
 import { BOARDGAME_ATTRIBUTES } from "src/components/board-games/utils";
 import { s3_name } from "src/utils/name";
+import Image from "next/image";
+
 export default function Slider({
   filters = false,
   title = "",
@@ -61,7 +61,7 @@ export default function Slider({
             height: "15px",
           }}
         >
-          <img
+          <Image
             onClick={() => setShowPlayTime(!showPlayTime)}
             sx={{
               opacity: showPlayTime ? "1" : "0.3",
@@ -70,7 +70,7 @@ export default function Slider({
             }}
             src={play_time_icon}
           />
-          <img
+          <Image
             onClick={() => setShowAge(!showAge)}
             sx={{
               opacity: showAge ? "1" : "0.3",
@@ -79,7 +79,7 @@ export default function Slider({
             }}
             src={age_icon}
           />
-          <img
+          <Image
             onClick={() => setShowNumberPlayers(!showNumberPlayers)}
             sx={{
               opacity: showNumberPlayers ? "1" : "0.3",
@@ -88,7 +88,7 @@ export default function Slider({
             }}
             src={number_of_players_icon}
           />
-          <img
+          <Image
             onClick={() => setShowWeight(!showWeight)}
             sx={{
               opacity: showWeight ? "1" : "0.3",

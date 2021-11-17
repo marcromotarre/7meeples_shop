@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
 import { Modal } from "../../common/index";
 import BoardgameModalPlayTime from "./boardgame-modal-play-time";

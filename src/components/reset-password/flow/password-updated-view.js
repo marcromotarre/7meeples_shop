@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword, Loading } from "../../common";
 import ok from "../../../assets/svg/ok.svg";
+import Image from "next/image";
 
 export const ID = "PASSWORD_UPDATED";
 export default function check_code_view({ setGoToStep, data, setData }) {
@@ -30,7 +29,8 @@ export default function check_code_view({ setGoToStep, data, setData }) {
       >
         Tu constraseña ha sido actualizada
       </span>
-      <img
+      <Image
+        alt=""
         src={ok}
         sx={{
           height: "100px",

@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+/** @jsxImportSource theme-ui */
+import React from "react";
 
 export default function Section({ mechanisms = [] }) {
   return (

@@ -1,10 +1,9 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
 import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
 import { Button } from "../common/index";
+import Image from "next/image";
 
 export default function MiaMain({ boardgame_id }) {
   return (
@@ -17,7 +16,7 @@ export default function MiaMain({ boardgame_id }) {
         rowGap: "10px",
       }}
     >
-      <img sx={{ width: "40%" }} src={mia_title_icon}></img>
+      <Image alt="" sx={{ width: "40%" }} src={mia_title_icon}></Image>
       <h3>es tu asistente de juegos de mesa</h3>
       <Button styles={{ backgroundColor: "#FFBC8B" }}>
         ENCUENTRA TU JUEGO

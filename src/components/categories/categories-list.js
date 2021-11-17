@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import CategoryItem from "./category-item";
 import React, { useState } from "react";
 import Button from "../common/buttons/button";

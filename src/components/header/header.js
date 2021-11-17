@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import shopping_bag from "../../assets/svg/shopping-bag.svg";
 import logo_red from "../../assets/svg/7meeples-logo-red.svg";
 import menu_cross_animation from "../../assets/svg/menu-cross-animation.svg";
+import Image from "next/image";
 
 import login from "../../assets/svg/menu/login.svg";
 import meeplestrenos from "../../assets/svg/menu/meeplestrenos.svg";
@@ -28,9 +27,8 @@ export default function Header() {
   const [headerExpandAnimationState, setHeaderExpandAnimationState] = useState(
     "header-expand-start"
   );
-  const [searchAnimationState, setSearchAnimationState] = useState(
-    "search-start"
-  );
+  const [searchAnimationState, setSearchAnimationState] =
+    useState("search-start");
 
   const dispatch = useDispatch();
 
@@ -171,7 +169,7 @@ export default function Header() {
             onAnimationEnd={animationEnd}
             className={animationState}
           ></div>
-          <img
+          <Image
             onClick={goHome}
             sx={{
               height: "60%",
@@ -179,7 +177,7 @@ export default function Header() {
             src={logo_red}
             alt="shopping bag"
           />
-          <img
+          <Image
             sx={{
               height: "40%",
             }}

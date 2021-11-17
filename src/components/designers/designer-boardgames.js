@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import designers_icon from "../../assets/svg/sections/designers.svg";
 import designers_icon_inverted from "../../assets/svg/sections/designers-inverted.svg";
 import DesignerImage from "../common/images/designer-image";
@@ -32,10 +30,10 @@ export default function DesignerBoardgames({ styles, designer, boardgames }) {
           columnGap: "15px",
         }}
       >
-        <img
+        <Image
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={designers_icon}
-        ></img>
+        ></Image>
         <div
           sx={{
             width: "fit-content",
@@ -60,10 +58,11 @@ export default function DesignerBoardgames({ styles, designer, boardgames }) {
             {designer?.name}
           </h3>
         </div>
-        <img
+        <Image
+          alt=""
           sx={{ justigySelf: "center", height: "32px", width: "auto" }}
           src={designers_icon_inverted}
-        ></img>
+        ></Image>
       </div>
       <div
         sx={{

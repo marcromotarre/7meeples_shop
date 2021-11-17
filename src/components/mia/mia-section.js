@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";
 import BoardGamesList from "../board-games/board-games-list";
 import MiaRecomendation from "./mia-recomendation";

@@ -1,7 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import icon from "../../../assets/svg/sections/more.svg";
+import Image from "next/image";
 import Section from "./boardgame-section";
 export default function SectionMore({ onClickMore = () => {} }) {
   const onSectionClick = (event) => {
@@ -20,7 +20,7 @@ export default function SectionMore({ onClickMore = () => {} }) {
           alignItems: "center",
         }}
       >
-        <img sx={{ width: "32px", height: "auto" }} src={icon}></img>
+        <Image alt="" sx={{ width: "32px", height: "auto" }} src={icon}></Image>
       </div>
     </Section>
   );

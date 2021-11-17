@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import { get_boardgame, get_multiple_boardgames } from "src/backend/boardgames";
 import BoardgameMax from "src/components/board-games/boardgame-max";

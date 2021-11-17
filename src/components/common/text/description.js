@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
 import BoardgameDescription from "src/components/board-games/boardgame-description";
 export default function Description({ styles, description = "" }) {

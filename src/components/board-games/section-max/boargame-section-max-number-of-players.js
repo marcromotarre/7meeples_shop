@@ -1,10 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import icon from "../../../assets/svg/sections/number-of-players.svg";
 import number_of_players_best_icon from "../../../assets/svg/best.svg";
 import number_of_players_not_recommended_icon from "../../../assets/svg/not-recommended.svg";
 import Section from "./boardgame-section-max";
+import Image from "next/image";
 
 export default function SectionMaxNumberOfPlayers({
   styles,
@@ -45,24 +45,24 @@ export default function SectionMaxNumberOfPlayers({
               {numPlayers}
             </span>
             {numberOfPlayersBest.includes(numPlayers) && (
-              <img
+              <Image
                 sx={{
                   position: "absolute",
                   width: "30px",
                   height: "30px",
                 }}
                 src={number_of_players_best_icon}
-              ></img>
+              ></Image>
             )}
             {numberOfPlayersNotRecommended.includes(numPlayers) && (
-              <img
+              <Image
                 sx={{
                   position: "absolute",
                   width: "30px",
                   height: "30px",
                 }}
                 src={number_of_players_not_recommended_icon}
-              ></img>
+              ></Image>
             )}
           </div>
         ))}

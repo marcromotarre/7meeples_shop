@@ -1,8 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState, useRef } from "react";
 import close_icon from "../../../assets/svg/close-light.svg";
+import Image from "next/image";
+import React from "react";
 
 const ANIMATION = {
   TIME: 0.8,
@@ -138,7 +138,8 @@ export default function Modal({ style = {}, onClose = () => {}, children }) {
           gridTemplateAreas: `"close . ." ". inside ." ". . ."`,
         }}
       >
-        <img
+        <Image
+          alt=""
           onClick={handleOnClose}
           src={close_icon}
           sx={{

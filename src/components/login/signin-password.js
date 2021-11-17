@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
 import { useState } from "react";
@@ -8,6 +6,7 @@ import { get_user, email_exist } from "../../backend/credentials";
 import React from "react";
 import check_checked from "../../assets/svg/check-checked.svg";
 import check_unchecked from "../../assets/svg/check-unchecked.svg";
+import Image from "next/image";
 
 import loader from "./../../assets/gif/loader.gif";
 import { get } from "http";
@@ -137,7 +136,10 @@ export default function SignInPassword({ email, onClickNext = () => {} }) {
                 }}
                 onClick={handleShowPasswordCheckbox}
               >
-                <img src={showPassword ? check_checked : check_unchecked} />
+                <Image
+                  alt=""
+                  src={showPassword ? check_checked : check_unchecked}
+                />
                 <span
                   sx={{
                     paddingLeft: "5px",
@@ -166,7 +168,7 @@ export default function SignInPassword({ email, onClickNext = () => {} }) {
               ></Button>
             )}
             {loading && (
-              <img
+              <Image
                 src={loader}
                 sx={{ height: "50px", gridArea: "button" }}
                 alt="loading..."

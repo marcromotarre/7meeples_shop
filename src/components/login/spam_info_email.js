@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState } from "react";
 import React from "react";
 import back_button_icon from "../../assets/svg/back-button.svg";

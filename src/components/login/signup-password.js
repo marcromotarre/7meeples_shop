@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import Input from "../common/inputs/input";
 import Button from "../common/buttons/button";
 import { useState } from "react";
@@ -11,6 +9,8 @@ import check_unchecked from "../../assets/svg/check-unchecked.svg";
 var passwordHash = require("password-hash");
 import * as emailjs from "emailjs-com";
 import loader from "./../../assets/gif/loader.gif";
+
+import Image from "next/image";
 
 export default function SignUpPassword({ email, onClickNext = () => {} }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -170,7 +170,10 @@ export default function SignUpPassword({ email, onClickNext = () => {} }) {
                 }}
                 onClick={handleShowPasswordCheckbox}
               >
-                <img src={showPassword ? check_checked : check_unchecked} />
+                <Image
+                  alt=""
+                  src={showPassword ? check_checked : check_unchecked}
+                />
                 <span
                   sx={{
                     paddingLeft: "5px",
@@ -199,7 +202,7 @@ export default function SignUpPassword({ email, onClickNext = () => {} }) {
               ></Button>
             )}
             {loading && (
-              <img
+              <Image
                 src={loader}
                 sx={{ height: "50px", gridArea: "button" }}
                 alt="loading..."

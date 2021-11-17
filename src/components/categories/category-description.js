@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
+import Image from "next/image";
 export default function CategoryDescription({ description }) {
   const separator = {
     width: "100%",
@@ -18,7 +17,9 @@ export default function CategoryDescription({ description }) {
       );
     }
     if (element === "img") {
-      return <img key={index} sx={properties.sx} src={properties.icon} />;
+      return (
+        <Image alt="" key={index} sx={properties.sx} src={properties.icon} />
+      );
     }
   };
 

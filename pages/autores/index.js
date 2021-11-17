@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import Searcher from "src/components/searcher/searcher";
 import { useSelector } from "react-redux";

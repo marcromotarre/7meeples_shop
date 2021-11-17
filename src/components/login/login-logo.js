@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import Image from "next/image";
 
 export default function LoginEmail({ logo, gridArea = "" }) {
   return (
@@ -13,7 +12,7 @@ export default function LoginEmail({ logo, gridArea = "" }) {
         alignItems: "center",
       }}
     >
-      <img src={logo.svg} sx={{ width: "100px" }}></img>
+      <Image alt="" src={logo.svg} sx={{ width: "100px" }}></Image>
       {/*<div sx={{ display: "flex" }}>
         <span sx={{ fontSize: "22px", color: logo.color.gray }}>7</span>
         <span sx={{ fontSize: "22px", color: logo.color.base }}>meeples</span>

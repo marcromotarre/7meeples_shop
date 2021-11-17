@@ -1,8 +1,7 @@
 import "../styles/globals.css";
 import "../styles.css";
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import store from "../src/redux/store";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "theme-ui";

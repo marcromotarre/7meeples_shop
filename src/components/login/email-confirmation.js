@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState } from "react";
 import React from "react";
 import back_button_icon from "../../assets/svg/back-button.svg";
+import Image from "next/image";
 
 import loader from "./../../assets/gif/loader.gif";
 
@@ -44,7 +43,7 @@ export default function EmailConfirmation({
           alignItems: "center",
         }}
       >
-        <img src={back_button_icon}></img>
+        <Image alt="" src={back_button_icon}></Image>
         <span
           sx={{
             paddingTop: "5px",

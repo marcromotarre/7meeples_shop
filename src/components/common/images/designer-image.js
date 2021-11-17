@@ -1,10 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
+import React from "react";
 import { IMAGES_REPOSITORY } from "../../../constants";
 import user_male_icon from "../../../assets/svg/user-male.svg";
 import { useState } from "react";
 import { s3_name } from "../../../utils/name";
+import Image from "next/image";
 
 export default function DesignerImage({ name, styles, border }) {
   const [showDefaultImage, setShowDefaultImage] = useState(false);
@@ -12,7 +12,7 @@ export default function DesignerImage({ name, styles, border }) {
     if (!showDefaultImage) setShowDefaultImage(true);
   };
   return (
-    <img
+    <Image
       onError={onImageError}
       sx={{
         border: `${border}px solid black`,

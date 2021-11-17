@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import { useState, useRef, useEffect } from "react";
+/** @jsxImportSource theme-ui */
+import React, { useState, useRef, useEffect } from "react";
 
 export default function Input({
   endAnimation = () => {},

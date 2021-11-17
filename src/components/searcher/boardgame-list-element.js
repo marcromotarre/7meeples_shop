@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import BoardgameImage from "../board-games/boardgame-image";
 import { useRouter } from "next/router";
 

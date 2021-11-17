@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useState } from "react";
 import React from "react";
 import back_button_icon from "../../assets/svg/back-button.svg";
+import Image from "next/image";
 
 import email_icon from "./../../assets/svg/email-icon.svg";
 import Button from "../common/buttons/button";
@@ -40,7 +39,8 @@ export default function EmailIconMessage({
           {getText(texts.email, { email })}
         </span>
       </div>
-      <img
+      <Image
+        alt=""
         sx={{ margin: "10px 0", width: "100px", height: "100px" }}
         src={email_icon}
       />

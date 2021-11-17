@@ -1,8 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import designers_icon from "../../../assets/svg/sections/designers.svg";
 import Designer from "../../designers/designer";
+import Image from "next/image";
 import {
   duration_string,
   play_time_string,
@@ -44,7 +44,7 @@ export default function BoardgameModalDesigners({ boardgame }) {
           rowGap: "5px",
         }}
       >
-        <img sx={{ height: "22px" }} src={designers_icon} />
+        <Image sx={{ height: "22px" }} src={designers_icon} />
         <h3>Autores</h3>
       </div>
       <div

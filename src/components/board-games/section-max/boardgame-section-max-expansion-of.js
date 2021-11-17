@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import Section from "./boardgame-section-max";
 import icon from "../../../assets/svg/sections/expansion-of.svg";
 import { useRouter } from "next/router";

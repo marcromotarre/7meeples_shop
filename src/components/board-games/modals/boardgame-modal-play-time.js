@@ -1,9 +1,9 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import play_time_icon from "../../../assets/svg/sections/play-time.svg";
 import { duration_string, play_time_string } from "../utils";
 import { Question, Option, Link } from "../../common/index";
+import Image from "next/image";
 
 export default function BoardgameModalPlayTime({ boardgame }) {
   const { webname, playTimeMin, playTimeMax } = boardgame;
@@ -37,7 +37,7 @@ export default function BoardgameModalPlayTime({ boardgame }) {
           rowGap: "5px",
         }}
       >
-        <img sx={{ height: "22px" }} src={play_time_icon} />
+        <Image alt="" sx={{ height: "22px" }} src={play_time_icon} />
         <h3>Duración</h3>
       </div>
       <div

@@ -1,11 +1,10 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
 import React from "react";
+/** @jsxImportSource theme-ui */
 import Section from "./boardgame-section-max";
 import { age_string } from "../utils";
 import icon from "../../../assets/svg/sections/content.svg";
 import { CONTENT } from "src/data/content";
+import Image from "next/image";
 export default function SectionContent({ styles, content = [] }) {
   console.log("CONTENT", CONTENT["board"]);
   console.log("content", content);
@@ -34,7 +33,8 @@ export default function SectionContent({ styles, content = [] }) {
         >
           {content.map((element) => (
             <>
-              <img
+              <Image
+                alt=""
                 sx={{ height: CONTENT[element.type]?.height, width: "auto" }}
                 src={CONTENT[element.type]?.icon}
               />

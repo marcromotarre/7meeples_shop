@@ -1,6 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import Section from "./boardgame-section";
 import { play_time_string } from "../utils";
 import icon from "../../../assets/svg/sections/play-time.svg";

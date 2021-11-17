@@ -1,12 +1,11 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import search_icon from "../../assets/svg/search.svg";
 import cancel_icon from "../../assets/svg/cancel.svg";
 import { changeSearchValue } from "src/redux/actions/search";
 import React, { useState } from "react";
+import Image from "next/image";
 
 /*
 <>
@@ -104,7 +103,7 @@ export default function Searcher({
           placeholder={defaultText}
         />
         {value && (
-          <img
+          <Image
             onClick={cleanSearch}
             sx={{
               position: "absolute",
@@ -118,7 +117,7 @@ export default function Searcher({
           />
         )}
         {!value && (
-          <img
+          <Image
             sx={{
               position: "absolute",
               right: "calc(10px)",

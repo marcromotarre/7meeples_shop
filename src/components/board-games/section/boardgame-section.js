@@ -1,7 +1,6 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+import React from "react";
+/** @jsxImportSource theme-ui */
+import Image from "next/image";
 
 export default function Section({
   icon,
@@ -26,7 +25,7 @@ export default function Section({
         {children}
       </div>
       {icon && (
-        <img
+        <Image
           sx={{
             gridArea: "section-icon",
             width: "30px",

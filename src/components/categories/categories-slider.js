@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
 import mia_title_icon from "../../assets/svg/mia/mia-title.svg";
@@ -11,6 +9,7 @@ import CategoriesList from "./categories-list";
 import awards_icon from "../../assets/svg/categories/icon.svg";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { useRouter } from "next/router";
+import React from "react";
 
 export default function Slider({ styles }) {
   const router = useRouter();

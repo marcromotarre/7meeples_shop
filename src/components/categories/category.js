@@ -1,10 +1,9 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-
+/** @jsxImportSource theme-ui */
+import React from "react";
 import meeples_awards_icon from "../../assets/svg/categories/icon.svg";
 import Description from "./category-description";
 import BoardGamesList from "../board-games/board-games-list";
+import Image from "next/image";
 export default function Category({ icon, name, description, boardgames = [] }) {
   return (
     <div
@@ -25,7 +24,7 @@ export default function Category({ icon, name, description, boardgames = [] }) {
           rowGap: "10px",
         }}
       >
-        <img sx={{ width: "50px" }} src={icon}></img>
+        <Image sx={{ width: "50px" }} src={icon}></Image>
         <div
           sx={{
             display: "flex",
@@ -34,16 +33,16 @@ export default function Category({ icon, name, description, boardgames = [] }) {
             gridTemplateColumns: "100%",
           }}
         >
-          <img
+          <Image
             sx={{ width: "22px", marginRight: "10px" }}
             src={meeples_awards_icon}
-          ></img>
+          ></Image>
 
           <h3>{name}</h3>
-          <img
+          <Image
             sx={{ width: "22px", marginLeft: "10px" }}
             src={meeples_awards_icon}
-          ></img>
+          ></Image>
         </div>
       </div>
 

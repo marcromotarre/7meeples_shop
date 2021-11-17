@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import popcorn from "../../assets/svg/meeplestrenos/popcorn.svg";
 import icon from "../../assets/svg/meeplestrenos/meeplestrenos.svg";
 import { useRouter } from "next/router";
@@ -25,14 +23,14 @@ export default function AwardHeader() {
         onClick={handleClick}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
-        <img sx={{ width: "10px", height: "10px" }} src={popcorn}></img>
+        <Image alt sx={{ width: "10px", height: "10px" }} src={popcorn}></Image>
         <div sx={{ width: "10px" }} />
         <span sx={{ color: "#EA4335", fontWeight: "100" }}>meepl</span>
         <span sx={{ fontWeight: "300" }}>estrenos</span>
         <div sx={{ width: "10px" }} />
-        <img sx={{ width: "10px", height: "10px" }} src={popcorn}></img>
+        <Image alt sx={{ width: "10px", height: "10px" }} src={popcorn}></Image>
       </div>
-      <img onClick={handleClick} src={icon}></img>
+      <Image alt onClick={handleClick} src={icon}></Image>
     </div>
   );
 }

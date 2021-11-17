@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import sale_icon from "../../assets/svg/menu/sale-icon.svg";
 import BoardgameMin from "../board-games/boardgame-min";
 import { BOARDGAME_ATTRIBUTES } from "../board-games/utils";

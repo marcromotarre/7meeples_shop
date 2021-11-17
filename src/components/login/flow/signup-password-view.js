@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useRef, useEffect, useState } from "react";
 import { Button, InputPassword } from "../../common";
 import texts from "../texts.json";
@@ -28,12 +26,11 @@ export default function login_email_view({ setGoToStep, data, setData }) {
     const code = generateCode();
 
     let error = true;
-    const user_credentials_confirmation = await add_user_credentials_confirmation(
-      {
+    const user_credentials_confirmation =
+      await add_user_credentials_confirmation({
         email: data.email,
         code,
-      }
-    );
+      });
     if (user_credentials_confirmation.created) {
       const user_credentials = await add_user_credentials({
         email: data.email,

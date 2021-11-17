@@ -1,7 +1,5 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
-import React, { useEffect, useState } from "react";
+import React from "react";
+/** @jsxImportSource theme-ui */
 import Section from "./boardgame-section";
 import icon from "../../../assets/svg/sections/weight.svg";
 

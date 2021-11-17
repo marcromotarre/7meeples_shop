@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { s3_name } from "src/utils/name";

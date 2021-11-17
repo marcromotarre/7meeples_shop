@@ -1,8 +1,7 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import { get_boardgames } from "../../backend/boardgames";
+import Image from "next/image";
 
 export default function BoardgameGalleryImage({ images }) {
   let fontSize = "24px;";
@@ -22,10 +21,11 @@ export default function BoardgameGalleryImage({ images }) {
       {images &&
         images.map((image, index) => (
           <div key={index} sx={{ height: "auto", width: "90%" }}>
-            <img
+            <Image
+              alt=""
               sx={{ width: "100%", maxHeight: "auto", minWidth: "0" }}
               src={image}
-            ></img>
+            ></Image>
           </div>
         ))}
     </div>

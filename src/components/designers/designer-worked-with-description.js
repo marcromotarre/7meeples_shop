@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React from "react";
 import DesignerWorkedWithList from "./designer-worked-with-list";
 import { get_common_boardgames } from "./utils";

@@ -1,6 +1,4 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import React, { useEffect, useState } from "react";
 import BoardgameScore from "./boardgame-average";
 import BoardgameName from "./boardgame-name";
@@ -8,7 +6,7 @@ import { get_min_section } from "./section/utils";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { DEFAULT_BOARDGAME_ATTRIBUTES } from "./utils";
 import { s3_name } from "src/utils/name";
-import Image from "../common/images/image";
+import Image from "../common/images/image.js";
 
 export default function BoardgameMin({
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,

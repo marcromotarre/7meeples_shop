@@ -1,9 +1,8 @@
-/** @jsxRuntime classic /
-/* @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { recomendations } from "../../mia/recomendations";
 import { useSelector, useDispatch } from "react-redux";
 import mia_title_icon from "../../assets/svg/mia/mia-virtual-assistant.svg";
+import Image from "next/image";
 
 export default function MiaRecomendation({ ...styles }) {
   return (
@@ -16,7 +15,7 @@ export default function MiaRecomendation({ ...styles }) {
         ...styles,
       }}
     >
-      <img sx={{ width: "80%" }} src={mia_title_icon}></img>
+      <Image alt="" sx={{ width: "80%" }} src={mia_title_icon}></Image>
     </div>
   );
 }
