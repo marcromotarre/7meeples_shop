@@ -45,24 +45,30 @@ export default function SectionMaxNumberOfPlayers({
               {numPlayers}
             </span>
             {numberOfPlayersBest.includes(numPlayers) && (
-              <Image
+              <div
                 sx={{
                   position: "absolute",
-                  width: "30px",
-                  height: "30px",
                 }}
-                src={number_of_players_best_icon}
-              ></Image>
+              >
+                <Image
+                  width={30}
+                  height={30}
+                  src={number_of_players_best_icon}
+                />
+              </div>
             )}
             {numberOfPlayersNotRecommended.includes(numPlayers) && (
-              <Image
+              <div
                 sx={{
                   position: "absolute",
-                  width: "30px",
-                  height: "30px",
                 }}
-                src={number_of_players_not_recommended_icon}
-              ></Image>
+              >
+                <Image
+                  width={30}
+                  height={30}
+                  src={number_of_players_not_recommended_icon}
+                />
+              </div>
             )}
           </div>
         ))}

@@ -25,6 +25,7 @@ export default function CategoryView({ publisher = {}, styles }) {
         )
     : [];
 
+  // TODO : publishers = null
   return (
     <MainView
       back={{ text: "Ver Todas las Editoriales", route: "/editoriales/" }}
@@ -50,11 +51,24 @@ export default function CategoryView({ publisher = {}, styles }) {
           }}
         >
           {image && (
-            <Image
-              alt=""
-              sx={{ width: "80%", height: "auto" }}
-              src={`${IMAGES_REPOSITORY}publishers/${image}`}
-            />
+            <div
+              sx={{
+                position: "relative",
+                maxWidth: "80%",
+                maxHeight: "100%",
+                height: "0",
+                paddingBottom: "80%",
+                width: "1000px",
+              }}
+            >
+              <Image
+                priority={true}
+                objectFit="contain"
+                layout={"fill"}
+                alt=""
+                src={`${IMAGES_REPOSITORY}publishers/${image}`}
+              />
+            </div>
           )}
           {description && <Description description={description} />}
           {(image || description) && (

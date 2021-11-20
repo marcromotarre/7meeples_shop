@@ -132,14 +132,14 @@ export default function EmailVerification({ url }) {
           {logo && <LoginLogo gridArea={"logo"} logo={logo}></LoginLogo>}
           {(state === states.SUCCESS || state === states.ERROR) && (
             <div sx={{ gridArea: "close", padding: "10px 10px" }}>
-              <Image
-                alt=""
-                src={close}
+              <div
                 sx={{
-                  height: "25px",
+                  position: "relative",
                   gridArea: "button",
                 }}
-              />
+              >
+                <Image height={25} width={25} alt="" src={close} />
+              </div>
             </div>
           )}
         </div>

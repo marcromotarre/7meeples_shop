@@ -46,11 +46,21 @@ export default function CategoryView({ family = {}, styles }) {
           }}
         >
           {image && (
-            <Image
-              alt=""
-              sx={{ width: "80%", height: "auto" }}
-              src={`${IMAGES_REPOSITORY}families/${image}`}
-            />
+            <div
+              sx={{
+                position: "relative",
+                width: "80%",
+                height: "0",
+                paddingBottom: "80%",
+              }}
+            >
+              <Image
+                objectFit="contain"
+                alt=""
+                layout={"fill"}
+                src={`${IMAGES_REPOSITORY}families/${image}`}
+              />
+            </div>
           )}
           {description && <Description description={description} />}
           {(image || description) && (

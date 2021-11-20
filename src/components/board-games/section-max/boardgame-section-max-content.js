@@ -34,6 +34,7 @@ export default function SectionContent({ styles, content = [] }) {
           {content.map((element) => (
             <>
               <Image
+                key={index}
                 alt=""
                 sx={{ height: CONTENT[element.type]?.height, width: "auto" }}
                 src={CONTENT[element.type]?.icon}

@@ -51,8 +51,9 @@ export default function Slider({ title = "", elements = [], styles }) {
           }}
         >
           {elements.map(
-            ({ image, color, webname, id, full, click = () => {} }) => (
+            ({ image, color, webname, id, full, click = () => {} }, index) => (
               <Square
+                key={index}
                 image={image}
                 color={color}
                 name={webname}

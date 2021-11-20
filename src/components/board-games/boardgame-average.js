@@ -39,7 +39,7 @@ export default function BoardgameAverage({
       >
         <Image
           alt=""
-          sx={{ height: "40px" }}
+          height={40}
           src={template ? hexa_default : hexa_black}
         ></Image>
         <span

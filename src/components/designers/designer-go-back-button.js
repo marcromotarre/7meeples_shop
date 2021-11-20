@@ -19,7 +19,8 @@ export default function DesignerGoBackButton({ styles }) {
         ...styles,
       }}
     >
-      <Image alt=""
+      <Image
+        alt=""
         sx={{
           justifySelf: "center",
           alignSelf: "center",
@@ -27,7 +28,7 @@ export default function DesignerGoBackButton({ styles }) {
           height: "auto",
         }}
         src={back_button_icon}
-      ></Image alt="">
+      />
 
       <h4 sx={{ justifySelf: "start", alignSelf: "center" }}>
         Ver todos los autores

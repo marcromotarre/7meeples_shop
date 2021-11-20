@@ -172,8 +172,8 @@ export default function GamesList({
                   rowGap: "25px",
                 }}
               >
-                {boardgames.map((boardgame) => (
-                  <>
+                {boardgames.map((boardgame, index) => (
+                  <React.Fragment key={index}>
                     {boardgame && (
                       <div
                         sx={{
@@ -182,10 +182,10 @@ export default function GamesList({
                           justifyContent: "center",
                           alignItems: "center",
                         }}
-                        key={boardgame?.id}
+                        key={index}
                       >
                         <Boardgame
-                          key={boardgame?.id}
+                          key={index}
                           onClick={onClickBoardgame}
                           boardgame={boardgame}
                           attributes={attributes}
@@ -193,7 +193,7 @@ export default function GamesList({
                         />
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </InfiniteScroll>

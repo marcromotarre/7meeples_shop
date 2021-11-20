@@ -86,14 +86,14 @@ export default function BoardgameMin({
       <BoardgameName name={name} year={year} />
       <div sx={{ width: "100%" }}>
         <div sx={{ width: "100%" }}>
-          {showAttributes.map((attribute) => (
-            <>
+          {showAttributes.map((attribute, index) => (
+            <React.Fragment key={index}>
               <div sx={separator}></div>
               {get_min_section({
                 attribute,
                 values: { ...boardgame, onClickMore: () => setShowMore(true) },
               })}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>

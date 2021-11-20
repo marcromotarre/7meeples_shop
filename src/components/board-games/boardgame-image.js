@@ -11,12 +11,18 @@ import { IMAGES_REPOSITORY } from "src/constants";
 
 export default function BoardgameImage({ name, imageDefault, styles }) {
   return (
-    <Image
-      alt=""
+    <div
       sx={{
+        position: "relative",
         ...styles,
       }}
-      src={`${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`}
-    ></Image>
+    >
+      <Image
+        alt=""
+        objectFit="contain"
+        layout={"fill"}
+        src={`${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`}
+      ></Image>
+    </div>
   );
 }

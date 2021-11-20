@@ -74,7 +74,7 @@ export default function BoardgameMinFixedHeight({ styles }) {
             position: "relative",
           }}
         >
-          <Image alt="" sx={{ height: "40px" }} src={hexa_default}></Image>
+          <Image alt="" height={40} src={hexa_default}></Image>
         </div>
         <div
           sx={{ backgroundColor: "#EFF2F5", height: "10px", width: "100%" }}

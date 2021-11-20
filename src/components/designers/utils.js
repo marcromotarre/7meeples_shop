@@ -3,7 +3,7 @@ export const get_common_boardgames = ({ boardgames, designers }) => {
   return boardgames.filter(
     (boardgame) =>
       designers_ids
-        .map((designer_id) => boardgame.designers.includes(designer_id))
+        .map((designer_id) => boardgame.designers?.includes(designer_id))
         .filter((val) => val === true).length === designers.length
   );
 };

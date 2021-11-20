@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+
 import { ThemeProvider } from "theme-ui";
 import theme from "../src/utils/theme";
 import "../styles/globals.css";

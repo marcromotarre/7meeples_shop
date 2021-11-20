@@ -28,7 +28,7 @@ export default function SectionMaxCategories({ styles, categories = [] }) {
         }}
       >
         {categories.map((category, index) => (
-          <p onClick={() => gotToCategory(category)}>
+          <p key={index} onClick={() => gotToCategory(category)}>
             {category.webname}
             {index < categories.length - 1 ? ",\xa0" : ""}
           </p>

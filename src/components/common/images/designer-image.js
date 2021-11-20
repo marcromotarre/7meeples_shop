@@ -12,21 +12,27 @@ export default function DesignerImage({ name, styles, border }) {
     if (!showDefaultImage) setShowDefaultImage(true);
   };
   return (
-    <Image
-      onError={onImageError}
+    <div
       sx={{
         border: `${border}px solid black`,
         borderRadius: "50%",
         width: "100%",
         height: "auto",
         maxWidth: "100%",
+        position: "relative",
         ...styles,
       }}
-      src={
-        showDefaultImage
-          ? user_male_icon
-          : `${IMAGES_REPOSITORY}designers/${s3_name(name)}.jpg`
-      }
-    />
+    >
+      <Image
+        objectFit="contain"
+        layout={"fill"}
+        onError={onImageError}
+        src={
+          showDefaultImage
+            ? user_male_icon
+            : `${IMAGES_REPOSITORY}designers/${s3_name(name)}.jpg`
+        }
+      />
+    </div>
   );
 }

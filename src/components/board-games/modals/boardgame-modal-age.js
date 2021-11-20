@@ -43,7 +43,8 @@ export default function BoardgameModalAge({ boardgame }) {
         }}
       >
         <p>{age_group_string(age)}</p>
-        <Image alt="" sx={{ height: "22px" }} src={age_icon} />
+        <Image alt="" height={22} src={age_icon} />
+
         <h3>Edad</h3>
       </div>
       <div
