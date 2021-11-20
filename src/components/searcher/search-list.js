@@ -63,8 +63,9 @@ export default function SearchList({ styles, searchValue }) {
         }}
       >
         <List styles={{ width: "100%" }}>
-          {total_searched_list.map(({ element, type }) => (
+          {total_searched_list.map(({ element, type }, index) => (
             <div
+              key={index}
               sx={{
                 display: "flex",
                 alignItems: "center",

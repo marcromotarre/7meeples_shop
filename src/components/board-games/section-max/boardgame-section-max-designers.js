@@ -29,7 +29,7 @@ export default function SectionMaxDesigners({ styles, designers = [] }) {
         }}
       >
         {designers.map((designer, index) => (
-          <p onClick={() => gotToDesginer(designer)}>
+          <p key={index} onClick={() => gotToDesginer(designer)}>
             {designer.name}
             {index < designers.length - 1 ? ",\xa0" : ""}
           </p>

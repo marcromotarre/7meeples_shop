@@ -138,10 +138,11 @@ export default function MiaRecommends({ boardgame_id }) {
         alignItems: "center",
       }}
     >
-      {mia_recomendations.map((recomendation) => {
+      {mia_recomendations.map((recomendation, index) => {
         if (recomendation.type === "most_related") {
           return (
             <Slider
+              key={index}
               title={`Si te gusta ${boardgame.webname}`}
               elements={recomendation.boardgames}
               styles={{
@@ -152,6 +153,7 @@ export default function MiaRecommends({ boardgame_id }) {
         } else if (recomendation.type === "designer") {
           return (
             <Slider
+              key={index}
               title={`Autor ${recomendation.designer.name}`}
               elements={recomendation.boardgames}
               styles={{
@@ -162,6 +164,7 @@ export default function MiaRecommends({ boardgame_id }) {
         } else if (recomendation.type === "family") {
           return (
             <Slider
+              key={index}
               title={`Family`}
               elements={recomendation.boardgames}
               styles={{

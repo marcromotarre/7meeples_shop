@@ -29,7 +29,7 @@ export default function SectionMaxMechanisms({ styles, mechanisms = [] }) {
         }}
       >
         {mechanisms.map((mechanism, index) => (
-          <p onClick={() => gotToMechanism(mechanism)}>
+          <p key={index} onClick={() => gotToMechanism(mechanism)}>
             {mechanism.name}
             {index < mechanisms.length - 1 ? ",\xa0" : ""}
           </p>

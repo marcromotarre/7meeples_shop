@@ -5,7 +5,7 @@ export default function BoardgameDescription({ styles, description }) {
   const showMore = description.split("[VERMAS]").length > 1;
   const resumed_description = description.split("[VERMAS]")[0];
   const all_description = description.replace("[VERMAS]", "");
-
+  //TODO <p> cannot be inside <p>
   const resumedDescription = () => (
     <p
       sx={{

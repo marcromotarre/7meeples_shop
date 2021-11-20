@@ -28,7 +28,7 @@ export default function SectionMaxFamilies({ styles, families = [] }) {
         }}
       >
         {families.map((family, index) => (
-          <p onClick={() => gotToFamily(family)}>
+          <p key={index} onClick={() => gotToFamily(family)}>
             {family.webname}
             {index < families.length - 1 ? ",\xa0" : ""}
           </p>
