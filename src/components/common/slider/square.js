@@ -13,7 +13,6 @@ export default function Square({
   onClick = () => {},
   showName = false,
 }) {
-  console.log(image);
   return (
     <div
       key={id}
@@ -53,18 +52,24 @@ export default function Square({
             justifyContent: "center",
           }}
         >
-          <img
-            alt=""
+          <div
             sx={{
+              position: "relative",
               borderRadius: full ? "10px" : "0px",
               display: "block",
-              width: full ? "100%" : "90%",
-              height: "auto",
+              maxWidth: full ? "100%" : "90%",
+              width: "1000px",
+              height: "1000px",
               maxHeight: full ? "100%" : "90%",
-              objectFit: "contain",
             }}
-            src={image.src ? image.src : image}
-          ></img>
+          >
+            <Image
+              layout={"fill"}
+              objectFit="contain"
+              alt=""
+              src={image.src ? image.src : image}
+            />
+          </div>
         </div>
       </div>
 

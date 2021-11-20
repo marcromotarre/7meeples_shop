@@ -44,7 +44,12 @@ export default function CategoryView({ publishers = [], styles }) {
             rowGap: "10px",
           }}
         >
-          <Image alt="" src={publisher_icon}></Image>
+          <Image
+            objectFit="contain"
+            layout={"fill"}
+            alt=""
+            src={publisher_icon}
+          />
           <h1>Editoriales</h1>
         </div>
         <div

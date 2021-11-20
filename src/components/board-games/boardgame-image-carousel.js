@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
 import { useSwipeable } from "react-swipeable";
 import Flow from "src/components/common/flow/flow";
-import Image from "src/components/common/images/image";
+import Image from "next/image";
 import BoardgameImage from "./boardgame-image";
 
 export default function BoardgameImageCarousel({
@@ -88,15 +88,24 @@ export default function BoardgameImageCarousel({
             alignItems: "center",
           }}
         >
-          {carouselImages.map((ci) => (
-            <Image
-              styles={{
+          {carouselImages.map((ci, index) => (
+            <div
+              key={index}
+              sx={{
                 position: "relative",
                 maxHeight: "300px",
                 maxWidth: "80%",
+                width: "1000px",
+                height: "1000px",
               }}
-              src={ci}
-            />
+            >
+              <Image
+                priority={true}
+                objectFit="contain"
+                layout={"fill"}
+                src={ci}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -25,16 +25,18 @@ export default function Section({
         {children}
       </div>
       {icon && (
-        <Image
+        <div
           sx={{
             gridArea: "section-icon",
             width: "30px",
             height: "30px",
             alignSelf: "center",
+            position: "relative",
             ...iconStyles,
           }}
-          src={icon}
-        />
+        >
+          <Image objectFit="contain" fill={"layout"} src={icon} />
+        </div>
       )}
     </div>
   );

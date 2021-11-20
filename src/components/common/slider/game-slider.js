@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import BoardgameMinFixedHeight from "src/components/board-games/boardgame-min-fixed-height";
+//import BoardgameMinFixedHeight from "src/components/board-games/boardgame-min-fixed-height";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -128,7 +128,7 @@ export default function Slider({
             },
           }}
         >
-          {elements.map((boardgame) => (
+          {/*elements.map((boardgame) => (
             <>
               {boardgame && (
                 <BoardgameMinFixedHeight
@@ -142,7 +142,7 @@ export default function Slider({
                 />
               )}
             </>
-          ))}
+          ))*/}
           <div sx={{ height: "100%", width: "10px" }}></div>
         </div>
       </div>

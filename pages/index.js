@@ -162,11 +162,11 @@ export default function Home() {
               gridArea: "mia",
             }}
           ></Mia>
-          <SaleOfThe
+          {/*<SaleOfThe
             styles={{
               gridArea: "sale-of-the",
             }}
-          ></SaleOfThe>
+          ></SaleOfThe>*/}
           <Slider
             title={"Colecciones"}
             elements={families}

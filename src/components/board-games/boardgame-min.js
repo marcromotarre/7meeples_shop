@@ -60,14 +60,13 @@ export default function BoardgameMin({
         sx={{
           width: "100%",
           display: "flex",
-
+          padding: "20px 0px 0px 0px",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <div
           sx={{
-            padding: "20px 0px 0px 0px",
             width: "80%",
             height: "300px",
             position: "relative",
