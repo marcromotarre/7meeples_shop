@@ -31,10 +31,9 @@ export default function SectionContent({ styles, content = [] }) {
             gridTemplateColumns: "min-content auto",
           }}
         >
-          {content.map((element) => (
-            <>
+          {content.map((element, index) => (
+            <React.Fragment key={index}>
               <Image
-                key={index}
                 alt=""
                 sx={{ height: CONTENT[element.type]?.height, width: "auto" }}
                 src={CONTENT[element.type]?.icon}
@@ -124,7 +123,7 @@ export default function SectionContent({ styles, content = [] }) {
                     </div>
                   </>
                 ))}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>

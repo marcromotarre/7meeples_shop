@@ -12,7 +12,7 @@ import { s3_name } from "src/utils/name";
 
 export default function GamesList({
   boardgames,
-  styles = {},
+  styles: parentStyles = {},
   clickOnBoardGame = () => {},
   attributes = DEFAULT_BOARDGAME_ATTRIBUTES,
   moreAttributes = [],
@@ -127,31 +127,14 @@ export default function GamesList({
   };
 
   return (
-    <div
-      sx={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        ...styles,
-      }}
-    >
-      <div
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-        }}
-      >
+    <div sx={styles({ parentStyles }).global}>
+      <div sx={styles().boardgamesList}>
         {pagedBoardGamesRows &&
           boardgames.length > 0 &&
           pagedBoardGamesRows.map(({ boardgames, page }, index) => (
             <InfiniteScroll
               key={index}
-              sx={{ width: getWidthByDevice() }}
+              sx={styles({ widthDevice: getWidthByDevice() }).infiniteScroll}
               pageStart={page}
               loadMore={() => addPageToGamesRow(index)}
               hasMore={boardgames.length / 3 >= page}
@@ -161,29 +144,11 @@ export default function GamesList({
                 </div>
               }
             >
-              <div
-                className="bgg-grid"
-                sx={{
-                  width: "100%",
-                  gridTemplateColumns: "100%",
-                  display: "grid",
-                  alignItems: "center",
-                  justifyItems: "center",
-                  rowGap: "25px",
-                }}
-              >
+              <div className="bgg-grid" sx={styles().grid}>
                 {boardgames.map((boardgame, index) => (
                   <React.Fragment key={index}>
                     {boardgame && (
-                      <div
-                        sx={{
-                          width: "100%",
-                          maxWidth: "350px",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                        key={index}
-                      >
+                      <div sx={styles().boardgame} key={index}>
                         <Boardgame
                           key={index}
                           onClick={onClickBoardgame}
@@ -202,3 +167,36 @@ export default function GamesList({
     </div>
   );
 }
+
+const styles = ({ parentStyles, widthDevice } = {}) => ({
+  global: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    ...parentStyles,
+  },
+  boardgamesList: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+  },
+  infiniteScroll: { width: widthDevice },
+  grid: {
+    width: "100%",
+    gridTemplateColumns: "100%",
+    display: "grid",
+    alignItems: "center",
+    justifyItems: "center",
+    rowGap: "25px",
+  },
+  boardgame: {
+    width: "100%",
+    maxWidth: "350px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

@@ -8,21 +8,18 @@ import { changeSearchValue } from "src/redux/actions/search";
 import { simple_string, s3_name } from "src/utils/name";
 import { useState } from "react";
 import { IMAGES_REPOSITORY } from "src/constants";
+import loader from "./../../../src/assets/gif/loader.gif";
 
-export default function BoardgameImage({ name, imageDefault, styles }) {
+export default function BoardgameImage({ name, image, imageDefault, styles }) {
+  const src = image ? image : imageDefault;
   return (
     <div
       sx={{
-        position: "relative",
         ...styles,
+        position: "relative",
       }}
     >
-      <Image
-        alt=""
-        objectFit="contain"
-        layout={"fill"}
-        src={`${IMAGES_REPOSITORY}boardgames/${s3_name(name)}.jpg`}
-      ></Image>
+      <Image alt="" objectFit="contain" layout={"fill"} src={src} />
     </div>
   );
 }

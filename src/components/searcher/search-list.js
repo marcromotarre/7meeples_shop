@@ -79,12 +79,12 @@ export default function SearchList({ styles, searchValue }) {
                   element={element}
                 ></BoardgameListElement>
               )}
-              {type === "designer" && (
+              {/*type === "designer" && (
                 <DesignerListElement
                   styles={{ width: "100%", height: "50px" }}
                   element={element}
                 ></DesignerListElement>
-              )}
+              )*/}
 
               <div
                 sx={{

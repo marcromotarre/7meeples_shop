@@ -103,31 +103,32 @@ export default function Searcher({
           placeholder={defaultText}
         />
         {value && (
-          <Image
-            onClick={cleanSearch}
+          <div
             sx={{
               position: "absolute",
               right: "calc(14px)",
               top: "calc(50% - 7.5px)",
-              height: "15px",
               gridArea: "icon",
             }}
-            src={cancel_icon}
-            alt="buscar"
-          />
+          >
+            <Image
+              width={15}
+              height={15}
+              onClick={cleanSearch}
+              src={cancel_icon}
+              alt="eliminar busqueda"
+            />
+          </div>
         )}
         {!value && (
-          <Image
+          <div
             sx={{
               position: "absolute",
-              right: "calc(10px)",
-              top: "calc(50% - 12.5px)",
-              height: "25px",
               gridArea: "icon",
             }}
-            src={search_icon}
-            alt="buscar"
-          />
+          >
+            <Image width={15} height={15} src={search_icon} alt="buscar" />
+          </div>
         )}
       </div>
     </div>

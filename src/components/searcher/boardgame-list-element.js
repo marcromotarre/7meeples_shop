@@ -3,7 +3,7 @@ import BoardgameImage from "../board-games/boardgame-image";
 import { useRouter } from "next/router";
 
 export default function BoardgameListElement({ element, styles }) {
-  const { imageDefault, webname, id } = element;
+  const { imageDefault, webname, id, image } = element;
   const height = styles?.height ? styles.height : "100%";
 
   const router = useRouter();
@@ -24,6 +24,7 @@ export default function BoardgameListElement({ element, styles }) {
     >
       <BoardgameImage
         name={webname}
+        image={image}
         imageDefault={imageDefault}
         styles={{
           justifySelf: "center",

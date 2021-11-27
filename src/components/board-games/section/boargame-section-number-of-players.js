@@ -44,26 +44,26 @@ export default function SectionNumberOfPlayers({
               {numPlayers}
             </span>
             {numberOfPlayersBest.includes(numPlayers) && (
-              <Image
-                alt=""
+              <div
                 sx={{
                   position: "absolute",
                   width: "30px",
                   height: "30px",
                 }}
-                src={number_of_players_best_icon}
-              ></Image>
+              >
+                <Image alt="" src={number_of_players_best_icon} />
+              </div>
             )}
             {numberOfPlayersNotRecommended.includes(numPlayers) && (
-              <Image
-                alt=""
+              <div
                 sx={{
                   position: "absolute",
                   width: "30px",
                   height: "30px",
                 }}
-                src={number_of_players_not_recommended_icon}
-              ></Image>
+              >
+                <Image alt="" src={number_of_players_not_recommended_icon} />
+              </div>
             )}
           </div>
         ))}
