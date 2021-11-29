@@ -11,6 +11,9 @@ import FiltersNumberPlayers, {
 import FiltersTime, { ID as FILTERS_TIME_ID } from "./flow/filters-time";
 import FiltersWeight, { ID as FILTERS_WEIGHT_ID } from "./flow/filters-weight";
 
+import age_stepper_selected from "src/assets/svg/stepper/age_stepper_selected.svg";
+import age_stepper from "src/assets/svg/stepper/age_stepper.svg";
+
 export const ORDER = [
   FILTERS_AGE_ID,
   FILTERS_NUMBER_PLAYERS_ID,
@@ -46,14 +49,22 @@ export default function Filters() {
 const steps = [
   {
     name: "Edad",
+    icon: age_stepper,
+    icon_selected: age_stepper_selected,
   },
   {
     name: "Número de jugadores",
+    icon: age_stepper,
+    icon_selected: age_stepper_selected,
   },
   {
     name: "Tiempo de partida",
+    icon: age_stepper,
+    icon_selected: age_stepper_selected,
   },
   {
     name: "Dificultad",
+    icon: age_stepper,
+    icon_selected: age_stepper_selected,
   },
 ];

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="step_selected" transform="translate(-101 -228)">
+    <g id="Elipse_8" data-name="Elipse 8" transform="translate(101 228)" fill="#fff" stroke="#ffbc8b" stroke-width="1">
+      <circle cx="18" cy="18" r="18" stroke="none"/>
+      <circle cx="18" cy="18" r="17.5" fill="none"/>
+    </g>
+    <circle id="Elipse_9" data-name="Elipse 9" cx="15" cy="15" r="15" transform="translate(104 231)" fill="#ffbc8b"/>
+  </g>
+</svg>
